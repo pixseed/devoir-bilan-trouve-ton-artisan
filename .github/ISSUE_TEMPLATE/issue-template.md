@@ -1,3 +1,11 @@
+---
+name: Issue standard
+about: Créer une tâche du projet
+title: "[TASK]"
+labels: ""
+assignees: ""
+---
+
 ## 🎯 Objectif
 
 Décrire l’objectif de l’issue.
