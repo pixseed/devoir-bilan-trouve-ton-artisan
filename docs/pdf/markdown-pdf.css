@@ -1,0 +1,38 @@
+/* Marges du PDF */
+@page {
+  margin: 2cm;
+}
+
+/* Style global */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+  margin: 80px 40px 60px;
+}
+
+/* Titre principal */
+h1 {
+  font-size: 40px;
+  margin-bottom: 30px;
+}
+
+/* Sous-titres */
+h2 {
+  font-size: 26px;
+  margin-bottom: 10px;
+}
+
+h3 {
+  font-size: 20px;
+  color: #555;
+}
+
+/* Infos projet */
+.project-info {
+  margin-top: 60px;
+}
+
+/* Saut de page */
+.page-break {
+  page-break-after: always;
+}
