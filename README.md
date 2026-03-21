@@ -30,8 +30,12 @@ devoir-bilan-trouve-ton-artisan
 ├── docs
 │  ├── diagrammes
 │  ├── figma
+│  │  └── wireframes
 │  └── pdf
 ├── frontend
 ├── .gitignore
 └── README.md
 ```
+
+## Design
+[Figma](https://www.figma.com/design/C0moU99nW9cfFlHHRzYXxc/Kernec_Cedric_Devoir_Bilan_Trouve_Ton_Artisan?node-id=38-3103&t=fcY6xDrTEQbigvnm-1)
