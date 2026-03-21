@@ -32,6 +32,12 @@ Formation Développeur Web & Web Mobile - Centre Européen de Formation
   - [5.6. Page fiche artisan](#56-page-fiche-artisan)
 - [6. Architecture de l'application](#6-architecture-de-lapplication)
 - [7. Livrables attendus](#7-livrables-attendus)
+- [8. Maquettes et wireframes](#8-maquettes-et-wireframes)
+  - [8.1. Lien vers les maquettes Figma](#81-lien-vers-les-maquettes-figma)
+  - [8.2. Wireframes](#82-wireframes)
+    - [8.2.1 Wireframe Mobile](#821-wireframe-mobile)
+    - [8.2.2 Wireframe Tablet](#822-wireframe-tablet)
+    - [8.2.3. Wireframe Desktop](#823-wireframe-desktop)
 
 <div class="page-break"></div>
 
@@ -162,8 +168,27 @@ Routes frontend :
 
 ## 7. Livrables attendus
 
+- Wireframes (Desktop, Tablet, Mobile)
 - API Node.js fonctionnelle
 - Base de données MySQL
 - Frontend React
 - Interface responsive
 - Documentation du projet
+
+---
+
+## 8. Maquettes et wireframes
+
+### 8.1. Lien vers les maquettes Figma
+[Voir les maquettes Figma](https://www.figma.com/design/C0moU99nW9cfFlHHRzYXxc/Kernec_Cedric_Devoir_Bilan_Trouve_Ton_Artisan?node-id=38-3103&t=fcY6xDrTEQbigvnm-1)
+
+### 8.2. Wireframes
+
+#### 8.2.1 Wireframe Mobile
+![Wireframe Mobile](../figma/wireframes/wireframe-mobile.png)
+
+#### 8.2.2 Wireframe Tablet
+![Wireframe Tablet](../figma/wireframes/wireframe-tablet.png)
+
+#### 8.2.3. Wireframe Desktop
+![Wireframe Desktop](../figma/wireframes/wireframe-desktop.png)
