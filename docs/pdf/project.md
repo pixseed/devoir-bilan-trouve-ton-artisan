@@ -24,7 +24,7 @@ Formation Développeur Web & Web Mobile - Centre Européen de Formation
 - [3. Expression des besoins](#3-expression-des-besoins)
 - [4. Contraintes techniques](#4-contraintes-techniques)
 - [5. Fonctionnalités principales](#5-fonctionnalités-principales)
-  - [5.1. Navigation](#51-navigation)
+  - [5.1. Navigation (pages)](#51-navigation-pages)
   - [5.2. Header](#52-header)
   - [5.3. Footer](#53-footer)
   - [5.4. Page d'accueil](#54-page-daccueil)
@@ -38,6 +38,10 @@ Formation Développeur Web & Web Mobile - Centre Européen de Formation
     - [8.2.1 Wireframe Mobile](#821-wireframe-mobile)
     - [8.2.2 Wireframe Tablet](#822-wireframe-tablet)
     - [8.2.3. Wireframe Desktop](#823-wireframe-desktop)
+  - [8.3. Maquettes](#83-maquettes)
+    - [8.3.1 Maquette Mobile](#831-maquette-mobile)
+    - [8.3.2 Maquette Tablet](#832-maquette-tablet)
+    - [8.3.3. Maquette Desktop](#833-maquette-desktop)
 
 <div class="page-break"></div>
 
@@ -64,8 +68,9 @@ La région Auvergne-Rhône-Alpes souhaite mettre à disposition un service numé
 permettant de valoriser les artisans locaux et faciliter leur mise en relation
 avec les particuliers.
 
-Site institutionnel :
-https://www.auvergnerhonealpes.fr/
+[Site institutionnel : https://www.auvergnerhonealpes.fr/](https://www.auvergnerhonealpes.fr/)
+
+![Logo Trouve-ton-artisan](../../frontend/src/assets/logos/logo-trouve-ton-artisan.png)
 
 ---
 
@@ -81,27 +86,29 @@ L'application doit permettre de :
 
 ---
 
+<div class="page-break"></div>
+
 ## 4. Contraintes techniques
 
 Architecture technique du projet :
 
-Frontend :
+**Frontend** :
 - React
 - Vite
 - React Router
 - Bootstrap / CSS
 
-Backend :
+**Backend** :
 - Node.js
 - Express
 
-Base de données :
+**Base de données** :
 - MySQL
 
-ORM :
+**ORM** :
 - Sequelize
 
-Architecture générale :
+**Architecture générale** :
 
 Frontend → API → Base de données
 
@@ -109,12 +116,13 @@ Frontend → API → Base de données
 
 ## 5. Fonctionnalités principales
 
-### 5.1. Navigation
+### 5.1. Navigation (pages)
 
 - Page d'accueil
-- Liste des artisans
+- Liste des artisans (par catégorie)
 - Fiche artisan
 - Page 404
+- Pages Légales (en cours de construction)
 
 ### 5.2. Header
 
@@ -153,6 +161,8 @@ Informations affichées :
 
 ---
 
+<div class="page-break"></div>
+
 ## 6. Architecture de l'application
 
 Routes frontend :
@@ -177,18 +187,39 @@ Routes frontend :
 
 ---
 
+<div class="page-break"></div>
+
 ## 8. Maquettes et wireframes
 
 ### 8.1. Lien vers les maquettes Figma
-[Voir les maquettes Figma](https://www.figma.com/design/C0moU99nW9cfFlHHRzYXxc/Kernec_Cedric_Devoir_Bilan_Trouve_Ton_Artisan?node-id=38-3103&t=fcY6xDrTEQbigvnm-1)
+[Voir les maquettes Figma : https://www.figma.com/design/C0moU99nW9cfFlHHRzYXxc/Kernec_Cedric_Devoir_Bilan_Trouve_Ton_Artisan?node-id=38-3103&t=fcY6xDrTEQbigvnm-1](https://www.figma.com/design/C0moU99nW9cfFlHHRzYXxc/Kernec_Cedric_Devoir_Bilan_Trouve_Ton_Artisan?node-id=38-3103&t=fcY6xDrTEQbigvnm-1)
 
 ### 8.2. Wireframes
 
 #### 8.2.1 Wireframe Mobile
 ![Wireframe Mobile](../figma/wireframes/wireframe-mobile.png)
 
+<div class="page-break"></div>
+
 #### 8.2.2 Wireframe Tablet
 ![Wireframe Tablet](../figma/wireframes/wireframe-tablet.png)
 
 #### 8.2.3. Wireframe Desktop
 ![Wireframe Desktop](../figma/wireframes/wireframe-desktop.png)
+
+<div class="page-break"></div>
+
+### 8.3. Maquettes
+
+#### 8.3.1 Maquette Mobile
+![Maquette Mobile](../figma/models/model-mobile.png)
+
+<div class="page-break"></div>
+
+#### 8.3.2 Maquette Tablet
+![Maquette Tablette](../figma/models/model-tablet.png)
+
+<div class="page-break"></div>
+
+#### 8.3.3. Maquette Desktop
+![Maquette Desktop](../figma/models/model-desktop.png)
