@@ -46,12 +46,16 @@ devoir-bilan-trouve-ton-artisan
 │   │   ├── MCD_trouve_ton_artisan_url.url
 │   │   ├── MCD_trouve_ton_artisan.mcd
 │   │   └── MCD_trouve_ton_artisan.svg
-│   └── MLD/
-│       ├── MLD_Diagram_EER_trouve_ton_artisan.mwb
-│       ├── MLD_Diagram_EER_trouve_ton_artisan.mwb.bak
-│       ├── MLD_Diagram_EER_trouve_ton_artisan.png
-│       ├── MLD_trouve_ton_artisan.md
-│       └── MLD_trouve_ton_artisan.pdf
+│   ├── MLD/
+│   │    ├── MLD_Diagram_EER_trouve_ton_artisan.mwb
+│   │    ├── MLD_Diagram_EER_trouve_ton_artisan.mwb.bak
+│   │    ├── MLD_Diagram_EER_trouve_ton_artisan.png
+│   │    ├── MLD_trouve_ton_artisan.md
+│   │    └── MLD_trouve_ton_artisan.pdf
+│   └── SQL/
+│       ├── queries.sql
+│       ├── schema.sql
+│       └── seed.sql
 ├── docs/
 │   ├── diagrammes
 │   ├── figma/
@@ -106,11 +110,14 @@ devoir-bilan-trouve-ton-artisan
 
 ## DataBase
 
-La base de donnée a été conçu sur une logique de modélisation en deux étapes :
+La base de données a été conçu sur une logique de modélisation en deux étapes :
 - Modèle Conceptuel de Données (MCD)
 - Modèle Logique de Données (MLD)
 
-Elle repose sur 3 entités principales :
+Elle respecte le tableau de données transmit par le client :
+![Tableau de données - PNG](./database/DATA/data.png)
+
+et repose sur 3 entités principales :
 - `catégories`
 - `specialties`
 - `artisans`
@@ -143,3 +150,15 @@ Un dictionnaire de données détaillé est disponible dans le projet afin de dé
 - les contraintes
 
 👉 Voir : 📄 [database/db_doc.pdf](./database/db_doc.pdf)
+
+### Script MySQL
+
+Les scripts SQL sont organisés comme suit :
+- `schema.sql` → Création des la DB et des tables
+- `seed.sql` → Insertion des données initiales
+- `queries.sql` → Requête métier principales :
+  - top artisans du mois
+  - filtrage par catégorie
+  - recherche par mot-clé (nom, spécialité, ville)
+  - recherche combinée (filtrage par catégorie et recherche par mot-clé)
+  - détail d'un artisan

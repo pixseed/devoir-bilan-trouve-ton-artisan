@@ -45,6 +45,7 @@ Formation Développeur Web & Web Mobile - Centre Européen de Formation
 - [9. Base de données](#9-base-de-données)
   - [9.1. Modèle Conceptuel de Données (MCD)](#91-modèle-conceptuel-de-données-mcd)
   - [9.2. Modèle Logique de Données (MLD)](#92-modèle-logique-de-données-mld)
+  - [9.3. Script MySQL](#93-script-mysql)
 
 <div class="page-break"></div>
 
@@ -273,3 +274,12 @@ Le MLD traduit le MCD en strcuture relationnelle exploitable en base de données
 Ce modèle est directement utilisé pour la création de la base de données en SQL.
 
 ![MLD - Modèle Logique de Données - Trouve ton artisan](../../database/MLD/MLD_Diagram_EER_trouve_ton_artisan.png)
+
+### 9.3. Script MySQL
+
+Des requêtes SQL ont été mises en place afin de répondre aux fonctionnalités principales du projet :
+- recherche d'artisans
+- filtrage par catégorie
+- mise en avant des artisans du mois
+
+Ces reqûetes ont été testées et validées.
