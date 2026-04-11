@@ -42,6 +42,9 @@ Formation Développeur Web & Web Mobile - Centre Européen de Formation
     - [8.3.1 Maquette Mobile](#831-maquette-mobile)
     - [8.3.2 Maquette Tablet](#832-maquette-tablet)
     - [8.3.3. Maquette Desktop](#833-maquette-desktop)
+- [9. Base de données](#9-base-de-données)
+  - [9.1. Modèle Conceptuel de Données (MCD)](#91-modèle-conceptuel-de-données-mcd)
+  - [9.2. Modèle Logique de Données (MLD)](#92-modèle-logique-de-données-mld)
 
 <div class="page-break"></div>
 
@@ -223,3 +226,50 @@ Routes frontend :
 
 #### 8.3.3. Maquette Desktop
 ![Maquette Desktop](../figma/models/model-desktop.png)
+
+---
+
+<div class="page-break"></div>
+
+## 9. Base de données
+
+Présentation de la base de données permettant de gérer un annuaire d'artisans.
+
+La base de données à été conçu sur une logique de modélisation en deux étapes :
+- un Modèle Conceptuel de Données (MCD)
+- un Modèle Logique de Données (MLD)
+
+### 9.1. Modèle Conceptuel de Données (MCD)
+
+Le MCD permet de représenter les entités métier et leurs relations.
+
+**Il met en évidence :**
+- les catégories d'artisans
+- les spécialités associées
+- les artisans
+
+**Relations :**
+- Une catégorie peut être attachée à plusieurs spécialités (1,N)
+- Une spécialité est attachée à une seule catégorie (1,1)
+- Une spécialité peut caractériser plusieurs artisans (1,N)
+- Un artisan est caractérisé par une seule spécialité (1,1)
+
+![MCD - Modèle Conceptuel de Données - Trouve ton artisan](../../database/MCD/MCD_trouve_ton_artisan.svg)
+
+### 9.2. Modèle Logique de Données (MLD)
+
+Le MLD traduit le MCD en strcuture relationnelle exploitable en base de données.
+
+**Il définit :**
+- les tables (`categories`, `specialties` et `artisans`)
+- les clés primaires (PK)
+- les clés étrangères (FK)
+- les contraintes
+
+**Relations :**
+- specialties.id_category → categories.id
+- artisans.id_specialty → specialties.id
+
+Ce modèle est directement utilisé pour la création de la base de données en SQL.
+
+![MLD - Modèle Logique de Données - Trouve ton artisan](../../database/MLD/MLD_Diagram_EER_trouve_ton_artisan.png)
