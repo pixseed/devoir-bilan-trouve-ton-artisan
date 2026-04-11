@@ -1,0 +1,5 @@
+categories: id, name
+attached, 1N categories, 11 specialties
+specialties: id, name, id_categories
+characterize, 1N specialties, 11 artisans
+artisans: id, name, rating, city, about, email, website, is_top, id_specialty

@@ -38,7 +38,20 @@ devoir-bilan-trouve-ton-artisan
 │   │   └── issue-template.md
 │   └── pull_request_template.md
 ├── backend
-├── database
+├── database/
+│   ├── DATA/
+│   │   ├── data.png
+│   │   └── data.xlsx
+│   ├── MCD/
+│   │   ├── MCD_trouve_ton_artisan_url.url
+│   │   ├── MCD_trouve_ton_artisan.mcd
+│   │   └── MCD_trouve_ton_artisan.svg
+│   └── MLD/
+│       ├── MLD_Diagram_EER_trouve_ton_artisan.mwb
+│       ├── MLD_Diagram_EER_trouve_ton_artisan.mwb.bak
+│       ├── MLD_Diagram_EER_trouve_ton_artisan.png
+│       ├── MLD_trouve_ton_artisan.md
+│       └── MLD_trouve_ton_artisan.pdf
 ├── docs/
 │   ├── diagrammes
 │   ├── figma/
@@ -47,9 +60,9 @@ devoir-bilan-trouve-ton-artisan
 │   │   │   ├── model-mobile.png
 │   │   │   └── model-tablet.png
 │   │   └── wireframes
-│   │   │   ├── wireframe-desktop.png
-│   │   │   ├── wireframe-mobile.png
-│   │   │   └── wireframe-tablet.png
+│   │       ├── wireframe-desktop.png
+│   │       ├── wireframe-mobile.png
+│   │       └── wireframe-tablet.png
 │   └── pdf
 │       ├── markdown-pdf.css
 │       ├── project.md
@@ -90,3 +103,43 @@ devoir-bilan-trouve-ton-artisan
 ![Wireframe Tablet](./docs/figma/models/model-tablet.png)
 #### Model Desktop
 ![Wireframe Desktop](./docs/figma/models/model-desktop.png)
+
+## DataBase
+
+La base de donnée a été conçu sur une logique de modélisation en deux étapes :
+- Modèle Conceptuel de Données (MCD)
+- Modèle Logique de Données (MLD)
+
+Elle repose sur 3 entités principales :
+- `catégories`
+- `specialties`
+- `artisans`
+
+### Relations
+
+- Une catégorie peut être attachée à plusieurs spécialités (1,N)
+- Une spécialité est attachée à une seule catégorie (1,1)
+- Une spécialité peut caractériser plusieurs artisans (1,N)
+- Un artisan est caractérisé par une seule spécialité (1,1)
+
+### Modèle Conceptuel de Données (MCD)
+
+![MCD - Modèle Conceptuel de Données - Trouve ton artisan](./database/MCD/MCD_trouve_ton_artisan.svg)
+
+### Modèle Logique de Données graphique - Diagram EER (MLD)
+
+![MLD - Modèle Logique de Données - Trouve ton artisan](./database/MLD/MLD_Diagram_EER_trouve_ton_artisan.png)
+
+### Modèle Logique de Données textuel - Schéma relationnel (MLD)
+
+![MLD - Modèle Logique de Donnée - Schéma relationnel - PNG](./database/MLD/MLD_trouve_ton_artisan.png)
+📄 [database/MLD/MLD_trouve_ton_artisan.pdf](./database/MLD/MLD_trouve_ton_artisan.pdf)
+
+### Documentation des données
+
+Un dictionnaire de données détaillé est disponible dans le projet afin de décrire :
+- les champs
+- les types
+- les contraintes
+
+👉 Voir : 📄 [database/db_doc.pdf](./database/db_doc.pdf)
