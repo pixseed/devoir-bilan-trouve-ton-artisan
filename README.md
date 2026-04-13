@@ -2,6 +2,8 @@
 
 Devoir bilan : Formation Développeur Web & Web Mobile au Centre Européen de Formation.
 
+---
+
 ## Objectif
 Création d'un site permettant aux particuliers de trouver facilement
 un artisan selon sa spécialité ou via une recherche.
@@ -12,7 +14,7 @@ Le projet doit respecter plusieurs contraintes :
 - Navigation simple
 - Accessibilité
 - Intégration avec une API backend
-- Base de données contenant les artisans et les catégories
+- Base de données contenant les artisans, les spécialitées et les catégories
 
 ## Stack technique
 
@@ -25,9 +27,13 @@ Le projet doit respecter plusieurs contraintes :
 - Node.js
 - Express
 - Sequelize
+- dotenv
 
 **Base de données**
-- MySQL
+- MySQL  / MariaDB
+- MySQL Workbench
+
+---
 
 ## Structure du projet
 
@@ -37,7 +43,17 @@ devoir-bilan-trouve-ton-artisan
 │   ├── ISSUE_TEMPLATE/
 │   │   └── issue-template.md
 │   └── pull_request_template.md
-├── backend
+├── backend/
+│   ├── config/
+│   │    └── database.js
+│   ├── controllers/
+│   ├── middleware/
+│   ├── models/
+│   ├── routes/
+│   ├── app.js
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── server.js
 ├── database/
 │   ├── DATA/
 │   │   ├── data.png
@@ -82,6 +98,8 @@ devoir-bilan-trouve-ton-artisan
 └── README.md
 ```
 
+---
+
 ## UX/UI Design
 
 [Lien vers la maquette Figma : Kernec_Cedric_Devoir_Bilan_Trouve_Ton_Artisan](https://www.figma.com/design/C0moU99nW9cfFlHHRzYXxc/Kernec_Cedric_Devoir_Bilan_Trouve_Ton_Artisan?node-id=38-3103&t=fcY6xDrTEQbigvnm-1)
@@ -107,6 +125,8 @@ devoir-bilan-trouve-ton-artisan
 ![Wireframe Tablet](./docs/figma/models/model-tablet.png)
 #### Model Desktop
 ![Wireframe Desktop](./docs/figma/models/model-desktop.png)
+
+---
 
 ## DataBase
 
@@ -151,7 +171,7 @@ Un dictionnaire de données détaillé est disponible dans le projet afin de dé
 
 👉 Voir : 📄 [database/db_doc.pdf](./database/db_doc.pdf)
 
-### Script MySQL
+### Script SQL
 
 Les scripts SQL sont organisés comme suit :
 - `schema.sql` → Création des la DB et des tables
@@ -162,3 +182,36 @@ Les scripts SQL sont organisés comme suit :
   - recherche par mot-clé (nom, spécialité, ville)
   - recherche combinée (filtrage par catégorie et recherche par mot-clé)
   - détail d'un artisan
+---
+
+## Installation
+
+### Backend
+
+1. Depuis le dossier `backend/` :
+
+```
+npm install
+```
+
+2. Créer un fichier `.env` avec les variables suivantes :
+
+```
+DB_NAME=trouve_ton_artisan
+DB_USER=my_username (nom d'utilisateur de connexion)
+DB_PASSWORD=my_password (mot de passe de connexion)
+DB_HOST=localhost
+DB_DIALECT=mysql (compatible MariaDB)
+PORT=3000
+```
+
+3. Exécuter les scripts SQL :
+
+- Exécuter `schema.sql` (création de la base de données ou réinitialisation si elle est déjà existante)
+- Exécuter `seed.sql` (injection des données)
+
+4. Lancer le serveur :
+
+```
+node server.js
+```
