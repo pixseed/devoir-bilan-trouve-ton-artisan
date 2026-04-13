@@ -100,9 +100,16 @@ devoir-bilan-trouve-ton-artisan
 │   │   │       └── logo-trouve-ton-artisan.png
 │   │   ├── components/
 │   │   ├── pages/
+│   │   │   ├── Artisan_Details.jsx
+│   │   │   ├── Artisans_list.jsx
+│   │   │   ├── Home.jsx
+│   │   │   ├── Not_Found.jsx
+│   │   │   └── Under_Construction.jsx
 │   │   ├── router/
+│   │   │   └── index.jsx
 │   │   ├── services/
 │   │   ├── styles/
+│   │   │   └── main.scss
 │   │   ├── App.jsx
 │   │   └── main.jsx
 │   ├── eslint.config.js
@@ -232,3 +239,20 @@ PORT=3000
 ```
 node server.js
 ```
+
+### Frontend
+
+1. Depuis le dossier `frontend/` :
+
+```
+npm install
+```
+
+2. Lancer l'application :
+
+```
+npm run dev
+```
+
+3. Accéder à l'application : http://localhost:5173
+
