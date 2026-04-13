@@ -122,6 +122,21 @@ devoir-bilan-trouve-ton-artisan
 └── README.md
 ```
 
+Le **backend** est structuré selon **une architecture en couches** :
+- config
+- controllers
+- middleware
+- models
+- routes
+
+Le **frontend** est structuré selon **une architecture modulaire** :
+- assets
+- pages
+- components
+- router
+- services
+- styles
+
 ---
 
 ## UX/UI Design
