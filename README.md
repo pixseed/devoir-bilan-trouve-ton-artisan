@@ -14,7 +14,7 @@ Le projet doit respecter plusieurs contraintes :
 - Navigation simple
 - Accessibilité
 - Intégration avec une API backend
-- Base de données contenant les artisans, les spécialitées et les catégories
+- Base de données contenant les artisans, les spécialités et les catégories
 
 ## Stack technique
 
@@ -173,7 +173,7 @@ La base de données a été conçu sur une logique de modélisation en deux éta
 - Modèle Conceptuel de Données (MCD)
 - Modèle Logique de Données (MLD)
 
-Elle respecte le tableau de données transmit par le client :
+Elle respecte le tableau de données transmis par le client :
 ![Tableau de données - PNG](./database/DATA/data.png)
 
 et repose sur 3 entités principales :
@@ -221,53 +221,100 @@ Les scripts SQL sont organisés comme suit :
   - recherche par mot-clé (nom, spécialité, ville)
   - recherche combinée (filtrage par catégorie et recherche par mot-clé)
   - détail d'un artisan
+
 ---
 
-## Installation
+## Installation & Lancement
 
-### Backend
+### Prérequis
 
-1. Depuis le dossier `backend/` :
+Avant de lancer le projet, assurez-vous d’avoir installé :
+- Node.js
+- npm
+- MySQL ou MariaDB
 
-```
+### Installation du projet
+
+Depuis la racine du projet :
+
+```Bash
 npm install
 ```
+Cette commande installe :
+- les dépendances du backend
+- les dépendances du frontend
+- les outils globaux (concurrently)
 
-2. Créer un fichier `.env` avec les variables suivantes :
+### Scripts disponibles
 
-```
-DB_NAME=trouve_ton_artisan
-DB_USER=my_username (nom d'utilisateur de connexion)
-DB_PASSWORD=my_password (mot de passe de connexion)
-DB_HOST=localhost
-DB_DIALECT=mysql (compatible MariaDB)
-PORT=3000
-```
+Le projet utilise des scripts npm pour simplifier le développement :
+- `npm run dev` → Lance simultanément le frontend et le backend
+- `npm run frontend` → Lance uniquement le frontend (React + Vite)
+- `npm run backend` → Lance uniquement le backend (Node.js + Express + Sequelize)
 
-3. Exécuter les scripts SQL :
+Le lancement simultané est géré grâce à **concurrently**.
 
-- Exécuter `schema.sql` (création de la base de données ou réinitialisation si elle est déjà existante)
-- Exécuter `seed.sql` (injection des données)
+### Lancement en développement
 
-4. Lancer le serveur :
-
-```
-node server.js
-```
-
-### Frontend
-
-1. Depuis le dossier `frontend/` :
-
-```
-npm install
-```
-
-2. Lancer l'application :
-
-```
+```Bash
 npm run dev
 ```
 
-3. Accéder à l'application : http://localhost:5173
+Cette commande lance simultanément :
+- le serveur backend (port 3000)
+- l’application frontend (port 5173)
 
+### Accès à l’application
+
+**Frontend** : http://localhost:5173⁠
+**Backend** : http://localhost:3000⁠
+
+### Configuration Backend
+
+**Fichier .env**
+
+Créer un fichier `.env` dans le dossier `backend/` :
+
+```Environment
+DB_NAME=trouve_ton_artisan
+DB_USER=your_username
+DB_PASSWORD=your_password
+DB_HOST=localhost
+DB_DIALECT=mysql
+PORT=3000
+```
+
+### Initialisation de la base de données
+
+1. Créer/Réinitialiser la base de données :
+
+```SQL
+-- via MySQL Workbench
+source database/SQL/schema.sql;
+```
+
+2. Insérer les données :
+
+```SQL
+source database/SQL/seed.sql;
+```
+
+### Lancement manuel (optionnel)
+
+Si vous souhaitez lancer les services séparément :
+
+**Backend**
+
+```Bash
+cd backend
+npm install
+node server.js
+```
+
+**Frontend**
+
+```Bash
+cd frontend
+npm install
+npm run dev
+```
