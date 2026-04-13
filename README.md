@@ -43,6 +43,7 @@ devoir-bilan-trouve-ton-artisan
 │   ├── ISSUE_TEMPLATE/
 │   │   └── issue-template.md
 │   └── pull_request_template.md
+│
 ├── backend/
 │   ├── config/
 │   │    └── database.js
@@ -53,7 +54,8 @@ devoir-bilan-trouve-ton-artisan
 │   ├── app.js
 │   ├── package.json
 │   ├── package-lock.json
-│   ├── server.js
+│   └── server.js
+│
 ├── database/
 │   ├── DATA/
 │   │   ├── data.png
@@ -72,6 +74,7 @@ devoir-bilan-trouve-ton-artisan
 │       ├── queries.sql
 │       ├── schema.sql
 │       └── seed.sql
+│
 ├── docs/
 │   ├── diagrammes
 │   ├── figma/
@@ -87,13 +90,27 @@ devoir-bilan-trouve-ton-artisan
 │       ├── markdown-pdf.css
 │       ├── project.md
 │       └── project.pdf
+│
 ├── frontend/
-│   └── src/
-│       └── assets/
-│           ├── icons/
-│           ├── images/
-│           └── logos/
-│               └── logo-trouve-ton-artisan.png
+│   ├── src/
+│   │   ├── assets/
+│   │   │   ├── icons/
+│   │   │   ├── images/
+│   │   │   └── logos/
+│   │   │       └── logo-trouve-ton-artisan.png
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── router/
+│   │   ├── services/
+│   │   ├── styles/
+│   │   ├── App.jsx
+│   │   └── main.jsx
+│   ├── eslint.config.js
+│   ├── index.html
+│   ├── package-lock.json
+│   ├── package.json
+│   └── vite.config.js
+│
 ├── .gitignore
 └── README.md
 ```
