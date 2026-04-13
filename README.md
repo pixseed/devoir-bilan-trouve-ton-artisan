@@ -43,6 +43,7 @@ devoir-bilan-trouve-ton-artisan
 │   ├── ISSUE_TEMPLATE/
 │   │   └── issue-template.md
 │   └── pull_request_template.md
+│
 ├── backend/
 │   ├── config/
 │   │    └── database.js
@@ -53,7 +54,8 @@ devoir-bilan-trouve-ton-artisan
 │   ├── app.js
 │   ├── package.json
 │   ├── package-lock.json
-│   ├── server.js
+│   └── server.js
+│
 ├── database/
 │   ├── DATA/
 │   │   ├── data.png
@@ -72,6 +74,7 @@ devoir-bilan-trouve-ton-artisan
 │       ├── queries.sql
 │       ├── schema.sql
 │       └── seed.sql
+│
 ├── docs/
 │   ├── diagrammes
 │   ├── figma/
@@ -87,16 +90,52 @@ devoir-bilan-trouve-ton-artisan
 │       ├── markdown-pdf.css
 │       ├── project.md
 │       └── project.pdf
+│
 ├── frontend/
-│   └── src/
-│       └── assets/
-│           ├── icons/
-│           ├── images/
-│           └── logos/
-│               └── logo-trouve-ton-artisan.png
+│   ├── src/
+│   │   ├── assets/
+│   │   │   ├── icons/
+│   │   │   ├── images/
+│   │   │   └── logos/
+│   │   │       └── logo-trouve-ton-artisan.png
+│   │   ├── components/
+│   │   ├── pages/
+│   │   │   ├── Artisan_Details.jsx
+│   │   │   ├── Artisans_list.jsx
+│   │   │   ├── Home.jsx
+│   │   │   ├── Not_Found.jsx
+│   │   │   └── Under_Construction.jsx
+│   │   ├── router/
+│   │   │   └── index.jsx
+│   │   ├── services/
+│   │   ├── styles/
+│   │   │   └── main.scss
+│   │   ├── App.jsx
+│   │   └── main.jsx
+│   ├── eslint.config.js
+│   ├── index.html
+│   ├── package-lock.json
+│   ├── package.json
+│   └── vite.config.js
+│
 ├── .gitignore
 └── README.md
 ```
+
+Le **backend** est structuré selon **une architecture en couches** :
+- config
+- controllers
+- middleware
+- models
+- routes
+
+Le **frontend** est structuré selon **une architecture modulaire** :
+- assets
+- pages
+- components
+- router
+- services
+- styles
 
 ---
 
@@ -215,3 +254,20 @@ PORT=3000
 ```
 node server.js
 ```
+
+### Frontend
+
+1. Depuis le dossier `frontend/` :
+
+```
+npm install
+```
+
+2. Lancer l'application :
+
+```
+npm run dev
+```
+
+3. Accéder à l'application : http://localhost:5173
+
