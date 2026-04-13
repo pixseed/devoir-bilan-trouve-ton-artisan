@@ -22,8 +22,6 @@
  * ================================================================================================
  */
 
-import 'dotenv/config'; // node_modules/dotenv/config.js pour charger les variables d'environnement depuis le fichier .env
-
 import app from './app.js'; // Import de l'application Express configurée
 import sequelize from './config/database.js'; // Import de la configuration de la DB Sequelize
 

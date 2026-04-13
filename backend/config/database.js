@@ -25,6 +25,8 @@
  * - models/ pour définir les modèles de données et interagir avec la base de données.
  * ==================================================================================================
  */
+import dotenv from 'dotenv';
+dotenv.config({ path: './backend/.env' }); // Charger les variables d'environnement depuis le fichier .env
 
 import { Sequelize } from 'sequelize';
 
