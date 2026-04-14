@@ -50,7 +50,14 @@ devoir-bilan-trouve-ton-artisan
 │   ├── controllers/
 │   ├── middleware/
 │   ├── models/
+│   │   ├── Artisan.js
+│   │   ├── Category.js
+│   │   ├── index.js
+│   │   └── Specialty.js
 │   ├── routes/
+│   ├── utils/
+│   │   ├── dbStats.js
+│   │   └── dbTest.js
 │   ├── app.js
 │   ├── package.json
 │   ├── package-lock.json
@@ -221,6 +228,16 @@ Les scripts SQL sont organisés comme suit :
   - recherche par mot-clé (nom, spécialité, ville)
   - recherche combinée (filtrage par catégorie et recherche par mot-clé)
   - détail d'un artisan
+
+### Modélisation des données (Sequelize)
+
+Les modèles Sequelize implémentent la structure définie dans le MLD.
+
+Ces relations sont implémentées via Sequelize avec les méthodes :
+- `hasMany()` → indique qu'un modèle possède plusieurs instances d'un autre modèle (relation 1 → N).
+- `belongsTo()` → indique qu'un modèle appartient à un autre modèle (relation N → 1).
+
+Des alias (`as`) sont utilisés afin de faciliter les requêtes imbriquées avec `include`.
 
 ---
 
