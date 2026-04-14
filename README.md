@@ -48,6 +48,8 @@ devoir-bilan-trouve-ton-artisan
 │   ├── config/
 │   │    └── database.js
 │   ├── controllers/
+│   │   ├── artisanController.js
+│   │   └── categoryController.js
 │   ├── middleware/
 │   ├── models/
 │   │   ├── Artisan.js
@@ -55,6 +57,8 @@ devoir-bilan-trouve-ton-artisan
 │   │   ├── index.js
 │   │   └── Specialty.js
 │   ├── routes/
+│   │   ├── artisans.js
+│   │   └── categories.js
 │   ├── utils/
 │   │   ├── dbStats.js
 │   │   └── dbTest.js
@@ -335,3 +339,24 @@ cd frontend
 npm install
 npm run dev
 ```
+
+## API Endpoints
+
+### Artisans
+
+- GET /artisans/top → Top artisans du mois
+- GET /artisans/search?q=keyword&category=id → Recherche d'artisans
+- GET /artisans/:id → Détail d'un artisan
+- POST /artisans/:id/contact → Envoie d'un formulaire de contact à l'artisan
+
+Body attendu :
+{
+  "name": "string",
+  "email": "string",
+  "object": "string",
+  "message": "string"
+}
+### Catégories
+
+- GET /categories → Liste des catégories
+- GET /categories/:id/artisans → Artisans par catégorie

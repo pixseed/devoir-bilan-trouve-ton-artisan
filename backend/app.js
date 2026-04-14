@@ -9,7 +9,7 @@
  * Rôle :
  * - Initialiser l'application Express.
  * - Définir les middlewares.
- * - Préparer les routes (à ajouter ultérieurement).
+ * - Importer et utiliser les routes de l'API.
  * - Exporter l'application pour être utilisée dans server.js.
  * 
  * Fonctionnement :
@@ -25,10 +25,16 @@
  */
 
 import express from 'express';
+import categoriesRouter from './routes/categories.js';
+import artisanRouter from './routes/artisans.js';
 
 const app = express();
 
 // Middleware JSON
 app.use(express.json());
+
+// Routes API
+app.use('/categories', categoriesRouter);
+app.use('/artisans', artisanRouter);
 
 export default app;
