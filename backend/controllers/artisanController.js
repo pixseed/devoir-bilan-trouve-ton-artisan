@@ -27,7 +27,20 @@
  */
 
 import { Op } from "sequelize";
-import { Artisan, Specialty, Category } from "../models/index.js";
+import {
+    Artisan,
+    Specialty,
+    Category
+} from "../models/index.js";
+import {
+    serializeArtisanDetail,
+    serializeArtisanListItem,
+    serializeTopArtisans
+} from "../serializers/artisanSerializer.js";
+import {
+    successResponse,
+    errorResponse
+} from "../utils/response.js";
 
 // ================================================================================================
 // GET TOP ARTISANS
@@ -48,11 +61,11 @@ export const getTopArtisans = async (req, res) => {
             limit: 3
         });
 
-        return res.status(200).json(artisans);
+        return successResponse(res, artisans.map(serializeTopArtisans), 'Top artisans récupérés avec succès.');
 
     } catch (error) {
         console.error('💥 Error fetching top artisans :', error);
-        return res.status(500).json({ message: 'Erreur serveur lors de la récupération des artisans.' });
+        return errorResponse(res, 'Erreur serveur lors de la récupération des artisans.', 500, "INTERNAL_ERROR");
     }
 };
 
@@ -75,14 +88,14 @@ export const getArtisanById = async (req, res) => {
         });
 
         if (!artisan) {
-            return res.status(404).json({ message: 'Artisan non trouvé.' });
+            return errorResponse(res, 'Artisan non trouvé.', 404, "ARTISAN_NOT_FOUND");
         }
 
-        return res.status(200).json(artisan);
+        return successResponse(res, serializeArtisanDetail(artisan), 'Artisan récupéré avec succès.');
 
     } catch (error) {
         console.error('💥 Error fetching artisan by ID :', error);
-        return res.status(500).json({ message: 'Erreur serveur lors de la récupération de l\'artisan.' });
+        return errorResponse(res, 'Erreur serveur lors de la récupération de l\'artisan.', 500, );
     }
 };
 
@@ -95,7 +108,7 @@ export const searchArtisans = async (req, res) => {
         const { q, category } = req.query;
 
         if (!q) {
-            return res.status(400).json({ message: 'Le paramètre de recherche "q" est requis.' });
+            return errorResponse(res, 'Le paramètre de recherche "q" est requis.', 400, "INVALID_QUERY");
         }
 
         // Construction de la clause WHERE pour la recherche (conditions)
@@ -107,29 +120,31 @@ export const searchArtisans = async (req, res) => {
             ]
         };
 
+        const include = {
+            model: Specialty,
+            as: 'specialty',
+            include: {
+                model: Category,
+                as: 'category'
+            }
+        };
+
         // Si un filtre de catégorie est fourni, ajouter une condition pour filtrer par catégorie
         if (category) {
-            whereClause[Op.and] = [{ '$specialty.category_id$': category }];
+            include.where = { id_category: category };
         }
 
         const artisans = await Artisan.findAll({
             where: whereClause,
-            include: {
-                model: Specialty,
-                as: 'specialty',
-                include: {
-                    model: Category,
-                    as: 'category'
-                },
-            },
+            include: include,
             order: [['rating', 'DESC']],
         });
 
-        return res.status(200).json(artisans);
+        return successResponse(res, artisans.map(serializeArtisanListItem), 'Artisans récupérés avec succès.');
 
     } catch (error) {
         console.error('💥 Error searching artisans :', error);
-        return res.status(500).json({ message: 'Erreur serveur lors de la recherche des artisans.' });
+        return errorResponse(res, 'Erreur serveur lors de la recherche des artisans.', 500, "INTERNAL_ERROR");
     }
 };
 
@@ -141,17 +156,23 @@ export const contactArtisan = async (req, res) => {
     const { id } = req.params;
     const { name, email, object, message } = req.body;
 
+    const allowedFields = ['name', 'email', 'object', 'message'];
+    const receivedFields = Object.keys(req.body);
+    const invalidFields = receivedFields.filter(field => !allowedFields.includes(field));
+
     try {
+        if (invalidFields.length > 0) {
+            return errorResponse(res, `Champs invalides : ${invalidFields.join(', ')}. Seuls les champs suivants sont autorisés : ${allowedFields.join(', ')}.`, 400, "VALIDATION_ERROR");
+        }
+        
         if (!name || !email || !object || !message) {
-            return res.status(400).json({
-                message: 'Tous les champs (name, email, object, message) sont requis.'
-            });
+            return errorResponse(res, 'Tous les champs (name, email, object, message) sont requis.', 400, "VALIDATION_ERROR");
         }
 
         const artisan = await Artisan.findByPk(id);
 
         if (!artisan) {
-            return res.status(404).json({ message: 'Artisan non trouvé.' });
+            return errorResponse(res, 'Artisan non trouvé.', 404, "ARTISAN_NOT_FOUND");
         }
 
         // Simulation de l'envoi d'un email
@@ -164,10 +185,10 @@ export const contactArtisan = async (req, res) => {
             message
         });
 
-        return res.status(200).json({ message: `Votre message a été envoyé à ${artisan.name} avec succès !` });
+        return successResponse(res, { name, email, object, message }, `Votre message a été envoyé à ${artisan.name} avec succès !`);
 
     } catch (error) {
         console.error('💥 Error contacting artisan :', error);
-        return res.status(500).json({ message: 'Erreur serveur lors de l\'envoie du message.' });
+        return errorResponse(res, 'Erreur serveur lors de l\'envoie du message.', 500, "INTERNAL_ERROR");
     }
 };

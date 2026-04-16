@@ -43,6 +43,10 @@ const Artisan = sequelize.define("Artisan", {
   },
   rating: {
     type: DataTypes.DECIMAL(2, 1),
+    get() {
+      const value = this.getDataValue('rating');
+      return value === null ? null : parseFloat(value); // Convertir en nombre à virgule flottante
+    },
     allowNull: false,
     check: { min: 0, max: 5 }
   },

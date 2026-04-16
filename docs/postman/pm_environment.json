@@ -1,0 +1,44 @@
+{
+	"id": "022483d6-ed1d-401e-934d-ef01ebb971f6",
+	"name": "Local API",
+	"values": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:3000",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "id_category_invalid",
+			"value": "999",
+			"type": "any",
+			"description": "ID d'une catégorie inexistante, utilisé pour les tests d'erreur",
+			"enabled": true
+		},
+		{
+			"key": "id_category_valid",
+			"value": "1",
+			"type": "default",
+			"description": "ID d'une catégorie existante, utilisé pour les tests nominaux",
+			"enabled": true
+		},
+		{
+			"key": "keyword_valid",
+			"value": "au",
+			"type": "any",
+			"description": "Mot-clé de recherche retournant des résultats",
+			"enabled": true
+		},
+		{
+			"key": "keyword_invalid",
+			"value": "",
+			"type": "default",
+			"description": "Mot-clé de recherche ne retournant aucun résultat",
+			"enabled": true
+		}
+	],
+	"color": 322,
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2026-04-16T18:41:43.389Z",
+	"_postman_exported_using": "Postman/12.6.3"
+}
