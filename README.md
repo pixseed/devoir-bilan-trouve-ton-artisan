@@ -4,6 +4,51 @@ Devoir bilan : Formation Développeur Web & Web Mobile au Centre Européen de Fo
 
 ---
 
+## Sommaire
+
+- [Trouve ton artisan](#trouve-ton-artisan)
+  - [Sommaire](#sommaire)
+  - [Objectif](#objectif)
+  - [Stack technique](#stack-technique)
+  - [Structure du projet](#structure-du-projet)
+  - [UX/UI Design](#uxui-design)
+    - [Design System](#design-system)
+    - [Wireframes](#wireframes)
+      - [Wireframe Mobile](#wireframe-mobile)
+      - [Wireframe Tablet](#wireframe-tablet)
+      - [Wireframe Desktop](#wireframe-desktop)
+    - [Models](#models)
+      - [Model Mobile](#model-mobile)
+      - [Model Tablet](#model-tablet)
+      - [Model Desktop](#model-desktop)
+  - [DataBase](#database)
+    - [Relations](#relations)
+    - [Modèle Conceptuel de Données (MCD)](#modèle-conceptuel-de-données-mcd)
+    - [Modèle Logique de Données graphique - Diagram EER (MLD)](#modèle-logique-de-données-graphique---diagram-eer-mld)
+    - [Modèle Logique de Données textuel - Schéma relationnel (MLD)](#modèle-logique-de-données-textuel---schéma-relationnel-mld)
+    - [Documentation des données](#documentation-des-données)
+    - [Script SQL](#script-sql)
+    - [Modélisation des données (Sequelize)](#modélisation-des-données-sequelize)
+  - [Installation \& Lancement](#installation--lancement)
+    - [Prérequis](#prérequis)
+    - [1. Installation du projet](#1-installation-du-projet)
+    - [2. Configuration Backend](#2-configuration-backend)
+    - [3. Lancement de la base de données](#3-lancement-de-la-base-de-données)
+    - [4. Initialisation de la base de données](#4-initialisation-de-la-base-de-données)
+    - [5. Lancement en développement](#5-lancement-en-développement)
+    - [5.bis Lancement manuel (optionnel)](#5bis-lancement-manuel-optionnel)
+    - [6. Accès à l’application](#6-accès-à-lapplication)
+  - [API Endpoints](#api-endpoints)
+    - [Artisans](#artisans)
+    - [Catégories](#catégories)
+  - [API Documentation (Postman)](#api-documentation-postman)
+    - [Fonctionnalité testées :](#fonctionnalité-testées-)
+    - [Cas de test couverts :](#cas-de-test-couverts-)
+    - [Utilisation :](#utilisation-)
+
+
+---
+
 ## Objectif
 Création d'un site permettant aux particuliers de trouver facilement
 un artisan selon sa spécialité ou via une recherche.
@@ -97,10 +142,13 @@ devoir-bilan-trouve-ton-artisan
 │   │       ├── wireframe-desktop.png
 │   │       ├── wireframe-mobile.png
 │   │       └── wireframe-tablet.png
-│   └── pdf
-│       ├── markdown-pdf.css
-│       ├── project.md
-│       └── project.pdf
+│   ├── pdf
+│   │   ├── markdown-pdf.css
+│   │   ├── project.md
+│   │   └── project.pdf
+│   └── postman
+│       ├── pm_collection.json
+│       └── pm_environment.json
 │
 ├── frontend/
 │   ├── src/
@@ -254,7 +302,16 @@ Avant de lancer le projet, assurez-vous d’avoir installé :
 - npm
 - MySQL ou MariaDB
 
-### Installation du projet
+>Scripts disponibles
+>  
+>Le projet utilise des scripts npm pour simplifier le développement :
+>- `npm run dev` → Lance simultanément le frontend et le backend
+>- `npm run frontend` → Lance uniquement le frontend (React + Vite)
+>- `npm run backend` → Lance uniquement le backend (Node.js + Express + Sequelize)
+> 
+>Le lancement simultané est géré grâce à **concurrently**.
+
+### 1. Installation du projet
 
 Depuis la racine du projet :
 
@@ -266,31 +323,7 @@ Cette commande installe :
 - les dépendances du frontend
 - les outils globaux (concurrently)
 
-### Scripts disponibles
-
-Le projet utilise des scripts npm pour simplifier le développement :
-- `npm run dev` → Lance simultanément le frontend et le backend
-- `npm run frontend` → Lance uniquement le frontend (React + Vite)
-- `npm run backend` → Lance uniquement le backend (Node.js + Express + Sequelize)
-
-Le lancement simultané est géré grâce à **concurrently**.
-
-### Lancement en développement
-
-```Bash
-npm run dev
-```
-
-Cette commande lance simultanément :
-- le serveur backend (port 3000)
-- l’application frontend (port 5173)
-
-### Accès à l’application
-
-**Frontend** : http://localhost:5173⁠
-**Backend** : http://localhost:3000⁠
-
-### Configuration Backend
+### 2. Configuration Backend
 
 **Fichier .env**
 
@@ -305,7 +338,15 @@ DB_DIALECT=mysql
 PORT=3000
 ```
 
-### Initialisation de la base de données
+### 3. Lancement de la base de données
+
+Avant de lancer l'API, assurez-vous d'avoir lancé votre serveur MySQL.
+
+Example avec XAMPP :
+- Lancer XAMPP
+- Démarrer le service MySQL
+
+### 4. Initialisation de la base de données
 
 1. Créer/Réinitialiser la base de données :
 
@@ -320,7 +361,17 @@ source database/SQL/schema.sql;
 source database/SQL/seed.sql;
 ```
 
-### Lancement manuel (optionnel)
+### 5. Lancement en développement
+
+```Bash
+npm run dev
+```
+
+Cette commande lance simultanément :
+- le serveur backend (port 3000)
+- l’application frontend (port 5173)
+
+### 5.bis Lancement manuel (optionnel)
 
 Si vous souhaitez lancer les services séparément :
 
@@ -339,6 +390,16 @@ cd frontend
 npm install
 npm run dev
 ```
+
+### 6. Accès à l’application
+
+Une fois le projet lancé :
+- Accéder au **Frontend** : http://localhost:5173⁠
+- Accéder au **Backend** : http://localhost:3000⁠
+
+Vous pouvez tester les [endpoints](#api-endpoints) via Postman (voir la section [API Documentation (Postamn)](#api-documentation-postman))
+
+---
 
 ## API Endpoints
 
@@ -360,3 +421,31 @@ Body attendu :
 
 - GET /categories → Liste des catégories
 - GET /categories/:id/artisans → Artisans par catégorie
+
+---
+
+## API Documentation (Postman)
+
+Une collection Postman et son environnement sont disponibles pour tester l'ensemble des endpoints de l'API.
+
+📁 Emplacement :  
+`/docs/postman/pm_collection.json`  
+`/docs/postman/pm_environment.json`
+
+### Fonctionnalité testées :
+- Récupération des artisans et des catégories
+- Recherche (globale et par catégorie)
+- Détail d'un artisan
+- Contact d'un artisan
+
+### Cas de test couverts :
+- ✅ 200 (cas nominal)
+- ❌ 400 (requête invalide)
+- ❌ 404 (ressource non trouvée)
+
+### Utilisation :
+1. [Lancer le serveur](#installation--lancement)
+2. Importer la collection dans Postman `pm_collection.json`
+3. Importer l'environnement dans Postman `pm_environment.json`
+4. Sélectionner l'environnement dans Postman
+5. Lancer les requêtes

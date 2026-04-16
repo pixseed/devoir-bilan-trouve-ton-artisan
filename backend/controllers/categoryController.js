@@ -25,7 +25,16 @@
  * ================================================================================================
  */
 
-import { Category, Specialty, Artisan } from '../models/index.js';
+import {
+    Category,
+    Specialty,
+    Artisan
+} from '../models/index.js';
+import { serializeArtisanListItem } from '../serializers/artisanSerializer.js';
+import {
+    successResponse,
+    errorResponse
+} from '../utils/response.js';
 
 // ================================================================================================
 // GET ALL CATEGORIES
@@ -36,11 +45,11 @@ export const getAllCategories = async (req, res) => {
             order: [['id', 'ASC']],
         });
 
-        return res.status(200).json(categories);
+        return successResponse(res, categories, 'Catégories récupérées avec succès.');
 
     } catch (error) {
         console.error('💥 Error fetching categories :', error);
-        return res.status(500).json({ message: 'Erreur serveur lors de la récupération des catégories.' });
+        return errorResponse(res, 'Erreur serveur lors de la récupération des catégories.', 500, "INTERNAL_ERROR");
     }
 };
 
@@ -51,29 +60,31 @@ export const getArtisansByCategoryId = async (req, res) => {
     const { id } = req.params;
 
     try {
-        const category = await Category.findByPk(id, {
-            include: {
-                model: Specialty,
-                as: 'specialties',
-                include: {
-                    model: Artisan,
-                    as: 'artisans'
-                }
-            },
-            order: [['name', 'ASC']],
-        });
+        const category = await Category.findByPk(id);
 
         if (!category) {
-            return res.status(404).json({ message: 'Catégorie non trouvée.' });
+            return errorResponse(res, 'Catégorie non trouvée.', 404, "CATEGORY_NOT_FOUND");
         }
 
-        // Tranformation des données pour retourner une liste d'artisans avec leurs spécialités et catégories
-        const artisans = category.specialties.flatMap(specialty => specialty.artisans);
+        const artisans = await Artisan.findAll({
+            include: {
+                model: Specialty,
+                as: 'specialty',
+                include: {
+                    model: Category,
+                    as: 'category',
+                }
+            },
+            where: {
+                '$specialty.category.id$': id
+            },
+            order: [['rating', 'DESC']],
+        });
 
-        return res.status(200).json(artisans);
+        return successResponse(res, artisans.map(serializeArtisanListItem), 'Artisans récupérés avec succès.');
 
     } catch (error) {
         console.error('💥 Error fetching artisans by category ID :', error);
-        return res.status(500).json({ message: 'Erreur serveur lors de la récupération des artisans par catégorie.' });
+        return errorResponse(res, 'Erreur serveur lors de la récupération des artisans par catégorie.', 500, "INTERNAL_ERROR");
     }
 };

@@ -1,0 +1,1927 @@
+{
+  "info": {
+    "_postman_id": "ec8f79e6-629a-4fca-9167-fa013614121d",
+    "name": "API - Trouve ton artisan",
+    "description": "# API - Trouve ton artisan\n\nCette API permet de rechercher et de contacter des artisans référencés dans la région **Auvergne-Rhône-Alpes**. Elle expose des endpoints pour lister, filtrer et contacter des artisans, ainsi que pour naviguer par catégorie de métier.\n\n---\n\n## Structure de la collection\n\n- **Artisans**\n    - Top Artisan\n        \n    - Artisan By Id\n        \n    - Search\n        - Search All\n            \n        - Search By Category\n            \n    - Contact\n        \n- **Catégories**\n    - All Categories\n        \n    - Artisan By Category\n        \n\n---\n\n## Base URL\n\nTous les endpoints sont relatifs à la variable d'environnement :\n\n```\n{{base_url}}\n\n ```\n\nExemple : `{{base_url}}/artisans/top`\n\n---\n\n## Format des réponses\n\n**Succès**\n\n``` json\n{\n  \"success\": true,\n  \"message\": \"...\",\n  \"data\": { ... }\n}\n\n ```\n\n**Erreur**\n\n``` json\n{\n  \"success\": false,\n  \"error\": {\n    \"message\": \"...\",\n    \"code\": \"...\"\n  }\n}\n\n ```\n\n---\n\n## Variables d'environnement\n\n| Variable | Description |\n| --- | --- |\n| `base_url` | URL de base de l'API (ex. `http://localhost:3000`) |\n| `id_category_valid` | ID d'une catégorie existante, utilisé pour les tests nominaux |\n| `id_category_invalid` | ID d'une catégorie inexistante, utilisé pour les tests d'erreur |\n| `keyword_valid` | Mot-clé de recherche retournant des résultats |\n| `keyword_invalid` | Mot-clé de recherche ne retournant aucun résultat |\n\n---\n\n## Tests globaux\n\nUn script de test est défini au niveau de la collection et s'exécute après **chaque requête**. Il vérifie que la réponse est du JSON valide :\n\n``` javascript\npm.test(\"La réponse est du JSON valide\", function () {\n    pm.response.to.be.json;\n});\n\n ```\n\n---\n\n## Endpoints couverts\n\n| Méthode | Endpoint | Description | Dossier |\n| --- | --- | --- | --- |\n| `GET` | `/artisans/top` | Retourne le top 3 des artisans | Artisans > Top Artisan |\n| `GET` | `/artisans/:id` | Détail d'un artisan par ID | Artisans > Artisan By Id |\n| `GET` | `/artisans/search?q=` | Recherche par mot-clé | Artisans > Search > Search All |\n| `GET` | `/artisans/search?q=&category=` | Recherche filtrée par catégorie | Artisans > Search > Search By Category |\n| `POST` | `/artisans/:id/contact` | Envoyer un message à un artisan | Artisans > Contact |\n| `GET` | `/categories` | Liste de toutes les catégories | Catégories > All Categories |\n| `GET` | `/categories/:id/artisans` | Artisans d'une catégorie | Catégories > Artisan By Category |",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "50527396"
+  },
+  "item": [
+    {
+      "name": "Artisans",
+      "item": [
+        {
+          "name": "Top Artisan",
+          "item": [
+            {
+              "name": "Success (200)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {\r",
+                      "    pm.response.to.have.status(200);\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Response structure is valid\", function () {\r",
+                      "    const res = pm.response.json();\r",
+                      "    pm.expect(res).to.have.property('success');\r",
+                      "    pm.expect(res.success).to.eql(true);\r",
+                      "    pm.expect(res).to.have.property('message');\r",
+                      "    pm.expect(res).to.have.property('data');\r",
+                      "})\r",
+                      "\r",
+                      "pm.test(\"Result is an [array]\", function () {\r",
+                      "    const res = pm.response.json();\r",
+                      "    const data = res.data;\r",
+                      "    pm.expect(data).to.be.an('array');\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Result includes at most 3 artisans\", function () {\r",
+                      "    const res = pm.response.json();\r",
+                      "    const data = res.data;\r",
+                      "    pm.expect(data.length).to.be.at.most(3);\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Result sorted by rating DESC\", function () {\r",
+                      "    const res = pm.response.json();\r",
+                      "    const data = res.data;\r",
+                      "    for (let i = 0; i < data.length - 1; i++) {\r",
+                      "        pm.expect(data[i].rating).to.be.at.least(data[i + 1].rating);\r",
+                      "    }\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Results contain expected fields : <name>, <rating>, <city>, <specialty>\", function () {\r",
+                      "    const res = pm.response.json();\r",
+                      "    const data = res.data;\r",
+                      "    pm.expect(data).to.be.an('array');\r",
+                      "    if (data.length > 0) {\r",
+                      "        const a = data[0];\r",
+                      "        pm.expect(a).to.have.property('name');\r",
+                      "        pm.expect(a).to.have.property('rating');\r",
+                      "        pm.expect(a).to.have.property('city');\r",
+                      "        pm.expect(a).to.have.property('specialty');\r",
+                      "    }\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/artisans/top",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "artisans",
+                    "top"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Success (200)",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{base_url}}/artisans/top",
+                      "host": [
+                        "{{base_url}}"
+                      ],
+                      "path": [
+                        "artisans",
+                        "top"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "X-Powered-By",
+                      "value": "Express"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json",
+                      "description": "",
+                      "type": "text"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "324"
+                    },
+                    {
+                      "key": "ETag",
+                      "value": "W/\"144-gnZN96J3rNM6UBMt8v8MOmQTOxI\""
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Thu, 16 Apr 2026 12:57:57 GMT"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive"
+                    },
+                    {
+                      "key": "Keep-Alive",
+                      "value": "timeout=5"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"success\": true,\n    \"message\": \"Top artisans récupérés avec succès.\",\n    \"data\": [\n        {\n            \"name\": \"Orville Salmons\",\n            \"specialty\": \"Chauffagiste\",\n            \"rating\": 5,\n            \"city\": \"Evian\"\n        },\n        {\n            \"name\": \"Chocolaterie Labbé\",\n            \"specialty\": \"Chocolatier\",\n            \"rating\": 4.9,\n            \"city\": \"Lyon\"\n        },\n        {\n            \"name\": \"Au pain chaud\",\n            \"specialty\": \"Boulanger\",\n            \"rating\": 4.8,\n            \"city\": \"Montélimar\"\n        }\n    ]\n}"
+                }
+              ]
+            }
+          ],
+          "description": "Ce sous-dossier teste l'endpoint `GET /artisans/top`.\n\n**Méthode :** `GET`  \n**URL :** `{{base_url}}/artisans/top`  \n**Paramètres :** Aucun\n\n**Scénarios couverts :**\n\n- **200 OK** _(cas nominal)_ → Vérifie que l'API retourne les 3 meilleurs artisans triés par note décroissante."
+        },
+        {
+          "name": "Artisan By Id",
+          "item": [
+            {
+              "name": "Success (200)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {\r",
+                      "    pm.response.to.have.status(200);\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Response structure is valid\", function () {\r",
+                      "    const res = pm.response.json();\r",
+                      "    pm.expect(res).to.have.property('success');\r",
+                      "    pm.expect(res.success).to.eql(true);\r",
+                      "    pm.expect(res).to.have.property('message');\r",
+                      "    pm.expect(res).to.have.property('data');\r",
+                      "})\r",
+                      "\r",
+                      "pm.test(\"Result is an {object}\", function () {\r",
+                      "    const res = pm.response.json();\r",
+                      "    const data = res.data;\r",
+                      "    pm.expect(data).to.be.an('object');\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Results contain expected fields : <name>, <specialty>, <rating>, <city>, <about>, <email>, <website>\", function () {\r",
+                      "    const res = pm.response.json();\r",
+                      "    const data = res.data;\r",
+                      "    pm.expect(data).to.be.an('object');\r",
+                      "    pm.expect(data).to.have.property('name');\r",
+                      "    pm.expect(data).to.have.property('specialty');\r",
+                      "    pm.expect(data).to.have.property('rating');\r",
+                      "    pm.expect(data).to.have.property('city');\r",
+                      "    pm.expect(data).to.have.property('about');\r",
+                      "    pm.expect(data).to.have.property('email');\r",
+                      "    pm.expect(data).to.have.property('website');\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                },
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/artisans/:id",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "artisans",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "1",
+                      "description": "Artisan ID"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Success (200)",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{base_url}}/artisans/:id",
+                      "host": [
+                        "{{base_url}}"
+                      ],
+                      "path": [
+                        "artisans",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "1",
+                          "description": "Artisan ID"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "X-Powered-By",
+                      "value": "Express"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json",
+                      "description": "",
+                      "type": "text"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "405"
+                    },
+                    {
+                      "key": "ETag",
+                      "value": "W/\"195-fDMQsCSh8xnrhtI7wfktaR089II\""
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Thu, 16 Apr 2026 14:33:04 GMT"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive"
+                    },
+                    {
+                      "key": "Keep-Alive",
+                      "value": "timeout=5"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"success\": true,\n    \"message\": \"Artisan récupéré avec succès.\",\n    \"data\": {\n        \"name\": \"Boucherie Dumont\",\n        \"specialty\": \"Boucher\",\n        \"rating\": 4.5,\n        \"city\": \"Lyon\",\n        \"about\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eleifend ante sem, id volutpat massa fermentum nec. Praesent volutpat scelerisque mauris, quis sollicitudin tellus sollicitudin. \",\n        \"email\": \"boucherie.dumond@gmail.com\",\n        \"website\": null\n    }\n}"
+                }
+              ]
+            },
+            {
+              "name": "Not Found (404)",
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                },
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 404\", function () {\r",
+                      "    pm.response.to.have.status(404);\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Response structure is valid\", function () {\r",
+                      "    const res = pm.response.json();\r",
+                      "    pm.expect(res).to.have.property('success');\r",
+                      "    pm.expect(res.success).to.eql(false);\r",
+                      "    pm.expect(res).to.have.property('error');\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Result is an {object}\", function () {\r",
+                      "    const res = pm.response.json();\r",
+                      "    const data = res.error;\r",
+                      "    pm.expect(data).to.be.an('object');\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Result contain expected fields : <message>, <code>\", function () {\r",
+                      "    const res = pm.response.json();\r",
+                      "    const err = res.error;\r",
+                      "    pm.expect(data).to.be.an('object');\r",
+                      "    pm.expect(err).to.have.property('message');\r",
+                      "    pm.expect(err).to.have.property('code');\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/artisans/:id",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "artisans",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "999",
+                      "description": "Artisan ID"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Not Found (404)",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{base_url}}/artisans/:id",
+                      "host": [
+                        "{{base_url}}"
+                      ],
+                      "path": [
+                        "artisans",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "999",
+                          "description": "Artisan ID"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "X-Powered-By",
+                      "value": "Express"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json",
+                      "description": "",
+                      "type": "text"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "87"
+                    },
+                    {
+                      "key": "ETag",
+                      "value": "W/\"57-VlNoZhJzK4w+VNTWcjrrhkof7pc\""
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Thu, 16 Apr 2026 14:33:28 GMT"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive"
+                    },
+                    {
+                      "key": "Keep-Alive",
+                      "value": "timeout=5"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"success\": false,\n    \"error\": {\n        \"message\": \"Artisan non trouvé.\",\n        \"code\": \"ARTISAN_NOT_FOUND\"\n    }\n}"
+                }
+              ]
+            }
+          ],
+          "description": "Ce sous-dossier teste l'endpoint `GET /artisans/:id`.\n\n**Méthode :** `GET`  \n**URL :** `{{base_url}}/artisans/:id`  \n**Paramètres :** `:id` → identifiant de l'artisan\n\n**Scénarios couverts :**\n\n- **200 OK** _(cas nominal)_ → Utilise `{{id_category_valid}}` et vérifie que l'API retourne le profil complet de l'artisan.\n    \n- **404 Not Found** _(cas d'erreur)_ → Utilise un identifiant invalide et vérifie la structure de la réponse d'erreur."
+        },
+        {
+          "name": "Search",
+          "item": [
+            {
+              "name": "Search All",
+              "item": [
+                {
+                  "name": "Success (200)",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "exec": [
+                          "pm.test(\"Status code is 200\", function () {\r",
+                          "    pm.response.to.have.status(200);\r",
+                          "});\r",
+                          "\r",
+                          "pm.test(\"Response structure is valid\", function () {\r",
+                          "    const res = pm.response.json();\r",
+                          "    pm.expect(res).to.have.property('success');\r",
+                          "    pm.expect(res.success).to.eql(true);\r",
+                          "    pm.expect(res).to.have.property('message');\r",
+                          "    pm.expect(res).to.have.property('data');\r",
+                          "})\r",
+                          "\r",
+                          "pm.test(\"Result is an [array]\", function () {\r",
+                          "    const res = pm.response.json();\r",
+                          "    const data = res.data;\r",
+                          "    pm.expect(data).to.be.an('array');\r",
+                          "});\r",
+                          "\r",
+                          "pm.test(\"Result sorted by rating DESC\", function () {\r",
+                          "    const res = pm.response.json();\r",
+                          "    const data = res.data;\r",
+                          "    for (let i = 0; i < data.length - 1; i++) {\r",
+                          "        pm.expect(data[i].rating).to.be.at.least(data[i + 1].rating);\r",
+                          "    }\r",
+                          "});\r",
+                          "\r",
+                          "pm.test(\"Results contain expected fields : <name>, <specialty>, <rating>, <city>, <category>\", function () {\r",
+                          "    const res = pm.response.json();\r",
+                          "    const data = res.data;\r",
+                          "    pm.expect(data).to.be.an('array');\r",
+                          "    if (data.length > 0) {\r",
+                          "        const a = data[0];\r",
+                          "        pm.expect(a).to.have.property('name');\r",
+                          "        pm.expect(a).to.have.property('specialty');\r",
+                          "        pm.expect(a).to.have.property('rating');\r",
+                          "        pm.expect(a).to.have.property('city');\r",
+                          "        pm.expect(a).to.have.property('category');\r",
+                          "    }\r",
+                          "})"
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    },
+                    {
+                      "listen": "prerequest",
+                      "script": {
+                        "exec": [
+                          ""
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{base_url}}/artisans/search?q={{keyword_valid}}",
+                      "host": [
+                        "{{base_url}}"
+                      ],
+                      "path": [
+                        "artisans",
+                        "search"
+                      ],
+                      "query": [
+                        {
+                          "key": "q",
+                          "value": "{{keyword_valid}}",
+                          "description": "Search query keyword"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "Success (200)",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{base_url}}/artisans/search?q={{keyword_valid}}",
+                          "host": [
+                            "{{base_url}}"
+                          ],
+                          "path": [
+                            "artisans",
+                            "search"
+                          ],
+                          "query": [
+                            {
+                              "key": "q",
+                              "value": "{{keyword_valid}}",
+                              "description": "Search query keyword"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "X-Powered-By",
+                          "value": "Express"
+                        },
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json",
+                          "description": "",
+                          "type": "text"
+                        },
+                        {
+                          "key": "Content-Length",
+                          "value": "504"
+                        },
+                        {
+                          "key": "ETag",
+                          "value": "W/\"1f8-+fcsUtt+kRkiKdFCWDCq5vHsi+g\""
+                        },
+                        {
+                          "key": "Date",
+                          "value": "Thu, 16 Apr 2026 14:33:53 GMT"
+                        },
+                        {
+                          "key": "Connection",
+                          "value": "keep-alive"
+                        },
+                        {
+                          "key": "Keep-Alive",
+                          "value": "timeout=5"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n    \"success\": true,\n    \"message\": \"Artisans récupérés avec succès.\",\n    \"data\": [\n        {\n            \"name\": \"Orville Salmons\",\n            \"specialty\": \"Chauffagiste\",\n            \"rating\": 5,\n            \"city\": \"Evian\",\n            \"category\": \"Bâtiment\"\n        },\n        {\n            \"name\": \"Au pain chaud\",\n            \"specialty\": \"Boulanger\",\n            \"rating\": 4.8,\n            \"city\": \"Montélimar\",\n            \"category\": \"Alimentation\"\n        },\n        {\n            \"name\": \"Claude Quinn\",\n            \"specialty\": \"Bijoutier\",\n            \"rating\": 4.2,\n            \"city\": \"Aix-les-bains\",\n            \"category\": \"Fabrication\"\n        },\n        {\n            \"name\": \"Royden Charbonneau\",\n            \"specialty\": \"Coiffeur\",\n            \"rating\": 3.8,\n            \"city\": \"Saint-Priest\",\n            \"category\": \"Services\"\n        }\n    ]\n}"
+                    }
+                  ]
+                }
+              ],
+              "description": "Ce sous-dossier teste l'endpoint `GET /artisans/search?q=` sans filtre de catégorie.\n\n**Méthode :** `GET`  \n**URL :** `{{base_url}}/artisans/search?q=`  \n**Paramètres :** `q` → mot-clé de recherche\n\n**Scénarios couverts :**\n\n- **200 OK** _(cas nominal)_ → Utilise `{{keyword_valid}}` et vérifie que l'API retourne une liste d'artisans correspondants.\n    \n- **400 Bad Request** _(cas d'erreur)_ → Utilise `{{keyword_invalid}}` et vérifie que l'API rejette les mots-clés invalides ou trop courts."
+            },
+            {
+              "name": "Search By Category",
+              "item": [
+                {
+                  "name": "Success (200)",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "exec": [
+                          "pm.test(\"Status code is 200\", function () {\r",
+                          "    pm.response.to.have.status(200);\r",
+                          "});\r",
+                          "\r",
+                          "pm.test(\"Response structure is valid\", function () {\r",
+                          "    const res = pm.response.json();\r",
+                          "    pm.expect(res).to.have.property('success');\r",
+                          "    pm.expect(res.success).to.eql(true);\r",
+                          "    pm.expect(res).to.have.property('message');\r",
+                          "    pm.expect(res).to.have.property('data');\r",
+                          "})\r",
+                          "\r",
+                          "pm.test(\"Result is an [array]\", function () {\r",
+                          "    const res = pm.response.json();\r",
+                          "    const data = res.data;\r",
+                          "    pm.expect(data).to.be.an('array');\r",
+                          "});\r",
+                          "\r",
+                          "pm.test(\"Result sorted by rating DESC\", function () {\r",
+                          "    const res = pm.response.json();\r",
+                          "    const data = res.data;\r",
+                          "    for (let i = 0; i < data.length - 1; i++) {\r",
+                          "        pm.expect(data[i].rating).to.be.at.least(data[i + 1].rating);\r",
+                          "    }\r",
+                          "});\r",
+                          "\r",
+                          "pm.test(\"Results contain expected fields : <name>, <specialty>, <rating>, <city>, <category>\", function () {\r",
+                          "    const res = pm.response.json();\r",
+                          "    const data = res.data;\r",
+                          "    pm.expect(data).to.be.an('array');\r",
+                          "    if (data.length > 0) {\r",
+                          "        const a = data[0];\r",
+                          "        pm.expect(a).to.have.property('name');\r",
+                          "        pm.expect(a).to.have.property('specialty');\r",
+                          "        pm.expect(a).to.have.property('rating');\r",
+                          "        pm.expect(a).to.have.property('city');\r",
+                          "        pm.expect(a).to.have.property('category');\r",
+                          "    }\r",
+                          "})"
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    },
+                    {
+                      "listen": "prerequest",
+                      "script": {
+                        "exec": [
+                          ""
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{base_url}}/artisans/search?q={{keyword_valid}}&category={{id_category_valid}}",
+                      "host": [
+                        "{{base_url}}"
+                      ],
+                      "path": [
+                        "artisans",
+                        "search"
+                      ],
+                      "query": [
+                        {
+                          "key": "q",
+                          "value": "{{keyword_valid}}",
+                          "description": "Search query keyword"
+                        },
+                        {
+                          "key": "category",
+                          "value": "{{id_category_valid}}",
+                          "description": "Category ID"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "Success (200)",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{base_url}}/artisans/search?q={{keyword_valid}}&category={{id_category_valid}}",
+                          "host": [
+                            "{{base_url}}"
+                          ],
+                          "path": [
+                            "artisans",
+                            "search"
+                          ],
+                          "query": [
+                            {
+                              "key": "q",
+                              "value": "{{keyword_valid}}",
+                              "description": "Search query keyword"
+                            },
+                            {
+                              "key": "category",
+                              "value": "{{id_category_valid}}",
+                              "description": "Category ID"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "X-Powered-By",
+                          "value": "Express"
+                        },
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json",
+                          "description": "",
+                          "type": "text"
+                        },
+                        {
+                          "key": "Content-Length",
+                          "value": "182"
+                        },
+                        {
+                          "key": "ETag",
+                          "value": "W/\"b6-5ByuNYxb3nFl+4MBq+UxaDYpYHY\""
+                        },
+                        {
+                          "key": "Date",
+                          "value": "Thu, 16 Apr 2026 14:34:43 GMT"
+                        },
+                        {
+                          "key": "Connection",
+                          "value": "keep-alive"
+                        },
+                        {
+                          "key": "Keep-Alive",
+                          "value": "timeout=5"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n    \"success\": true,\n    \"message\": \"Artisans récupérés avec succès.\",\n    \"data\": [\n        {\n            \"name\": \"Au pain chaud\",\n            \"specialty\": \"Boulanger\",\n            \"rating\": 4.8,\n            \"city\": \"Montélimar\",\n            \"category\": \"Alimentation\"\n        }\n    ]\n}"
+                    }
+                  ]
+                },
+                {
+                  "name": "Bad Request (400)",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "exec": [
+                          "pm.test(\"status code is 400\", function () {\r",
+                          "    pm.response.to.have.status(400);\r",
+                          "});\r",
+                          "\r",
+                          "pm.test(\"Response structure is valid\", function () {\r",
+                          "    const res = pm.response.json();\r",
+                          "    pm.expect(res).to.have.property('success');\r",
+                          "    pm.expect(res.success).to.eql(false);\r",
+                          "    pm.expect(res).to.have.property('error');\r",
+                          "});\r",
+                          "\r",
+                          "pm.test(\"Result is an {object}\", function () {\r",
+                          "    const res = pm.response.json();\r",
+                          "    const data = res.error;\r",
+                          "    pm.expect(data).to.be.an('object');\r",
+                          "});\r",
+                          "\r",
+                          "pm.test(\"Result contain expected fields : <message>, <code>\", function () {\r",
+                          "    const res = pm.response.json();\r",
+                          "    const err = res.error;\r",
+                          "    pm.expect(data).to.be.an('object');\r",
+                          "    pm.expect(err).to.have.property('message');\r",
+                          "    pm.expect(err).to.have.property('code');\r",
+                          "});"
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    },
+                    {
+                      "listen": "prerequest",
+                      "script": {
+                        "exec": [
+                          ""
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{base_url}}/artisans/search?q={{keyword_invalid}}",
+                      "host": [
+                        "{{base_url}}"
+                      ],
+                      "path": [
+                        "artisans",
+                        "search"
+                      ],
+                      "query": [
+                        {
+                          "key": "q",
+                          "value": "{{keyword_invalid}}",
+                          "description": "Missing search query keyword"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "Bad Request (400)",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{base_url}}/artisans/search?q={{keyword_invalid}}",
+                          "host": [
+                            "{{base_url}}"
+                          ],
+                          "path": [
+                            "artisans",
+                            "search"
+                          ],
+                          "query": [
+                            {
+                              "key": "q",
+                              "value": "{{keyword_invalid}}",
+                              "description": "Missing search query keyword"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "X-Powered-By",
+                          "value": "Express"
+                        },
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json",
+                          "description": "",
+                          "type": "text"
+                        },
+                        {
+                          "key": "Content-Length",
+                          "value": "107"
+                        },
+                        {
+                          "key": "ETag",
+                          "value": "W/\"6b-TPgc0Er/tOBWW2fgQB5hUVQUmYs\""
+                        },
+                        {
+                          "key": "Date",
+                          "value": "Thu, 16 Apr 2026 14:35:04 GMT"
+                        },
+                        {
+                          "key": "Connection",
+                          "value": "keep-alive"
+                        },
+                        {
+                          "key": "Keep-Alive",
+                          "value": "timeout=5"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n    \"success\": false,\n    \"error\": {\n        \"message\": \"Le paramètre de recherche \\\"q\\\" est requis.\",\n        \"code\": \"INVALID_QUERY\"\n    }\n}"
+                    }
+                  ]
+                }
+              ],
+              "description": "Ce sous-dossier teste l'endpoint `GET /artisans/search?q=&category=` avec un filtre de catégorie.\n\n**Méthode :** `GET`  \n**URL :** `{{base_url}}/artisans/search?q=&category=`  \n**Paramètres :** `q` → mot-clé de recherche, `category` — identifiant de la catégorie\n\n**Scénarios couverts :**\n\n- **200 OK** _(cas nominal)_ → Utilise `{{keyword_valid}}` et `{{id_category_valid}}` et vérifie que les résultats sont correctement filtrés par mot-clé et par catégorie."
+            }
+          ],
+          "description": "Ce sous-dossier regroupe les deux variantes de recherche par mot-clé.\n\n- **Search All** — Recherche libre sans filtre de catégorie : `GET /artisans/search?q=`\n- **Search By Category** — Recherche filtrée par catégorie : `GET /artisans/search?q=&category=`\n\nChaque variante est couverte par son propre sous-dossier."
+        },
+        {
+          "name": "Contact",
+          "item": [
+            {
+              "name": "Success (200)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {\r",
+                      "    pm.response.to.have.status(200);\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Response structure is valid\", function () {\r",
+                      "    const res = pm.response.json();\r",
+                      "    pm.expect(res).to.have.property('success');\r",
+                      "    pm.expect(res.success).to.eql(true);\r",
+                      "    pm.expect(res).to.have.property('message');\r",
+                      "    pm.expect(res).to.have.property('data');\r",
+                      "})\r",
+                      "\r",
+                      "pm.test(\"Result is an {object}\", function () {\r",
+                      "    const res = pm.response.json();\r",
+                      "    const data = res.data;\r",
+                      "    pm.expect(data).to.be.an('object');\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Results contain expected fields : <name>, <email>, <object>, <message>\", function () {\r",
+                      "    const res = pm.response.json();\r",
+                      "    const data = res.data;\r",
+                      "    pm.expect(data).to.be.an('object');\r",
+                      "    pm.expect(data).to.have.property('name');\r",
+                      "    pm.expect(data).to.have.property('email');\r",
+                      "    pm.expect(data).to.have.property('object');\r",
+                      "    pm.expect(data).to.have.property('message');\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                },
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"name\": \"Cédric\",\r\n    \"email\": \"cedric@test.com\",\r\n    \"object\": \"Demande d'informations\",\r\n    \"message\": \"Bonjour, je suis intéressé par vos services et souhaite en savoir davantage sur les offres que vous proposez.\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/artisans/:id/contact",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "artisans",
+                    ":id",
+                    "contact"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "1",
+                      "description": "Artisan ID"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Success (200)",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n    \"name\": \"Cédric\",\r\n    \"email\": \"cedric@test.com\",\r\n    \"object\": \"Demande d'informations\",\r\n    \"message\": \"Bonjour, je suis intéressé par vos services et souhaite en savoir davantage sur les offres que vous proposez.\"\r\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{base_url}}/artisans/:id/contact",
+                      "host": [
+                        "{{base_url}}"
+                      ],
+                      "path": [
+                        "artisans",
+                        ":id",
+                        "contact"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "1",
+                          "description": "Artisan ID"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "X-Powered-By",
+                      "value": "Express"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json",
+                      "description": "",
+                      "type": "text"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "303"
+                    },
+                    {
+                      "key": "ETag",
+                      "value": "W/\"12f-s5hAj12UrBIfEpoy59f3EDBlQS8\""
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Thu, 16 Apr 2026 14:35:37 GMT"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive"
+                    },
+                    {
+                      "key": "Keep-Alive",
+                      "value": "timeout=5"
+                    }
+                  ],
+                  "cookie": [
+                    {
+                      "expires": "Invalid Date",
+                      "domain": "",
+                      "path": ""
+                    }
+                  ],
+                  "body": "{\n    \"success\": true,\n    \"message\": \"Votre message a été envoyé à Boucherie Dumont avec succès !\",\n    \"data\": {\n        \"name\": \"Cédric\",\n        \"email\": \"cedric@test.com\",\n        \"object\": \"Demande d'informations\",\n        \"message\": \"Bonjour, je suis intéressé par vos services et souhaite en savoir davantage sur les offres que vous proposez.\"\n    }\n}"
+                }
+              ]
+            },
+            {
+              "name": "Not Found (404)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 404\", function () {\r",
+                      "    pm.response.to.have.status(404);\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Response structure is valid\", function () {\r",
+                      "    const res = pm.response.json();\r",
+                      "    pm.expect(res).to.have.property('success');\r",
+                      "    pm.expect(res.success).to.eql(false);\r",
+                      "    pm.expect(res).to.have.property('error');\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Result is an {object}\", function () {\r",
+                      "    const res = pm.response.json();\r",
+                      "    const data = res.error;\r",
+                      "    pm.expect(data).to.be.an('object');\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Result contain expected fields  : <message>, <code>\", function () {\r",
+                      "    const res = pm.response.json();\r",
+                      "    const err = res.error;\r",
+                      "    pm.expect(err).to.be.an('object');\r",
+                      "    pm.expect(err).to.have.property('message');\r",
+                      "    pm.expect(err).to.have.property('code');\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                },
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"name\": \"Cédric\",\r\n    \"email\": \"cedric@test.com\",\r\n    \"object\": \"Demande d'informations\",\r\n    \"message\": \"Bonjour, je suis intéressé par vos services et souhaite en savoir davantage sur les offres que vous proposez.\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/artisans/:id/contact",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "artisans",
+                    ":id",
+                    "contact"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "999",
+                      "description": "Artisan ID"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Not Found (404)",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n    \"name\": \"Cédric\",\r\n    \"email\": \"cedric@test.com\",\r\n    \"object\": \"Demande d'informations\",\r\n    \"message\": \"Bonjour, je suis intéressé par vos services et souhaite en savoir davantage sur les offres que vous proposez.\"\r\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{base_url}}/artisans/:id/contact",
+                      "host": [
+                        "{{base_url}}"
+                      ],
+                      "path": [
+                        "artisans",
+                        ":id",
+                        "contact"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "999",
+                          "description": "Artisan ID"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "X-Powered-By",
+                      "value": "Express"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json",
+                      "description": "",
+                      "type": "text"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "87"
+                    },
+                    {
+                      "key": "ETag",
+                      "value": "W/\"57-VlNoZhJzK4w+VNTWcjrrhkof7pc\""
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Thu, 16 Apr 2026 14:35:51 GMT"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive"
+                    },
+                    {
+                      "key": "Keep-Alive",
+                      "value": "timeout=5"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"success\": false,\n    \"error\": {\n        \"message\": \"Artisan non trouvé.\",\n        \"code\": \"ARTISAN_NOT_FOUND\"\n    }\n}"
+                }
+              ]
+            },
+            {
+              "name": "Bad Request (400)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 400\", function () {\r",
+                      "    pm.response.to.have.status(400);\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Response structure is valid\", function () {\r",
+                      "    const res = pm.response.json();\r",
+                      "    pm.expect(res).to.have.property('success');\r",
+                      "    pm.expect(res.success).to.eql(false);\r",
+                      "    pm.expect(res).to.have.property('error');\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Result is an {object}\", function () {\r",
+                      "    const res = pm.response.json();\r",
+                      "    const data = res.error;\r",
+                      "    pm.expect(data).to.be.an('object');\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Result contain expected fields  : <message>, <code>\", function () {\r",
+                      "    const res = pm.response.json();\r",
+                      "    const err = res.error;\r",
+                      "    pm.expect(err).to.be.an('object');\r",
+                      "    pm.expect(err).to.have.property('message');\r",
+                      "    pm.expect(err).to.have.property('code');\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                },
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"name\": \"Cédric\",\r\n    \"email\": \"\",\r\n    \"object\": \"\",\r\n    \"message\": \"Bonjour, je suis intéressé par vos services et souhaite en savoir davantage sur les offres que vous proposez.\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/artisans/:id/contact",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "artisans",
+                    ":id",
+                    "contact"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "1",
+                      "description": "Artisan ID"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Bad Request (400)",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n    \"name\": \"Cédric\",\r\n    \"email\": \"cedric@test.com\",\r\n    \"object\": \"Demande d'informations\",\r\n    \"message\": \"Bonjour, je suis intéressé par vos services et souhaite en savoir davantage sur les offres que vous proposez.\",\r\n    \"test\": \"Champ non autorisé\"\r\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{base_url}}/artisans/:id/contact",
+                      "host": [
+                        "{{base_url}}"
+                      ],
+                      "path": [
+                        "artisans",
+                        ":id",
+                        "contact"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "1",
+                          "description": "Artisan ID"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "X-Powered-By",
+                      "value": "Express"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json",
+                      "description": "",
+                      "type": "text"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "164"
+                    },
+                    {
+                      "key": "ETag",
+                      "value": "W/\"a4-nNKq/+eleY094WCiv8/itkJzr24\""
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Thu, 16 Apr 2026 18:12:59 GMT"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive"
+                    },
+                    {
+                      "key": "Keep-Alive",
+                      "value": "timeout=5"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"success\": false,\n    \"error\": {\n        \"message\": \"Champs invalides : test. Seuls les champs suivants sont autorisés : name, email, object, message.\",\n        \"code\": \"VALIDATION_ERROR\"\n    }\n}"
+                },
+                {
+                  "name": "Bad Request (400) - Required fields",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n    \"name\": \"Cédric\",\r\n    \"email\": \"\",\r\n    \"object\": \"\",\r\n    \"message\": \"Bonjour, je suis intéressé par vos services et souhaite en savoir davantage sur les offres que vous proposez.\"\r\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{base_url}}/artisans/:id/contact",
+                      "host": [
+                        "{{base_url}}"
+                      ],
+                      "path": [
+                        "artisans",
+                        ":id",
+                        "contact"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "1",
+                          "description": "Artisan ID"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "X-Powered-By",
+                      "value": "Express"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json",
+                      "description": "",
+                      "type": "text"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "125"
+                    },
+                    {
+                      "key": "ETag",
+                      "value": "W/\"7d-zRjYPFpxDKLpHhbHtAAMsaUKsr0\""
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Thu, 16 Apr 2026 14:36:09 GMT"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive"
+                    },
+                    {
+                      "key": "Keep-Alive",
+                      "value": "timeout=5"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"success\": false,\n    \"error\": {\n        \"message\": \"Tous les champs (name, email, object, message) sont requis.\",\n        \"code\": \"VALIDATION_ERROR\"\n    }\n}"
+                }
+              ]
+            }
+          ],
+          "description": "Ce sous-dossier teste l'endpoint `POST /artisans/:id/contact`.\n\n**Méthode :** `POST`  \n**URL :** `{{base_url}}/artisans/:id/contact`  \n**Paramètres :** `:id` → identifiant de l'artisan  \n**Corps :** champs du message de contact (nom, email, message, etc.)\n\n**Scénarios couverts :**\n\n- **200 OK** _(cas nominal)_ → Vérifie qu'un message de contact est envoyé avec succès.\n    \n- **400 Bad Request** _(cas d'erreur)_ → Vérifie que les champs manquants ou invalides dans le corps de la requête sont rejetés.\n    \n- **404 Not Found** _(cas d'erreur)_ → Vérifie la réponse lorsque l'identifiant de l'artisan n'existe pas."
+        }
+      ],
+      "description": "Ce dossier regroupe l'ensemble des endpoints relatifs aux **artisans** exposés par l'API _Trouve ton artisan_. Il couvre quatre fonctionnalités principales :\n\n- la mise en avant des meilleurs artisans,\n    \n- la consultation du détail d'un artisan,\n    \n- la recherche par mot-clé (avec ou sans filtre de catégorie),\n    \n- et la prise de contact.\n    \n\n---\n\n## Endpoints\n\n### `GET /artisans/top`\n\nRetourne le top 3 des artisans de la plateforme.\n\n**Authentification :** aucune  \n**Paramètres :** aucun\n\n**Réponse - 200 OK**\n\n``` json\n{\n  \"success\": true,\n  \"message\": \"...\",\n  \"data\": [\n    {\n      \"name\": \"Jean Dupont\",\n      \"rating\": 4.9,\n      \"city\": \"Lyon\",\n      \"specialty\": \"Parquet\"\n    }\n  ]\n}\n\n ```\n\n> Les résultats sont triés par `rating` décroissant et limités à **3 artisans** maximum. \n  \n\n---\n\n### `GET /artisans/:id`\n\nRetourne le profil complet d'un artisan identifié par son `:id`.\n\n**Authentification :** aucune  \n**Paramètres de chemin :**\n\n| Paramètre | Type | Obligatoire | Description |\n| --- | --- | --- | --- |\n| `id` | integer | Oui | Identifiant unique de l'artisan |\n\n**Réponse - 200 OK**\n\n``` json\n{\n  \"success\": true,\n  \"message\": \"...\",\n  \"data\": {\n    \"name\": \"Jean Dupont\",\n    \"specialty\": \"Parquet\",\n    \"rating\": 4.9,\n    \"city\": \"Lyon\",\n    \"about\": \"...\",\n    \"email\": \"jean.dupont@example.com\",\n    \"website\": \"https://example.com\"\n  }\n}\n\n ```\n\n**Réponse - 404 Not Found**\n\n``` json\n{\n  \"success\": false,\n  \"error\": {\n    \"message\": \"...\",\n    \"code\": \"...\"\n  }\n}\n\n ```\n\n> Retourné lorsque l'identifiant fourni ne correspond à aucun artisan connu. \n  \n\n---\n\n### `GET /artisans/search?q={keyword}`\n\nRecherche des artisans par mot-clé sur l'ensemble du référentiel.\n\n**Authentification :** aucune  \n**Paramètres de requête :**\n\n| Paramètre | Type | Obligatoire | Description |\n| --- | --- | --- | --- |\n| `q` | string | Oui | Mot-clé de recherche (non vide) |\n\n**Réponse - 200 OK**\n\n``` json\n{\n  \"success\": true,\n  \"message\": \"...\",\n  \"data\": [\n    {\n      \"name\": \"Jean Dupont\",\n      \"specialty\": \"Parquet\",\n      \"rating\": 4.9,\n      \"city\": \"Lyon\",\n      \"category\": \"Menuiserie\"\n    }\n  ]\n}\n\n ```\n\n**Réponse - 400 Bad Request**\n\n``` json\n{\n  \"success\": false,\n  \"error\": {\n    \"message\": \"...\",\n    \"code\": \"...\"\n  }\n}\n\n ```\n\n> Retourné lorsque le paramètre `q` est absent ou invalide (ex. chaîne vide). \n  \n> Les résultats sont triés par `rating` décroissant. \n  \n\n---\n\n### `GET /artisans/search?q={keyword}&category={id}`\n\nRecherche des artisans par mot-clé, filtrée sur une catégorie spécifique.\n\n**Authentification :** aucune  \n**Paramètres de requête :**\n\n| Paramètre | Type | Obligatoire | Description |\n| --- | --- | --- | --- |\n| `q` | string | Oui | Mot-clé de recherche (non vide) |\n| `category` | integer | Non | Identifiant de la catégorie à filtrer |\n\n**Réponse - 200 OK** : même structure que la recherche sans filtre.\n\n> Les résultats sont triés par `rating` décroissant. \n  \n\n---\n\n### `POST /artisans/:id/contact`\n\nEnvoie un message de contact à un artisan identifié par son `:id`.\n\n**Authentification :** aucune  \n**Paramètres de chemin :**\n\n| Paramètre | Type | Obligatoire | Description |\n| --- | --- | --- | --- |\n| `id` | integer | Oui | Identifiant unique de l'artisan |\n\n**Corps de la requête (JSON) :**\n\n``` json\n{\n  \"name\": \"Cédric\",\n  \"email\": \"cedric@test.com\",\n  \"object\": \"Demande d'informations\",\n  \"message\": \"Bonjour, je suis intéressé par vos services...\"\n}\n\n ```\n\n| Champ | Type | Obligatoire | Description |\n| --- | --- | --- | --- |\n| `name` | string | Oui | Nom de l'expéditeur |\n| `email` | string | Oui | Adresse e-mail de l'expéditeur |\n| `object` | string | Oui | Objet du message |\n| `message` | string | Oui | Corps du message |\n\n**Réponse - 200 OK**\n\n``` json\n{\n  \"success\": true,\n  \"message\": \"...\",\n  \"data\": {\n    \"name\": \"Cédric\",\n    \"email\": \"cedric@test.com\",\n    \"object\": \"Demande d'informations\",\n    \"message\": \"...\"\n  }\n}\n\n ```\n\n**Réponse - 400 Bad Request**\n\n``` json\n{\n  \"success\": false,\n  \"error\": {\n    \"message\": \"...\",\n    \"code\": \"...\"\n  }\n}\n\n ```\n\n> Retourné lorsqu'un ou plusieurs champs obligatoires sont absents ou vides (ex. `email` ou `object` manquants). \n  \n\n**Réponse - 404 Not Found**\n\n``` json\n{\n  \"success\": false,\n  \"error\": {\n    \"message\": \"...\",\n    \"code\": \"...\"\n  }\n}\n\n ```\n\n> Retourné lorsque l'identifiant d'artisan fourni ne correspond à aucune entrée connue. \n  \n\n---\n\n## Tests automatisés\n\n**`GET /artisans/top`** - **cas nominal (200)**\n\n- Le code de statut HTTP est `200`\n    \n- La réponse contient les propriétés `success`, `message` et `data`\n    \n- `data` est un tableau d'au plus **3** artisans\n    \n- Chaque artisan expose les champs `name`, `rating`, `city` et `specialty`\n    \n- Les résultats sont triés par `rating` décroissant\n    \n\n**`GET /artisans/:id`** - **cas nominal (200)**\n\n- Le code de statut HTTP est `200`\n    \n- La réponse contient les propriétés `success`, `message` et `data`\n    \n- `data` est un objet exposant les champs `name`, `specialty`, `rating`, `city`, `about`, `email` et `website`\n    \n\n**`GET /artisans/:id`** - **cas d'erreur (404)**\n\n- Le code de statut HTTP est `404`\n    \n- La réponse contient `success: false` et un objet `error` avec les champs `message` et `code`\n    \n\n**`GET /artisans/search?q=…`** - **cas nominal (200)**\n\n- Le code de statut HTTP est `200`\n    \n- `data` est un tableau d'artisans triés par `rating` décroissant\n    \n- Chaque artisan expose les champs `name`, `specialty`, `rating`, `city` et `category`\n    \n\n**`GET /artisans/search?q=…`** - **cas d'erreur (400)**\n\n- Le code de statut HTTP est `400`\n    \n- La réponse contient `success: false` et un objet `error` avec les champs `message` et `code`\n    \n\n**`GET /artisans/search?q=…&category=…`** - **cas nominal (200)**\n\n- Mêmes assertions que la recherche sans filtre\n    \n- Les résultats sont triés par `rating` décroissant\n    \n\n**`POST /artisans/:id/contact`** - **cas nominal (200)**\n\n- Le code de statut HTTP est `200`\n    \n- `data` est un objet exposant les champs `name`, `email`, `object` et `message`\n    \n\n**`POST /artisans/:id/contact`** - **cas d'erreur (400)**\n\n- Le code de statut HTTP est `400`\n    \n- Déclenché par des champs obligatoires vides (`email`, `object`)\n    \n- La réponse contient `success: false` et un objet `error` avec les champs `message` et `code`\n    \n\n**`POST /artisans/:id/contact`** - **cas d'erreur (404)**\n\n- Le code de statut HTTP est `404`\n    \n- La réponse contient `success: false` et un objet `error` avec les champs `message` et `code`\n    \n\n---\n\n## Variables d'environnement utilisées\n\n| Variable | Description |\n| --- | --- |\n| `{{base_url}}` | URL de base de l'API (ex. `http://localhost:3000`) |\n| `{{keyword_valid}}` | Mot-clé valide utilisé pour les tests de recherche nominaux |\n| `{{keyword_invalid}}` | Mot-clé invalide (ex. vide) utilisé pour les tests d'erreur 400 |\n| `{{id_category_valid}}` | ID de catégorie valide utilisé pour les tests de recherche filtrée |",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {},
+            "exec": [
+              ""
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {},
+            "exec": [
+              ""
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Catégories",
+      "item": [
+        {
+          "name": "All Categories",
+          "item": [
+            {
+              "name": "Success (200)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {\r",
+                      "    pm.response.to.have.status(200);\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Response structure is valid\", function () {\r",
+                      "    const res = pm.response.json();\r",
+                      "    pm.expect(res).to.have.property('success');\r",
+                      "    pm.expect(res.success).to.eql(true);\r",
+                      "    pm.expect(res).to.have.property('message');\r",
+                      "    pm.expect(res).to.have.property('data');\r",
+                      "})\r",
+                      "\r",
+                      "pm.test(\"Result is an {array}\", function () {\r",
+                      "    const res = pm.response.json();\r",
+                      "    const data = res.data;\r",
+                      "    pm.expect(data).to.be.an('array');\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Result contains at least 1 category\", function () {\r",
+                      "    const res = pm.response.json();\r",
+                      "    const data = res.data;\r",
+                      "    pm.expect(data).to.be.an('array');\r",
+                      "    pm.expect(data.length).to.be.at.greaterThan(0);\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Result sorted by id ASC\", function () {\r",
+                      "    const res = pm.response.json();\r",
+                      "    const data = res.data;\r",
+                      "    for (let i = 0; i < data.length - 1; i++) {\r",
+                      "        pm.expect(data[i].id).to.be.at.most(data[i + 1].id);\r",
+                      "    }\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Results contain expected fields : <id>, <name>\", function () {\r",
+                      "    const res = pm.response.json();\r",
+                      "    const data = res.data;\r",
+                      "    pm.expect(data).to.be.an('array');\r",
+                      "    if (data.length > 0) {\r",
+                      "        const a = data[0];\r",
+                      "        pm.expect(a).to.have.property('id');\r",
+                      "        pm.expect(a).to.have.property('name');\r",
+                      "    }\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/categories",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "categories"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Success (200)",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{base_url}}/categories",
+                      "host": [
+                        "{{base_url}}"
+                      ],
+                      "path": [
+                        "categories"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "X-Powered-By",
+                      "value": "Express"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json",
+                      "description": "",
+                      "type": "text"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "193"
+                    },
+                    {
+                      "key": "ETag",
+                      "value": "W/\"c1-tiTdfbTcPUUqYLtVlD3eW8Pw4Dw\""
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Thu, 16 Apr 2026 14:36:35 GMT"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive"
+                    },
+                    {
+                      "key": "Keep-Alive",
+                      "value": "timeout=5"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"success\": true,\n    \"message\": \"Catégories récupérées avec succès.\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"Alimentation\"\n        },\n        {\n            \"id\": 2,\n            \"name\": \"Bâtiment\"\n        },\n        {\n            \"id\": 3,\n            \"name\": \"Fabrication\"\n        },\n        {\n            \"id\": 4,\n            \"name\": \"Services\"\n        }\n    ]\n}"
+                }
+              ]
+            }
+          ],
+          "description": "Ce sous-dossier teste l'endpoint `GET /categories`.\n\n**Méthode :** `GET`  \n**URL :** `{{base_url}}/categories`  \n**Paramètres :** Aucun\n\n**Scénarios couverts :**\n\n- **200 OK** _(cas nominal)_ → Vérifie que l'API retourne la liste complète des catégories d'artisans, triées par identifiant croissant."
+        },
+        {
+          "name": "Artisan By Category",
+          "item": [
+            {
+              "name": "Success (200)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {\r",
+                      "    pm.response.to.have.status(200);\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Response structure is valid\", function () {\r",
+                      "    const res = pm.response.json();\r",
+                      "    pm.expect(res).to.have.property('success');\r",
+                      "    pm.expect(res.success).to.eql(true);\r",
+                      "    pm.expect(res).to.have.property('message');\r",
+                      "    pm.expect(res).to.have.property('data');\r",
+                      "})\r",
+                      "\r",
+                      "pm.test(\"Result is an [array]\", function () {\r",
+                      "    const res = pm.response.json();\r",
+                      "    const data = res.data;\r",
+                      "    pm.expect(data).to.be.an('array');\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Result sorted by rating DESC\", function () {\r",
+                      "    const res = pm.response.json();\r",
+                      "    const data = res.data;\r",
+                      "    for (let i = 0; i < data.length - 1; i++) {\r",
+                      "        pm.expect(data[i].rating).to.be.at.least(data[i + 1].rating);\r",
+                      "    }\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Result contain expected fields : <name>, <specialty>, <rating>, <city>, <category>\", function () {\r",
+                      "    const res = pm.response.json();\r",
+                      "    const data = res.data;\r",
+                      "    pm.expect(data).to.be.an('array');\r",
+                      "    if (data.length > 0) {\r",
+                      "        const a = data[0];\r",
+                      "        pm.expect(a).to.have.property('name');\r",
+                      "        pm.expect(a).to.have.property('specialty');\r",
+                      "        pm.expect(a).to.have.property('rating');\r",
+                      "        pm.expect(a).to.have.property('city');\r",
+                      "        pm.expect(a).to.have.property('category');\r",
+                      "    }\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                },
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/categories/:id/artisans",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "categories",
+                    ":id",
+                    "artisans"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "1",
+                      "description": "Category ID"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Success (200)",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{base_url}}/categories/:id/artisans",
+                      "host": [
+                        "{{base_url}}"
+                      ],
+                      "path": [
+                        "categories",
+                        ":id",
+                        "artisans"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "1",
+                          "description": "Category ID"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "X-Powered-By",
+                      "value": "Express"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json",
+                      "description": "",
+                      "type": "text"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "499"
+                    },
+                    {
+                      "key": "ETag",
+                      "value": "W/\"1f3-M/mHcPpOi1IsetAv6RO9tgIypP0\""
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Thu, 16 Apr 2026 14:36:54 GMT"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive"
+                    },
+                    {
+                      "key": "Keep-Alive",
+                      "value": "timeout=5"
+                    }
+                  ],
+                  "cookie": [
+                    {
+                      "expires": "Invalid Date",
+                      "domain": "",
+                      "path": ""
+                    }
+                  ],
+                  "body": "{\n    \"success\": true,\n    \"message\": \"Artisans récupérés avec succès.\",\n    \"data\": [\n        {\n            \"name\": \"Chocolaterie Labbé\",\n            \"specialty\": \"Chocolatier\",\n            \"rating\": 4.9,\n            \"city\": \"Lyon\",\n            \"category\": \"Alimentation\"\n        },\n        {\n            \"name\": \"Au pain chaud\",\n            \"specialty\": \"Boulanger\",\n            \"rating\": 4.8,\n            \"city\": \"Montélimar\",\n            \"category\": \"Alimentation\"\n        },\n        {\n            \"name\": \"Boucherie Dumont\",\n            \"specialty\": \"Boucher\",\n            \"rating\": 4.5,\n            \"city\": \"Lyon\",\n            \"category\": \"Alimentation\"\n        },\n        {\n            \"name\": \"Traiteur Truchon\",\n            \"specialty\": \"Traiteur\",\n            \"rating\": 4.1,\n            \"city\": \"Lyon\",\n            \"category\": \"Alimentation\"\n        }\n    ]\n}"
+                }
+              ]
+            },
+            {
+              "name": "Not Found (404)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 404\", function () {\r",
+                      "    pm.response.to.have.status(404);\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Response structure is valid\", function () {\r",
+                      "    const res = pm.response.json();\r",
+                      "    pm.expect(res).to.have.property('success');\r",
+                      "    pm.expect(res.success).to.eql(false);\r",
+                      "    pm.expect(res).to.have.property('error');\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Result is an {object}\", function () {\r",
+                      "    const res = pm.response.json();\r",
+                      "    const data = res.error;\r",
+                      "    pm.expect(data).to.be.an('object');\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Result contain expected fields : <message>, <code>\", function () {\r",
+                      "    const res = pm.response.json();\r",
+                      "    const err = res.error;\r",
+                      "    pm.expect(err).to.be.an('object');\r",
+                      "    pm.expect(err).to.have.property('message');\r",
+                      "    pm.expect(err).to.have.property('code');\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                },
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/categories/:id/artisans",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "categories",
+                    ":id",
+                    "artisans"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "999",
+                      "description": "Category ID"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Not Found (404)",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{base_url}}/categories/:id/artisans",
+                      "host": [
+                        "{{base_url}}"
+                      ],
+                      "path": [
+                        "categories",
+                        ":id",
+                        "artisans"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "999",
+                          "description": "Category ID"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "X-Powered-By",
+                      "value": "Express"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json",
+                      "description": "",
+                      "type": "text"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "92"
+                    },
+                    {
+                      "key": "ETag",
+                      "value": "W/\"5c-PD7D2MP7jLO9K1HEKn/eRgwKVdA\""
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Thu, 16 Apr 2026 14:37:16 GMT"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive"
+                    },
+                    {
+                      "key": "Keep-Alive",
+                      "value": "timeout=5"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"success\": false,\n    \"error\": {\n        \"message\": \"Catégorie non trouvée.\",\n        \"code\": \"CATEGORY_NOT_FOUND\"\n    }\n}"
+                }
+              ]
+            }
+          ],
+          "description": "Ce sous-dossier teste l'endpoint `GET /categories/:id/artisans`.\n\n**Méthode :** `GET`  \n**URL :** `{{base_url}}/categories/:id/artisans`  \n**Paramètres :** `:id` → identifiant de la catégorie\n\n**Scénarios couverts :**\n\n- **200 OK** _(cas nominal)_ → Utilise `{{id_category_valid}}` et vérifie que l'API retourne la liste des artisans appartenant à la catégorie spécifiée.\n    \n- **404 Not Found** _(cas d'erreur)_ → Utilise `{{id_category_invalid}}` et vérifie la réponse d'erreur lorsque la catégorie n'existe pas."
+        }
+      ],
+      "description": "Ce dossier regroupe les endpoints relatifs aux **catégories d'artisans** exposées par l'API _Trouve ton artisan_. Il couvre deux fonctionnalités distinctes :\n\n- la consultation de la liste complète des catégories,\n    \n- et la récupération des artisans rattachés à une catégorie spécifique.\n    \n\n---\n\n## Endpoints\n\n### `GET /categories`\n\nRetourne la liste exhaustive des catégories disponibles dans le référentiel.\n\n**Authentification :** aucune  \n**Paramètres :** aucun\n\n**Réponse - 200 OK**\n\n``` json\n{\n  \"success\": true,\n  \"message\": \"...\",\n  \"data\": [\n    { \"id\": 1, \"name\": \"Menuiserie\" },\n    { \"id\": 2, \"name\": \"Plomberie\" }\n  ]\n}\n\n ```\n\n> Les catégories sont triées par `id` croissant. \n  \n\n---\n\n### `GET /categories/:id/artisans`\n\nRetourne la liste des artisans appartenant à la catégorie identifiée par `:id`.\n\n**Authentification :** aucune  \n**Paramètres de chemin :**\n\n| Paramètre | Type | Obligatoire | Description |\n| --- | --- | --- | --- |\n| `id` | integer | Oui | Identifiant unique de la catégorie |\n\n**Réponse - 200 OK**\n\n``` json\n{\n  \"success\": true,\n  \"message\": \"...\",\n  \"data\": [\n    {\n      \"name\": \"Jean Dupont\",\n      \"specialty\": \"Parquet\",\n      \"rating\": 4.8,\n      \"city\": \"Lyon\",\n      \"category\": \"Menuiserie\"\n    }\n  ]\n}\n\n ```\n\n> Les artisans sont triés par `rating` décroissant. \n  \n\n**Réponse - 404 Not Found**\n\n``` json\n{\n  \"success\": false,\n  \"error\": {\n    \"message\": \"...\",\n    \"code\": \"...\"\n  }\n}\n\n ```\n\n> Retourné lorsque l'identifiant de catégorie fourni ne correspond à aucune entrée connue. \n  \n\n---\n\n## Tests automatisés\n\nChaque requête est accompagnée de scripts de test Postman couvrant les points suivants :\n\n**`GET /categories`** - **cas nominal (200)**\n\n- Le code de statut HTTP est `200`\n    \n- La réponse est un JSON valide contenant les propriétés `success`, `message` et `data`\n    \n- `data` est un tableau contenant au moins une catégorie\n    \n- Chaque entrée expose les champs `id` et `name`\n    \n- Les résultats sont triés par `id` croissant\n    \n\n**`GET /categories/:id/artisans`** - **cas nominal (200)**\n\n- Le code de statut HTTP est `200`\n    \n- La réponse est un JSON valide contenant les propriétés `success`, `message` et `data`\n    \n- `data` est un tableau d'objets artisan\n    \n- Chaque artisan expose les champs `name`, `specialty`, `rating`, `city` et `category`\n    \n- Les résultats sont triés par `rating` décroissant\n    \n\n**`GET /categories/:id/artisans`** - **cas d'erreur (404)**\n\n- Le code de statut HTTP est `404`\n    \n- La réponse contient `success: false` et un objet `error`\n    \n- L'objet `error` expose les champs `message` et `code`\n    \n\n---\n\n## Variables d'environnement utilisées\n\n| Variable | Description |\n| --- | --- |\n| `{{base_url}}` | URL de base de l'API (ex. `http://localhost:3000`) |\n| `{{id_category_valid}}` | ID d'une catégorie existante, utilisé pour les tests nominaux |"
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          "pm.test(\"Response is JSON\", function() {\r",
+          "    pm.response.to.be.json;\r",
+          "})"
+        ]
+      }
+    }
+  ]
+}
