@@ -1,0 +1,110 @@
+/* _mixins.scss */
+
+@use '../tokens';
+
+// ================================================================================================
+// LAYOUT
+// ================================================================================================
+
+@mixin container($max-width, $padding-x) {
+  max-width: $max-width;
+  margin: 0 auto;
+  padding: 0 $padding-x;
+}
+
+@mixin layout-padding($mobile, $tablet, $desktop) {
+  padding-block: $mobile;
+
+  @media (min-width: tokens.$bp-md) {
+    padding-block: $tablet;
+  }
+
+  @media (min-width: tokens.$bp-xl) {
+    padding-block: $desktop;
+  }
+}
+
+@mixin section-spacing($mobile, $tablet, $desktop) {
+  margin-bottom: $mobile;
+
+  @media (min-width: tokens.$bp-md) {
+    margin-bottom: $tablet;
+  }
+
+  @media (min-width: tokens.$bp-xl) {
+    margin-bottom: $desktop;
+  }
+}
+
+// ================================================================================================
+// FLEX
+// ================================================================================================
+
+@mixin flex($type: flex, $justify: flex-start, $align: stretch, $direction: row) {
+  display: $type;
+  justify-content: $justify;
+  align-items: $align;
+  flex-direction: $direction;
+}
+
+// Raccourcis
+@mixin flex-center {
+  @include flex(flex, center, center);
+}
+
+@mixin inline-flex-center {
+  @include flex(inline-flex, center, center);
+}
+
+@mixin flex-between {
+  @include flex(flex, space-between, center);
+}
+
+@mixin flex-column {
+  @include flex(flex, flex-start, stretch, column);
+}
+
+// ================================================================================================
+// POSITION
+// ================================================================================================
+
+@mixin absolute-fill {
+  position: absolute;
+  inset: 0;
+}
+
+@mixin full-bleed {
+  @include absolute-fill;
+  left: tokens.$full-bleed-offset;
+  right: tokens.$full-bleed-offset;
+}
+
+// ================================================================================================
+// COMPONENTS
+// ================================================================================================
+
+@mixin dropdown-panel {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  pointer-events: none;
+}
+
+@mixin dropdown-active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+@mixin icon-btn-size($btn-size, $icon-size) {
+  height: $btn-size;
+  width: $btn-size;
+
+  svg,
+  i {
+    height: $icon-size;
+    width: $icon-size;
+  }
+}
