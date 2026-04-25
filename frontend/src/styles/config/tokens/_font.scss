@@ -1,0 +1,76 @@
+/* _font.scss */
+
+@use '../tools/functions';
+
+// ================================================================================================
+// PRIMITIVE
+// ================================================================================================
+
+// SCALE
+// ------------------------------------------------------------------------------------------------
+$text-2xs:                              functions.rem(10px);
+$text-xs:                               functions.rem(12px);
+$text-sm:                               functions.rem(14px);
+$text-md:                               functions.rem(16px);
+$text-lg:                               functions.rem(20px);
+$text-xl:                               functions.rem(24px);
+$text-2xl:                              functions.rem(28px);
+$text-3xl:                              functions.rem(36px);
+$text-4xl:                              functions.rem(44px);
+$text-display-sm:                       functions.rem(56px);
+$text-display-md:                       functions.rem(64px);
+$text-display-lg:                       functions.rem(80px);
+
+// LINE HEIGHT
+// ------------------------------------------------------------------------------------------------
+$lh-100:                                1;
+$lh-200:                                1.2;
+$lh-300:                                1.4;
+$lh-400:                                1.6;
+
+// STYLE
+// ------------------------------------------------------------------------------------------------
+$font-primary: 'Graphik', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+// ================================================================================================
+// SEMANTIC
+// ================================================================================================
+
+// DISPLAY
+// ------------------------------------------------------------------------------------------------
+$display-fluid:                         clamp($text-display-sm, 6vw, $text-display-lg);
+
+$lh-display:                            $lh-100;
+
+// HEADING
+// ------------------------------------------------------------------------------------------------
+$heading-xl-fluid:                      clamp($text-3xl, 4vw, $text-4xl);
+$heading-lg-fluid:                      clamp($text-2xl, 3vw, $text-3xl);
+$heading-md-fluid:                      clamp($text-xl, 2.5vw, $text-2xl);
+$heading-sm-fluid:                      clamp($text-lg, 2vw, $text-xl);
+$heading-xs-fluid:                      clamp($text-md, 1.5vw, $text-lg);
+
+$lh-heading:                            $lh-200;
+
+// TITLE
+// ------------------------------------------------------------------------------------------------
+$title-lg-fluid:                        clamp($text-md, 1.5vw, $text-lg);
+$title-md-fluid:                        clamp($text-sm, 1.2vw, $text-md);
+$title-sm-fluid:                        clamp($text-xs, 1vw, $text-sm);
+
+$lh-title:                              $lh-300;
+
+// LABEL
+// ------------------------------------------------------------------------------------------------
+$label-size-lg:                         $text-lg;
+$label-size-md:                         $text-md;
+$label-size-sm:                         $text-sm;
+$label-size-xs:                         $text-xs;
+
+$lh-label:                              $lh-300;
+
+// BODY
+// ------------------------------------------------------------------------------------------------
+$body-size-md:                          $text-md;
+
+$lh-body:                               $lh-400;
