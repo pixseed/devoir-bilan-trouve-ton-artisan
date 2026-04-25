@@ -1,5 +1,62 @@
+/* _base.scss */
+
+@use '../config/tokens';
+
+// ================================================================================================
+// BODY
+// ================================================================================================
+
 body {
-    font-family: $font-primary;
-    font-size: $font-size-body;
-    line-height: $line-height-body;
+    font-family:                tokens.$font-primary;
+    font-size:                  tokens.$body-size-md;
+    line-height:                tokens.$lh-body;
+    color:                      tokens.$color-text-default;
+    background-color:           tokens.$color-bg-page;
+}
+
+// ================================================================================================
+// HEADING
+// ================================================================================================
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    line-height: tokens.$lh-heading;
+}
+
+.heading-xl {
+    font-size: tokens.$heading-xl-fluid;
+}
+
+.heading-lg {
+    font-size: tokens.$heading-lg-fluid;
+}
+
+.heading-md {
+    font-size: tokens.$heading-md-fluid;
+}
+
+.heading-sm {
+    font-size: tokens.$heading-sm-fluid;
+}
+
+.heading-xs {
+    font-size: tokens.$heading-xs-fluid;
+}
+
+// ================================================================================================
+// FOCUS-VISIBLE
+// ================================================================================================
+
+:focus-visible {
+    outline: tokens.$border-thin solid tokens.$color-focus-primary;
+    outline-offset: tokens.$border-thin;
+}
+
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+    outline: tokens.$border-default solid tokens.$color-focus-input;
 }

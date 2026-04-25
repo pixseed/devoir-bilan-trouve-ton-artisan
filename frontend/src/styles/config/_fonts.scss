@@ -1,0 +1,64 @@
+/**
+ * ================================================================================================
+ * FONTS
+ * ================================================================================================
+ * Ce fichier contient les définitions des polices utilisées dans le projet.
+ *
+ * Il utilise la règle @font-face pour déclarer les différentes variantes de la police "Graphik".
+ * Chaque variante est définie avec son poids et son style, et les fichiers de police sont
+ * référencés au format WOFF2 et WOFF pour assurer une compatibilité maximale avec les navigateurs.
+ *
+ * Les polices sont configurées pour être affichées de manière optimale grâce à la propriété
+ * font-display: swap, qui permet de remplacer la police de secours par la police personnalisée
+ * dès qu'elle est chargée, améliorant ainsi l'expérience utilisateur.
+ * ================================================================================================
+ */
+
+// ================================================================================================
+// Graphik-Bold.woff2, Graphik-Bold.woff
+// ================================================================================================
+@font-face {
+    font-family:                        'Graphik';
+    src:                                url('../assets/fonts/Graphik-Bold.woff2') format('woff2'),
+                                        url('../assets/fonts/Graphik-Bold.woff') format('woff');
+    font-weight:                        bold;
+    font-style:                         normal;
+    font-display:                       swap;
+}
+
+// ================================================================================================
+// Graphik-Light.woff2, Graphik-Light.woff
+// ================================================================================================
+@font-face {
+    font-family:                        'Graphik';
+    src:                                url('../assets/fonts/Graphik-Light.woff2') format('woff2'),
+                                        url('../assets/fonts/Graphik-Light.woff') format('woff');
+    font-weight:                        300;
+    font-style:                         normal;
+    font-display:                       swap;
+}
+
+// ================================================================================================
+// Graphik-Medium.woff2, Graphik-Medium.woff
+// ================================================================================================
+@font-face {
+    font-family:                        'Graphik';
+    src:                                url('../assets/fonts/Graphik-Medium.woff2') format('woff2'),
+                                        url('../assets/fonts/Graphik-Medium.woff') format('woff');
+    font-weight:                        500;
+    font-style:                         normal;
+    font-display:                       swap;
+}
+
+// ================================================================================================
+// Graphik-Regular.woff2, Graphik-Regular.woff
+// ================================================================================================
+@font-face {
+    font-family:                        'Graphik';
+    src:                                url('../assets/fonts/Graphik-Regular.woff2') format('woff2'),
+                                        url('../assets/fonts/Graphik-Regular.woff') format('woff');
+    font-weight:                        normal;
+    font-style:                         normal;
+    font-display:                       swap;
+}
+
