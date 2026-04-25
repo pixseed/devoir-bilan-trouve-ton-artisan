@@ -1,0 +1,16 @@
+/* _trigger.scss */
+
+@use '../config/tokens';
+@use '../config/tools';
+
+.trigger {
+    position:                           relative;
+    @include                            tools.inline-flex-center;
+    padding-inline:                     tokens.$trigger-padding-x;
+
+    background:                         none;
+    border:                             none;
+
+    font:                               inherit;
+    color:                              inherit;
+}

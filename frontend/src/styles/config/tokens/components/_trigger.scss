@@ -1,0 +1,21 @@
+/* _trigger.scss */
+
+@use '../spacing';
+
+// ================================================================================================
+// TRIGGER TOKENS COMPONENT
+// ================================================================================================
+
+// SPACING
+// ------------------------------------------------------------------------------------------------
+$trigger-padding-x:                     spacing.$sp-8;
+$trigger-content-gap:                   spacing.$gap-xs;
+
+// SIZE
+// ------------------------------------------------------------------------------------------------
+$trigger-underline-height:              2px;
+
+// OFFSET
+// ------------------------------------------------------------------------------------------------
+$trigger-underline-offset-mobile:       spacing.$sp-16; // dépendance au height du header
+$trigger-underline-offset-desktop:      spacing.$sp-24; // dépendance au height du header

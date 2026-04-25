@@ -1,0 +1,200 @@
+/* _header.scss */
+
+@use '../config/tokens';
+@use '../config/tools';
+
+.header {
+    position:                           relative;
+    @include                    		tools.flex-column;
+    background:                         tokens.$header-bg;
+    box-shadow:                         tokens.$shadow-header;
+    height:                             tokens.$header-height-mobile;
+    z-index:                            tokens.$z-header;
+
+    /* =====================================================
+    	INNER
+    ===================================================== */
+    &__inner {
+        @include 						tools.flex-between;
+        height:                         100%;
+        gap:                            tokens.$header-gap;
+    }
+    
+    /* =====================================================
+    	LOGO
+    ===================================================== */
+	&__logo-wrapper {
+		@include 						tools.flex-center;
+		height: 						100%;
+	}
+
+    &__logo {
+        display:                        block;
+        height:                         tokens.$header-height-logo-mobile;
+        width:                          auto;
+    }
+    
+    /* =====================================================
+    	NAVBAR
+    ===================================================== */
+    &__nav {
+		display:                    	flex;
+		flex:                       	1;
+		justify-content:            	end;
+		height:                     	100%;
+    }
+
+    &__trigger {
+        display:                        none;
+    }
+
+    /* =====================================================
+    	SEARCHBAR (tablet / desktop)
+    ===================================================== */
+    &__search {
+        display:                        none;
+
+		& .searchbar {
+			background-color: 			transparent;
+		}
+    }
+
+    /* =====================================================
+    	ACTIONS (mobile)
+    ===================================================== */
+    &__actions {
+        display:                        flex;
+        height:                         100%;
+		align-items: 					center;
+
+        button {
+            background:                 none;
+            border:                     none;
+            padding:                    0 tokens.$header-padding-x-action-button;
+			height: 100%;
+        }
+    }
+
+    &__icon {
+        height:                         tokens.$icon-lg;
+        width:                          auto;
+        color:                          tokens.$header-icon;
+    }
+
+    /* =====================================================
+    	PANELS
+    ===================================================== */
+    &__search-panel,
+    &__menu-panel {
+        @include 						tools.dropdown-panel;
+
+        background:                     tokens.$header-bg;
+
+        transform:                      translateY(tokens.$header-dropdown-offset-y);
+        transition:                     tokens.$motion-fade-slide;
+        z-index:                        tokens.$z-header-dropdown;
+    }
+
+    &__menu-panel.is-open,
+    &__search-panel.is-open {
+        @include 						tools.dropdown-active;
+    }
+
+    &__search-panel {
+        padding-bottom:                 tokens.$searchbar-navbar-sp-mobile;
+    }
+}
+
+/* =====================================================
+	TABLET
+===================================================== */
+
+@media (min-width: tokens.$bp-md) {
+	.header {
+		height:                         tokens.$header-height-tablet;
+
+		&__logo {
+			height:                     tokens.$header-height-logo-tablet;
+		}
+
+		&__trigger {
+			display:                    flex;
+			height:                     100%;
+		}
+
+		&__trigger-content {
+			display:                    inline-flex;
+			gap:                        tokens.$trigger-content-gap;
+		}
+
+		&__trigger-icon {
+			width:                      tokens.$icon-xs;
+			height:                     auto;
+			transition:                 tokens.$motion-icon;
+			transform:                  translateY(tokens.$icon-optical-offset-y);
+		}
+
+		&__trigger.is-open &__trigger-icon {
+			transform:                  translateY(tokens.$icon-optical-offset-y) rotate(180deg);
+		}
+
+		/* ------------------------------------
+			Underline
+		------------------------------------ */ 
+		&__trigger:after {
+			content:                    "";
+			position:                   absolute;
+			left:                       50%;
+			bottom:                     tokens.$trigger-underline-offset-mobile;
+			transform:                  translateX(-50%) scaleX(0);
+
+			width:                      calc(100% - tokens.$trigger-padding-x);
+			height:                     tokens.$trigger-underline-height;
+
+			background-color:           currentColor;
+			opacity:                    0;
+
+			transition:                 tokens.$motion-underline;
+		}
+		
+		&__trigger:hover::after, &__trigger.is-open::after {
+			transform:                  translateX(-50%) scaleX(1);
+			opacity:                    1;
+		}
+
+		&__search {
+			display:                    block;
+		}
+
+		&__actions {
+			display:                    none;
+		}
+
+		&__search-panel,
+		&__menu-panel {
+			box-shadow:                 tokens.$shadow-header;
+			border-bottom: 				tokens.$header-border-panel;
+		}
+	}
+}
+
+/* =====================================================
+	DESKTOP
+===================================================== */
+
+@media (min-width: tokens.$bp-xl) {
+	.header {
+		height:                         tokens.$header-height-desktop;
+
+		&__logo {
+			height:                     tokens.$header-height-logo-desktop;
+		}
+
+		/* ------------------------------------
+			Underline
+		------------------------------------ */ 
+		&__trigger::after {
+			bottom:                     tokens.$trigger-underline-offset-desktop;
+		}
+	}
+}

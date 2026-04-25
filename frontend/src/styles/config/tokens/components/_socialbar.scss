@@ -1,0 +1,26 @@
+/* _socialbar.scss */
+
+@use '../colors';
+@use '../spacing';
+@use '../scale';
+@use '../border';
+
+// ================================================================================================
+// SOCIALBAR TOKENS COMPONENT
+// ================================================================================================
+
+// COLORS
+// ------------------------------------------------------------------------------------------------
+$socialbar-bg-color:                    colors.$color-bg-surface;
+$socialbar-icon-color:                  colors.$color-icon-default;
+$socialbar-icon-color-hover:            colors.$color-icon-emphasis-primary;
+
+// SPACING
+// ------------------------------------------------------------------------------------------------
+$socialbar-padding:                     spacing.$sp-24;
+$socialbar-icon-grid:                   spacing.$sp-8;
+
+// SIZE
+// ------------------------------------------------------------------------------------------------
+$socialbar-btn-size:                    scale.$scale-32;
+$socialbar-icon-size:                   22px;

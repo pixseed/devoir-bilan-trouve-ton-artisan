@@ -1,0 +1,40 @@
+/* _searchbar.scss */
+
+@use '../colors';
+@use '../spacing';
+@use '../border';
+@use '../radius';
+@use './icon';
+
+// ================================================================================================
+// SEARCHBAR TOKENS COMPONENT
+// ================================================================================================
+
+// HEIGHT
+// ------------------------------------------------------------------------------------------------
+$searchbar-height:                      spacing.$sp-48;
+
+// SPACING
+// ------------------------------------------------------------------------------------------------
+$searchbar-padding-x:                   spacing.$sp-16;
+$searchbar-padding-y:                   spacing.$sp-8;
+$searchbar-navbar-sp-mobile:            spacing.$sp-16;
+
+$searchbar-icon-space:                  icon.$icon-btn-md + spacing.$sp-16 *2;
+
+// BORDER
+// ------------------------------------------------------------------------------------------------
+$searchbar-border-width:                border.$border-thin;
+$searchbar-border-color:                colors.$color-border-emphasis-primary;
+
+// RADIUS
+// ------------------------------------------------------------------------------------------------
+$searchbar-radius:                      radius.$radius-pill;
+
+// BACKGROUND
+// ------------------------------------------------------------------------------------------------
+$searchbar-bg:                          colors.$color-bg-surface;
+
+// ICON
+// ------------------------------------------------------------------------------------------------
+$searchbar-icon-size:                   icon.$icon-md;

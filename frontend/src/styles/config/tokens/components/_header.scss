@@ -1,0 +1,38 @@
+/* _header.scss */
+
+@use '../colors';
+@use '../spacing';
+@use '../scale';
+@use '../border';
+
+// ================================================================================================
+// HEADER TOKENS COMPONENT
+// ================================================================================================
+
+// COLORS
+// ------------------------------------------------------------------------------------------------
+$header-icon:                           colors.$color-icon-emphasis-primary;
+$header-bg:                             colors.$color-bg-surface;
+
+// SIZE
+// ------------------------------------------------------------------------------------------------
+$header-height-logo-mobile:             scale.$scale-32;
+$header-height-logo-tablet:             scale.$scale-48;
+$header-height-logo-desktop:            scale.$scale-56;
+
+// BORDER
+// ------------------------------------------------------------------------------------------------
+$header-border-panel:                   border.$border-thin solid colors.$color-border-inverse;
+
+// SPACING
+// ------------------------------------------------------------------------------------------------
+$header-padding-y-mobile:               spacing.$sp-16;
+$header-padding-y-tablet:               spacing.$sp-24;
+$header-padding-y-desktop:              spacing.$sp-32;
+
+$header-padding-x-action-button:        spacing.$sp-8;
+$header-gap:                            spacing.$gap-sm;
+
+// OFFSET
+// ------------------------------------------------------------------------------------------------
+$header-dropdown-offset-y:              -10px;

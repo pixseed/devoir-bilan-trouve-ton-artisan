@@ -1,32 +1,39 @@
 /**
  * ================================================================================================
- * MAIN SCSS
+ * main.scss
  * ================================================================================================
  * Ce fichier principal de styles SCSS sert de point d'entrée pour l'ensemble des styles
  * de l'application.
  *
- * Il organise les imports de manière structurée, en commençant par les styles
+ * Il organise les uses de manière structurée, en commençant par les styles
  * de réinitialisation , suivis des définitions de polices, des tokens de design,
- * des styles de base, et enfin des composants spécifiques.
+ * des styles de base, et enfin des composants génériques et spécifiques.
  *
  * Cette organisation permet de maintenir une structure claire et modulaire,
  * facilitant la maintenance et l'évolution du code CSS au fil du temps.
  * ================================================================================================
  */
 
-// 1. RESET
-@import './base/reset';
+// 1. CONFIG
+@use './config/fonts';
+@use './config/tools';
+@use './config/tokens';
 
-// 2. FONTS
-@import './base/fonts';
+// 2. BASE
+@use './base/reset';
+@use './base/base';
 
-// 3. TOKENS
-@import './tokens/colors';
-@import './tokens/typography';
-@import './tokens/spacing';
-@import './tokens/radius';
+// 3. LAYOUT
+@use './layout/layout';
 
-// 4. BASE
-@import './base/base';
+// 4. GENERIC COMPONENTS
+@use './components/trigger';
+@use './components/socialbar';
+@use './components/iconButton';
+@use './components/searchbar';
+@use './components/navItem';
+@use './components/menu';
 
-// 5. COMPONENTS
+// 5. SPECIFIC COMPONENTS
+@use './components/header';
+@use './components/footer';

@@ -1,0 +1,31 @@
+/* _navItem.scss */
+
+@use '../colors';
+@use '../font';
+@use '../spacing';
+@use './icon';
+
+// ================================================================================================
+// NAV ITEM TOKENS COMPONENT
+// ================================================================================================
+
+// COLORS
+// ------------------------------------------------------------------------------------------------
+$nav-item-text-color:                   colors.$color-text-default;
+$nav-item-icon-color:                   colors.$color-icon-default;
+$nav-item-text-color-hover:             colors.$color-text-emphasis-primary;
+
+// SIZE
+// ------------------------------------------------------------------------------------------------
+$nav-item-text-size:                    font.$label-size-md;
+$nav-item-icon-size:                    icon.$icon-xs;
+
+$nav-item-max-width-desktop:            240px;
+
+// LINE HEIGHT
+// ------------------------------------------------------------------------------------------------
+$nav-item-text-lh:                      font.$lh-label;
+
+// SPACING
+// ------------------------------------------------------------------------------------------------
+$nav-item-padding-y:                    spacing.$sp-8;

@@ -1,0 +1,51 @@
+/* _searchbar.scss */
+
+@use '../config/tokens';
+@use '../config/tools';
+
+.searchbar {
+    position:                           relative;
+    @include                            tools.flex-center;
+
+    height:                             tokens.$searchbar-height;
+    background:                         tokens.$searchbar-bg;
+    border:                             tokens.$searchbar-border-width solid tokens.$searchbar-border-color;
+    border-radius:                      tokens.$searchbar-radius;
+
+    /* =====================================================
+        INPUT
+    ===================================================== */
+    
+    &__input {
+        width:                          100%;
+        height:                         100%;
+        padding-left:                   tokens.$searchbar-padding-x;
+        padding-right:                  tokens.$searchbar-icon-space;
+        padding-top:                    tokens.$searchbar-padding-y;
+        padding-bottom:                 tokens.$searchbar-padding-y;
+        border:                         none;
+        outline:                        none;
+        background:                     transparent;
+    }
+
+    /* =====================================================
+        BUTTON (overlay)
+    ===================================================== */
+
+    &__button {
+        position:                       absolute;
+        right:                          tokens.$sp-16;
+        top:                            50%;
+        transform:                      translateY(-50%);
+    }
+
+    /* =====================================================
+        VARIANT
+    ===================================================== */
+
+    &--navbar {
+        border-left:                    none;
+        border-top:                     none;
+        border-radius:                  0;
+    }
+}

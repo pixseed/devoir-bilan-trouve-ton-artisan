@@ -1,0 +1,13 @@
+/* _socialbar.scss */
+
+@use '../config/tokens';
+@use '../config/tools';
+
+/* =====================================================
+    SOCIALBAR
+===================================================== */
+
+.socialbar {
+    @include                            tools.flex-center;
+    gap:                                tokens.$socialbar-icon-grid;
+}

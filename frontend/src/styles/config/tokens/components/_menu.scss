@@ -1,0 +1,38 @@
+/* _menu.scss */
+
+@use '../colors';
+@use '../font';
+@use '../spacing';
+@use './icon';
+@use './header';
+
+// ================================================================================================
+// MENU TOKENS COMPONENT
+// ================================================================================================
+
+// COLORS
+// ------------------------------------------------------------------------------------------------
+$menu-title-text-color:                 colors.$color-text-inverse;
+$menu-title-bg-color:                   colors.$color-bg-primary;
+
+$menu-navlist-bg-color:                 colors.$color-bg-surface-emphasis;
+
+$menu-decor-triangle-color:             header.$header-bg;
+
+// SIZE
+// ------------------------------------------------------------------------------------------------
+$menu-height:                           288px;
+
+$menu-decor-triangle-size:              30px;
+
+// LAYOUT (GRID)
+// ------------------------------------------------------------------------------------------------
+$menu-col-left:                         35%;
+$menu-col-right:                        1fr;
+
+// SPACING
+// ------------------------------------------------------------------------------------------------
+$menu-padding-y-mobile:                 spacing.$sp-20;
+$menu-padding-x-mobile:                 spacing.$sp-32;
+$menu-padding-y-desktop:                spacing.$sp-32;
+$menu-padding-x-desktop:                spacing.$sp-40;
