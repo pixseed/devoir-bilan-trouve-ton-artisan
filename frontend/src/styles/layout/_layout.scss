@@ -1,0 +1,39 @@
+/* _layout.scss */
+
+@use '../config/tools/mixins';
+@use '../config/tokens';
+
+// ================================================================================================
+// LAYOUT
+// ================================================================================================
+
+.layout {
+    @include mixins.layout-padding(
+        tokens.$layout-padding-y-sm,
+        tokens.$layout-padding-y-md,
+        tokens.$layout-padding-y-lg
+    );
+}
+
+// ================================================================================================
+// CONTAINER
+// ================================================================================================
+
+.container {
+    @include mixins.container(
+        tokens.$container-max-width,
+        tokens.$container-padding-x
+    );
+}
+
+// ================================================================================================
+// SECTION
+// ================================================================================================
+
+.section:not(:last-child) {
+    @include mixins.section-spacing(
+        tokens.$flow-mobile-md,
+        tokens.$flow-tablet-md,
+        tokens.$flow-desktop-md
+    );
+}
