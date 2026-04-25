@@ -1,0 +1,101 @@
+/* _footer.scss */
+
+@use '../config/tokens';
+@use '../config/tools';
+
+.footer {
+    color:                              tokens.$footer-text-color;
+    background:                         tokens.$footer-bg-color;
+
+    /* =====================================================
+    	MAIN LAYOUT
+    ===================================================== */
+    &__main {
+        @include                        tools.flex-column;
+        gap:                            tokens.$gap-lg;
+    }
+
+    /* =====================================================
+    	ADDRESS
+    ===================================================== */
+    &__address {
+        position:                       relative;
+        @include                        tools.flex-column;
+        margin:                         0;
+        gap:                            tokens.$footer-text-sp;
+
+        /* -----------------------------
+            Divider Line
+        ----------------------------- */        
+        &::before {
+            content:                    "";
+            position:                   absolute;
+            bottom:                     -(tokens.$footer-divider-offset-mobile);
+            left:                       0;
+            width:                      tokens.$footer-divider-length;
+            height:                     tokens.$footer-divider-thickness;
+            background-color:           tokens.$footer-divider-color;
+        }
+    }
+
+    /* =====================================================
+    	NAV LINK
+    ===================================================== */    
+    &__nav {
+        display:                        flex;
+        flex-wrap:                      wrap;
+        gap:                            tokens.$footer-gap-nav-sp;
+
+        a:hover {
+            text-decoration:            underline;
+        }
+    }
+
+    /* =====================================================
+    	SOCIAL WRAPPER
+    ===================================================== */    
+    &__social {
+        background:                     tokens.$socialbar-bg-color;
+        padding:                        tokens.$socialbar-padding 0;
+    }
+}
+
+/* =====================================================
+	TABLET / DESKTOP
+===================================================== */
+
+@media (min-width: tokens.$bp-md) {
+    .footer {
+        &__main {
+            display:                    grid;
+            grid-template-columns:      tokens.$footer-col-left tokens.$footer-col-center tokens.$footer-col-right;
+            align-items:                start;
+            gap:                        tokens.$gap-3xl;
+        }
+
+        &__address {
+            position:                   relative;
+            margin:                     0;
+            border:                     none;
+            padding:                    0;
+            height:                     100%;
+
+            /* -----------------------------
+                Divider Line
+            ----------------------------- */
+            &::before {
+                content: "";
+                left:                   -(tokens.$footer-divider-offset-desktop);
+                bottom:                 0;
+                top:                    0;
+                width:                  tokens.$footer-divider-thickness;
+                height:                 tokens.$footer-divider-length;
+            }
+        }
+
+        &__nav {
+            @include                    tools.flex-column;
+            align-items:                flex-end;
+        }
+    }
+}

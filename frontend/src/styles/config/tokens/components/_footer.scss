@@ -1,0 +1,35 @@
+/* _footer.scss */
+@use '../colors';
+@use '../border';
+@use '../spacing';
+
+// ================================================================================================
+// FOOTER TOKENS COMPONENT
+// ================================================================================================
+
+// COLORS
+// ------------------------------------------------------------------------------------------------
+$footer-text-color:                     colors.$color-text-inverse;
+$footer-bg-color:                       colors.$color-bg-primary;
+
+// SPACING
+// ------------------------------------------------------------------------------------------------
+$footer-padding:                        spacing.$sp-24;
+$footer-text-sp:                        spacing.$sp-8;
+$footer-divider-sp:                     spacing.$sp-16;
+$footer-section-padding:                spacing.$sp-16;
+$footer-gap-nav-sp:                     spacing.$gap-sm;
+
+// LAYOUT (GRID)
+// ------------------------------------------------------------------------------------------------
+$footer-col-left:                       max-content;
+$footer-col-center:                     1fr;
+$footer-col-right:                      auto;
+
+// DIVIDER
+// ------------------------------------------------------------------------------------------------
+$footer-divider-color:                  colors.$color-decoration-inverse;
+$footer-divider-thickness:              1px;
+$footer-divider-offset-mobile:          16px;
+$footer-divider-offset-desktop:         32px;
+$footer-divider-length:                 100%;
