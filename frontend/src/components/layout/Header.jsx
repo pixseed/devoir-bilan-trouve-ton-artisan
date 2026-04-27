@@ -24,7 +24,7 @@
 
 import { Link } from "react-router-dom";
 
-import logo from "../../assets/logos/logo-trouve-ton-artisan.png";
+import logo from "../../../public/logos/logo-trouve-ton-artisan.png";
 import ChevronIcon from "../../assets/icons/Down_Chevron.svg?react";
 import SearchIcon from "../../assets/icons/Search.svg?react";
 import MenuIcon from "../../assets/icons/Menu.svg?react";

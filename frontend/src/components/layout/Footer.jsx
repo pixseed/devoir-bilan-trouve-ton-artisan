@@ -1,7 +1,7 @@
 // Footer.jsx
 
 import { Link } from "react-router-dom";
-import logo from "../../assets/logos/logo-trouve-ton-artisan-white.png";
+import logo from "../../../public/logos/logo-trouve-ton-artisan-white.png";
 import SocialBar from "../ui/SocialBar";
 
 export default function Footer() {
