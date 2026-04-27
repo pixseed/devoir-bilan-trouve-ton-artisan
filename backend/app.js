@@ -25,10 +25,16 @@
  */
 
 import express from 'express';
+import cors from 'cors';
 import categoriesRouter from './routes/categories.js';
 import artisanRouter from './routes/artisans.js';
 
 const app = express();
+
+// Autorisation des req du front
+app.use(cors({
+    origin: "http://localhost:5173"
+}))
 
 // Middleware JSON
 app.use(express.json());
