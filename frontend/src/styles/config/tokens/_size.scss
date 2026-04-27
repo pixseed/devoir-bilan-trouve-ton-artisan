@@ -21,9 +21,3 @@ $container-max-width:                   1160px;
 // ================================================================================================
 
 $full-bleed-offset:                     -($viewport-width);
-
-// HEADER
-// ------------------------------------------------------------------------------------------------
-$header-height-mobile:                  scale.$scale-64;
-$header-height-tablet:                  scale.$scale-80;
-$header-height-desktop:                 scale.$scale-96;

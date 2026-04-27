@@ -16,6 +16,10 @@ $header-bg:                             colors.$color-bg-surface;
 
 // SIZE
 // ------------------------------------------------------------------------------------------------
+$header-height-mobile:                  scale.$scale-64;
+$header-height-tablet:                  scale.$scale-80;
+$header-height-desktop:                 scale.$scale-96;
+
 $header-height-logo-mobile:             scale.$scale-32;
 $header-height-logo-tablet:             scale.$scale-48;
 $header-height-logo-desktop:            scale.$scale-56;

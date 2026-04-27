@@ -77,6 +77,47 @@
     }
 
     /* =====================================================
+        SKELETON
+    ===================================================== */
+
+    .skeleton-item {
+        height:                         tokens.$skeleton-height;
+        margin-bottom:                  tokens.$skeleton-gap;
+        border-radius:                  tokens.$skeleton-radius;
+        background:                     tokens.$skeleton-bg;
+
+        animation:                      pulse tokens.$skeleton-motion;
+    }
+
+    .skeleton-item:nth-child(1) {
+        width:                          40%
+    }
+
+    .skeleton-item:nth-child(2) {
+        width:                          30%
+    }
+
+    .skeleton-item:nth-child(3) {
+        width:                          35%
+    }
+
+    .skeleton-item:nth-child(4) {
+        width:                          20%
+    }
+
+    @keyframes pulse {
+        0% {
+            opacity:                    0.5;
+        }
+        50% {
+            opacity:                    1;
+        }
+        100% {
+            opacity:                    0.5;
+        }
+    }
+
+    /* =====================================================
         FULL WIDTH (mobile)
     ===================================================== */
 

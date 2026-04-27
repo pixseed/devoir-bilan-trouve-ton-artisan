@@ -1,0 +1,20 @@
+/* _skeleton.scss */
+
+@use '../scale';
+@use '../radius';
+@use '../spacing';
+@use '../colors';
+@use '../motion';
+
+// ================================================================================================
+// SKELETON TOKENS COMPONENT
+// ================================================================================================
+
+$skeleton-height:                       scale.$scale-20;
+$skeleton-radius:                       radius.$radius-xs;
+$skeleton-gap:                          spacing.$sp-16;
+$skeleton-bg:                           colors.$color-neutral-300;
+
+$skeleton-animation-duration:           motion.$duration-ultra-slow;
+$skeleton-animation-easing:             motion.$easing-smooth;
+$skeleton-motion:                       $skeleton-animation-duration $skeleton-animation-easing infinite;
