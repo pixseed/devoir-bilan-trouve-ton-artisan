@@ -13,6 +13,8 @@
     &__main {
         @include                        tools.flex-column;
         gap:                            tokens.$gap-lg;
+        padding-top:                    tokens.$footer-padding;
+        padding-bottom:                 tokens.$footer-padding;
     }
 
     /* =====================================================
