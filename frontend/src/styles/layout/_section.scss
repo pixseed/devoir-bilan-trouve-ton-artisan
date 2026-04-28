@@ -1,0 +1,16 @@
+/* _layout.scss */
+
+@use '../config/tools/mixins';
+@use '../config/tokens';
+
+// ================================================================================================
+// SECTION
+// ================================================================================================
+
+.section {
+    @include mixins.section(
+        tokens.$section-padding-y-sm,
+        tokens.$section-padding-y-md,
+        tokens.$section-padding-y-lg
+    );
+}

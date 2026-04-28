@@ -9,10 +9,10 @@
 @mixin container($max-width, $padding-x) {
   max-width: $max-width;
   margin: 0 auto;
-  padding: 0 $padding-x;
+  padding-inline: $padding-x;
 }
 
-@mixin layout-padding($mobile, $tablet, $desktop) {
+@mixin section($mobile, $tablet, $desktop) {
   padding-block: $mobile;
 
   @media (min-width: tokens.$bp-md) {
@@ -21,18 +21,6 @@
 
   @media (min-width: tokens.$bp-xl) {
     padding-block: $desktop;
-  }
-}
-
-@mixin section-spacing($mobile, $tablet, $desktop) {
-  margin-bottom: $mobile;
-
-  @media (min-width: tokens.$bp-md) {
-    margin-bottom: $tablet;
-  }
-
-  @media (min-width: tokens.$bp-xl) {
-    margin-bottom: $desktop;
   }
 }
 

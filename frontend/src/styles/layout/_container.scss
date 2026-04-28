@@ -1,0 +1,15 @@
+/* _container.scss */
+
+@use '../config/tools/mixins';
+@use '../config/tokens';
+
+// ================================================================================================
+// CONTAINER
+// ================================================================================================
+
+.container {
+    @include mixins.container(
+        tokens.$container-max-width,
+        tokens.$container-padding-x
+    );
+}
