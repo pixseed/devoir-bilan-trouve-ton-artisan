@@ -24,16 +24,23 @@
 @use './base/base';
 
 // 3. LAYOUT
-@use './layout/layout';
+@use './layout/container';
+@use './layout/section';
 
-// 4. GENERIC COMPONENTS
+// 4. PAGE
+@use './pages/home';
+
+// 5. GENERIC COMPONENTS
 @use './components/trigger';
 @use './components/socialbar';
 @use './components/iconButton';
 @use './components/searchbar';
 @use './components/navItem';
+@use './components/rating';
 @use './components/menu';
+@use './components/button';
+@use './components/artisanCard';
 
-// 5. SPECIFIC COMPONENTS
+// 6. SPECIFIC COMPONENTS
 @use './components/header';
 @use './components/footer';

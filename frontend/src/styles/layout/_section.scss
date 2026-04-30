@@ -9,8 +9,8 @@
 
 .section {
     @include mixins.section(
-        tokens.$section-padding-y-sm,
-        tokens.$section-padding-y-md,
-        tokens.$section-padding-y-lg
+        tokens.$section-padding-sm,
+        tokens.$section-padding-md,
+        tokens.$section-padding-lg
     );
 }

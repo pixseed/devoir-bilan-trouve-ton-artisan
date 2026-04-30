@@ -12,7 +12,7 @@
     ===================================================== */
     &__main {
         @include                        tools.flex-column;
-        gap:                            tokens.$gap-lg;
+        gap:                            tokens.$gap-32;
         padding-top:                    tokens.$footer-padding;
         padding-bottom:                 tokens.$footer-padding;
     }
@@ -72,7 +72,7 @@
             display:                    grid;
             grid-template-columns:      tokens.$footer-col-left tokens.$footer-col-center tokens.$footer-col-right;
             align-items:                start;
-            gap:                        tokens.$gap-3xl;
+            gap:                        tokens.$gap-64;
         }
 
         &__address {

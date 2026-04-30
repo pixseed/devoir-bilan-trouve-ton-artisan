@@ -23,13 +23,28 @@ $sp-64:                             scale.$scale-64;
 // SEMANTIC
 // ================================================================================================
 
+// GAP
+// ------------------------------------------------------------------------------------------------
+$gap-64:                            $sp-64;
+$gap-56:                            $sp-56;
+$gap-48:                            $sp-48;
+$gap-32:                            $sp-32;
+$gap-24:                            $sp-24;
+$gap-16:                            $sp-16;
+$gap-12:                            $sp-12;
+$gap-8:                             $sp-8;
+$gap-4:                             $sp-4;
+
 // FLOW
 // ------------------------------------------------------------------------------------------------
-$flow-desktop-md:                   $sp-48;
-$flow-tablet-md:                    $sp-32;
+$flow-desktop-md:                   $sp-32;
+$flow-desktop-sm:                   $sp-24;
 
-$flow-mobile-sm:                    $sp-16;
-$flow-mobile-md:                    $sp-24;
+$flow-tablet-md:                    $sp-24;
+$flow-tablet-sm:                    $sp-16;
+
+$flow-mobile-md:                    $sp-16;
+$flow-mobile-sm:                    $sp-8;
 
 // CONTAINER
 // ------------------------------------------------------------------------------------------------
@@ -37,16 +52,11 @@ $container-padding-x:               $sp-24;
 
 // SECTION
 // ------------------------------------------------------------------------------------------------
-$section-padding-y-sm:               $sp-24;
-$section-padding-y-md:               $sp-32;
-$section-padding-y-lg:               $sp-48;
+$section-padding-sm:              $sp-24;
+$section-padding-md:              $sp-32;
+$section-padding-lg:              $sp-48;
 
-// GAP
+// LAYOUT
 // ------------------------------------------------------------------------------------------------
-$gap-3xl:                           $sp-64;
-$gap-2xl:                           $sp-56;
-$gap-xl:                            $sp-48;
-$gap-lg:                            $sp-32;
-$gap-md:                            $sp-24;
-$gap-sm:                            $sp-16;
-$gap-xs:                            $sp-8;
+$layout-gap-md:                     $sp-16;
+$layout-gap-lg:                     $sp-32;

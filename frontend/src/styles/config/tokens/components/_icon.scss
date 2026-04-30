@@ -26,24 +26,3 @@ $icon-btn-lg:                           spacing.$sp-48;
 // ICON OFFSET
 // ------------------------------------------------------------------------------------------------
 $icon-optical-offset-y:                 2px;
-
-// ICON BUTTON RADIUS
-// ------------------------------------------------------------------------------------------------
-$icon-btn-pill:                         radius.$radius-pill;
-$icon-btn-square:                       radius.$radius-sm;
-
-// ICON BUTTON COLORS
-// ------------------------------------------------------------------------------------------------
-// Primary
-$icon-btn-primary-color:                colors.$color-icon-emphasis-primary;
-$icon-btn-primary-bg:                   colors.$color-bg-surface;
-
-// Secondary
-$icon-btn-secondary-color:              colors.$color-icon-default;
-$icon-btn-secondary-bg:                 colors.$color-bg-surface;
-
-$icon-btn-secondary-color-active:       colors.$color-icon-emphasis-primary;
-$icon-btn-secondary-bg-active:          colors.$color-bg-surface;
-
-$icon-btn-secondary-color-hover:        colors.$color-icon-inverse;
-$icon-btn-secondary-bg-hover:           colors.$color-bg-secondary;

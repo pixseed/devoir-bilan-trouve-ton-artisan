@@ -24,12 +24,12 @@ export default function Menu() {
     <div className="menu" aria-label="Catégories">
       <div className="container">
         <div className="menu__content">
-          {/* Bloc gauche = Titre du menu */}
+          {/* Titre du menu */}
           <div className="menu__header">
             <h2 className="menu__title heading-xl">Catégories</h2>
           </div>
 
-          {/* Bloc droit = Liste des catégories */}
+          {/* Liste des catégories */}
           <div className="menu__body">
             {loading && <SkeletonMenu />}
             {error && <p>{error}</p>}

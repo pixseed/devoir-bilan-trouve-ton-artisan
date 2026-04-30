@@ -1,0 +1,28 @@
+/* _rating.scss */
+
+@use '../colors';
+@use '../font';
+@use '../spacing';
+
+// ================================================================================================
+// RATING TOKENS COMPONENT
+// ================================================================================================
+
+// TEXT
+// ------------------------------------------------------------------------------------------------
+$rating-value-size:                     font.$text-sm;
+$rating-value-lh:                       font.$lh-100;
+$rating-value-optical-offset-y:         1px;
+
+// SPACING
+// ------------------------------------------------------------------------------------------------
+$rating-gap:                            spacing.$gap-8;
+$rating-stars-gap:                      spacing.$gap-4;
+$rating-value-padding-y:                spacing.$sp-4;
+$rating-value-padding-x:                spacing.$sp-8;
+
+// COLORS
+// ------------------------------------------------------------------------------------------------
+$rating-star-empty:                     colors.$color-icon-muted;
+$rating-star-fill:                      colors.$color-icon-emphasis-primary;
+$rating-value-bg:                       colors.$color-bg-primary;

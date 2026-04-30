@@ -1,0 +1,66 @@
+/* _rating.scss */
+
+@use '../config/tokens';
+@use '../config/tools';
+
+.rating {
+    @include                            tools.inline-flex-center;
+    gap:                                tokens.$rating-gap;
+
+    /* =====================================================
+        STARS
+    ===================================================== */
+    
+    &__stars {
+        position:                       relative;
+        display:                        inline-flex;
+    }
+
+    &__stars-bg,
+    &__stars-fill {
+        display:                        flex;
+        gap:                            tokens.$rating-stars-gap;
+    }
+
+    &__stars-fill {
+        position:                       absolute;
+        top:                            0;
+        left:                           0;
+        overflow:                       hidden;
+        white-space:                    nowrap;
+    }
+
+    /* =====================================================
+        STAR
+    ===================================================== */
+
+    &__star {
+        flex:                           0 0 auto;
+    }
+
+    &__star--empty {
+        color:                          tokens.$rating-star-empty;
+    }
+
+    &__star--fill {
+        color:                          tokens.$rating-star-fill;
+    }
+
+    /* =====================================================
+        VALUE / BADGE
+    ===================================================== */
+
+    &__value-wrapper {
+        @include                        tools.inline-flex-center;
+        background:                     tokens.$rating-value-bg;
+        padding:                        tokens.$rating-value-padding-y tokens.$rating-value-padding-x;
+    }
+
+    &__value {
+        font-size:                      tokens.$rating-value-size;
+        font-weight:                    700;
+        line-height:                    tokens.$rating-value-lh;
+        color:                          tokens.$color-text-inverse;
+        transform:                      translateY(-(tokens.$rating-value-optical-offset-y));
+    }
+}

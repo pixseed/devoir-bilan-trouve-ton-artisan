@@ -16,7 +16,7 @@ export default function AppLayout() {
     <div>
       <Header />
 
-      <main className="layout">
+      <main>
         <Outlet />
       </main>
 

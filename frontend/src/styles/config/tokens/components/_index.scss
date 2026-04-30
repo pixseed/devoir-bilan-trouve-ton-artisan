@@ -1,11 +1,16 @@
 /* _index.scss (components) */
 
+@forward './divider';
 @forward './icon';
+@forward './iconButton';
+@forward './button';
 @forward './navItem';
 @forward './trigger';
-@forward './menu';
 @forward './searchbar';
 @forward './skeleton';
 @forward './socialbar';
+@forward './rating';
+@forward './card';
+@forward './menu';
 @forward './header';
 @forward './footer';

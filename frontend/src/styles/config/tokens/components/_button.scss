@@ -1,0 +1,67 @@
+/* _button.scss */
+
+@use '../spacing';
+@use '../scale';
+@use '../colors';
+@use '../radius';
+@use '../font';
+@use '../border';
+
+// ================================================================================================
+// BUTTON TOKENS COMPONENT
+// ================================================================================================
+
+// RADIUS
+// ------------------------------------------------------------------------------------------------
+$btn-radius:                            radius.$radius-pill;
+
+// SPACE
+// ------------------------------------------------------------------------------------------------
+$btn-gap-lg:                            spacing.$gap-16;
+$btn-gap-md:                            spacing.$gap-12;
+$btn-gap-sm:                            spacing.$gap-8;
+
+$btn-padding-y-lg:                      spacing.$sp-16;
+$btn-padding-x-lg:                      spacing.$sp-32;
+
+$btn-padding-y-md:                      spacing.$sp-12;
+$btn-padding-x-md:                      spacing.$sp-24;
+
+$btn-padding-y-sm:                      spacing.$sp-8;
+$btn-padding-x-sm:                      spacing.$sp-16;
+
+// SIZE
+// ------------------------------------------------------------------------------------------------
+$btn-min-height:                        scale.$scale-32;
+
+$btn-icon-size-lg:                      scale.$scale-20;
+$btn-icon-size-md:                      scale.$scale-16;
+$btn-icon-size-sm:                      scale.$scale-12;
+
+$btn-font-size-lg:                      font.$text-lg;
+$btn-font-size-md:                      font.$text-md;
+$btn-font-size-sm:                      font.$text-sm;
+
+// TEXT
+// ------------------------------------------------------------------------------------------------
+$btn-label-lh:                          font.$lh-100;
+$btn-label-optical-offset-y:            2px;
+
+// BORDER
+// ------------------------------------------------------------------------------------------------
+$btn-border-size:                       border.$border-thin;
+
+// COLORS
+// ------------------------------------------------------------------------------------------------
+// Primary
+$btn-primary-bg:                        colors.$color-bg-primary;
+$btn-primary-text:                      colors.$color-text-inverse;
+
+// Secondary
+$btn-secondary-bg:                      colors.$color-bg-surface;
+$btn-secondary-text:                    colors.$color-text-emphasis-primary;
+$btn-secondary-border:                  colors.$color-border-emphasis-primary;
+
+// Tertiary
+$btn-tertiary-text:                     colors.$color-text-emphasis-primary;
+$btn-tertiary-border:                   colors.$color-border-emphasis-primary;

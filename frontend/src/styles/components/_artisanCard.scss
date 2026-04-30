@@ -1,0 +1,78 @@
+/**
+================================================================================================
+_artisanCard.scss
+================================================================================================
+Les variants (horizontal / vertical) sont conceptualisés dans le fichier :
+    - /styles/config/tools/_mixins.scss
+
+Il est volontaire d'avoir réalisé cela par le biais des mixins à des fins de réutilisabilité
+dans le but d'adapter le variant affiché (UI) en fonction de la taille du viewport.
+================================================================================================
+*/
+
+@use '../config/tokens';
+@use '../config/tools';
+
+.artisan-card {
+    @include                            tools.flex-column;
+    border:                             tokens.$card-border;
+    border-radius:                      tokens.$card-radius;
+    overflow:                           hidden;
+
+    /* =====================================================
+        STRUCTURE
+    ===================================================== */
+
+    &__content {
+        @include                        tools.flex-column;
+        @include                        tools.stack(sm);
+    }
+
+    &__header-meta {
+        flex:                           1;
+    }
+
+    &__divider {
+        @include                        tools.divider;
+    }
+
+    &__body {
+        @include                        tools.flex-between;
+    }
+
+    &__body-meta {
+        flex:                           1;
+    }
+
+    &__media {
+        overflow:                       hidden;
+    }
+
+    &__image {
+        width:                          100%;
+        height:                         100%;
+        object-fit:                     cover;
+    }
+}
+
+/* =====================================================
+	META
+===================================================== */
+
+.artisan-meta {
+    &__specialty {
+        font-weight:                    700;
+    }
+}
+
+/* =====================================================
+	VARIANTS
+===================================================== */
+
+.artisan-card--horizontal {
+    @include                            tools.artisan-card-horizontal;
+}
+
+.artisan-card--vertical {
+    @include                            tools.artisan-card-vertical;
+}

@@ -1,0 +1,11 @@
+/* _divider.scss */
+
+@use '../colors';
+@use '../border';
+
+// ================================================================================================
+// DIVIDER TOKENS COMPONENT
+// ================================================================================================
+
+$divider-height:                        border.$border-thin;
+$divider-color:                         colors.$color-border-default;

@@ -1,0 +1,74 @@
+/* _button.scss */
+
+@use '../config/tokens';
+
+.button {
+    display:                            inline-flex;
+    align-items:                        center;
+    justify-content:                    center;
+    border-radius:                      tokens.$btn-radius;
+    min-height:                         tokens.$btn-min-height;
+
+    &__icon {
+        width:                          tokens.$btn-icon-size-md;
+        height:                         tokens.$btn-icon-size-md;
+    }
+
+    &__label {
+        display:                        inline-block;
+        line-height:                    tokens.$btn-label-lh;
+        transform:                      translateY(-(tokens.$btn-label-optical-offset-y));
+    }
+
+    /* =====================================================
+        VARIANTS (COLORS)
+    ===================================================== */
+
+    &--primary {
+        background:                     tokens.$btn-primary-bg;
+        color:                          tokens.$btn-primary-text;
+    }
+
+    &--secondary {
+        background:                     tokens.$btn-secondary-bg;
+        color:                          tokens.$btn-secondary-text;
+        border:                         tokens.$btn-border-size solid tokens.$btn-secondary-border;
+    }
+
+    &--tertiary {
+        color:                          tokens.$btn-tertiary-text;
+        border-radius:                  0;
+    }
+
+    /* =====================================================
+        VARIANTS (SIZE)
+    ===================================================== */
+
+    &--lg {
+        padding:                        tokens.$btn-padding-y-lg tokens.$btn-padding-x-lg;
+        font-size:                      tokens.$btn-font-size-lg;
+        gap:                            tokens.$btn-gap-lg;
+
+        .button__icon {
+            width:                      tokens.$btn-icon-size-lg;
+            height:                     tokens.$btn-icon-size-lg;
+        }
+    }
+
+    &--md {
+        padding:                        tokens.$btn-padding-y-md tokens.$btn-padding-x-md;
+        font-size:                      tokens.$btn-font-size-md;
+        gap:                            tokens.$btn-gap-md;
+    }
+
+    &--sm {
+        padding:                        tokens.$btn-padding-y-sm tokens.$btn-padding-x-sm;
+        font-size:                      tokens.$btn-font-size-sm;
+        gap:                            tokens.$btn-gap-sm;
+
+        .button__icon {
+            width:                      tokens.$btn-icon-size-sm;
+            height:                     tokens.$btn-icon-size-sm;
+        }
+    }
+}

@@ -6,50 +6,129 @@
 // LAYOUT
 // ================================================================================================
 
+// Container
+// ================================================================================================
 @mixin container($max-width, $padding-x) {
-  max-width: $max-width;
-  margin: 0 auto;
-  padding-inline: $padding-x;
+    max-width: $max-width;
+    margin: 0 auto;
+    padding-inline: $padding-x;
 }
 
+// Section
+// ================================================================================================
 @mixin section($mobile, $tablet, $desktop) {
-  padding-block: $mobile;
+    padding: $mobile;
 
-  @media (min-width: tokens.$bp-md) {
-    padding-block: $tablet;
-  }
+    @media (min-width: tokens.$bp-md) {
+        padding: $tablet;
+    }
 
-  @media (min-width: tokens.$bp-xl) {
-    padding-block: $desktop;
-  }
+    @media (min-width: tokens.$bp-xl) {
+        padding: $desktop;
+    }
 }
 
+// Layout colonne
 // ================================================================================================
-// FLEX
-// ================================================================================================
+@mixin layout-col($position, $bg: false) {
+    @media (min-width: tokens.$bp-md) {
+        $gap: tokens.$layout-gap-md;
+        @include _layout-col-logic($position, $bg, $gap);
+    }
 
+    @media (min-width: tokens.$bp-lg) {
+        $gap: tokens.$layout-gap-lg;
+        @include _layout-col-logic($position, $bg, $gap);
+    }
+}
+
+@mixin _layout-col-logic($position, $bg, $gap) {
+    @if $bg {
+        padding-inline: $gap;
+    }
+
+    @else {
+        @if $position == start {
+            padding-right: $gap;
+        }
+    
+        @else if $position == middle {
+            padding-inline: $gap;
+        }
+    
+        @else if $position == end {
+            padding-left: $gap;
+        }
+    }
+}
+
+// Flex
+// ================================================================================================
 @mixin flex($type: flex, $justify: flex-start, $align: stretch, $direction: row) {
-  display: $type;
-  justify-content: $justify;
-  align-items: $align;
-  flex-direction: $direction;
+    display: $type;
+    justify-content: $justify;
+    align-items: $align;
+    flex-direction: $direction;
 }
 
 // Raccourcis
 @mixin flex-center {
-  @include flex(flex, center, center);
+    @include flex(flex, center, center);
 }
 
 @mixin inline-flex-center {
-  @include flex(inline-flex, center, center);
+    @include flex(inline-flex, center, center);
 }
 
 @mixin flex-between {
-  @include flex(flex, space-between, center);
+    @include flex(flex, space-between, center);
+}
+
+@mixin flex-row {
+    @include flex(flex, flex-start, stretch, row);
 }
 
 @mixin flex-column {
-  @include flex(flex, flex-start, stretch, column);
+    @include flex(flex, flex-start, stretch, column);
+}
+
+// Grid
+// ================================================================================================
+@mixin grid-columns-no-gap($template: 1fr) {
+    display: grid;
+    grid-template-columns: $template;
+}
+
+@mixin grid-equal($columns: 1, $gap: 16px) {
+    display: grid;
+    grid-template-columns: repeat($columns, 1fr);
+    gap: $gap;
+}
+
+@mixin grid-custom($template: 1fr, $gap: 16px) {
+    display: grid;
+    grid-template-columns: $template;
+    gap: $gap;
+}
+
+@mixin grid-auto($min: 200px, $gap: 16px) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax($min, 1fr));
+    gap: $gap;
+}
+
+// Stack
+// ================================================================================================
+$stack-gaps: (
+    sm: tokens.$sp-16,
+    md: tokens.$sp-24,
+    lg: tokens.$sp-32,
+);
+
+@mixin stack ($size) {
+    display: flex;
+    flex-direction: column;
+    gap: map-get($stack-gaps, $size)
 }
 
 // ================================================================================================
@@ -57,42 +136,148 @@
 // ================================================================================================
 
 @mixin absolute-fill {
-  position: absolute;
-  inset: 0;
+    position: absolute;
+    inset: 0;
 }
 
 @mixin full-bleed {
-  @include absolute-fill;
-  left: tokens.$full-bleed-offset;
-  right: tokens.$full-bleed-offset;
+    @include absolute-fill;
+    left: tokens.$full-bleed-offset;
+    right: tokens.$full-bleed-offset;
 }
 
 // ================================================================================================
 // COMPONENTS
 // ================================================================================================
 
+// Divider
+// ================================================================================================
+@mixin divider {
+    height: tokens.$divider-height;
+    background-color: tokens.$divider-color;
+}
+
+// Dropdown
+// ================================================================================================
 @mixin dropdown-panel {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  opacity: 0;
-  pointer-events: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    pointer-events: none;
 }
 
 @mixin dropdown-active {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
 }
 
+// Icon Button
+// ================================================================================================
 @mixin icon-btn-size($btn-size, $icon-size) {
-  height: $btn-size;
-  width: $btn-size;
+    height: $btn-size;
+    width: $btn-size;
 
-  svg,
-  i {
-    height: $icon-size;
-    width: $icon-size;
-  }
+    svg,
+    i {
+        height: $icon-size;
+        width: $icon-size;
+    }
+}
+
+// Artisan Card
+// ================================================================================================
+@mixin artisan-card-horizontal {
+    padding: tokens.$card-spacing;
+    min-width: 392px;
+
+    .artisan-card__media {
+        width: tokens.$card-media-size;
+        height: tokens.$card-media-size;
+        border-radius: tokens.$card-media-radius;
+        flex-shrink: 0;
+    }
+
+    .artisan-card__header {
+        @include flex-row;
+        text-align: left;
+        gap: tokens.$card-header-gap;
+    }
+
+    .artisan-card__header-meta {
+        @include flex-column;
+        margin-inline: 0;
+    }
+
+    .rating {
+        justify-content: left;
+    }
+
+    .rating__star {
+        height: tokens.$card-rating-star-size-md;
+        width: auto;
+    }
+
+    .artisan-card__divider {
+        transform: translateY(tokens.$card-divider-optical-offset-y);
+        margin-inline: 0;
+    }
+
+    .artisan-card__body {
+        flex-direction: row;
+        align-items: flex-end;
+        margin-inline: 0;
+    }
+
+    .artisan-card__body-meta {
+        text-align: left;
+    }
+}
+
+@mixin artisan-card-vertical {
+    padding: 0;
+    padding-bottom: tokens.$card-spacing;
+    min-width: 216px;
+
+    .artisan-card__media {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16/9;
+        border-radius: 0;
+    }
+
+    .artisan-card__header {
+        @include flex(flex, center, center, column);
+        text-align: center;
+    }
+
+    .artisan-card__header-meta {
+        margin-inline: tokens.$card-spacing;
+    }
+
+    .rating {
+        justify-content: center;
+    }
+
+    .rating__star {
+        height: tokens.$card-rating-star-size-sm;
+        width: auto;
+    }
+
+    .artisan-card__divider {
+        margin-inline: tokens.$card-spacing;
+    }
+
+    .artisan-card__body {
+        flex-direction: column;
+        align-items: center;
+        margin-inline: tokens.$card-spacing;
+        gap: tokens.$card-body-gap;
+    }
+
+    .artisan-card__body-meta {
+        text-align: center;
+    }
 }
