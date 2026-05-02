@@ -1,6 +1,7 @@
 /* _mixins.scss */
 
 @use '../tokens';
+@use 'sass:map';
 
 // ================================================================================================
 // LAYOUT
@@ -92,6 +93,10 @@
     @include flex(flex, flex-start, stretch, column);
 }
 
+@mixin flex-column-center {
+    @include flex(flex, center, center, column);
+}
+
 // Grid
 // ================================================================================================
 @mixin grid-columns-no-gap($template: 1fr) {
@@ -128,7 +133,7 @@ $stack-gaps: (
 @mixin stack ($size) {
     display: flex;
     flex-direction: column;
-    gap: map-get($stack-gaps, $size)
+    gap: map.get($stack-gaps, $size)
 }
 
 // ================================================================================================
@@ -221,7 +226,6 @@ $stack-gaps: (
     }
 
     .artisan-card__divider {
-        transform: translateY(tokens.$card-divider-optical-offset-y);
         margin-inline: 0;
     }
 
@@ -232,6 +236,7 @@ $stack-gaps: (
     }
 
     .artisan-card__body-meta {
+        @include flex-column;
         text-align: left;
     }
 }
@@ -255,6 +260,7 @@ $stack-gaps: (
 
     .artisan-card__header-meta {
         margin-inline: tokens.$card-spacing;
+        align-items: center;
     }
 
     .rating {
@@ -278,6 +284,7 @@ $stack-gaps: (
     }
 
     .artisan-card__body-meta {
+        @include flex-column-center;
         text-align: center;
     }
 }

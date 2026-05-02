@@ -30,6 +30,7 @@ dans le but d'adapter le variant affiché (UI) en fonction de la taille du viewp
 
     &__header-meta {
         flex:                           1;
+        width:                          100%;
     }
 
     &__divider {
@@ -42,6 +43,8 @@ dans le but d'adapter le variant affiché (UI) en fonction de la taille du viewp
 
     &__body-meta {
         flex:                           1;
+        width:                          100%;
+        gap:                            tokens.$card-body-meta-gap;
     }
 
     &__media {
@@ -52,6 +55,7 @@ dans le but d'adapter le variant affiché (UI) en fonction de la taille du viewp
         width:                          100%;
         height:                         100%;
         object-fit:                     cover;
+        background-color:               tokens.$card-media-bg;
     }
 }
 
@@ -60,9 +64,22 @@ dans le but d'adapter le variant affiché (UI) en fonction de la taille du viewp
 ===================================================== */
 
 .artisan-meta {
+    &__specialty,
+    &__localisation {
+        line-height:                    1;
+    }
+
     &__specialty {
         font-weight:                    700;
     }
+}
+
+/* =====================================================
+	SKELETON
+===================================================== */
+
+.skeleton--button {
+    width:                          144px;
 }
 
 /* =====================================================

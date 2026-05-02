@@ -10,11 +10,38 @@
 // SKELETON TOKENS COMPONENT
 // ================================================================================================
 
-$skeleton-height:                       scale.$scale-20;
-$skeleton-radius:                       radius.$radius-xs;
-$skeleton-gap:                          spacing.$sp-16;
-$skeleton-bg:                           colors.$color-neutral-300;
-
+// MOTION
+// ------------------------------------------------------------------------------------------------
 $skeleton-animation-duration:           motion.$duration-ultra-slow;
 $skeleton-animation-easing:             motion.$easing-smooth;
 $skeleton-motion:                       $skeleton-animation-duration $skeleton-animation-easing infinite;
+
+// COLORS
+// ------------------------------------------------------------------------------------------------
+$skeleton-bg:                           colors.$color-neutral-300;
+
+// SPACING
+// ------------------------------------------------------------------------------------------------
+$skeleton-gap-md:                       spacing.$sp-16;
+$skeleton-gap-sm:                       spacing.$sp-8;
+
+// RADIUS
+// ------------------------------------------------------------------------------------------------
+$skeleton-radius:                       radius.$radius-xs;
+
+// SIZE
+// ------------------------------------------------------------------------------------------------
+$skeleton-title-height-md:              scale.$scale-24;
+$skeleton-text-height-lg:               scale.$scale-20;
+$skeleton-text-height-md:               scale.$scale-16;
+$skeleton-button-height-md:             scale.$scale-32;
+
+$skeleton-width-100:                    100%;
+$skeleton-width-90:                     90%;
+$skeleton-width-80:                     80%;
+$skeleton-width-70:                     70%;
+$skeleton-width-60:                     60%;
+$skeleton-width-50:                     50%;
+$skeleton-width-40:                     40%;
+$skeleton-width-30:                     30%;
+$skeleton-width-20:                     20%;

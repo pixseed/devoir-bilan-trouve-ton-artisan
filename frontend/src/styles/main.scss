@@ -31,6 +31,7 @@
 @use './pages/home';
 
 // 5. GENERIC COMPONENTS
+@use './components/alert';
 @use './components/trigger';
 @use './components/socialbar';
 @use './components/iconButton';

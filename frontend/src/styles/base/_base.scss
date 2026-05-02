@@ -116,6 +116,90 @@ h5 {
 }
 
 // ================================================================================================
+// SKELETON
+// ================================================================================================
+
+.skeleton {
+    background-color:                   tokens.$skeleton-bg;
+    border-radius:                      tokens.$skeleton-radius;
+    animation:                          pulse tokens.$skeleton-motion;
+}
+
+.skeleton--image {
+    width:                              100%;
+    height:                             100%;
+}
+
+.skeleton--title {
+    height:                             tokens.$skeleton-title-height-md;
+    margin-bottom:                      tokens.$skeleton-gap-sm;
+}
+
+.skeleton--rating {
+    height:                             tokens.$skeleton-text-height-lg;
+}
+
+.skeleton--text {
+    height:                             tokens.$skeleton-text-height-md;
+}
+
+.skeleton--text-lg {
+    height:                             tokens.$skeleton-text-height-lg;
+}
+
+.skeleton--button {
+    height:                             tokens.$skeleton-button-height-md;
+}
+
+.skeleton--w-20 {
+    width:                              tokens.$skeleton-width-20;
+}
+
+.skeleton--w-30 {
+    width:                              tokens.$skeleton-width-30;
+}
+
+.skeleton--w-40 {
+    width:                              tokens.$skeleton-width-40;
+}
+
+.skeleton--w-50 {
+    width:                              tokens.$skeleton-width-50;
+}
+
+.skeleton--w-60 {
+    width:                              tokens.$skeleton-width-60;
+}
+
+.skeleton--w-70 {
+    width:                              tokens.$skeleton-width-70;
+}
+
+.skeleton--w-80 {
+    width:                              tokens.$skeleton-width-80;
+}
+
+.skeleton--w-90 {
+    width:                              tokens.$skeleton-width-90;
+}
+
+.skeleton--w-100 {
+    width:                              tokens.$skeleton-width-100;
+}
+
+@keyframes pulse {
+    0% {
+        opacity:                        0.5;
+    }
+    50% {
+        opacity:                        1;
+    }
+    100% {
+        opacity:                        0.5;
+    }
+}
+
+// ================================================================================================
 // FOCUS-VISIBLE
 // ================================================================================================
 

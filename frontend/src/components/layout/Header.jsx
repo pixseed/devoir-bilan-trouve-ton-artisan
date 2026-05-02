@@ -24,7 +24,6 @@
 
 import { Link } from "react-router-dom";
 
-import logo from "../../../public/logos/logo-trouve-ton-artisan.png";
 import ChevronIcon from "../../assets/icons/Down_Chevron.svg?react";
 import SearchIcon from "../../assets/icons/Search.svg?react";
 import MenuIcon from "../../assets/icons/Menu.svg?react";
@@ -69,7 +68,7 @@ export default function Header() {
         Logo → Redirection vers l'accueil
         =================================================================== */}
         <Link to="/" aria-label="Accueil" className="header__logo-wrapper">
-          <img className="header__logo" src={logo} alt="Logo - Trouve ton Artisan" />
+          <img className="header__logo" src="/logos/logo-trouve-ton-artisan.png" alt="Logo - Trouve ton Artisan" />
         </Link>
 
         {/* ===============================================================

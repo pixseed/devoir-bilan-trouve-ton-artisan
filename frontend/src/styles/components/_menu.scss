@@ -79,41 +79,24 @@
         SKELETON
     ===================================================== */
 
-    .skeleton-item {
-        height:                         tokens.$skeleton-height;
-        margin-bottom:                  tokens.$skeleton-gap;
-        border-radius:                  tokens.$skeleton-radius;
-        background:                     tokens.$skeleton-bg;
-
-        animation:                      pulse tokens.$skeleton-motion;
+    .skeleton {
+        margin-bottom:                  tokens.$skeleton-gap-md;
     }
 
-    .skeleton-item:nth-child(1) {
-        width:                          40%
+    .skeleton:nth-child(1) {
+        width:                          tokens.$skeleton-width-50;
     }
 
-    .skeleton-item:nth-child(2) {
-        width:                          30%
+    .skeleton:nth-child(2) {
+        width:                          tokens.$skeleton-width-30;
     }
 
-    .skeleton-item:nth-child(3) {
-        width:                          35%
+    .skeleton:nth-child(3) {
+        width:                          tokens.$skeleton-width-40;
     }
 
-    .skeleton-item:nth-child(4) {
-        width:                          20%
-    }
-
-    @keyframes pulse {
-        0% {
-            opacity:                    0.5;
-        }
-        50% {
-            opacity:                    1;
-        }
-        100% {
-            opacity:                    0.5;
-        }
+    .skeleton:nth-child(4) {
+        width:                          tokens.$skeleton-width-20;
     }
 
     /* =====================================================

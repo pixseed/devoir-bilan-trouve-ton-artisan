@@ -1,7 +1,6 @@
 // Footer.jsx
 
 import { Link } from "react-router-dom";
-import logo from "../../../public/logos/logo-trouve-ton-artisan-white.png";
 import SocialBar from "../ui/SocialBar";
 
 export default function Footer() {
@@ -10,7 +9,7 @@ export default function Footer() {
       <div className="container footer__main">
         {/* LOGO */}
         <Link to="/" className="footer__logo">
-          <img src={logo} alt="Logo Trouve ton Artisan" />
+          <img src="/logos/logo-trouve-ton-artisan-white.png" alt="Logo Trouve ton Artisan" />
         </Link>
 
         {/* ADRESS */}

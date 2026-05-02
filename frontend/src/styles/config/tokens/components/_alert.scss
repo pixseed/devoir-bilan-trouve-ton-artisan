@@ -1,0 +1,37 @@
+/* _alert.scss */
+
+@use '../colors';
+@use '../border';
+@use '../spacing';
+@use '../radius';
+
+// ================================================================================================
+// ALERT TOKENS COMPONENT
+// ================================================================================================
+
+// BORDER
+// ------------------------------------------------------------------------------------------------
+$alert-border-size:                   border.$border-thin;
+$alert-radius:                        radius.$radius-sm;
+
+// SPACING
+// ------------------------------------------------------------------------------------------------
+$alert-padding-y:                     spacing.$sp-8;
+$alert-padding-x:                     spacing.$sp-16;
+
+// COLORS (VARIANTS)
+// ------------------------------------------------------------------------------------------------
+// Error
+$alert-error-bg-color:                colors.$color-bg-danger;
+$alert-error-text-color:              colors.$color-text-danger;
+$alert-error-border-color:            colors.$color-border-danger;
+
+// Success
+$alert-success-bg-color:              colors.$color-bg-success;
+$alert-success-text-color:            colors.$color-text-success;
+$alert-success-border-color:          colors.$color-border-success;
+
+// Info
+$alert-info-bg-color:                 colors.$color-bg-info;
+$alert-info-text-color:               colors.$color-text-info;
+$alert-info-border-color:             colors.$color-border-info;

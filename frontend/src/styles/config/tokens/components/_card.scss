@@ -4,7 +4,6 @@
 @use '../scale';
 @use '../colors';
 @use '../radius';
-@use '../font';
 @use '../border';
 
 // ================================================================================================
@@ -25,17 +24,15 @@ $card-header-gap:                       spacing.$sp-16;
 // BODY
 // ------------------------------------------------------------------------------------------------
 $card-body-gap:                         spacing.$sp-12;
+$card-body-meta-gap:                    spacing.$gap-8;
 
 // MEDIA
 // ------------------------------------------------------------------------------------------------
 $card-media-size:                       scale.$scale-64;
 $card-media-radius:                     radius.$radius-sm;
+$card-media-bg:                         colors.$color-bg-muted;
 
 // RATING
 // ------------------------------------------------------------------------------------------------
 $card-rating-star-size-md:              scale.$scale-20;
 $card-rating-star-size-sm:              scale.$scale-16;
-
-// DIVIDER
-// ------------------------------------------------------------------------------------------------
-$card-divider-optical-offset-y:         3px;

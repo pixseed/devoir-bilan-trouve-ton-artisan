@@ -1,5 +1,7 @@
 /* _colors.scss */
 
+@use 'sass:color';
+
 // ================================================================================================
 // PRIMITIVE
 // ================================================================================================
@@ -44,6 +46,9 @@ $color-text-inverse:                    $color-white;
 $color-text-emphasis-primary:           $color-primary-500;
 $color-text-emphasis-secondary:         $color-primary-900;
 $color-text-placeholder:                $color-neutral-800;
+$color-text-danger:                     $color-accent-primary;
+$color-text-success:                    $color-accent-secondary;
+$color-text-info:                       $color-primary-500;
 
 // LINK
 // ------------------------------------------------------------------------------------------------
@@ -59,6 +64,9 @@ $color-bg-surface-emphasis:             $color-primary-100;
 $color-bg-muted:                        $color-primary-100;
 $color-bg-primary:                      $color-primary-500;
 $color-bg-secondary:                    $color-primary-900;
+$color-bg-danger:                       color.scale($color-accent-primary, $lightness: 95%);
+$color-bg-success:                      color.scale($color-accent-secondary, $lightness: 95%);
+$color-bg-info:                         color.scale($color-primary-500, $lightness: 95%);
 $color-bg-inverse:                      $color-black;
 
 // BORDER
@@ -67,6 +75,9 @@ $color-border-default:                  $color-black;
 $color-border-inverse:                  $color-white;
 $color-border-emphasis-primary:         $color-primary-500;
 $color-border-emphasis-secondary:       $color-primary-900;
+$color-border-danger:                   $color-accent-primary;
+$color-border-success:                  $color-accent-secondary;
+$color-border-info:                     $color-primary-500;
 
 // ICON
 // ------------------------------------------------------------------------------------------------

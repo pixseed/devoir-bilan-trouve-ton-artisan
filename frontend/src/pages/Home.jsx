@@ -1,38 +1,13 @@
 /* Home.jsx */
 
-import orville from "../assets/images/orville-salmons-main-picture.jpg";
-import labbe from "../assets/images/chocolaterie-labbe-main-picture.jpg";
-import auPainChaud from "../assets/images/au-pain-chaud-main-picture.jpg";
+import { useTopArtisans } from "../hooks/useTopArtisans";
 import ArtisanCard from "../components/ui/ArtisanCard";
-
-const mockArtisans = [
-  {
-    id: 1,
-    name: "Orvilles Salmons",
-    specialty: "Chauffagiste",
-    city: "Evian",
-    rating: 5,
-    image: orville,
-  },
-  {
-    id: 2,
-    name: "Chocolatrie Labbé",
-    specialty: "Chocolatier",
-    city: "Lyon",
-    rating: 4.9,
-    image: labbe,
-  },
-  {
-    id: 3,
-    name: "Au Pain Chaud",
-    specialty: "Boulanger",
-    city: "Montélimar",
-    rating: 4.8,
-    image: auPainChaud,
-  },
-];
+import SkeletonCard from "../components/ui/ArtisanCardSkeleton";
+import Alert from "../components/ui/Alert";
 
 export default function Home() {
+  const { artisans, error, loading } = useTopArtisans();
+
   return (
     <div className="home">
       <div className="container">
@@ -57,19 +32,23 @@ export default function Home() {
             <h2 className="heading-lg heading-lg__accent heading-lg__accent--secondary">
               Top 3 des artisans du mois
             </h2>
-            <div className="home__top-artisans-grid">
-              {mockArtisans.map((artisan) => (
-                <ArtisanCard
-                  key={artisan.id}
-                  id={artisan.id}
-                  name={artisan.name}
-                  specialty={artisan.specialty}
-                  city={artisan.city}
-                  rating={artisan.rating}
-                  image={artisan.image}
-                />
-              ))}
-            </div>
+            {loading && <SkeletonCard />}
+            {error && <Alert message={error} variant="error" />}
+            {!loading && !error && (
+              <div className="home__top-artisans-grid">
+                {artisans.map((artisan) => (
+                  <ArtisanCard
+                    key={artisan.id}
+                    id={artisan.id}
+                    name={artisan.name}
+                    specialty={artisan.specialty}
+                    city={artisan.city}
+                    rating={artisan.rating}
+                    image={artisan.image}
+                  />
+                ))}
+              </div>
+            )}
           </section>
         </div>
       </div>
