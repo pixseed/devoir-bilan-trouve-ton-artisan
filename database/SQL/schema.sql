@@ -32,6 +32,7 @@ CREATE TABLE artisans (
     about LONGTEXT NOT NULL,
     email VARCHAR(150) UNIQUE NOT NULL,
     website VARCHAR(255) NULL,
+    image VARCHAR(255) NULL,
     is_top TINYINT NOT NULL DEFAULT 0,
     id_specialty INT NOT NULL,
     FOREIGN KEY (id_specialty) REFERENCES specialties(id) ON DELETE CASCADE ON UPDATE CASCADE

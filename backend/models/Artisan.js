@@ -67,6 +67,10 @@ const Artisan = sequelize.define("Artisan", {
     type: DataTypes.STRING(255),
     allowNull: true
   },
+  image: {
+    type: DataTypes.STRING(255),
+    allowNull: true,
+  },
   is_top: {
     type: DataTypes.BOOLEAN,
     defaultValue: false,

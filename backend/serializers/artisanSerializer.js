@@ -39,27 +39,32 @@ const getSpecialtyName = (artisan) => {
 // TOP ARTISANS SERIALIZER
 // ================================================================================================
 export const serializeTopArtisans = (artisan) => ({
+    id: artisan.id,
     name: artisan.name,
     specialty: getSpecialtyName(artisan),
     rating: artisan.rating,
     city: artisan.city,
+    image: artisan.image,
 });
 
 // ================================================================================================
 // ARTISAN LIST ITEM SERIALIZER
 // ================================================================================================
 export const serializeArtisanListItem = (artisan) => ({
+    id: artisan.id,
     name: artisan.name,
     specialty: getSpecialtyName(artisan),
     rating: artisan.rating,
     city: artisan.city,
     category: getCategoryName(artisan),
+    image: artisan.image,
 });
 
 // ================================================================================================
 // ARTISAN DETAIL SERIALIZER
 // ================================================================================================
 export const serializeArtisanDetail = (artisan) => ({
+    id: artisan.id,
     name: artisan.name,
     specialty: getSpecialtyName(artisan),
     rating: artisan.rating,
@@ -67,4 +72,5 @@ export const serializeArtisanDetail = (artisan) => ({
     about: artisan.about,
     email: artisan.email,
     website: artisan.website,
+    image: artisan.image,
 });

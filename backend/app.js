@@ -25,11 +25,15 @@
  */
 
 import express from 'express';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import cors from 'cors';
 import categoriesRouter from './routes/categories.js';
 import artisanRouter from './routes/artisans.js';
 
 const app = express();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Autorisation des req du front
 app.use(cors({
@@ -39,8 +43,12 @@ app.use(cors({
 // Middleware JSON
 app.use(express.json());
 
+// Fichiers public (images)
+app.use('/images', express.static(path.join(__dirname,'public/images')));
+
 // Routes API
 app.use('/categories', categoriesRouter);
 app.use('/artisans', artisanRouter);
+
 
 export default app;
