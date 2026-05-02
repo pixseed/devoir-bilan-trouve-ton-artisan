@@ -1,7 +1,7 @@
 /* useCategories.js */
 
 import { useEffect, useState } from "react";
-import { getAllCategories } from "../services/categoryService";
+import { getCategories } from "../services/categoryService";
 import { APP_MESSAGES } from "../constants/messages";
 
 export function useCategories() {
@@ -10,7 +10,7 @@ export function useCategories() {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        getAllCategories()
+        getCategories()
             .then(setCategories)
             .catch((err) => {
                 console.error(err);

@@ -9,10 +9,17 @@
 			"enabled": true
 		},
 		{
-			"key": "id_category_invalid",
+			"key": "id_artisan_valid",
+			"value": "1",
+			"type": "default",
+			"description": "ID d'un artisan existant, utilisé pour les tests nominaux",
+			"enabled": true
+		},
+		{
+			"key": "id_artisan_non_existent",
 			"value": "999",
-			"type": "any",
-			"description": "ID d'une catégorie inexistante, utilisé pour les tests d'erreur",
+			"type": "default",
+			"description": "ID d'un artisan inexistant, utilisé pour les tests nominaux",
 			"enabled": true
 		},
 		{
@@ -23,22 +30,22 @@
 			"enabled": true
 		},
 		{
-			"key": "keyword_valid",
-			"value": "au",
+			"key": "id_category_non_existent",
+			"value": "999",
 			"type": "any",
-			"description": "Mot-clé de recherche retournant des résultats",
+			"description": "ID d'une catégorie inexistante, utilisé pour les tests d'erreur",
 			"enabled": true
 		},
 		{
-			"key": "keyword_invalid",
-			"value": "",
-			"type": "default",
-			"description": "Mot-clé de recherche ne retournant aucun résultat",
+			"key": "keyword",
+			"value": "au",
+			"type": "any",
+			"description": "Mot-clé de recherche retournant des résultats",
 			"enabled": true
 		}
 	],
 	"color": 322,
 	"_postman_variable_scope": "environment",
-	"_postman_exported_at": "2026-04-16T18:41:43.389Z",
-	"_postman_exported_using": "Postman/12.6.3"
+	"_postman_exported_at": "2026-05-02T18:42:02.727Z",
+	"_postman_exported_using": "Postman/12.8.4"
 }

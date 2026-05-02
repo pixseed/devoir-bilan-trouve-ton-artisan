@@ -23,16 +23,13 @@
 
 import express from 'express';
 import {
-    getAllCategories,
-    getArtisansByCategoryId
+    getCategories,
+    /* getArtisansByCategoryId */
 } from '../controllers/categoryController.js';
 
 const router = express.Router();
 
 // Route spécifique
-router.get('/', getAllCategories);
-
-// Route dynamique
-router.get('/:id/artisans', getArtisansByCategoryId);
+router.get('/', getCategories);
 
 export default router;

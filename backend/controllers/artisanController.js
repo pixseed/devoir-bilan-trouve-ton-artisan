@@ -17,16 +17,17 @@
  * - backend/app.js pour être utilisé dans les routes de l'API.
  * 
  * Fonctions définies :
+ * - getArtisans : Récupérer tous les artisans avec possibilité de recherche et de filtrage.
  * - getTopArtisans : Récupérer les artisans mis en avant (top artisans).
  * - getArtisanById : Récupérer les détails d'un artisan spécifique par son ID.
- * - searchArtisans : Rechercher des artisans en fonction de critères de recherche (nom, ville, spécialité).
+ * - contactArtisan : Permettre aux utilisateurs de contacter un artisan via un formulaire de contact.
  * 
  * Utilisé par :
  * - backend/routes/artisans.js pour définir les routes liées aux artisans.
  * ================================================================================================
  */
 
-import { Op } from "sequelize";
+import { Op, where } from "sequelize";
 import {
     Artisan,
     Specialty,
@@ -41,6 +42,66 @@ import {
     successResponse,
     errorResponse
 } from "../utils/response.js";
+
+// ================================================================================================
+// GET ARTISANS
+// ================================================================================================
+
+export const getArtisans = async (req, res) => {
+    try {
+        const { search, category } = req.query;
+
+        const whereClause = {};
+        const include = {
+            model: Specialty,
+            as: 'specialty',
+            include: {
+                model: Category,
+                as: 'category'
+            }
+        };
+
+        // Recherche texte
+        if (search) {
+            whereClause[Op.or] = [
+                { name: { [Op.like]: `%${search}%` } },
+                { city: { [Op.like]: `%${search}%` } },
+                { '$specialty.name$': { [Op.like]: `%${search}%` } }
+            ]
+        };
+
+        // Filtre par catégorie
+        if (category) {
+            const categoryExists = await Category.findByPk(category);
+            if (!categoryExists) {
+                return errorResponse(res, 'Catégorie inexistante.', 404, "CATEGORY_NOT_FOUND");
+            }
+
+            include.where = { id_category: category };
+        };
+
+        const artisans = await Artisan.findAll({
+            where: whereClause,
+            include,
+            order: [[ 'rating', 'DESC' ]],
+        });
+
+        const serialized = artisans.map(serializeArtisanListItem);
+        const message = serialized.length === 0
+            ? 'Aucun artisan trouvé pour les critères de recherche spécifiés.'
+            : 'Artisans récupérés avec succès.';
+
+        return successResponse(
+            res,
+            serialized,
+            message
+        );
+
+    } catch (error) {
+        console.error('💥 Error fetching artisans :', error);
+        return errorResponse(res, 'Erreur serveur lors de la récupération des artisans.', 500, "INTERNAL_ERROR");
+    }
+};
 
 // ================================================================================================
 // GET TOP ARTISANS
@@ -70,7 +131,7 @@ export const getTopArtisans = async (req, res) => {
 };
 
 // ================================================================================================
-// GET ARTISANS BY ID
+// GET ARTISAN BY ID
 // ================================================================================================
 export const getArtisanById = async (req, res) => {
     const { id } = req.params;
@@ -95,56 +156,7 @@ export const getArtisanById = async (req, res) => {
 
     } catch (error) {
         console.error('💥 Error fetching artisan by ID :', error);
-        return errorResponse(res, 'Erreur serveur lors de la récupération de l\'artisan.', 500, );
-    }
-};
-
-// ================================================================================================
-// SEARCH ARTISANS
-// By name, city, specialty
-// ================================================================================================
-export const searchArtisans = async (req, res) => {
-    try {
-        const { q, category } = req.query;
-
-        if (!q) {
-            return errorResponse(res, 'Le paramètre de recherche "q" est requis.', 400, "INVALID_QUERY");
-        }
-
-        // Construction de la clause WHERE pour la recherche (conditions)
-        const whereClause = {
-            [Op.or]: [
-                { name: { [Op.like]: `%${q}%` } },
-                { city: { [Op.like]: `%${q}%` } },
-                { '$specialty.name$': { [Op.like]: `%${q}%` } }
-            ]
-        };
-
-        const include = {
-            model: Specialty,
-            as: 'specialty',
-            include: {
-                model: Category,
-                as: 'category'
-            }
-        };
-
-        // Si un filtre de catégorie est fourni, ajouter une condition pour filtrer par catégorie
-        if (category) {
-            include.where = { id_category: category };
-        }
-
-        const artisans = await Artisan.findAll({
-            where: whereClause,
-            include: include,
-            order: [['rating', 'DESC']],
-        });
-
-        return successResponse(res, artisans.map(serializeArtisanListItem), 'Artisans récupérés avec succès.');
-
-    } catch (error) {
-        console.error('💥 Error searching artisans :', error);
-        return errorResponse(res, 'Erreur serveur lors de la recherche des artisans.', 500, "INTERNAL_ERROR");
+        return errorResponse(res, 'Erreur serveur lors de la récupération de l\'artisan.', 500, "INTERNAL_ERROR");
     }
 };
 

@@ -24,16 +24,17 @@
 import express from 'express';
 import {
     getTopArtisans,
+    getArtisans,
     getArtisanById,
-    searchArtisans,
+    /* searchArtisans, */
     contactArtisan
 } from '../controllers/artisanController.js';
 
 const router = express.Router();
 
 // Route spécifique
+router.get('/', getArtisans);
 router.get('/top', getTopArtisans);
-router.get('/search', searchArtisans);
 
 // Route dynamique
 router.post('/:id/contact', contactArtisan);
