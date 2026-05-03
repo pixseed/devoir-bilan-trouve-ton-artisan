@@ -44,7 +44,7 @@
 		height:                     	100%;
     }
 
-    &__trigger {
+    & .trigger {
         display:                        none;
     }
 
@@ -117,51 +117,6 @@
 			height:                     tokens.$header-height-logo-tablet;
 		}
 
-		&__trigger {
-			display:                    flex;
-			height:                     100%;
-		}
-
-		&__trigger-content {
-			display:                    inline-flex;
-			gap:                        tokens.$trigger-content-gap;
-		}
-
-		&__trigger-icon {
-			width:                      tokens.$icon-xs;
-			height:                     auto;
-			transition:                 tokens.$motion-icon;
-			transform:                  translateY(tokens.$icon-optical-offset-y);
-		}
-
-		&__trigger.is-open &__trigger-icon {
-			transform:                  translateY(tokens.$icon-optical-offset-y) rotate(180deg);
-		}
-
-		/* ------------------------------------
-			Underline
-		------------------------------------ */ 
-		&__trigger:after {
-			content:                    "";
-			position:                   absolute;
-			left:                       50%;
-			bottom:                     tokens.$trigger-underline-offset-mobile;
-			transform:                  translateX(-50%) scaleX(0);
-
-			width:                      calc(100% - tokens.$trigger-padding-x);
-			height:                     tokens.$trigger-underline-height;
-
-			background-color:           currentColor;
-			opacity:                    0;
-
-			transition:                 tokens.$motion-underline;
-		}
-		
-		&__trigger:hover::after, &__trigger.is-open::after {
-			transform:                  translateX(-50%) scaleX(1);
-			opacity:                    1;
-		}
-
 		&__search {
 			display:                    block;
 		}
@@ -174,6 +129,10 @@
 		&__menu-panel {
 			box-shadow:                 tokens.$shadow-header;
 			border-bottom: 				tokens.$header-border-panel;
+		}
+
+		& .trigger {
+			display:                	inline-flex;
 		}
 	}
 }
@@ -188,13 +147,6 @@
 
 		&__logo {
 			height:                     tokens.$header-height-logo-desktop;
-		}
-
-		/* ------------------------------------
-			Underline
-		------------------------------------ */ 
-		&__trigger::after {
-			bottom:                     tokens.$trigger-underline-offset-desktop;
 		}
 	}
 }

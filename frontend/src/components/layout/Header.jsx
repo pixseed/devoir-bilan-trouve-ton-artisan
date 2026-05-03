@@ -38,6 +38,8 @@ import { useCloseSearchOnBreakpoint } from "../../hooks/useCloseSearchOnBreakpoi
 import { useClickOutside } from "../../hooks/useClickOutside";
 import { useEscapeOutside } from "../../hooks/useEscapeOutside";
 
+import { VARIANTS } from "../../constants/variants";
+
 export default function Header() {
   // Gestion centralisée de l'état des panels (menu / search)
   const { activePanel, togglePanel, closePanel } = useHeaderPanels();
@@ -84,18 +86,14 @@ export default function Header() {
             Trigger du menu catégories (desktop uniquement)
             =================================================================== */}
             <Trigger
-              className="header__trigger"
+              label="Catégories"
+              icon={ChevronIcon}
               isOpen={isMenuOpen}
               onClick={() => togglePanel("menu")}
-              label="Ouvrir le menu des catégories"
               hasPopup="menu"
               controls="menu-panel"
-            >
-              <span className="header__trigger-content">
-                <span className="header__trigger-label">Catégories</span>
-                <ChevronIcon className="header__trigger-icon" />
-              </span>
-            </Trigger>
+              variant={VARIANTS.TRIGGER.UNDERLINED}
+            />
 
             {/* ===============================================================
             Boutons d'accès en mode mobile (menu + search)

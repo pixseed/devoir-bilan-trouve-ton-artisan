@@ -7,10 +7,78 @@
     position:                           relative;
     @include                            tools.inline-flex-center;
     padding-inline:                     tokens.$trigger-padding-x;
+    height:                             100%;
+    width:                              100%;
 
     background:                         none;
     border:                             none;
 
     font:                               inherit;
     color:                              inherit;
+
+    &__content {
+        display:                        inline-flex;
+        gap:                            tokens.$trigger-content-gap;
+        width:                          100%;
+        justify-content:                space-between;
+    }
+
+    &__icon {
+        width:                          tokens.$icon-xs;
+        height:                         auto;
+        transition:                     tokens.$motion-icon;
+        transform:                      translateY(tokens.$icon-optical-offset-y);
+    }
+
+    /* -----------------------------
+        Is Open State (icon rotation)
+    ----------------------------- */
+    &.is-open .trigger__icon {
+        transform:                      translateY(tokens.$icon-optical-offset-y) rotate(180deg);
+    }
+
+    /* =====================================================
+        VARIANTS
+    ===================================================== */
+    &--underlined {
+        &:after {
+            content:                    "";
+            position:                   absolute;
+            left:                       50%;
+            bottom:                     tokens.$trigger-underline-offset-mobile;
+            transform:                  translateX(-50%) scaleX(0);
+
+            width:                      calc(100% - tokens.$trigger-padding-x);
+            height:                     tokens.$trigger-underline-height;
+
+            background-color:           currentColor;
+            opacity:                    0;
+
+            transition:                 tokens.$motion-underline;
+        }
+        
+        &:hover::after, &.is-open::after {
+            transform:                  translateX(-50%) scaleX(1);
+            opacity:                    1;
+        }
+    }
+
+    &--outlined {
+        border:                         tokens.$trigger-border-size solid tokens.$trigger-border-color;
+        border-radius:                  tokens.$trigger-border-radius;
+        padding:                        tokens.$trigger-padding-y tokens.$trigger-padding-x;
+    }
+}
+
+/* =====================================================
+    DESKTOP
+===================================================== */
+
+@media (min-width: tokens.$bp-xl) {
+    /* -----------------------------
+        Underlined
+    ----------------------------- */
+    .trigger--underlined::after {
+        bottom:                         tokens.$trigger-underline-offset-desktop;
+    }
 }

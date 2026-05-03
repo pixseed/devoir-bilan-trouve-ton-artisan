@@ -1,6 +1,9 @@
 /* _trigger.scss */
 
 @use '../spacing';
+@use '../colors';
+@use '../border';
+@use '../radius';
 
 // ================================================================================================
 // TRIGGER TOKENS COMPONENT
@@ -11,11 +14,16 @@
 $trigger-padding-x:                     spacing.$sp-8;
 $trigger-content-gap:                   spacing.$gap-8;
 
-// SIZE
+// VARIANTS
 // ------------------------------------------------------------------------------------------------
-$trigger-underline-height:              2px;
+// -- Outlined
+$trigger-border-size:                   border.$border-thin;
+$trigger-border-color:                  colors.$color-border-emphasis-primary;
+$trigger-border-radius:                 radius.$radius-sm;
+$trigger-padding-x:                     spacing.$sp-16;
+$trigger-padding-y:                     spacing.$sp-8;
 
-// OFFSET
-// ------------------------------------------------------------------------------------------------
+// -- Underlined
+$trigger-underline-height:              border.$border-default;
 $trigger-underline-offset-mobile:       spacing.$sp-16; // dépendance au height du header
 $trigger-underline-offset-desktop:      spacing.$sp-24; // dépendance au height du header

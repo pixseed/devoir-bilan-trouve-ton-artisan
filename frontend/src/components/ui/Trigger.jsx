@@ -15,26 +15,41 @@
  * ================================================================================================
  */
 
+import clsx from "clsx";
+import { VARIANTS } from "../../constants/variants";
+
 export default function Trigger({
-    children,
+    label,
+    icon: Icon,
     onClick,
     isOpen = false,
-    label,
     hasPopup,
     controls,
+    variant = VARIANTS.TRIGGER.OUTLINED,
     className = ""
 }) {
     return (
         <button
             type="button"
-            className={`trigger ${isOpen ? "is-open" : ""} ${className}`}
+            className={clsx(
+                "trigger",
+                `trigger--${variant}`,
+                {
+                    "is-open": isOpen,
+                },
+                className
+            )}
             onClick={onClick}
             aria-expanded={isOpen}
             aria-label={label || undefined}
             aria-haspopup={hasPopup || undefined}
             aria-controls={controls || undefined}
         >
-            {children}
+            <span className="trigger__content">
+                <span className="trigger__label">{label}</span>
+
+                {Icon && <Icon className="trigger__icon" aria-hidden="true" />}
+            </span>
         </button>
     )
 }

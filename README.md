@@ -67,6 +67,7 @@ Le projet doit respecter plusieurs contraintes :
 - React
 - Bootstrap
 - Sass
+- clsx (gestion conditionnelle des classes CSS)
 
 **Backend**
 - Node.js
