@@ -1,10 +1,13 @@
 /* SkeletonCard.jsx */
 
-export default function SkeletonCard({ variant = "horizontal" }) {
+import clsx from "clsx";
+import { VARIANTS } from "../../constants/variants";
+
+export default function SkeletonCard({ variant = VARIANTS.CARD.HORIZONTAL }) {
   return (
     <div className="home__top-artisans-grid">
       {Array.from({ length: 3 }).map((_, i) => (
-        <div key={i} className={`artisan-card artisan-card--${variant}`}>
+        <div key={i} className={clsx("artisan-card", `artisan-card--${variant}`)}>
           <div className="artisan-card__content">
             {/* ===============================================================
             En-tête de card

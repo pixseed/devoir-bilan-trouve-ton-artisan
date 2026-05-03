@@ -7,6 +7,8 @@
 import Button from "./Button";
 import Rating from "./Rating";
 import ArrowIcon from "../../assets/icons/Right_Arrow.svg?react";
+import clsx from "clsx";
+import { VARIANTS } from "../../constants/variants";
 
 export default function ArtisanCard({
   id,
@@ -15,10 +17,10 @@ export default function ArtisanCard({
   specialty,
   city,
   image,
-  variant = "horizontal",
+  variant = VARIANTS.CARD.HORIZONTAL,
 }) {
   return (
-    <div className={`artisan-card artisan-card--${variant}`}>
+    <div className={clsx("artisan-card", `artisan-card--${variant}`)}>
       <div className="artisan-card__content">
         {/* ===============================================================
         En-tête de card
@@ -45,8 +47,8 @@ export default function ArtisanCard({
           </div>
           <Button
             to={`/artisan/${id}`}
-            variant="secondary"
-            size="md"
+            variant={VARIANTS.BUTTON.SECONDARY}
+            size={VARIANTS.SIZE.MD}
             icon={ArrowIcon}
             className="artisan-card__button"
           >

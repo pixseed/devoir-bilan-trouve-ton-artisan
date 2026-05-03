@@ -16,11 +16,14 @@
  * ================================================================================================
  */
 
+import clsx from "clsx";
+import { VARIANTS } from "../../constants/variants";
+
 export function IconButton({
   icon: Icon,
   as: Component = "button",
-  variant = "rounded",
-  size = "md",
+  variant = VARIANTS.ICON_BUTTON.ROUNDED,
+  size = VARIANTS.SIZE.MD,
   isActive = false,
   className = "",
   ...props
@@ -32,7 +35,15 @@ export function IconButton({
 
   return (
     <Component
-      className={`icon-button icon-button--${variant} icon-button--${size} ${isActive ? "is-active" : ""} ${className}`}
+      className={clsx(
+        "icon-button",
+        `icon-button--${variant}`,
+        `icon-button--${size}`,
+        {
+          "is-active": isActive,
+        },
+        className,
+      )}
       {...props}
     >
       <Icon className="icon-button__icon" />

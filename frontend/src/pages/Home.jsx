@@ -4,6 +4,7 @@ import { useTopArtisans } from "../hooks/useTopArtisans";
 import ArtisanCard from "../components/ui/ArtisanCard";
 import SkeletonCard from "../components/ui/ArtisanCardSkeleton";
 import Alert from "../components/ui/Alert";
+import { VARIANTS } from "../constants/variants";
 
 export default function Home() {
   const { artisans, error, loading } = useTopArtisans();
@@ -33,7 +34,7 @@ export default function Home() {
               Top 3 des artisans du mois
             </h2>
             {loading && <SkeletonCard />}
-            {error && <Alert message={error} variant="error" />}
+            {error && <Alert message={error} variant={VARIANTS.ALERT.ERROR} />}
             {!loading && !error && (
               <div className="home__top-artisans-grid">
                 {artisans.map((artisan) => (

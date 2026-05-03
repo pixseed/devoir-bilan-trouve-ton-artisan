@@ -14,6 +14,7 @@
  */
 
 import { IconButton } from "./IconButton";
+import { VARIANTS } from "../../constants/variants";
 
 const socialLinks = [
     { name: "Facebook", icon: "bi-facebook", url: "#"},
@@ -36,11 +37,10 @@ export default function SocialBar() {
             aria-label={social.name}
             target="_blank"
             rel="noopener noreferrer"
-            icon={() => <i className={`bi ${social.icon}`}></i>}
-            size="md"
-            variant="social"
-        >
-        </IconButton>
+            icon={(props) => <i className={`bi ${social.icon} ${props.className}`}></i>}
+            size={VARIANTS.SIZE.MD}
+            variant={VARIANTS.ICON_BUTTON.SOCIAL}
+        />
       ))}
     </nav>
   );

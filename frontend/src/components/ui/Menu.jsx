@@ -17,6 +17,7 @@ import { useCategories } from "../../hooks/useCategories";
 import NavItem from "./NavItem";
 import MenuSkeleton from "./MenuSkeleton";
 import Alert from "./Alert";
+import { VARIANTS } from "../../constants/variants";
 
 export default function Menu() {
   const { categories, error, loading } = useCategories();
@@ -33,7 +34,7 @@ export default function Menu() {
           {/* Liste des catégories */}
           <div className="menu__body">
             {loading && <MenuSkeleton />}
-            {error && <Alert message={error} variant="error"/>}
+            {error && <Alert message={error} variant={VARIANTS.ALERT.ERROR}/>}
             {!loading && !error && (
               <ul className="menu__list" role="list">
                 {categories.map((c) => (

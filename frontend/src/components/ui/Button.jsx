@@ -1,17 +1,23 @@
 /* Button.jsx */
 
 import { Link } from "react-router-dom";
+import clsx from "clsx";
+import { VARIANTS } from "../../constants/variants";
 
 export default function Button({
   children,
-  variant = "primary",
-  size = "md",
+  variant = VARIANTS.BUTTON.PRIMARY,
+  size = VARIANTS.SIZE.MD,
   icon: Icon,
   iconPosition = "right",
   to,
   onClick,
 }) {
-  const className = `button button--${variant} button--${size}`;
+  const className = clsx(
+    "button",
+    `button--${variant}`,
+    `button--${size}`
+  );
 
   const content = (
     <>
@@ -31,11 +37,9 @@ export default function Button({
   }
 
   // Bouton d'action
-  if (onClick) {
-    return (
-      <Link className={className} onClick={onClick}>
-        {content}
-      </Link>
-    );
-  }
+  return (
+    <Button className={className} onClick={onClick}>
+      {content}
+    </Button>
+  );
 }

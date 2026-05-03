@@ -137,7 +137,7 @@ export default function Header() {
               className={`header__search-panel ${isSearchOpen ? "is-open" : ""}`}
             >
               <div className="container">
-                <SearchBar variant="navbar" />
+                <SearchBar variant={VARIANTS.SEARCHBAR.NAVBAR} />
               </div>
             </div>
           </div>
@@ -147,7 +147,7 @@ export default function Header() {
         Searchbar (uniquement tablet / desktop → sinon bouton d'action mobile)
         =================================================================== */}
         <div className="header__search">
-          <SearchBar variant="navbar" />
+          <SearchBar variant={VARIANTS.SEARCHBAR.NAVBAR} />
         </div>
       </div>
     </header>
