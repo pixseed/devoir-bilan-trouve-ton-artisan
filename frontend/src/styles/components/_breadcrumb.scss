@@ -1,0 +1,40 @@
+@use '../config/tokens';
+
+.breadcrumb {
+    display:                            flex;
+    flex-wrap:                          wrap;
+    align-items:                        center;
+    padding:                            tokens.$breadcrumb-padding-y 0;
+    margin-bottom:                      0;
+    gap:                                tokens.$breadcrumb-gap;
+    
+    &__item {
+        display:                        flex;
+        align-items:                    center;
+        flex-wrap:                      nowrap;
+        gap:                            tokens.$breadcrumb-gap;
+    }
+
+    &__current {
+        color:                          tokens.$breadcrumb-text-colors;
+    }
+
+    &__separator,
+    &__link {
+        color:                          tokens.$breadcrumb-link-colors;
+    }
+
+    &__link {
+        text-decoration:                underline;
+
+        &:hover {
+            color:                      tokens.$breadcrumb-link-colors-hover;
+        }
+    }
+
+    &__separator {
+        height:                         tokens.$breadcrumb-separator-height;
+        width:                          auto;
+        transform:                      translateY(tokens.$icon-optical-offset-y);
+    }
+}

@@ -1,7 +1,6 @@
 /* _index.scss (components) */
 
 @forward './divider';
-@forward './alert';
 @forward './icon';
 @forward './iconButton';
 @forward './button';
@@ -12,6 +11,8 @@
 @forward './socialbar';
 @forward './rating';
 @forward './card';
+@forward './alert';
+@forward './breadcrumb';
 @forward './menu';
 @forward './header';
 @forward './footer';

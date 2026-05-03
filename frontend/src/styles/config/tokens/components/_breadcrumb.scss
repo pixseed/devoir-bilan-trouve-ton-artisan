@@ -1,0 +1,24 @@
+/* _breadcrumb.scss */
+
+@use '../spacing';
+@use '../scale';
+@use '../colors';
+
+// ================================================================================================
+// BREADCRUMB TOKENS COMPONENT
+// ================================================================================================
+
+// COLORS
+// ------------------------------------------------------------------------------------------------
+$breadcrumb-text-colors:                colors.$color-text-emphasis-secondary;
+$breadcrumb-link-colors:                colors.$color-text-emphasis-primary;
+$breadcrumb-link-colors-hover:          colors.$color-text-emphasis-secondary;
+
+// SPACING
+// ------------------------------------------------------------------------------------------------
+$breadcrumb-padding-y:                  spacing.$sp-24;
+$breadcrumb-gap:                        spacing.$gap-16;
+
+// SIZE
+// ------------------------------------------------------------------------------------------------
+$breadcrumb-separator-height:           scale.$scale-16;
