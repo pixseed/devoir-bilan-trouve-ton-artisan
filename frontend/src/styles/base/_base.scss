@@ -205,7 +205,7 @@ h5 {
 
 :focus-visible {
     outline:                            tokens.$border-thin solid tokens.$color-focus-primary;
-    outline-offset:                     tokens.$border-thin;
+    outline-offset:                     tokens.$border-offset-default;
 }
 
 input:focus-visible,

@@ -1,15 +1,17 @@
-/* _border.scss */
+/* _artisansList.scss */
+
+@use '../colors';
+@use '../spacing';
 
 // ================================================================================================
-// PRIMITIVE
+// ARTISANS_LIST PAGE TOKENS COMPONENT
 // ================================================================================================
 
-// SIZES
+// COLORS
 // ------------------------------------------------------------------------------------------------
-$border-thin:                           1px;
-$border-default:                        2px;
-$border-thick:                          4px;
+$artisans-list-controls-bg-color:       colors.$color-bg-surface-emphasis;
+$artisans-list-results-empty-color:     colors.$color-text-disabled;
 
-// OFFSETS
+// SPACING
 // ------------------------------------------------------------------------------------------------
-$border-offset-default:                 2px;
+$artisans-list-gap:                     spacing.$sp-16;

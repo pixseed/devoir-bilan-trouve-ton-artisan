@@ -1,0 +1,67 @@
+/* _artisansList.scss */
+
+@use '../config/tokens';
+@use '../config/tools';
+
+.artisans-list {
+    &__controls {
+        position:                       relative;
+        @include                        tools.flex-column;
+        gap:                            tokens.$artisans-list-gap;
+        
+        /* =====================================================
+            BACKGROUND (étalement sur toute la largeur du viewport)
+        ===================================================== */
+        &::before {
+            content:                    "";
+            @include                    tools.full-bleed;
+            background:                 tokens.$artisans-list-controls-bg-color;
+        }
+    }
+
+    &__empty {
+        color:                          tokens.$artisans-list-results-empty-color;
+    }
+
+    &__result-grid {
+        @include                        tools.grid-custom(1fr, tokens.$flow-mobile-md);
+    }
+}
+
+@media (min-width: tokens.$bp-md) {
+    .artisans-list {
+        &__controls {
+            @include                    tools.flex-row;
+            gap:                        tokens.$artisans-list-gap;
+            & > * {
+                flex:                   1;
+            }
+        }
+
+        &__result-grid {
+            @include                    tools.grid-equal(3);
+        }
+    }
+}
+
+@media (min-width: tokens.$bp-lg) {
+    .artisans-list {
+        &__grid {
+            display:                    grid;
+            grid-template-columns:      tokens.$aside-width auto;
+        }
+
+        &__controls {
+            @include                    tools.flex-column;
+            background:                 tokens.$artisans-list-controls-bg-color;
+
+            & > * {
+                flex:                   none;
+            }
+
+            &::before {
+                display:                none;
+            }
+        }
+    }
+}
