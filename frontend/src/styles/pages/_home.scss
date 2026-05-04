@@ -17,7 +17,6 @@
         position:                       relative;
         height:                         100%;
         z-index:                        tokens.$z-base;
-        @include                        tools.layout-col(start, true);
         
         /* =====================================================
             BACKGROUND (étalement sur toute la largeur du viewport)
@@ -31,24 +30,18 @@
     }
 
     &__top-artisans {
-        @include                        tools.layout-col(end);
-
         .artisan-card--horizontal {
             @include                    tools.artisan-card-vertical;
         }
     }
 
     &__top-artisans-grid {
-        @include                        tools.grid-custom(1fr, tokens.$flow-desktop-sm);
+        @include                        tools.grid-custom(1fr, tokens.$flow-mobile-md);
     }
 }
 
 .hero__step-list {
     margin-bottom:                      0;
-}
-
-.section {
-    padding-inline:                     0;
 }
 
 /* =====================================================
@@ -72,7 +65,7 @@
         }
 
         &__top-artisans-grid {
-            @include                    tools.grid-equal(3, tokens.$top-artisan-grid-gap);
+            @include                    tools.grid-equal(3);
         }
     }
 }
@@ -104,9 +97,5 @@
         &__top-artisans-grid {
             @include                    tools.grid-custom(1fr, tokens.$flow-desktop-sm);
         }
-    }
-
-    .section {
-        padding-inline:                 tokens.$section-padding-md;
     }
 }

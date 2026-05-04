@@ -18,48 +18,42 @@
 // Section
 // ================================================================================================
 @mixin section($mobile, $tablet, $desktop) {
-    padding: $mobile;
+    padding-block: $mobile;
 
     @media (min-width: tokens.$bp-md) {
-        padding: $tablet;
+        padding-block: $tablet;
     }
 
     @media (min-width: tokens.$bp-xl) {
-        padding: $desktop;
+        padding-block: $desktop;
     }
 }
 
 // Layout colonne
 // ================================================================================================
-@mixin layout-col($position, $bg: false) {
+@mixin layout-col($position) {
     @media (min-width: tokens.$bp-md) {
         $gap: tokens.$layout-gap-md;
-        @include _layout-col-logic($position, $bg, $gap);
+        @include _layout-col-logic($position, $gap);
     }
 
     @media (min-width: tokens.$bp-lg) {
         $gap: tokens.$layout-gap-lg;
-        @include _layout-col-logic($position, $bg, $gap);
+        @include _layout-col-logic($position, $gap);
     }
 }
 
-@mixin _layout-col-logic($position, $bg, $gap) {
-    @if $bg {
+@mixin _layout-col-logic($position, $gap) {
+    @if $position == start {
+        padding-right: $gap;
+    }
+
+    @else if $position == middle {
         padding-inline: $gap;
     }
 
-    @else {
-        @if $position == start {
-            padding-right: $gap;
-        }
-    
-        @else if $position == middle {
-            padding-inline: $gap;
-        }
-    
-        @else if $position == end {
-            padding-left: $gap;
-        }
+    @else if $position == end {
+        padding-left: $gap;
     }
 }
 
@@ -147,8 +141,9 @@ $stack-gaps: (
 
 @mixin full-bleed {
     @include absolute-fill;
-    left: tokens.$full-bleed-offset;
-    right: tokens.$full-bleed-offset;
+    left: 50%;
+    width: 100vw;
+    transform: translateX(-50%)
 }
 
 // ================================================================================================
@@ -208,12 +203,11 @@ $stack-gaps: (
     .artisan-card__header {
         @include flex-row;
         text-align: left;
-        gap: tokens.$card-header-gap;
     }
 
     .artisan-card__header-meta {
         @include flex-column;
-        margin-inline: 0;
+        padding-inline: 0;
     }
 
     .rating {
@@ -232,7 +226,7 @@ $stack-gaps: (
     .artisan-card__body {
         flex-direction: row;
         align-items: flex-end;
-        margin-inline: 0;
+        padding-inline: 0;
     }
 
     .artisan-card__body-meta {
@@ -259,7 +253,7 @@ $stack-gaps: (
     }
 
     .artisan-card__header-meta {
-        margin-inline: tokens.$card-spacing;
+        padding-inline: tokens.$card-spacing;
         align-items: center;
     }
 
@@ -279,7 +273,7 @@ $stack-gaps: (
     .artisan-card__body {
         flex-direction: column;
         align-items: center;
-        margin-inline: tokens.$card-spacing;
+        padding-inline: tokens.$card-spacing;
         gap: tokens.$card-body-gap;
     }
 

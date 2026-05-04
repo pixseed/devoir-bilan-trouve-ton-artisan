@@ -4,17 +4,17 @@
 @use '../config/tokens';
 
 // ================================================================================================
-// SECTION
+// LAYOUT
 // ================================================================================================
 
-.section {
-    @include mixins.section(
-        tokens.$section-padding-sm,
-        tokens.$section-padding-md,
-        tokens.$section-padding-lg
-    );
+.layout-col--start {
+    @include mixins.layout-col(start);
 }
 
-.section--with-bg {
+.layout-col--middle {
     @include mixins.layout-col(middle);
+}
+
+.layout-col--end {
+    @include mixins.layout-col(end);
 }

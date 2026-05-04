@@ -26,6 +26,7 @@
 // 3. LAYOUT
 @use './layout/container';
 @use './layout/section';
+@use './layout/layout';
 
 // 4. PAGE
 @use './pages/home';
@@ -42,6 +43,7 @@
 @use './components/button';
 @use './components/artisanCard';
 @use './components/breadcrumb';
+@use './components/dropdown';
 
 // 6. SPECIFIC COMPONENTS
 @use './components/header';

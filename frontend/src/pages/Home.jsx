@@ -16,7 +16,7 @@ export default function Home() {
         <div className="home__grid">
 
           {/* Étapes explicatives d'utilisation du site sous forme de liste */}
-          <section className="section home__hero flow-md">
+          <section className="section section--with-bg home__hero flow-md">
             <h2 className="heading-lg heading-lg__accent heading-lg__accent--primary">
               Comment trouver mon artisan ?
             </h2>
@@ -29,7 +29,7 @@ export default function Home() {
           </section>
 
           {/* Liste des artisans du mois (top 3) sous forme de card */}
-          <section className="section home__top-artisans flow-md">
+          <section className="section layout-col--end home__top-artisans flow-md">
             <h2 className="heading-lg heading-lg__accent heading-lg__accent--secondary">
               Top 3 des artisans du mois
             </h2>
