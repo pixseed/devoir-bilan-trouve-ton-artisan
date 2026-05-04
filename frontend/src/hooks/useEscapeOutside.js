@@ -7,22 +7,23 @@
 import { useEffect } from "react";
 
 /**
- * Hook : ferme un panel via la touche Escape.
+ * Hook : ferme un élément via la touche Escape.
  * ------------------------------------------------------------------------------------------------
- * @param {string|null} activePanel
- * @param {function} closePanel
+ * @param {string|null} activeElement
+ * @param {function} closeElement
  * 
  * @return {void}
  */
-export function useEscapeOutside(activePanel, closePanel) {
+export function useEscapeOutside(activeElement, closeElement) {
     useEffect(() => {
         const handleKey = (e) => {
-            if (e.key === "Escape" && activePanel) {
-                closePanel();
+            if (e.key === "Escape" && activeElement) {
+                closeElement();
             }
         };
-
+        
         document.addEventListener("keydown", handleKey);
         return () => document.removeEventListener("keydown", handleKey);
-    }, [activePanel, closePanel]);
+        
+    }, [activeElement, closeElement]);
 }

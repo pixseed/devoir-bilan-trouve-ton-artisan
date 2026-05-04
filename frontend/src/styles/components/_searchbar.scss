@@ -12,8 +12,12 @@
     border:                             tokens.$searchbar-border-width solid tokens.$searchbar-border-color;
     border-radius:                      tokens.$searchbar-radius;
 
+    &:focus-within {
+        border-color:                   tokens.$searchbar-border-color-active;
+    }
+    
     /* =====================================================
-        INPUT
+    INPUT
     ===================================================== */
     
     &__input {
@@ -27,25 +31,26 @@
         outline:                        none;
         background:                     transparent;
     }
-
+    
     /* =====================================================
-        BUTTON (overlay)
+    BUTTON (overlay)
     ===================================================== */
-
+    
     &__button {
         position:                       absolute;
         right:                          tokens.$sp-16;
         top:                            50%;
         transform:                      translateY(-50%);
     }
-
+    
     /* =====================================================
-        VARIANT
+    VARIANT
     ===================================================== */
-
+    
     &--navbar {
         border-left:                    none;
         border-top:                     none;
         border-radius:                  0;
+        border-color:                   tokens.$searchbar-navbar-border-color;
     }
 }

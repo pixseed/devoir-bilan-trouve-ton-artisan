@@ -1,0 +1,57 @@
+/* _dropdown.scss */
+
+@use '../config/tokens';
+@use '../config/tools';
+
+.dropdown {
+    position:                           relative;
+    @include                            tools.flex-column;
+    width:                              100%;
+
+    &__item {
+        padding:                        tokens.$dropdown-padding-y tokens.$dropdown-padding-x;
+        margin:                         0;
+        cursor:                         pointer;
+
+        &:hover {
+            background-color:           tokens.$dropdown-item-bg-color-hover;
+            color:                      tokens.$dropdown-item-text-color-hover;
+        }
+
+        &--active {
+            color:                      tokens.$dropdown-item-text-color-active;
+            border-left:                tokens.$dropdown-item-border-size-active-hover solid tokens.$dropdown-item-border-color-active;
+
+            &:hover {
+                background-color:       tokens.$dropdown-item-bg-color-active-hover;
+                color:                  tokens.$dropdown-item-text-color-active-hover;
+                border-left:            tokens.$dropdown-item-border-size-active-hover solid tokens.$dropdown-item-border-color-active-hover;
+            }
+        }
+    }
+
+    &__list {
+        position:                       absolute;
+        top:                            100%;
+        left:                           0;
+        width:                          100%;
+
+        border-radius:                  tokens.$dropdown-list-radius;
+        overflow:                       hidden;
+        box-shadow:                     tokens.$dropdown-list-shadow;
+        background-color:               tokens.$dropdown-list-bg-color;
+
+        opacity:                        0;
+        transform:                      translateY(-(tokens.$dropdown-gap));
+        pointer-events:                 none;
+        transition:                     tokens.$motion-fade-slide;
+
+        z-index:                        tokens.$z-overlay;
+
+        &--open {
+            opacity:                    1;
+            transform:                  translateY(tokens.$dropdown-gap);
+            pointer-events:             auto;
+        }
+    }
+}

@@ -1,0 +1,40 @@
+/* _dropdown.scss */
+
+@use '../spacing';
+@use '../scale';
+@use '../colors';
+@use '../border';
+@use '../radius';
+@use '../shadow';
+
+// ================================================================================================
+// DROPDOWN TOKENS COMPONENT
+// ================================================================================================
+
+// STATES
+// ------------------------------------------------------------------------------------------------
+// Hover
+$dropdown-item-bg-color-hover:              colors.$color-bg-primary;
+$dropdown-item-text-color-hover:            colors.$color-text-inverse;
+
+// Active
+$dropdown-item-text-color-active:           colors.$color-text-emphasis-primary;
+$dropdown-item-border-color-active:         colors.$color-border-emphasis-primary;
+
+// Active + Hover
+$dropdown-item-bg-color-active-hover:       colors.$color-bg-primary;
+$dropdown-item-text-color-active-hover:     colors.$color-text-inverse;
+$dropdown-item-border-color-active-hover:   colors.$color-border-emphasis-secondary;
+$dropdown-item-border-size-active-hover:    border.$border-thick;
+
+// SPACING
+// ------------------------------------------------------------------------------------------------
+$dropdown-gap:                              spacing.$sp-8;
+$dropdown-padding-y:                        spacing.$sp-8;
+$dropdown-padding-x:                        spacing.$sp-16;
+
+// LIST
+// ------------------------------------------------------------------------------------------------
+$dropdown-list-radius:                      radius.$radius-sm;
+$dropdown-list-shadow:                      shadow.$shadow-content;
+$dropdown-list-bg-color:                    colors.$color-bg-surface;

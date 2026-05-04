@@ -22,6 +22,8 @@ import { VARIANTS } from "../../constants/variants";
 export default function SearchBar({
   placeholder = "Rechercher",
   variant = VARIANTS.SEARCHBAR.DEFAULT,
+  value = "",
+  onChange,
 }) {
   return (
     <div className={clsx(
@@ -32,6 +34,8 @@ export default function SearchBar({
       <input
         type="text"
         placeholder={placeholder}
+        value={value}
+        onChange={(e) => onChange?.(e.target.value)}
         className="searchbar__input"
       />
 

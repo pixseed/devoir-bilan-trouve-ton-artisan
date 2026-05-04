@@ -25,7 +25,9 @@ $searchbar-icon-space:                  icon.$icon-btn-md + spacing.$sp-16 *2;
 // BORDER
 // ------------------------------------------------------------------------------------------------
 $searchbar-border-width:                border.$border-thin;
-$searchbar-border-color:                colors.$color-border-emphasis-primary;
+$searchbar-border-color:                colors.$color-border-default;
+$searchbar-border-color-active:         colors.$color-border-emphasis-primary;
+$searchbar-navbar-border-color:         colors.$color-border-emphasis-primary;
 
 // RADIUS
 // ------------------------------------------------------------------------------------------------

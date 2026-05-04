@@ -132,7 +132,8 @@ ol {
   // Suppression des styles des listes (version accessible)
 
   // Attention : nécessite attribut role dans le HTML
-  &[role="list"] {
+  &[role="list"],
+  &[role="listbox"] {
     margin: 0;
     padding-inline-start: 0;
     list-style: none;

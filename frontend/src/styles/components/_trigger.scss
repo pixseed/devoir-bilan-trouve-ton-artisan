@@ -67,6 +67,7 @@
         border:                         tokens.$trigger-border-size solid tokens.$trigger-border-color;
         border-radius:                  tokens.$trigger-border-radius;
         padding:                        tokens.$trigger-padding-y tokens.$trigger-padding-x;
+        background-color:               tokens.$trigger-underline-bg-color;
     }
 }
 
