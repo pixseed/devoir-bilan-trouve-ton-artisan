@@ -1,13 +1,20 @@
 /* Home.jsx */
 
 import { useTopArtisans } from "../hooks/useTopArtisans";
-import ArtisanCard from "../components/ui/ArtisanCard";
-import SkeletonCard from "../components/ui/ArtisanCardSkeleton";
-import Alert from "../components/ui/Alert";
 import { VARIANTS } from "../constants/variants";
+import Artisans from "../components/features/Artisans";
+import { useBreakpoint } from "../hooks/useBreakpoint";
 
 export default function Home() {
   const { artisans, error, loading } = useTopArtisans();
+  
+  function getVariantCard({ isXS, isMD, isLG }) {
+    if (isLG) return VARIANTS.CARD.HORIZONTAL;
+    if (isMD) return VARIANTS.CARD.VERTICAL;
+    if (isXS) return VARIANTS.CARD.HORIZONTAL;
+  }
+  
+  const variantCard = getVariantCard(useBreakpoint());
 
   return (
     <div className="home">
@@ -33,23 +40,14 @@ export default function Home() {
             <h2 className="heading-lg heading-lg__accent heading-lg__accent--secondary">
               Top 3 des artisans du mois
             </h2>
-            {loading && <SkeletonCard />}
-            {error && <Alert message={error} variant={VARIANTS.ALERT.ERROR} />}
-            {!loading && !error && (
-              <div className="home__top-artisans-grid">
-                {artisans.map((artisan) => (
-                  <ArtisanCard
-                    key={artisan.id}
-                    id={artisan.id}
-                    name={artisan.name}
-                    specialty={artisan.specialty}
-                    city={artisan.city}
-                    rating={artisan.rating}
-                    image={artisan.image}
-                  />
-                ))}
-              </div>
-            )}
+              <Artisans
+                artisans={artisans}
+                loading={loading}
+                error={error}
+                variant={variantCard}
+                skeletonCount={3}
+                className="home__top-artisans-grid"
+              />
           </section>
         </div>
       </div>

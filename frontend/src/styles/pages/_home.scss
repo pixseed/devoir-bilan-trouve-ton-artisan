@@ -29,12 +29,6 @@
         }
     }
 
-    &__top-artisans {
-        .artisan-card--horizontal {
-            @include                    tools.artisan-card-vertical;
-        }
-    }
-
     &__top-artisans-grid {
         @include                        tools.grid-custom(1fr, tokens.$flow-mobile-md);
     }
@@ -48,22 +42,8 @@
     TABLET
 ===================================================== */
 
-@media (min-width: tokens.$bp-sm) {
-    .home__top-artisans {
-        .artisan-card--horizontal {
-            @include                    tools.artisan-card-horizontal;
-        }
-    }
-}
-
 @media (min-width: tokens.$bp-md) {
     .home {
-        &__top-artisans {
-            .artisan-card--horizontal {
-                @include                tools.artisan-card-vertical;
-            }
-        }
-
         &__top-artisans-grid {
             @include                    tools.grid-equal(3);
         }
@@ -86,12 +66,6 @@
 
         &__hero {
             background:                 tokens.$home-hero-bg;
-        }
-
-        &__top-artisans {
-            .artisan-card--horizontal {
-                @include                tools.artisan-card-horizontal;
-            }
         }
 
         &__top-artisans-grid {

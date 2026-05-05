@@ -33,6 +33,7 @@ dans le but d'adapter le variant affiché (UI) en fonction de la taille du viewp
     }
 
     &__header-meta {
+        @include tools.flex-column;
         flex:                           1;
         width:                          100%;
     }
@@ -91,9 +92,94 @@ dans le but d'adapter le variant affiché (UI) en fonction de la taille du viewp
 ===================================================== */
 
 .artisan-card--horizontal {
-    @include                            tools.artisan-card-horizontal;
+    padding: tokens.$card-spacing;
+    min-width: 392px;
+
+    .artisan-card__media {
+        width: tokens.$card-media-size;
+        height: tokens.$card-media-size;
+        border-radius: tokens.$card-media-radius;
+        flex-shrink: 0;
+    }
+
+    .artisan-card__header {
+        @include tools.flex-row;
+        text-align: left;
+    }
+
+    .artisan-card__header-meta {
+        padding-inline: 0;
+    }
+
+    .rating {
+        justify-content: left;
+    }
+
+    .rating__star {
+        height: tokens.$card-rating-star-size-md;
+        width: auto;
+    }
+
+    .artisan-card__divider {
+        margin-inline: 0;
+    }
+
+    .artisan-card__body {
+        flex-direction: row;
+        align-items: flex-end;
+        padding-inline: 0;
+    }
+
+    .artisan-card__body-meta {
+        @include tools.flex-column;
+        text-align: left;
+    }
 }
 
 .artisan-card--vertical {
-    @include                            tools.artisan-card-vertical;
+    padding: 0;
+    padding-bottom: tokens.$card-spacing;
+    min-width: 216px;
+
+    .artisan-card__media {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16/9;
+        border-radius: 0;
+    }
+
+    .artisan-card__header {
+        @include tools.flex(flex, center, center, column);
+        text-align: center;
+    }
+
+    .artisan-card__header-meta {
+        padding-inline: tokens.$card-spacing;
+        align-items: center;
+    }
+
+    .rating {
+        justify-content: center;
+    }
+
+    .rating__star {
+        height: tokens.$card-rating-star-size-sm;
+        width: auto;
+    }
+
+    .artisan-card__divider {
+        margin-inline: tokens.$card-spacing;
+    }
+
+    .artisan-card__body {
+        flex-direction: column;
+        align-items: center;
+        padding-inline: tokens.$card-spacing;
+        gap: tokens.$card-body-gap;
+    }
+
+    .artisan-card__body-meta {
+        @include tools.flex-column-center;
+        text-align: center;
+    }
 }
