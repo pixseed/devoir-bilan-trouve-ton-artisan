@@ -56,6 +56,7 @@ export const serializeArtisanListItem = (artisan) => ({
     specialty: getSpecialtyName(artisan),
     rating: artisan.rating,
     city: artisan.city,
+    categoryId: artisan.specialty?.category?.id,
     category: getCategoryName(artisan),
     image: artisan.image,
 });

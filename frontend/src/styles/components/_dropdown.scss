@@ -28,6 +28,10 @@
                 border-left:            tokens.$dropdown-item-border-size-active-hover solid tokens.$dropdown-item-border-color-active-hover;
             }
         }
+
+        &.skeleton {
+            margin:                     16px;
+        }
     }
 
     &__list {

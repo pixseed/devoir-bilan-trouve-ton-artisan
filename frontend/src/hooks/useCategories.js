@@ -14,7 +14,7 @@ export function useCategories() {
             .then(setCategories)
             .catch((err) => {
                 console.error(err);
-                setError(APP_MESSAGES.ERROR.FETCH);
+                setError(APP_MESSAGES.ERROR.FETCH.CATEGORIES);
             })
             .finally(() => {
                 setLoading(false);

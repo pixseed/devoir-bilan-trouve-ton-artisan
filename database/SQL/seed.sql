@@ -152,7 +152,7 @@ VALUES
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eleifend ante sem, id volutpat massa fermentum nec. Praesent volutpat scelerisque mauris, quis sollicitudin tellus sollicitudin. ',
         'a.amitee@hotmail.com',
         'https://lecuyer-couture.com',
-        '/images/amitee-lecuyer-main-picture',
+        '/images/amitee-lecuyer-main-picture.jpg',
         FALSE,
         10
     ),

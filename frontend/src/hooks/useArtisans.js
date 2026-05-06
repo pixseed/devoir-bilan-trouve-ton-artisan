@@ -1,16 +1,16 @@
-/* useTopArtisans.js */
+/* useArtisans.js */
 
 import { useState, useEffect } from "react";
-import { getTopArtisans } from "../services/artisansService";
+import { getArtisans } from "../services/artisansService";
 import { APP_MESSAGES } from "../constants/messages";
 
-export function useTopArtisans() {
+export function useArtisans({ search, category }) {
     const [artisans, setArtisans] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        getTopArtisans()
+        getArtisans({ search, category })
             .then(setArtisans)
             .catch((err) => {
                 console.error(err);
@@ -19,7 +19,7 @@ export function useTopArtisans() {
             .finally(() => {
                 setLoading(false);
             })
-    }, []);
+        }, [search, category]);
 
     return {artisans, loading, error};
 }

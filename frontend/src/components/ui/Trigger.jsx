@@ -26,16 +26,19 @@ export default function Trigger({
   hasPopup,
   controls,
   variant = VARIANTS.TRIGGER.OUTLINED,
+  disabled,
   className = "",
 }) {
   return (
     <button
       type="button"
+      disabled={disabled}
       className={clsx(
         "trigger",
         `trigger--${variant}`,
         {
           "is-open": isOpen,
+          "is-disabled": disabled,
         },
         className,
       )}
@@ -44,6 +47,7 @@ export default function Trigger({
       aria-label={label || undefined}
       aria-haspopup={hasPopup || undefined}
       aria-controls={controls || undefined}
+      aria-disabled={disabled}
     >
       <span className="trigger__content">
         <span className="trigger__label">{label}</span>

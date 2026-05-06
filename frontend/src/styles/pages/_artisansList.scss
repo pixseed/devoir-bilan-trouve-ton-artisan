@@ -63,5 +63,17 @@
                 display:                none;
             }
         }
+
+        &__result-grid {
+            @include                    tools.grid-equal(2);
+        }
+    }
+}
+
+@media (min-width: tokens.$bp-xl) {
+    .artisans-list {
+        &__result-grid {
+            @include                    tools.grid-equal(3);
+        }
     }
 }

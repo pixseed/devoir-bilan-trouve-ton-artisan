@@ -3,6 +3,10 @@
 import clsx from "clsx";
 
 export default function DropdownItem({ option, onSelect, isActive }) {
+  if (option.isSkeleton) {
+    return <li className="dropdown__item skeleton skeleton--text-lg"></li>
+  }
+
   return (
     <li
       className={clsx(
@@ -10,7 +14,11 @@ export default function DropdownItem({ option, onSelect, isActive }) {
         { "dropdown__item--active": isActive }
       )}
       role="option"
-      onClick={() => onSelect(option)}
+      onClick={() => {
+        if (!option.isSkeleton) {
+          onSelect(option)
+        }
+      }}
     >
       {option.label}
     </li>

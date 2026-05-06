@@ -5,5 +5,6 @@ export const API_URL = {
     ENDPOINTS: {
         CATEGORIES: "/categories",
         TOP_ARTISANS: "/artisans/top",
+        ARTISANS: "/artisans",
     },
 };

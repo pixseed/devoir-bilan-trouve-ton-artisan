@@ -37,6 +37,21 @@
         transform:                      translateY(tokens.$icon-optical-offset-y) rotate(180deg);
     }
 
+    /* -----------------------------
+        Is Disabled
+    ----------------------------- */
+    &.is-disabled,
+    &:disabled {
+        @include                        tools.disabled-base;
+
+        color:                          tokens.$color-text-disabled;
+        border-color:                   tokens.$color-border-disabled;
+
+        .trigger__icon {
+            color:                      tokens.$color-icon-disabled;
+        }
+    }
+
     /* =====================================================
         VARIANTS
     ===================================================== */
