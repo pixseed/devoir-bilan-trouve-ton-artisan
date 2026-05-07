@@ -29,6 +29,10 @@
         }
     }
 
+    &__top-artisans .alert {
+        margin-top:                     tokens.$alert-margin-top;
+    }
+
     &__top-artisans-grid {
         @include                        tools.grid-custom(1fr, tokens.$flow-mobile-md);
     }

@@ -3,6 +3,11 @@
 @use '../config/tokens';
 @use '../config/tools';
 
+.filters__controls {
+        @include                        tools.flex-column;
+        gap:                            tokens.$artisans-list-gap;
+}
+
 .filter-group {
     @include                            tools.flex-column;
     background-color:                   tokens.$filter-group-bg-color;
@@ -57,3 +62,13 @@
         @include                        tools.divider;
     }
 }
+
+@media (min-width: tokens.$bp-md) {
+    .filters__controls {
+            @include                    tools.flex-column;
+            gap:                        tokens.$artisans-list-gap;
+            & > * {
+                flex:                   1;
+            }
+        }
+    }

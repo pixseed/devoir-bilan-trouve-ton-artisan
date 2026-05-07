@@ -13,15 +13,12 @@
  * ================================================================================================
  */
 
-import { useCategories } from "../../hooks/useCategories";
 import NavItem from "./NavItem";
-import MenuSkeleton from "./MenuSkeleton";
 import Alert from "./Alert";
 import { VARIANTS } from "../../constants/variants";
+import clsx from "clsx";
 
-export default function Menu() {
-  const { categories, error, loading } = useCategories();
-
+export default function Menu({ items, loading, error }) {
   return (
     <div className="menu" aria-label="Catégories">
       <div className="container">
@@ -32,13 +29,18 @@ export default function Menu() {
           </div>
 
           {/* Liste des catégories */}
-          <div className="menu__body">
-            {loading && <MenuSkeleton />}
-            {error && <Alert message={error} variant={VARIANTS.ALERT.ERROR}/>}
-            {!loading && !error && (
+          <div
+            className={clsx("menu__body", {
+              "menu__body--loading": loading,
+              "menu__body--error": error,
+            })}
+          >
+            {error ? (
+              <Alert message={error} variant={VARIANTS.ALERT.ERROR} />
+            ) : (
               <ul className="menu__list" role="list">
-                {categories.map((c) => (
-                  <NavItem key={c.id} id={c.id} label={c.name} />
+                {items.map((item) => (
+                  <NavItem key={item.value} item={item} />
                 ))}
               </ul>
             )}

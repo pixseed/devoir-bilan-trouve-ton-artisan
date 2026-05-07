@@ -19,6 +19,9 @@ $alert-radius:                        radius.$radius-sm;
 $alert-padding-y:                     spacing.$sp-8;
 $alert-padding-x:                     spacing.$sp-16;
 
+// Margin-top uniquement si précédé d'un voisin
+$alert-margin-top:                    spacing.$sp-16;
+
 // COLORS (VARIANTS)
 // ------------------------------------------------------------------------------------------------
 // Error

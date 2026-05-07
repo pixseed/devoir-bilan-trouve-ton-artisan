@@ -2,7 +2,7 @@
 
 import { useTopArtisans } from "../hooks/useTopArtisans";
 import { VARIANTS } from "../constants/variants";
-import Artisans from "../components/features/Artisans";
+import ArtisansWithStates from "../components/features/ArtisansWithStates";
 import { useBreakpoint } from "../hooks/useBreakpoint";
 
 export default function Home() {
@@ -40,8 +40,8 @@ export default function Home() {
             <h2 className="heading-lg heading-lg__accent heading-lg__accent--secondary">
               Top 3 des artisans du mois
             </h2>
-              <Artisans
-                artisans={artisans}
+              <ArtisansWithStates
+                data={artisans}
                 loading={loading}
                 error={error}
                 variant={variantCard}

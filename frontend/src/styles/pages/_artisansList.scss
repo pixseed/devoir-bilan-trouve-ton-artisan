@@ -23,6 +23,10 @@
         color:                          tokens.$artisans-list-results-empty-color;
     }
 
+    &__results .alert {
+        margin-top:                     tokens.$alert-margin-top;
+    }
+
     &__result-grid {
         @include                        tools.grid-custom(1fr, tokens.$flow-mobile-md);
     }
@@ -30,14 +34,6 @@
 
 @media (min-width: tokens.$bp-md) {
     .artisans-list {
-        &__controls {
-            @include                    tools.flex-row;
-            gap:                        tokens.$artisans-list-gap;
-            & > * {
-                flex:                   1;
-            }
-        }
-
         &__result-grid {
             @include                    tools.grid-equal(3);
         }
@@ -52,13 +48,6 @@
         }
 
         &__controls {
-            @include                    tools.flex-column;
-            background:                 tokens.$artisans-list-controls-bg-color;
-
-            & > * {
-                flex:                   none;
-            }
-
             &::before {
                 display:                none;
             }

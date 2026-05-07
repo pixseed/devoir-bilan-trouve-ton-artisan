@@ -13,11 +13,16 @@
 import { Link } from "react-router-dom";
 import ChevronIcon from "../../assets/icons/Right_Chevron.svg?react";
 
-export default function NavItem({ id, label }) {
+export default function NavItem({ item }) {
+  if (item.isSkeleton) {
+    return (
+      <li className="nav-item skeleton skeleton--text-lg"></li>
+    )
+  }
   return (
     <li className="nav-item">
-      <Link to={`/artisans?category=${id}`} className="nav-item__link">
-        <span className="nav-item__label">{label}</span>
+      <Link to={`/artisans?category=${item.value}`} className="nav-item__link">
+        <span className="nav-item__label">{item.label}</span>
         <ChevronIcon className="nav-item__icon" />
       </Link>
     </li>

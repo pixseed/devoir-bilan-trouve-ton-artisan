@@ -28,12 +28,13 @@ import ChevronIcon from "../../assets/icons/Down_Chevron.svg?react";
 import SearchIcon from "../../assets/icons/Search.svg?react";
 import MenuIcon from "../../assets/icons/Menu.svg?react";
 
-import Menu from "../ui/Menu";
+import MenuWithStates from "../features/MenuWithStates";
 import SearchBar from "../ui/SearchBar";
 import Trigger from "../ui/Trigger";
 
 import { useRef } from "react";
 import { useHeaderPanels } from "../../hooks/useHeaderPanels";
+import { useCategories } from "../../hooks/useCategories";
 import { useCloseSearchOnBreakpoint } from "../../hooks/useCloseSearchOnBreakpoint";
 import { useClickOutside } from "../../hooks/useClickOutside";
 import { useEscapeOutside } from "../../hooks/useEscapeOutside";
@@ -43,6 +44,9 @@ import { VARIANTS } from "../../constants/variants";
 export default function Header() {
   // Gestion centralisée de l'état des panels (menu / search)
   const { activePanel, togglePanel, closePanel } = useHeaderPanels();
+
+  // Récupération des catégories
+  const { categories, loading, error } = useCategories();
 
   // Ferme le panel 'search' automatiquement en desktop
   useCloseSearchOnBreakpoint(activePanel, closePanel);
@@ -61,6 +65,15 @@ export default function Header() {
   // État des panels
   const isMenuOpen = activePanel === "menu";
   const isSearchOpen = activePanel === "search";
+
+  // ===========================================================================================
+  // CATEGORY ITEMS - Retourner la liste des catégories
+  // ===========================================================================================
+
+  const mapCategoryItem = ((c) => ({
+    label: c.name,
+    value: c.id,
+  }));
 
   return (
     <header className="header">
@@ -126,7 +139,12 @@ export default function Header() {
               id="menu-panel"
               className={`header__menu-panel ${isMenuOpen ? "is-open" : ""}`}
             >
-              <Menu />
+              <MenuWithStates
+                data={categories}
+                loading={loading}
+                error={error}
+                mapItem={mapCategoryItem}              
+              />
             </div>
 
             {/* ===============================================================

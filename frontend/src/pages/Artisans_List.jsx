@@ -16,7 +16,7 @@
  */
 
 import Breadcrumb from "../components/ui/Breadcrumb";
-import Artisans from "../components/features/Artisans";
+import ArtisansWithStates from "../components/features/ArtisansWithStates";
 import Filters from "../components/features/Filters";
 import { useSearchParams } from "react-router-dom";
 import { useArtisans } from "../hooks/useArtisans";
@@ -138,14 +138,13 @@ function Artisans_List() {
             <h2 className="heading-lg heading-lg__accent heading-lg__accent--primary">
               {selectedOption?.name || "Tous les artisans"}
             </h2>
-            <Artisans
-              artisans={artisans}
+            <ArtisansWithStates
+              data={artisans}
               category={selectedCategory}
               search={searchQuery}
               loading={loading}
               error={error}
               variant={variantCard}
-              skeletonCount={6}
               className="artisans-list__result-grid"
             />
           </section>

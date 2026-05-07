@@ -1,31 +1,29 @@
 /**
  * ================================================================================================
- * FEATURE : DropdownWithState
+ * FEATURE : FilterGroupWithStates
  * ================================================================================================
  * Rôle :
- * - Wrapper du composant Dropdown
+ * - Wrapper du composant FilterGroup
  * - Gère les états :
  *      → loading (skeleton)
  *      → error (message + désactivation)
- *      → success (options normales)
+ *      → success (items normaux)
  *
  * Ojectif :
- * - Centraliser la logique loading/error pour tous les dropdowns
- * - Éviter d'intégrer de la logique au composant natif (Dropdown.jsx)
+ * - Centraliser la logique loading/error pour tous les FilterGroup
+ * - Éviter d'intégrer de la logique au composant natif (FilterGroup.jsx)
  * ================================================================================================
  */
 
-import Dropdown from "../ui/Dropdown";
-import Alert from "../ui/Alert";
-import { VARIANTS } from "../../constants/variants";
+import FilterGroup from "../ui/FilterGroup";
 
-export default function DropdownWithState({
+export default function FilterGroupWithStates({
   data = [], // Données brutes
   loading,
   error,
-  mapItem, // Fonction de transformation data → items
-  label,
-  onChange,
+  mapItem, // Fonction de transformation data → option
+  title,
+  onSelect,
   value,
   SkeletonCount = 4,
 }) {
@@ -34,10 +32,10 @@ export default function DropdownWithState({
    * - loading → skeleton
    * - success → mapping des données
    */
-  const options = loading
+  const items = loading
     ? Array.from({ length: SkeletonCount }).map((_, i) => ({
         value: `skeleton-${i}`,
-        isSkeleton: true, // Utilisé dans DropdownItem
+        isSkeleton: true, // Utilisé dans FilterItem
       }))
     : data.map(mapItem);
 
@@ -45,15 +43,14 @@ export default function DropdownWithState({
 
   return (
     <>
-      <Dropdown
-        options={options}
-        label={label}
-        onChange={!loading && !error ? onChange : undefined}
-        value={value}
+      <FilterGroup
+        title={title}
+        items={items}
+        onSelect={onSelect}
+        selectedValue={value}
+        error={error}
         disabled={isDisabled}
       />
-
-      {error && <Alert message={error} variant={VARIANTS.ALERT.ERROR} />}
     </>
   );
 }

@@ -1,9 +1,9 @@
-/* SkeletonCard.jsx */
+/* ArtisanCardSkeleton.jsx */
 
 import clsx from "clsx";
 import { VARIANTS } from "../../constants/variants";
 
-export default function SkeletonCard({ variant = VARIANTS.CARD.VERTICAL }) {
+export default function ArtisanCardSkeleton({ variant = VARIANTS.CARD.VERTICAL }) {
   return (
     <div className={clsx("artisan-card", `artisan-card--${variant}`)}>
       <div className="artisan-card__content">

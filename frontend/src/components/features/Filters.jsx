@@ -1,9 +1,11 @@
 /* Filters.jsx */
 
 import SearchBar from "../ui/SearchBar";
-import DropdownWithState from "./DropdownWithState";
-import FilterGroupWithState from "./FilterGroupWithState";
+import DropdownWithStates from "./DropdownWithStates";
+import FilterGroupWithStates from "./FilterGroupWithStates";
 import { useBreakpoint } from "../../hooks/useBreakpoint";
+import Alert from "../ui/Alert";
+import { VARIANTS } from "../../constants/variants";
 
 export default function Filters({
   searchQuery,
@@ -16,38 +18,41 @@ export default function Filters({
   onCategoryChange,
   mapCategoryItem,
 }) {
-
-  const {isLG} = useBreakpoint();
+  const { isLG } = useBreakpoint();
 
   return (
     <>
-      {/* Barre de recherche */}
-      <SearchBar value={searchQuery} onChange={onSearchChange} />
+      <div className="filters__controls">
+        {/* Barre de recherche */}
+        <SearchBar value={searchQuery} onChange={onSearchChange} />
 
-      {/* Dropdown avec gestion loading/error */}
-      {!isLG && (
-        <DropdownWithState
-          label={selectedOption?.name || "Catégories"}
-          data={categories || []}
-          loading={catLoading}
-          error={catError}
-          mapItem={mapCategoryItem}
-          onChange={onCategoryChange}
-          value={Number(selectedCategory)}
-        />
-      )}
-
-      {isLG && (
-        <FilterGroupWithState
-          title="Catégories"
-          data={categories || []}
-          loading={catLoading}
-          error={catError}
-          mapItem={mapCategoryItem}
-          onSelect={onCategoryChange}
-          value={Number(selectedCategory)}
-        />
+        {/* Dropdown avec gestion loading/error */}
+        {!isLG && (
+          <DropdownWithStates
+            label={selectedOption?.name || "Catégories"}
+            data={categories || []}
+            loading={catLoading}
+            error={catError}
+            mapItem={mapCategoryItem}
+            onChange={onCategoryChange}
+            value={Number(selectedCategory)}
+          />
         )}
+
+        {isLG && (
+          <FilterGroupWithStates
+            title="Catégories"
+            data={categories || []}
+            loading={catLoading}
+            error={catError}
+            mapItem={mapCategoryItem}
+            onSelect={onCategoryChange}
+            value={Number(selectedCategory)}
+          />
+        )}
+      </div>
+      
+      {catError && !isLG && <Alert message={catError} variant={VARIANTS.ALERT.ERROR} />}
     </>
   );
 }
