@@ -11,7 +11,13 @@ export default function DropdownList({
 }) {
   return (
     <ul
-      className={clsx("dropdown__list", { "dropdown__list--open": isOpen })}
+      className={clsx(
+        "dropdown__list",
+        {
+          "dropdown__list--open": isOpen,
+          "dropdown__list--loading": options.some((option) => option.isSkeleton)
+        }
+      )}
       role="listbox"
       id="dropdown-list"
     >

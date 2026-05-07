@@ -1,0 +1,52 @@
+/* _filter.scss */
+
+@use '../spacing';
+@use '../colors';
+@use '../border';
+@use '../radius';
+
+// ================================================================================================
+// FILTER TOKENS COMPONENT
+// ================================================================================================
+
+// FILTER-GROUP
+// ------------------------------------------------------------------------------------------------
+$filter-group-bg-color:                     colors.$color-bg-surface;
+
+// Border
+$filter-group-border-color:                 colors.$color-border-default;
+$filter-group-border-size:                  border.$border-thin;
+$filter-group-border-radius:                radius.$radius-sm;
+
+// Spacing
+$filter-group-gap:                          spacing.$gap-16;
+$filter-group-padding:                      spacing.$sp-16;
+
+// TITLE
+// ------------------------------------------------------------------------------------------------
+$filter-title-padding-x:                    spacing.$sp-8;
+
+// LIST
+// ------------------------------------------------------------------------------------------------
+$filter-list-gap:                           0;
+
+// BUTTON
+// ------------------------------------------------------------------------------------------------
+$filter-button-padding:                     spacing.$sp-8;
+
+// STATE
+// ------------------------------------------------------------------------------------------------
+// Hover
+$filter-button-text-color-hover:            colors.$color-text-inverse;
+$filter-button-bg-color-hover:              colors.$color-bg-primary;
+
+// Active
+$filter-button-padding-left-active:         spacing.$sp-16;
+$filter-button-text-color-active:           colors.$color-text-emphasis-primary;
+$filter-button-border-size-active:          border.$border-thick;
+$filter-button-border-color-active:         colors.$color-border-emphasis-primary;
+
+// Active + Hover
+$filter-button-text-color-active-hover:     colors.$color-text-inverse;
+$filter-button-bg-color-active-hover:       colors.$color-bg-primary;
+$filter-button-border-color-active-hover:   colors.$color-border-emphasis-secondary;

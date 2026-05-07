@@ -7,19 +7,17 @@
  * - Gérer les filtres (catégories + recherche)
  * - Synchroniser l'état avec l'URL (searchParams)
  * - Gérer le responsive (variant des cards)
- * 
+ *
  * Dépendances principales :
  * - useArtisans : récupération des artisans filtrés
  * - useCategories : récupération des catégories pour le dropdown
  * - useBreadcrumb : récupération des paths et des labels pour le breadcrumb
- * - DropdownWithState : gestion loading/error du dropdown
  * ================================================================================================
  */
 
 import Breadcrumb from "../components/ui/Breadcrumb";
-import DropdownWithState from "../components/features/DropdownWithState";
-import SearchBar from "../components/ui/SearchBar";
 import Artisans from "../components/features/Artisans";
+import Filters from "../components/features/Filters";
 import { useSearchParams } from "react-router-dom";
 import { useArtisans } from "../hooks/useArtisans";
 import { useCategories } from "../hooks/useCategories";
@@ -75,6 +73,15 @@ function Artisans_List() {
   });
 
   // ===========================================================================================
+  // CATEGORY ITEMS - Retourner la liste des catégories
+  // ===========================================================================================
+
+  const mapCategoryItem = ((c) => ({
+    label: c.name,
+    value: c.id,
+  }));
+
+  // ===========================================================================================
   // DROPDOWN - Transformation des données
   // ===========================================================================================
 
@@ -112,24 +119,19 @@ function Artisans_List() {
 
         <div className="artisans-list__grid">
           {/* ========== CONTROLS ========== */}
-          <section className="section section--with-bg artisans-list__controls">
-            {/* Barre de recherche */}
-            <SearchBar value={searchQuery} onChange={handleSearchChange} />
-
-            {/* Dropdown avec gestion loading/error */}
-            <DropdownWithState
-              data={categories || []}
-              loading={catLoading}
-              error={catError}
-              mapOption={(c) => ({
-                label: c.name,
-                value: c.id,
-              })}
-              label={selectedOption?.name || "Catégories"}
-              onChange={handleCategoryChange}
-              value={Number(selectedCategory)}
+          <aside className="section section--with-bg artisans-list__controls">
+            <Filters
+              searchQuery={searchQuery}
+              onSearchChange={handleSearchChange}
+              categories={categories}
+              catLoading={catLoading}
+              catError={catError}
+              selectedOption={selectedOption}
+              selectedCategory={selectedCategory}
+              onCategoryChange={handleCategoryChange}
+              mapCategoryItem={mapCategoryItem}
             />
-          </section>
+          </aside>
 
           {/* ========== RESULTAT DE LA LISTE DES ARTISANS ========== */}
           <section className="section layout-col--end flow-md artisans-list__results">
