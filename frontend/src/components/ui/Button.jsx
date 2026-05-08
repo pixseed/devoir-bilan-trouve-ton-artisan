@@ -38,8 +38,8 @@ export default function Button({
 
   // Bouton d'action
   return (
-    <Button className={className} onClick={onClick}>
+    <button className={className} onClick={onClick}>
       {content}
-    </Button>
+    </button>
   );
 }

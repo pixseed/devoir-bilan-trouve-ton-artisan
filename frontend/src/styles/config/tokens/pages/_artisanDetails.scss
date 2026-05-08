@@ -1,0 +1,19 @@
+/* _artisanDetails.scss */
+
+@use '../colors';
+@use '../radius';
+@use '../font';
+
+// ================================================================================================
+// ARTISANS_DETAILS PAGE TOKENS COMPONENT
+// ================================================================================================
+
+// MEDIA
+// ------------------------------------------------------------------------------------------------
+$artisan-details-media-bg-color:        colors.$color-bg-muted;
+$artisan-details-media-border-radius:   radius.$radius-sm;
+
+// META
+// ------------------------------------------------------------------------------------------------
+$artisan-details-submeta-lh:            font.$lh-label;
+$artisan-details-submeta-size:          font.$label-size-lg;

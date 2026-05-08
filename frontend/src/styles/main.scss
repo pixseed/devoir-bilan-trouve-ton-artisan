@@ -31,6 +31,7 @@
 // 4. PAGE
 @use './pages/home';
 @use './pages/artisansList';
+@use './pages/artisanDetails';
 
 // 5. GENERIC COMPONENTS
 @use './components/alert';
@@ -46,6 +47,8 @@
 @use './components/breadcrumb';
 @use './components/dropdown';
 @use './components/filter';
+@use './components/thumbnail';
+@use './components/form';
 
 // 6. SPECIFIC COMPONENTS
 @use './components/header';

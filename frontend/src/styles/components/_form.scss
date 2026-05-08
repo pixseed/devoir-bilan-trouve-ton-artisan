@@ -1,0 +1,57 @@
+/* _form.scss */
+
+@use '../config/tokens';
+@use '../config/tools';
+
+.contact-form {
+    @include                            tools.flex-column;
+    gap:                                tokens.$form-gap;
+}
+
+.form-field {
+    position:                           relative;
+    @include                            tools.flex-column;
+    gap:                                tokens.$form-field-gap;
+
+    &__input,
+    &__textarea {
+        width:                          100%;
+        padding:                        tokens.$form-field-padding-y tokens.$form-field-padding-x;
+        border:                         tokens.$form-field-border-size solid tokens.$form-field-border-color;
+        border-radius:                  tokens.$form-field-border-radius;
+        background:                     tokens.$form-field-bg-color;
+
+        &:focus {
+            border-color:               tokens.$form-field-border-color-active;
+        }
+    }
+
+    &__label {
+        position:                       absolute;
+        top:                            14px;
+        left:                           16px;
+        color:                          tokens.$form-field-placeholder-color;
+        line-height:                    tokens.$form-field-placeholder-lh;
+        background:                     transparent;
+        pointer-events:                 none;
+        transition:                     top tokens.$transition-fast,
+                                        left tokens.$transition-fast,
+                                        color tokens.$transition-fast,
+                                        font-size tokens.$transition-fast,
+                                        padding tokens.$transition-fast,
+                                        background tokens.$transition-fast;
+    }
+}
+
+.form-field__input:focus + .form-field__label,
+.form-field__textarea:focus + .form-field__label,
+.form-field__input:not(:placeholder-shown) + .form-field__label,
+.form-field__textarea:not(:placeholder-shown) + .form-field__label {
+    top:                                0;
+    left:                               12px;
+    transform:                          translateY(-50%);
+    font-size:                          tokens.$form-field-label-size;
+    padding-inline:                     tokens.$form-field-label-padding-x;
+    color:                              tokens.$form-field-label-color;
+    background:                         tokens.$form-field-bg-color;
+}

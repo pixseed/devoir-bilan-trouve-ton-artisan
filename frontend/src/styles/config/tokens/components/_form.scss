@@ -1,0 +1,41 @@
+/* _form.scss */
+
+@use '../spacing';
+@use '../colors';
+@use '../border';
+@use '../radius';
+@use '../font';
+
+// ================================================================================================
+// FORM TOKENS COMPONENT
+// ================================================================================================
+
+// FORM
+// ------------------------------------------------------------------------------------------------
+$form-gap:                              spacing.$gap-16;
+
+// FORM FIELD
+// ------------------------------------------------------------------------------------------------
+$form-field-gap:                        spacing.$gap-16;
+$form-field-bg-color:                   colors.$color-bg-surface-emphasis;
+
+// Spacing
+$form-field-padding-x:                  spacing.$sp-16;
+$form-field-padding-y:                  spacing.$sp-12;
+
+// Border
+$form-field-border-size:                border.$border-thin;
+$form-field-border-color:               colors.$color-border-default;
+$form-field-border-radius:              radius.$radius-sm;
+
+// Border + Focus
+$form-field-border-color-active:        colors.$color-border-emphasis-primary;
+
+// Placeholder
+$form-field-placeholder-color:          colors.$color-text-placeholder;
+$form-field-placeholder-lh:             font.$lh-label;
+
+// Label
+$form-field-label-color:                colors.$color-text-emphasis-primary;
+$form-field-label-size:                 font.$label-size-sm;
+$form-field-label-padding-x:            spacing.$sp-4;

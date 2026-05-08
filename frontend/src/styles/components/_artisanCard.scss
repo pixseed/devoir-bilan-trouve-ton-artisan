@@ -68,13 +68,13 @@ dans le but d'adapter le variant affiché (UI) en fonction de la taille du viewp
 	META
 ===================================================== */
 
-.artisan-meta {
-    &__specialty,
-    &__localisation {
-        line-height:                    1;
+.artisan-card__body-meta {
+    &-specialty,
+    &-localisation {
+        line-height:                    tokens.$lh-100;
     }
 
-    &__specialty {
+    &-specialty {
         font-weight:                    700;
     }
 }
@@ -113,11 +113,6 @@ dans le but d'adapter le variant affiché (UI) en fonction de la taille du viewp
 
     .rating {
         justify-content: left;
-    }
-
-    .rating__star {
-        height: tokens.$card-rating-star-size-md;
-        width: auto;
     }
 
     .artisan-card__divider {
@@ -164,7 +159,6 @@ dans le but d'adapter le variant affiché (UI) en fonction de la taille du viewp
 
     .rating__star {
         height: tokens.$card-rating-star-size-sm;
-        width: auto;
     }
 
     .artisan-card__divider {

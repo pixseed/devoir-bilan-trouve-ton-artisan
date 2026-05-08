@@ -1,0 +1,39 @@
+/* _artisanDetails.scss */
+
+@use '../config/tokens';
+@use '../config/tools';
+
+.artisan-details {
+    &__header-content {
+        @include                        tools.flex-column;
+        @include                        tools.stack(sm);
+    }
+
+    &__header-media {
+        overflow:                       hidden;
+        border-radius:                  tokens.$artisan-details-media-border-radius;
+        flex-shrink:                    0;
+        width:                          100%;
+        height:                         auto;
+        aspect-ratio:                   16/9;
+    }
+
+    &__header-image {
+        width:                          100%;
+        height:                         100%;
+        object-fit:                     cover;
+        background-color:               tokens.$artisan-details-media-bg-color;
+    }
+
+    /* =====================================================
+        META
+    ===================================================== */
+    &__header-submeta-specialty,
+    &__header-submeta-localisation {
+        line-height:                    tokens.$artisan-details-submeta-lh;
+        font-size:                      tokens.$artisan-details-submeta-size;
+    }
+    &__header-submeta-specialty {
+        font-weight:                    700;
+    }
+}

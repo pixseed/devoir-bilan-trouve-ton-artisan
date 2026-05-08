@@ -30,7 +30,7 @@ export default function ArtisanCard({
             <img src={image} alt={name} className="artisan-card__image" />
           </div>
           <div className="artisan-card__header-meta">
-            <h3 className="heading-md artisan-meta__name">{name}</h3>
+            <h3 className="heading-md artisan-card__header-meta-name">{name}</h3>
             <Rating value={rating} />
           </div>
         </div>
@@ -42,8 +42,8 @@ export default function ArtisanCard({
         =================================================================== */}
         <div className="artisan-card__body">
           <div className="artisan-card__body-meta">
-            <p className="artisan-meta__specialty">{specialty}</p>
-            <p className="artisan-meta__localisation">{city}</p>
+            <p className="artisan-card__body-meta-specialty">{specialty}</p>
+            <p className="artisan-card__body-meta-localisation">{city}</p>
           </div>
           <Button
             to={`/artisan/${id}`}
