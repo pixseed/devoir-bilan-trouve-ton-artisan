@@ -38,10 +38,6 @@ dans le but d'adapter le variant affiché (UI) en fonction de la taille du viewp
         width:                          100%;
     }
 
-    &__divider {
-        @include                        tools.divider;
-    }
-
     &__body {
         @include                        tools.flex-between;
     }
@@ -84,7 +80,7 @@ dans le but d'adapter le variant affiché (UI) en fonction de la taille du viewp
 ===================================================== */
 
 .skeleton--button {
-    width:                          144px;
+    width:                              144px;
 }
 
 /* =====================================================
@@ -92,88 +88,84 @@ dans le but d'adapter le variant affiché (UI) en fonction de la taille du viewp
 ===================================================== */
 
 .artisan-card--horizontal {
-    padding: tokens.$card-spacing;
-    min-width: 392px;
+    padding:                            tokens.$card-spacing;
+    min-width:                          392px;
 
     .artisan-card__media {
-        width: tokens.$card-media-size;
-        height: tokens.$card-media-size;
-        border-radius: tokens.$card-media-radius;
-        flex-shrink: 0;
+        width:                          tokens.$card-media-size;
+        height:                         tokens.$card-media-size;
+        border-radius:                  tokens.$card-media-radius;
+        flex-shrink:                    0;
     }
 
     .artisan-card__header {
-        @include tools.flex-row;
-        text-align: left;
+        @include                        tools.flex-row;
+        text-align:                     left;
     }
 
     .artisan-card__header-meta {
-        padding-inline: 0;
+        padding-inline:                 0;
     }
 
     .rating {
-        justify-content: left;
-    }
-
-    .artisan-card__divider {
-        margin-inline: 0;
+        justify-content:                left;
     }
 
     .artisan-card__body {
-        flex-direction: row;
-        align-items: flex-end;
-        padding-inline: 0;
+        flex-direction:                 row;
+        align-items:                    flex-end;
+        padding-inline:                 0;
     }
 
     .artisan-card__body-meta {
-        @include tools.flex-column;
-        text-align: left;
+        @include                        tools.flex-column;
+        text-align:                     left;
     }
 }
 
 .artisan-card--vertical {
-    padding: 0;
-    padding-bottom: tokens.$card-spacing;
-    min-width: 216px;
+    padding:                            0;
+    padding-bottom:                     tokens.$card-spacing;
+    min-width:                          216px;
 
     .artisan-card__media {
-        width: 100%;
-        height: auto;
-        aspect-ratio: 16/9;
-        border-radius: 0;
+        width:                          100%;
+        height:                         auto;
+        aspect-ratio:                   16/9;
+        border-radius:                  0;
     }
 
     .artisan-card__header {
-        @include tools.flex(flex, center, center, column);
-        text-align: center;
+        @include                        tools.flex(flex, center, center, column);
+        text-align:                     center;
     }
 
     .artisan-card__header-meta {
-        padding-inline: tokens.$card-spacing;
-        align-items: center;
+        padding-inline:                 tokens.$card-spacing;
+        align-items:                    center;
     }
 
     .rating {
-        justify-content: center;
+        justify-content:                center;
     }
 
     .rating__star {
-        height: tokens.$card-rating-star-size-sm;
+        height:                         tokens.$card-rating-star-size-sm;
     }
 
-    .artisan-card__divider {
-        margin-inline: tokens.$card-spacing;
+    .divider {
+        margin-inline:                  tokens.$card-spacing;
     }
 
     .artisan-card__body {
-        flex-direction: column;
-        align-items: center;
-        padding-inline: tokens.$card-spacing;
-        gap: tokens.$card-body-gap;
+        flex-direction:                 column;
+        align-items:                    center;
+        padding-inline:                 tokens.$card-spacing;
+        gap:                            tokens.$card-body-gap;
     }
 
     .artisan-card__body-meta {
-        @include tools.flex-column-center;
-        text-align: center;
+        @include                        tools.flex-column-center;
+        text-align:                     center;
     }
 }

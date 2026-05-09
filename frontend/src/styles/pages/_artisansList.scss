@@ -48,6 +48,8 @@
         }
 
         &__controls {
+            background-color:           tokens.$artisans-list-controls-bg-color;
+
             &::before {
                 display:                none;
             }

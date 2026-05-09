@@ -31,16 +31,18 @@
 
 // Layout colonne
 // ================================================================================================
-@mixin layout-col($position) {
-    @media (min-width: tokens.$bp-md) {
-        $gap: tokens.$layout-gap-md;
-        @include _layout-col-logic($position, $gap);
-    }
+@mixin layout-col(
+    $position,
+    $gap-md: tokens.$layout-gap-normal,
+    $gap-desktop: tokens.$layout-gap-spacious
+    ) {
+        @media (min-width: tokens.$bp-md) {
+            @include _layout-col-logic($position, $gap-md);
+        }
 
-    @media (min-width: tokens.$bp-lg) {
-        $gap: tokens.$layout-gap-lg;
-        @include _layout-col-logic($position, $gap);
-    }
+        @media (min-width: tokens.$bp-lg) {
+            @include _layout-col-logic($position, $gap-desktop);
+        }
 }
 
 @mixin _layout-col-logic($position, $gap) {
@@ -98,19 +100,19 @@
     grid-template-columns: $template;
 }
 
-@mixin grid-equal($columns: 1, $gap: 16px) {
+@mixin grid-equal($columns: 1, $gap: tokens.$layout-gap-normal) {
     display: grid;
     grid-template-columns: repeat($columns, 1fr);
     gap: $gap;
 }
 
-@mixin grid-custom($template: 1fr, $gap: 16px) {
+@mixin grid-custom($template: 1fr, $gap: tokens.$layout-gap-normal) {
     display: grid;
     grid-template-columns: $template;
     gap: $gap;
 }
 
-@mixin grid-auto($min: 200px, $gap: 16px) {
+@mixin grid-auto($min: 200px, $gap: tokens.$layout-gap-normal) {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax($min, 1fr));
     gap: $gap;
@@ -149,13 +151,6 @@ $stack-gaps: (
 // ================================================================================================
 // COMPONENTS
 // ================================================================================================
-
-// Divider
-// ================================================================================================
-@mixin divider {
-    height: tokens.$divider-height;
-    background-color: tokens.$divider-color;
-}
 
 // Dropdown
 // ================================================================================================

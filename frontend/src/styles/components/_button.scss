@@ -5,6 +5,7 @@
 .button {
     display:                            inline-flex;
     align-items:                        center;
+    align-self:                         center;
     justify-content:                    center;
     border-radius:                      tokens.$btn-radius;
     min-height:                         tokens.$btn-min-height;

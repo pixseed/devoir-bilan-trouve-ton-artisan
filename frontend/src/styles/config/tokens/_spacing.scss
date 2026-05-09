@@ -52,11 +52,12 @@ $container-padding-x:               $sp-24;
 
 // SECTION
 // ------------------------------------------------------------------------------------------------
-$section-padding-sm:              $sp-24;
-$section-padding-md:              $sp-32;
-$section-padding-lg:              $sp-48;
+$section-padding-sm:                $sp-24;
+$section-padding-md:                $sp-32;
+$section-padding-lg:                $sp-48;
 
 // LAYOUT
 // ------------------------------------------------------------------------------------------------
-$layout-gap-md:                     $sp-16;
-$layout-gap-lg:                     $sp-32;
+$layout-gap-compact:                $sp-8;
+$layout-gap-normal:                 $sp-16;
+$layout-gap-spacious:               $sp-32;

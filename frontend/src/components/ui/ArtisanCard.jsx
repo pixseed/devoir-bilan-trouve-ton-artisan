@@ -7,6 +7,7 @@
 import Button from "./Button";
 import Rating from "./Rating";
 import ArrowIcon from "../../assets/icons/Right_Arrow.svg?react";
+import Divider from "./Divider";
 import clsx from "clsx";
 import { VARIANTS } from "../../constants/variants";
 
@@ -35,7 +36,7 @@ export default function ArtisanCard({
           </div>
         </div>
 
-        <div className="artisan-card__divider"></div>
+        <Divider />
 
         {/* ===============================================================
         Corps de card avec bouton de redirection vers la page de l'artisan

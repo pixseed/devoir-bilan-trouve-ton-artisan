@@ -4,6 +4,7 @@ import FilterItem from "./FilterItem";
 import clsx from "clsx";
 import { VARIANTS } from "../../constants/variants";
 import Alert from "./Alert";
+import Divider from "./Divider";
 
 export default function FilterGroup({
   title,
@@ -16,7 +17,7 @@ export default function FilterGroup({
   return (
     <div className="filter-group">
       <h2 className="filter-group__title heading-xs">{title}</h2>
-      <div className="filter-group__divider"></div>
+      <Divider />
       { error ? (
         <Alert message={error} variant={VARIANTS.ALERT.ERROR} />
       ) :

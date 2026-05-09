@@ -13,8 +13,8 @@
         tokens.$section-padding-md,
         tokens.$section-padding-lg
     );
-}
-
-.section--with-bg {
-    @include mixins.layout-col(middle);
+    
+    &--with-bg {
+        @include mixins.layout-col(middle);
+    }
 }

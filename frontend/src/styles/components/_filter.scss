@@ -57,10 +57,6 @@
             }
         }
     }
-
-    &__divider {
-        @include                        tools.divider;
-    }
 }
 
 @media (min-width: tokens.$bp-md) {

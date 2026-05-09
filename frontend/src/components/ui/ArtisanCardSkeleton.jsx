@@ -2,6 +2,7 @@
 
 import clsx from "clsx";
 import { VARIANTS } from "../../constants/variants";
+import Divider from "./Divider";
 
 export default function ArtisanCardSkeleton({ variant = VARIANTS.CARD.VERTICAL }) {
   return (
@@ -20,7 +21,7 @@ export default function ArtisanCardSkeleton({ variant = VARIANTS.CARD.VERTICAL }
           </div>
         </div>
 
-        <div className="artisan-card__divider"></div>
+        <Divider />
 
         {/* ===============================================================
             Corps de card avec bouton de redirection vers la page de l'artisan
