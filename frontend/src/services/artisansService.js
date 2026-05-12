@@ -26,3 +26,12 @@ export async function getArtisans({ search, category }) {
         image: buildImageUrl(artisan.image)
     }));
 }
+
+export async function getArtisanById(id) {
+    const json = await apiFetch(`${API_URL.ENDPOINTS.ARTISANS}/${id}`);
+    
+    return {
+        ...json.data,
+        image: buildImageUrl(json.data.image),
+    };
+}

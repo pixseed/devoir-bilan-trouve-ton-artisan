@@ -11,13 +11,10 @@ export default function Button({
   icon: Icon,
   iconPosition = "right",
   to,
+  href,
   onClick,
 }) {
-  const className = clsx(
-    "button",
-    `button--${variant}`,
-    `button--${size}`
-  );
+  const className = clsx("button", `button--${variant}`, `button--${size}`);
 
   const content = (
     <>
@@ -27,12 +24,26 @@ export default function Button({
     </>
   );
 
-  // Bouton de navigation
+  // Bouton de navigation interne
   if (to) {
     return (
       <Link to={to} className={className}>
         {content}
       </Link>
+    );
+  }
+
+  // Bouton de redirection externe
+  if (href) {
+    return (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={className}
+      >
+        {content}
+      </a>
     );
   }
 

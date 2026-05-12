@@ -14,8 +14,8 @@ function AppRouter() {
       <Routes>
         <Route path="/" element={<AppLayout />}>
           <Route index element={<Home />} />
+          <Route path="artisans/:id" element={<Artisan_Details />} />
           <Route path="artisans" element={<Artisans_List />} />
-          <Route path="artisan/:id" element={<Artisan_Details />} />
           <Route path="under-construction" element={<Under_Construction />} />
           <Route path="*" element={<Not_Found />} />
         </Route>

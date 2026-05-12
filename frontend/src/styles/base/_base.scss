@@ -1,6 +1,7 @@
 /* _base.scss */
 
 @use '../config/tokens';
+@use '../config/tools';
 
 // ================================================================================================
 // BODY
@@ -130,8 +131,13 @@ h5 {
     height:                             100%;
 }
 
-.skeleton--title {
+.skeleton--title-md {
     height:                             tokens.$skeleton-title-height-md;
+    margin-bottom:                      tokens.$skeleton-gap-sm;
+}
+
+.skeleton--title-lg {
+    height:                             tokens.$skeleton-title-height-lg;
     margin-bottom:                      tokens.$skeleton-gap-sm;
 }
 
@@ -145,6 +151,24 @@ h5 {
 
 .skeleton--text-lg {
     height:                             tokens.$skeleton-text-height-lg;
+}
+
+.skeleton-paragraph {
+    @include                            tools.flex-column;
+    gap:                                tokens.$skeleton-gap-sm;
+} // inclure le nombre de skeleton--text souhaité ou utiliser directement le composant SkeletonParagraph
+
+.skeleton--input,
+.skeleton--textarea {
+    width:                              100%;
+}
+
+.skeleton--input {
+    height:                             51px;
+}
+
+.skeleton--textarea {
+    height:                             153px;
 }
 
 .skeleton--button {

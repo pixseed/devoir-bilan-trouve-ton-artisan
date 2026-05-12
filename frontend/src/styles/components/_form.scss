@@ -4,7 +4,7 @@
 @use '../config/tools';
 
 .contact-form {
-    @include                            tools.flex-column;
+    @include                            tools.flex-column-center;
     gap:                                tokens.$form-gap;
 }
 
@@ -12,6 +12,7 @@
     position:                           relative;
     @include                            tools.flex-column;
     gap:                                tokens.$form-field-gap;
+    width:                              100%;
 
     &__input,
     &__textarea {
