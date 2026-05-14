@@ -57,11 +57,22 @@ $btn-border-size:                       border.$border-thin;
 $btn-primary-bg:                        colors.$color-bg-primary;
 $btn-primary-text:                      colors.$color-text-inverse;
 
+// Primary:hover
+$btn-primary-bg-hover:                  colors.$color-bg-secondary;
+
 // Secondary
 $btn-secondary-bg:                      colors.$color-bg-surface;
 $btn-secondary-text:                    colors.$color-text-emphasis-primary;
 $btn-secondary-border:                  colors.$color-border-emphasis-primary;
 
+// Secondary:hover
+$btn-secondary-text-hover:              colors.$color-text-emphasis-secondary;
+$btn-secondary-border-hover:            colors.$color-border-emphasis-secondary;
+
 // Tertiary
 $btn-tertiary-text:                     colors.$color-text-emphasis-primary;
 $btn-tertiary-border:                   colors.$color-border-emphasis-primary;
+
+// Tertiary:hover
+$btn-tertiary-text-hover:               colors.$color-text-emphasis-secondary;
+$btn-tertiary-border-hover:             colors.$color-border-emphasis-secondary;

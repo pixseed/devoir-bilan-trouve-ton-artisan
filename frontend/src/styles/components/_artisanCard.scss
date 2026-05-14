@@ -36,6 +36,7 @@ dans le but d'adapter le variant affiché (UI) en fonction de la taille du viewp
         @include tools.flex-column;
         flex:                           1;
         width:                          100%;
+        gap:                            tokens.$card-header-meta-gap;
     }
 
     &__body {

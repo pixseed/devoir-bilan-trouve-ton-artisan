@@ -9,6 +9,7 @@
     justify-content:                    center;
     border-radius:                      tokens.$btn-radius;
     min-height:                         tokens.$btn-min-height;
+    transition:                         tokens.$motion-button;
 
     &__icon {
         width:                          tokens.$btn-icon-size-md;
@@ -28,17 +29,38 @@
     &--primary {
         background:                     tokens.$btn-primary-bg;
         color:                          tokens.$btn-primary-text;
+
+        &:hover {
+            background:                 tokens.$btn-primary-bg-hover;
+        }
     }
 
     &--secondary {
         background:                     tokens.$btn-secondary-bg;
         color:                          tokens.$btn-secondary-text;
         border:                         tokens.$btn-border-size solid tokens.$btn-secondary-border;
+
+        &:hover {
+            color:                      tokens.$btn-secondary-text-hover;
+            border-color:               tokens.$btn-secondary-border-hover;
+        }
     }
 
     &--tertiary {
         color:                          tokens.$btn-tertiary-text;
         border-radius:                  0;
+        border:                         tokens.$btn-border-size solid transparent;
+
+        &:hover {
+            color:                      tokens.$btn-tertiary-text-hover;
+            border-bottom-color:        tokens.$btn-tertiary-border-hover;
+        }
+    }
+
+    &--primary:hover,
+    &--secondary:hover,
+    &--tertiary:hover {
+        transform:                      scale(1.02);
     }
 
     /* =====================================================
