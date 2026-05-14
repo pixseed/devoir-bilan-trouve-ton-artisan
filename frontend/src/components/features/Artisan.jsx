@@ -85,7 +85,7 @@ function Artisan({ artisan }) {
           <h3 className="heading-lg heading-lg__accent heading-lg__accent--tertiary">
             Contact
           </h3>
-          <ContactForm />
+          <ContactForm artisanId={artisan.id}/>
         </div>
       </div>
     </>

@@ -1921,7 +1921,7 @@
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n    \"name\": \"Cédric\",\r\n    \"email\": \"\",\r\n    \"object\": \"\",\r\n    \"message\": \"Bonjour, je suis intéressé par vos services et souhaite en savoir davantage sur les offres que vous proposez.\"\r\n}",
+                  "raw": "{\r\n    \"name\": \"C\",\r\n    \"email\": \"@test\",\r\n    \"object\": \"\",\r\n    \"message\": \"Bonjour, je suis intéressé par vos services et souhaite en savoir davantage sur les offres que vous proposez.\"\r\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -2020,7 +2020,7 @@
                   "body": "{\n    \"success\": false,\n    \"error\": {\n        \"message\": \"Champs invalides : test. Seuls les champs suivants sont autorisés : name, email, object, message.\",\n        \"code\": \"VALIDATION_ERROR\"\n    }\n}"
                 },
                 {
-                  "name": "Bad Request (400) - Required fields",
+                  "name": "Bad Request (400)",
                   "originalRequest": {
                     "method": "POST",
                     "header": [],
@@ -2088,7 +2088,7 @@
                     }
                   ],
                   "cookie": [],
-                  "body": "{\n    \"success\": false,\n    \"error\": {\n        \"message\": \"Tous les champs (name, email, object, message) sont requis.\",\n        \"code\": \"VALIDATION_ERROR\"\n    }\n}"
+                  "body": "{\n    \"success\": false,\n    \"error\": {\n        \"message\": \"Certains champs sont invalides.\",\n        \"code\": \"VALIDATION_ERROR\",\n        \"fields\": {\n            \"name\": \"Le nom doit contenir au moins 2 caractères.\",\n            \"email\": \"Format d'email invalide.\",\n            \"object\": \"L'objet est requis.\"\n        }\n    }\n}"
                 }
               ]
             }

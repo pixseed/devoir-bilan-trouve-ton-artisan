@@ -10,13 +10,22 @@ export function useArtisan(id) {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        if (!id) return;
+        if (!id) {
+            // Évite que setLoading reste bloqué
+            setLoading(false);
+            return;
+        }
 
         getArtisanById(id)
             .then(setArtisan)
             .catch((err) => {
                 console.error(err);
-                setError(APP_MESSAGES.ERROR.FETCH.ARTISAN);
+                switch (err.code) {
+                    case "ARTISAN_NOT_FOUND":
+                        setError("Cet artisan n'existe pas.");
+                        break;
+                    default: setError(APP_MESSAGES.ERROR.FETCH.ARTISAN);
+                }
             })
             .finally(() => {
                 setLoading(false);

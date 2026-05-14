@@ -1,13 +1,13 @@
-/* categoryService.js */
+/* artisansService.js */
 
 import { apiFetch } from "./apiClient";
 import { API_URL } from "../config/api";
 import { buildImageUrl } from "../utils/url";
 
 export async function getTopArtisans() {
-    const json = await apiFetch(`${API_URL.ENDPOINTS.TOP_ARTISANS}`);
+    const res = await apiFetch(`${API_URL.ENDPOINTS.TOP_ARTISANS}`);
     
-    return json.data.map((artisan) => ({
+    return res.data.map((artisan) => ({
         ...artisan,
         image: buildImageUrl(artisan.image),
     }));
@@ -19,19 +19,31 @@ export async function getArtisans({ search, category }) {
     if (search) params.append("search", search);
     if (category) params.append("category", category);
 
-    const json = await apiFetch(`${API_URL.ENDPOINTS.ARTISANS}?${params.toString()}`)
+    const res = await apiFetch(`${API_URL.ENDPOINTS.ARTISANS}?${params.toString()}`)
 
-    return json.data.map((artisan) => ({
+    return res.data.map((artisan) => ({
         ...artisan,
         image: buildImageUrl(artisan.image)
     }));
 }
 
 export async function getArtisanById(id) {
-    const json = await apiFetch(`${API_URL.ENDPOINTS.ARTISANS}/${id}`);
+    const res = await apiFetch(`${API_URL.ENDPOINTS.ARTISANS}/${id}`);
     
     return {
-        ...json.data,
-        image: buildImageUrl(json.data.image),
+        ...res.data,
+        image: buildImageUrl(res.data.image),
     };
+}
+
+export async function sendArtisanContactMessage(id, payload) {
+    const res = await apiFetch(`${API_URL.ENDPOINTS.ARTISANS}/${id}/contact`,{
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+    });
+
+    return res;
 }

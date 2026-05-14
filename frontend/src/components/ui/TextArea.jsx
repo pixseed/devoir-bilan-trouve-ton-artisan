@@ -1,9 +1,12 @@
 /* TextArea.jsx */
 
+import clsx from "clsx";
+
 export default function TextArea({
   label,
   value,
   onChange,
+  error,
   name,
   rows = 5,
 }) {
@@ -15,10 +18,21 @@ export default function TextArea({
         rows={rows}
         placeholder=" "
         value={value}
+        aria-invalid={!!error}
+        aria-describedby={error ? `${name}-error` : undefined}
         onChange={(e) => onChange?.(e.target.value)}
-        className="form-field__textarea"
+        className={clsx(
+          "form-field__textarea",
+          error && "form-field__textarea--error"
+        )}
       />
-      <label htmlFor={name} className="form-field__label">
+      <label
+        htmlFor={name}
+        className={clsx(
+          "form-field__label",
+          error && "form-field__label--error"
+        )}
+      >
         {label}
       </label>
     </div>

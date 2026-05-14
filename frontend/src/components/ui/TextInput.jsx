@@ -1,9 +1,12 @@
 /* TextInput.jsx */
 
+import clsx from "clsx";
+
 export default function TextInput({
   label,
   type = "text",
   value,
+  error,
   onChange,
   name,
 }) {
@@ -15,10 +18,21 @@ export default function TextInput({
         type="text"
         placeholder=" "
         value={value}
+        aria-invalid={!!error}
+        aria-describedby={error ? `${name}-error` : undefined}
         onChange={(e) => onChange?.(e.target.value)}
-        className="form-field__input"
+        className={clsx(
+          "form-field__input",
+          error && "form-field__input--error"
+        )}
       />
-      <label htmlFor={name} className="form-field__label">
+      <label
+        htmlFor={name}
+        className={clsx(
+          "form-field__label",
+          error && "form-field__label--error"
+        )}
+      >
         {label}
       </label>
     </div>

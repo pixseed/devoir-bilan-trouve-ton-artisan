@@ -8,6 +8,7 @@ export const APP_MESSAGES = {
             ARTISANS: "Erreur lors du chargement des artisans. Veuillez réessayer ultérieurement.",
             ARTISAN: "Erreur lors du chargement de l'artisan. Veuillez réessayer ultérieurement.",
         },
+        SERVER: "Une erreur serveur est survenue. Veuillez réessayer ultérieurement.",
         UNKNOWN: "Une erreur inattendue est survenue. Veuillez réessayer ultérieurement.",
     },
 };

@@ -99,7 +99,12 @@ export const getArtisans = async (req, res) => {
 
     } catch (error) {
         console.error('💥 Error fetching artisans :', error);
-        return errorResponse(res, 'Erreur serveur lors de la récupération des artisans.', 500, "INTERNAL_ERROR");
+        return errorResponse(
+            res,
+            'Erreur serveur lors de la récupération des artisans.',
+            500,
+            "INTERNAL_ERROR"
+        );
     }
 };
 
@@ -122,11 +127,20 @@ export const getTopArtisans = async (req, res) => {
             limit: 3
         });
 
-        return successResponse(res, artisans.map(serializeTopArtisans), 'Top artisans récupérés avec succès.');
+        return successResponse(
+            res,
+            artisans.map(serializeTopArtisans),
+            'Top artisans récupérés avec succès.'
+        );
 
     } catch (error) {
         console.error('💥 Error fetching top artisans :', error);
-        return errorResponse(res, 'Erreur serveur lors de la récupération des artisans.', 500, "INTERNAL_ERROR");
+        return errorResponse(
+            res,
+            'Erreur serveur lors de la récupération des artisans.',
+            500,
+            "INTERNAL_ERROR"
+        );
     }
 };
 
@@ -152,11 +166,20 @@ export const getArtisanById = async (req, res) => {
             return errorResponse(res, 'Artisan non trouvé.', 404, "ARTISAN_NOT_FOUND");
         }
 
-        return successResponse(res, serializeArtisanDetail(artisan), 'Artisan récupéré avec succès.');
+        return successResponse(
+            res,
+            serializeArtisanDetail(artisan),
+            'Artisan récupéré avec succès.'
+        );
 
     } catch (error) {
         console.error('💥 Error fetching artisan by ID :', error);
-        return errorResponse(res, 'Erreur serveur lors de la récupération de l\'artisan.', 500, "INTERNAL_ERROR");
+        return errorResponse(
+            res,
+            'Erreur serveur lors de la récupération de l\'artisan.',
+            500,
+            "INTERNAL_ERROR"
+        );
     }
 };
 
@@ -171,20 +194,63 @@ export const contactArtisan = async (req, res) => {
     const allowedFields = ['name', 'email', 'object', 'message'];
     const receivedFields = Object.keys(req.body);
     const invalidFields = receivedFields.filter(field => !allowedFields.includes(field));
+    
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const fieldsError = {};
+
+    const artisan = await Artisan.findByPk(id);
 
     try {
-        if (invalidFields.length > 0) {
-            return errorResponse(res, `Champs invalides : ${invalidFields.join(', ')}. Seuls les champs suivants sont autorisés : ${allowedFields.join(', ')}.`, 400, "VALIDATION_ERROR");
-        }
-        
-        if (!name || !email || !object || !message) {
-            return errorResponse(res, 'Tous les champs (name, email, object, message) sont requis.', 400, "VALIDATION_ERROR");
-        }
-
-        const artisan = await Artisan.findByPk(id);
-
         if (!artisan) {
             return errorResponse(res, 'Artisan non trouvé.', 404, "ARTISAN_NOT_FOUND");
+        }
+
+        // Vérifie les champs non autorisés
+        if (invalidFields.length > 0) {
+            return errorResponse(
+                res,
+                `Champs invalides : ${invalidFields.join(', ')}. Seuls les champs suivants sont autorisés : ${allowedFields.join(', ')}.`,
+                400,
+                "VALIDATION_ERROR");
+        }
+        
+        // Validation nom
+        if (!name?.trim()) {
+            fieldsError.name = "Le nom est requis.";
+        } else if (name.trim().length <2) {
+            fieldsError.name = "Le nom doit contenir au moins 2 caractères.";
+        }
+        
+        // Validation email
+        if (!email?.trim()) {
+            fieldsError.email = "L'email est requis.";
+        } else if (!emailRegex.test(email)) {
+            fieldsError.email = "Format d'email invalide.";
+        }
+
+        // Validation objet
+        if (!object?.trim()) {
+            fieldsError.object = "L'objet est requis.";
+        } else if (object.trim().length <3) {
+            fieldsError.object = "L'objet doit contenir au moins 3 caractères";
+        }
+
+        // Validation message
+        if (!message?.trim()) {
+            fieldsError.message = "Le message est requis.";
+        } else if (message.trim().length <10) {
+            fieldsError.message = "Le message doit contenir au moins 10 caractères";
+        }
+
+        // Si erreur de validation
+        if (Object.keys(fieldsError).length > 0) {
+            return errorResponse(
+                res,
+                "Certains champs sont invalides.",
+                400,
+                "VALIDATION_ERROR",
+                fieldsError
+            );
         }
 
         // Simulation de l'envoi d'un email
@@ -197,10 +263,18 @@ export const contactArtisan = async (req, res) => {
             message
         });
 
-        return successResponse(res, { name, email, object, message }, `Votre message a été envoyé à ${artisan.name} avec succès !`);
+        return successResponse(
+            res,
+            { name, email, object, message },
+            `Votre message a été envoyé à ${artisan.name} avec succès !`
+        );
 
     } catch (error) {
         console.error('💥 Error contacting artisan :', error);
-        return errorResponse(res, 'Erreur serveur lors de l\'envoie du message.', 500, "INTERNAL_ERROR");
+        return errorResponse(
+            res,
+            'Erreur serveur lors de l\'envoie du message.',
+            500,
+            "INTERNAL_ERROR");
     }
 };

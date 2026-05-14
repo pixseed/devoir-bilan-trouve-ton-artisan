@@ -47,7 +47,7 @@ export default function ArtisanCard({
             <p className="artisan-card__body-meta-localisation">{city}</p>
           </div>
           <Button
-            to={`/artisan/${id}`}
+            to={`/artisans/${id}`}
             variant={VARIANTS.BUTTON.SECONDARY}
             size={VARIANTS.SIZE.MD}
             icon={ArrowIcon}

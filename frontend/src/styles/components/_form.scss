@@ -6,6 +6,13 @@
 .contact-form {
     @include                            tools.flex-column-center;
     gap:                                tokens.$form-gap;
+
+    &__error,
+    &__success {
+        @include tools.flex-column;
+        width: 100%;
+        gap: 10px;
+    }
 }
 
 .form-field {
@@ -42,8 +49,28 @@
                                         padding tokens.$transition-fast,
                                         background tokens.$transition-fast;
     }
+
+    /* =====================================================
+        ERRORS
+    ===================================================== */
+
+    &__input--error,
+    &__textarea--error,
+    &__label--error {
+        color: tokens.$form-field-color-error;
+    }
+
+    &__input--error,
+    &__textarea--error {
+        color: tokens.$form-field-color-error;
+        background-color: tokens.$form-field-bg-color-error;
+        border-color: tokens.$form-field-border-color-error;
+    }
 }
 
+/* =====================================================
+    FOCUS + LABEL DYNAMIQUE
+===================================================== */
 .form-field__input:focus + .form-field__label,
 .form-field__textarea:focus + .form-field__label,
 .form-field__input:not(:placeholder-shown) + .form-field__label,
@@ -55,4 +82,27 @@
     padding-inline:                     tokens.$form-field-label-padding-x;
     color:                              tokens.$form-field-label-color;
     background:                         tokens.$form-field-bg-color;
+    border-radius:                      tokens.$form-field-label-border-radius-focus;
+    border:                             tokens.$border-thin solid tokens.$form-field-label-border-color-focus
+}
+
+/* =====================================================
+    FOCUS + LABEL DYNAMIQUE +  ERRORS
+===================================================== */
+.form-field__input:focus + .form-field__label--error,
+.form-field__textarea:focus + .form-field__label--error,
+.form-field__input:not(:placeholder-shown) + .form-field__label--error,
+.form-field__textarea:not(:placeholder-shown) + .form-field__label--error {
+        color: tokens.$form-field-color-error;
+        background-color: tokens.$form-field-bg-color-error;
+        border-color: tokens.$form-field-border-color-error;
+}
+
+.form-field__input--error:focus,
+.form-field__textarea--error:focus,
+.form-field__input--error:not(:placeholder-shown),
+.form-field__textarea--error:not(:placeholder-shown){
+        color: tokens.$form-field-color-error;
+        background-color: tokens.$form-field-bg-color-error;
+        border-color: tokens.$form-field-border-color-error;
 }

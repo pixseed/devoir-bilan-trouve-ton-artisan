@@ -38,12 +38,19 @@ export const successResponse = (res, data, message, statusCode = 200) => {
 // ================================================================================================
 // ERROR RESPONSE
 // ================================================================================================
-export const errorResponse = (res, message, statusCode = 500, code = 'INTERNAL_ERROR') => {
+export const errorResponse = (
+    res,
+    message,
+    statusCode = 500,
+    code = 'INTERNAL_ERROR',
+    fields = null
+) => {
     return res.status(statusCode).json({
         success: false,
         error: {
             message,
-            code
+            code,
+            ...(fields && { fields }),
         }
     });
 }

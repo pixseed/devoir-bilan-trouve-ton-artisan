@@ -1,67 +1,77 @@
 /* ContactForm.jsx */
 
-import { useState } from "react";
 import TextInput from "../ui/TextInput";
 import TextArea from "../ui/TextArea";
 import Button from "../ui/Button";
+import { useContactForm } from "../../hooks/useContactForm";
 import { VARIANTS } from "../../constants/variants";
 
-export default function ContactForm() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
+export default function ContactForm({ artisanId }) {
+  const {
+    formData,
+    loading,
+    error,
+    success,
+    fieldErrors,
+    handleChange,
+    handleSubmit,
+  } = useContactForm(artisanId)
 
-  const handleChange = (field, value) => {
-    setFormData((prev) => ({
-      ...prev,
-      [field]: value,
-    }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    console.log(formData);
-  };
+  const errorList = Object.values(fieldErrors).filter(Boolean);
 
   return (
-    <form className="contact-form">
+    <form className="contact-form" onSubmit={handleSubmit}>
       <TextInput
-        label={"Nom"}
+        label={"Nom*"}
         name={"name"}
-        placeholder={"Votre nom"}
+        placeholder=" "
         value={formData.name}
+        error={fieldErrors.name}
         onChange={(value) => handleChange("name", value)}
       />
       <TextInput
-        label={"Email"}
+        label={"Email*"}
         name={"email"}
-        placeholder={"Email"}
+        placeholder=" "
         value={formData.email}
+        error={fieldErrors.email}
         onChange={(value) => handleChange("email", value)}
       />
       <TextInput
-        label={"Objet"}
-        name={"subject"}
-        placeholder={"Objet"}
-        value={formData.subject}
-        onChange={(value) => handleChange("subject", value)}
+        label={"Objet*"}
+        name={"object"}
+        placeholder=" "
+        value={formData.object}
+        error={fieldErrors.object}
+        onChange={(value) => handleChange("object", value)}
       />
       <TextArea
-        label={"Message"}
+        label={"Message*"}
         name={"message"}
-        placeholder={"Message"}
+        placeholder=" "
         value={formData.message}
+        error={fieldErrors.message}
         onChange={(value) => handleChange("message", value)}
       />
+      {error && errorList.length > 0 && (
+        <div className="contact-form__error alert alert--error">
+          <p>{error}</p>
+            <ul className="contact-form__error-list">
+              {errorList.map((message) => (
+                <li key={message}>{message}</li>
+              ))}
+            </ul>
+        </div>
+      )}
+      {success && (
+        <p className="contact-form__success alert alert--success">{success}</p>
+      )}
       <Button
         variant={VARIANTS.BUTTON.PRIMARY}
         size={VARIANTS.SIZE.MD}
+        disabled={loading}
       >
-        Envoyer
+        {loading ? "Envoi..." : "Envoyer"}
       </Button>
     </form>
   );

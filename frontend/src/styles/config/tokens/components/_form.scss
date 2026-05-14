@@ -38,4 +38,12 @@ $form-field-placeholder-lh:             font.$lh-label;
 // Label
 $form-field-label-color:                colors.$color-text-emphasis-primary;
 $form-field-label-size:                 font.$label-size-sm;
-$form-field-label-padding-x:            spacing.$sp-4;
+$form-field-label-padding-x:            spacing.$sp-8;
+$form-field-label-border-color-focus:   colors.$color-border-emphasis-primary;
+$form-field-label-border-radius-focus:  radius.$radius-sm;
+
+// FORM ERRORS
+// ------------------------------------------------------------------------------------------------
+$form-field-color-error:                colors.$color-text-danger;
+$form-field-bg-color-error:             colors.$color-bg-danger;
+$form-field-border-color-error:         colors.$color-border-danger;
