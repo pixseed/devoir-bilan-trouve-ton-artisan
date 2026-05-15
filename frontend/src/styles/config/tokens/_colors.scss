@@ -68,6 +68,7 @@ $color-bg-secondary:                    $color-primary-900;
 $color-bg-danger:                       color.scale($color-accent-primary, $lightness: 95%);
 $color-bg-success:                      color.scale($color-accent-secondary, $lightness: 95%);
 $color-bg-info:                         color.scale($color-primary-500, $lightness: 95%);
+$color-bg-overlay:                      color.change($color-neutral-400, $alpha: 95%);
 $color-bg-inverse:                      $color-black;
 
 // BORDER

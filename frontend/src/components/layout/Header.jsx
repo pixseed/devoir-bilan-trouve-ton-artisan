@@ -18,7 +18,7 @@
  * Dépendances :
  * - useHeaderPanels (state global des panels)
  * - useClickOutside (fermeture externe)
- * - useEscapeOutside (keyboard)
+ * - useEscapeKey (keyboard)
  * ================================================================================================
  */
 
@@ -37,7 +37,7 @@ import { useHeaderPanels } from "../../hooks/useHeaderPanels";
 import { useCategories } from "../../hooks/useCategories";
 import { useCloseSearchOnBreakpoint } from "../../hooks/useCloseSearchOnBreakpoint";
 import { useClickOutside } from "../../hooks/useClickOutside";
-import { useEscapeOutside } from "../../hooks/useEscapeOutside";
+import { useEscapeKey } from "../../hooks/useEscapeKey";
 
 import { VARIANTS } from "../../constants/variants";
 
@@ -54,13 +54,13 @@ export default function Header() {
   // Réf. pour détecter les clics en dehors du menu
   const menuRef = useRef(null);
 
-  // Ferme les panels si cli extérieur
+  // Ferme les panels si clic extérieur
   useClickOutside(menuRef, () => {
     if (activePanel) closePanel();
   });
 
   // Permet de fermer via la touche Escape (keyboard access)
-  useEscapeOutside(activePanel, closePanel);
+  useEscapeKey(activePanel, closePanel);
 
   // État des panels
   const isMenuOpen = activePanel === "menu";

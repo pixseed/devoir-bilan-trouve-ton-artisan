@@ -1,0 +1,59 @@
+/* _modal.scss */
+
+@use '../config/tokens';
+@use '../config/tools';
+
+.app-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    margin-top: 0;
+
+    &__overlay {
+        position: absolute;
+        inset: 0;
+        background: tokens.$modal-bg-color-overlay;
+
+        @include tools.flex-center;
+
+    }
+
+    &__content {
+        width:                              100%;
+        background:                         tokens.$modal-bg-color;
+        border:                             tokens.$modal-border-thickness solid tokens.$modal-border-color;
+        border-radius:                      tokens.$modal-radius;
+        margin:                             tokens.$container-padding-x;
+        padding:                            tokens.$modal-padding-y-sm tokens.$modal-padding-x-sm;
+        box-shadow: tokens.$modal-shadow-overlay;
+    }
+
+    &__title {
+        margin-bottom: 16px;
+    }
+
+    &__body {
+        margin-bottom: 24px;
+    }
+
+    &__footer {
+        @include tools.flex-center;
+    }
+}
+
+@media (min-width: tokens.$bp-sm) {
+    .app-modal {
+        &__footer {
+            justify-content: flex-end;
+        }
+    }
+}
+
+@media (min-width: tokens.$bp-md) {
+    .app-modal {
+        &__content {
+            width:                          70%;
+            padding:                        tokens.$modal-padding-y-md tokens.$modal-padding-x-md;
+        }
+    }
+}

@@ -6,13 +6,22 @@ function Not_Found() {
       title="Erreur 404"
       description="Cette page n'existe pas. Elle n'a jamais franchi la ligne d'arrivée."
       media={
-        <img src="/images/ERREUR-404.jpg" alt="Cette page n'existe pas. Elle n'a jamais franchi la ligne d'arrivée."></img>
+        <img
+          src="/images/ERREUR-404.jpg"
+          alt="Cette page n'existe pas. Elle n'a jamais franchi la ligne d'arrivée."
+        ></img>
       }
       copyright="© Région Auvergne-Rhône-Alpes"
-      transcription
+      modalContent={
+        <>
+          <p>
+            Erreur 404 - Cette page n'existe pas. Elle n'a jamais franchi la ligne d'arrivée.
+          </p>
+        </>
+      }
       breadcrumbItems={[
         { label: "Accueil", path: "/" },
-        { label: "Page introuvable"},
+        { label: "Page introuvable" },
       ]}
     />
   );

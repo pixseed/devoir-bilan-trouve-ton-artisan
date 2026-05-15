@@ -5,7 +5,7 @@ import Trigger from "./Trigger";
 import DropdownList from "./DropdownList";
 import ChevronIcon from "../../assets/icons/Down_Chevron.svg?react";
 import { useClickOutside } from "../../hooks/useClickOutside";
-import { useEscapeOutside } from "../../hooks/useEscapeOutside";
+import { useEscapeKey } from "../../hooks/useEscapeKey";
 
 export default function Dropdown({
   options,
@@ -32,7 +32,7 @@ export default function Dropdown({
   // Ferme le dropdown si clic en dehors ou touche Escape
   const dropdownRef = useRef(null);
   useClickOutside(dropdownRef, () => setIsOpen(false));
-  useEscapeOutside(dropdownRef, () => setIsOpen(false));
+  useEscapeKey(dropdownRef, () => setIsOpen(false));
 
   return (
     <div className="dropdown" ref={dropdownRef}>

@@ -1,0 +1,29 @@
+/* _modal.scss */
+
+@use '../colors';
+@use '../spacing';
+@use '../radius';
+@use '../shadow';
+@use '../border';
+
+// ================================================================================================
+// MODAL TOKENS COMPONENT
+// ================================================================================================
+
+$modal-radius:                          radius.$radius-lg;
+$modal-border-thickness:                border.$border-thin;
+$modal-shadow-overlay:                  shadow.$shadow-overlay;
+
+// COLORS
+// ------------------------------------------------------------------------------------------------
+$modal-bg-color-overlay:                colors.$color-bg-overlay;
+$modal-border-color:                    colors.$color-border-emphasis-primary;
+$modal-bg-color:                        colors.$color-bg-surface;
+
+// SPACING
+// ------------------------------------------------------------------------------------------------
+$modal-padding-x-md:                       spacing.$sp-48;
+$modal-padding-y-md:                       spacing.$sp-32;
+
+$modal-padding-x-sm:                       spacing.$sp-32;
+$modal-padding-y-sm:                       spacing.$sp-24;
