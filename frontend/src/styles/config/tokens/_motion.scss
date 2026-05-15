@@ -25,4 +25,8 @@ $transition-fast:                       $duration-fast $easing-standard;
 $motion-fade-slide:                     opacity $transition-base, transform $transition-base;
 $motion-underline:                      opacity $transition-smooth, transform $transition-smooth;
 $motion-icon:                           transform $transition-base;
-$motion-button:                         color $transition-base, background-color $transition-base, border $transition-base, transform $transition-base;
+$motion-button:                         color $transition-base,
+                                        background-color $transition-base,
+                                        border $transition-base,
+                                        transform $transition-base,
+                                        gap $transition-base;

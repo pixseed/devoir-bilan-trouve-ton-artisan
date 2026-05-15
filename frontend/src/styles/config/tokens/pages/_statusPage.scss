@@ -1,0 +1,27 @@
+/* _statusPage.scss */
+
+@use '../spacing';
+@use '../radius';
+
+// ================================================================================================
+// STATUS PAGE TOKENS COMPONENT
+// ================================================================================================
+
+$status-page-gap-sm:                spacing.$gap-32;
+$status-page-gap-md:                spacing.$gap-64;
+$status-page-gap-lg:                spacing.$gap-96;
+
+// CONTENT
+// ------------------------------------------------------------------------------------------------
+$status-page-content-gap-sm:        spacing.$gap-24;
+$status-page-content-gap-md:        spacing.$gap-48;
+$status-page-content-gap-lg:        spacing.$gap-64;
+
+// HEADER
+// ------------------------------------------------------------------------------------------------
+$status-page-header-gap:            spacing.$gap-16;
+
+// MEDIA
+// ------------------------------------------------------------------------------------------------
+$status-page-media-gap:             spacing.$gap-16;
+$status-page-media-radius:          radius.$radius-md;

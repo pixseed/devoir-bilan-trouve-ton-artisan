@@ -1,8 +1,15 @@
+import StatusPage from "../components/features/StatusPage";
+
 function Under_Construction() {
   return (
-    <>
-      <h1>Page en cours de construction</h1>
-    </>
+    <StatusPage
+      title="En cours de construction"
+      description="Cette page sera bientôt disponible."
+      media={
+        <img src="/images/UNDER-CONSTRUCTION.jpg" alt="Cette page est en cours de construction et sera bientôt disponible."></img>
+      }
+      transcription
+    />
   );
 }
 

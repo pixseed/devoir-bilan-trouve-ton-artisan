@@ -8,6 +8,8 @@ export function useBreadcrumb(categories = [], artisan = null) {
 
     const isArtisanList = location.pathname === "/artisans";
     const isArtisanDetails = location.pathname.startsWith("/artisans/");
+    const isUnderConstruction = location.pathname === "/under-construction";
+    const isNotFound = location.pathname === "*";
 
     const selectedCategory = searchParams.get("category");
     const searchQuery = searchParams.get("search");
@@ -67,6 +69,16 @@ export function useBreadcrumb(categories = [], artisan = null) {
         items.push({
             label: artisan.name,
         })
+    }
+
+    // ================================================================================================
+    // PAGE STATUS
+    // ================================================================================================
+
+    if (isUnderConstruction) {
+        items.push({
+            label: "En cours de construction",
+        });
     }
 
     return items;

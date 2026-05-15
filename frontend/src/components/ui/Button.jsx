@@ -2,19 +2,19 @@
 
 import { Link } from "react-router-dom";
 import clsx from "clsx";
-import { VARIANTS } from "../../constants/variants";
 
 export default function Button({
   children,
-  variant = VARIANTS.BUTTON.PRIMARY,
-  size = VARIANTS.SIZE.MD,
+  variant = "primary",
+  size = "md",
   icon: Icon,
   iconPosition = "right",
-  to,
-  href,
+  to = "",
+  href = "",
   onClick,
+  className: customClassName,
 }) {
-  const className = clsx("button", `button--${variant}`, `button--${size}`);
+  const className = clsx("button", `button--${variant}`, `button--${size}`, customClassName);
 
   const content = (
     <>

@@ -1,14 +1,15 @@
 /* _button.scss */
 
 @use '../config/tokens';
+@use '../config/tools';
 
 .button {
     display:                            inline-flex;
     align-items:                        center;
-    align-self:                         center;
     justify-content:                    center;
     border-radius:                      tokens.$btn-radius;
     min-height:                         tokens.$btn-min-height;
+    font-size:                          tokens.$btn-font-size-md;
     transition:                         tokens.$motion-button;
 
     &__icon {
@@ -23,7 +24,46 @@
     }
 
     /* =====================================================
-        VARIANTS (COLORS)
+        VARIANTS (SIZE)
+    ===================================================== */
+
+    &--lg {
+        padding:                        tokens.$btn-padding-y-lg tokens.$btn-padding-x-lg;
+        @include                        tools.button-gap(tokens.$btn-gap-lg);
+
+        .button__icon {
+            width:                      tokens.$btn-icon-size-lg;
+            height:                     tokens.$btn-icon-size-lg;
+        }
+    }
+
+    &--md {
+        padding:                        tokens.$btn-padding-y-md tokens.$btn-padding-x-md;
+        @include                        tools.button-gap(tokens.$btn-gap-md);
+    }
+
+    &--sm {
+        padding:                        tokens.$btn-padding-y-sm tokens.$btn-padding-x-sm;
+        @include                        tools.button-gap(tokens.$btn-gap-md);
+
+        .button__icon {
+            width:                      tokens.$btn-icon-size-md;
+            height:                     tokens.$btn-icon-size-md;
+        }
+    }
+
+    &--xs {
+        padding:                        tokens.$btn-padding-y-xs tokens.$btn-padding-x-xs;
+        @include                        tools.button-gap(tokens.$btn-gap-md);
+
+        .button__icon {
+            width:                      tokens.$btn-icon-size-md;
+            height:                     tokens.$btn-icon-size-md;
+        }
+    }
+
+    /* =====================================================
+        VARIANTS
     ===================================================== */
 
     &--primary {
@@ -54,44 +94,12 @@
         &:hover {
             color:                      tokens.$btn-tertiary-text-hover;
             border-bottom-color:        tokens.$btn-tertiary-border-hover;
+            gap:                        calc(var(--btn-gap) * 1.75);
         }
     }
 
     &--primary:hover,
-    &--secondary:hover,
-    &--tertiary:hover {
+    &--secondary:hover {
         transform:                      scale(1.02);
-    }
-
-    /* =====================================================
-        VARIANTS (SIZE)
-    ===================================================== */
-
-    &--lg {
-        padding:                        tokens.$btn-padding-y-lg tokens.$btn-padding-x-lg;
-        font-size:                      tokens.$btn-font-size-lg;
-        gap:                            tokens.$btn-gap-lg;
-
-        .button__icon {
-            width:                      tokens.$btn-icon-size-lg;
-            height:                     tokens.$btn-icon-size-lg;
-        }
-    }
-
-    &--md {
-        padding:                        tokens.$btn-padding-y-md tokens.$btn-padding-x-md;
-        font-size:                      tokens.$btn-font-size-md;
-        gap:                            tokens.$btn-gap-md;
-    }
-
-    &--sm {
-        padding:                        tokens.$btn-padding-y-sm tokens.$btn-padding-x-sm;
-        font-size:                      tokens.$btn-font-size-sm;
-        gap:                            tokens.$btn-gap-sm;
-
-        .button__icon {
-            width:                      tokens.$btn-icon-size-sm;
-            height:                     tokens.$btn-icon-size-sm;
-        }
     }
 }

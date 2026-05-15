@@ -43,7 +43,7 @@
     /* =====================================================
         HEADER - META
     ===================================================== */
-    &__header .button {
+    &__header-button {
         align-self:                     flex-start;
     }
 
@@ -96,7 +96,7 @@
         &__header {
             @include                    tools.flex-row;
 
-            & .button {
+            &-button {
                 margin-top:             8px;
             }
         }
