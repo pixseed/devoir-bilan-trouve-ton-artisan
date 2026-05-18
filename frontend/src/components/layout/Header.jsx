@@ -69,6 +69,7 @@ export default function Header() {
   const navigate = useNavigate();
 
   function handleSearch(query) {
+    closePanel();
     navigate(`/artisans?search=${encodeURIComponent(query)}`);
   }
 
@@ -154,6 +155,7 @@ export default function Header() {
                   loading={loading}
                   error={error}
                   mapItem={mapCategoryItem}
+                  onSelect={closePanel}
                 />
               </div>
             )}

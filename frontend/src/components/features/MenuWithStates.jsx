@@ -23,6 +23,7 @@ export default function MenuWithStates({
   error,
   mapItem, // Fonction de transformation data → items
   SkeletonCount = 4,
+  onSelect,
 }) {
   /**
    * Construction des options
@@ -42,6 +43,7 @@ export default function MenuWithStates({
         items={items}
         loading={loading}
         error={error}
+        onSelect={onSelect}
       />
     </>
   );

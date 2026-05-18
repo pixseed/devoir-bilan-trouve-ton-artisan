@@ -13,7 +13,7 @@
 import { Link } from "react-router-dom";
 import ChevronIcon from "../../assets/icons/Right_Chevron.svg?react";
 
-export default function NavItem({ item }) {
+export default function NavItem({ item, onSelect }) {
   if (item.isSkeleton) {
     return (
       <li className="nav-item skeleton skeleton--text-lg"></li>
@@ -21,7 +21,7 @@ export default function NavItem({ item }) {
   }
   return (
     <li className="nav-item">
-      <Link to={`/artisans?category=${item.value}`} className="nav-item__link">
+      <Link to={`/artisans?category=${item.value}`} onClick={onSelect} className="nav-item__link">
         <span className="nav-item__label">{item.label}</span>
         <ChevronIcon className="nav-item__icon" />
       </Link>

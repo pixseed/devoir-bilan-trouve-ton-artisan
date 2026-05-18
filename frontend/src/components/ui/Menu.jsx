@@ -18,7 +18,7 @@ import Alert from "./Alert";
 import { VARIANTS } from "../../constants/variants";
 import clsx from "clsx";
 
-export default function Menu({ items, loading, error }) {
+export default function Menu({ items, loading, error, onSelect }) {
   return (
     <div className="menu" aria-label="Catégories">
       <div className="container">
@@ -40,7 +40,7 @@ export default function Menu({ items, loading, error }) {
             ) : (
               <ul className="menu__list" role="list">
                 {items.map((item) => (
-                  <NavItem key={item.value} item={item} />
+                  <NavItem key={item.value} item={item} onSelect={onSelect} />
                 ))}
               </ul>
             )}
