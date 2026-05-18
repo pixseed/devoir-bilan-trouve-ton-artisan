@@ -23,7 +23,7 @@
  * ================================================================================================
  */
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import ChevronIcon from "../../assets/icons/Down_Chevron.svg?react";
 import SearchIcon from "../../assets/icons/Search.svg?react";
@@ -65,6 +65,12 @@ export default function Header() {
   });
   useEscapeKey(activePanel, closePanel);
   useFocusTrap(menuRef, isMenuOpen || isSearchOpen);
+
+  const navigate = useNavigate();
+
+  function handleSearch(query) {
+    navigate(`/artisans?search=${encodeURIComponent(query)}`);
+  }
 
   // ===========================================================================================
   // CATEGORY ITEMS - Retourner la liste des catégories
@@ -161,7 +167,7 @@ export default function Header() {
                 className={`header__search-panel ${isSearchOpen ? "is-open" : ""}`}
               >
                 <div className="container">
-                  <SearchBar variant={VARIANTS.SEARCHBAR.NAVBAR} />
+                  <SearchBar onSearch={handleSearch} variant={VARIANTS.SEARCHBAR.NAVBAR} />
                 </div>
               </div>
             )}
@@ -172,7 +178,7 @@ export default function Header() {
         Searchbar (uniquement tablet / desktop → sinon bouton d'action mobile)
         =================================================================== */}
         <div className="header__search">
-          <SearchBar variant={VARIANTS.SEARCHBAR.NAVBAR} />
+          <SearchBar onSearch={handleSearch} variant={VARIANTS.SEARCHBAR.NAVBAR} />
         </div>
       </div>
     </header>
