@@ -7,10 +7,12 @@ import Artisans_List from "../pages/Artisans_List";
 import Artisan_Details from "../pages/Artisan_Details";
 import Not_Found from "../pages/Not_Found";
 import Under_Construction from "../pages/Under_Construction";
+import ScrollToTop from "../components/layout/ScrollToTop";
 
 function AppRouter() {
   return (
     <Router>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<AppLayout />}>
           <Route index element={<Home />} />
