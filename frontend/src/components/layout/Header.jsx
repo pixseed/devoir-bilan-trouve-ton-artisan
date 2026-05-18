@@ -10,15 +10,16 @@
  *    - click (outside)
  *    - touche Escape (keyboard access)
  *    - mouseleave (UX desktop)
- * 
+ *
  * Accessibilité :
  * - aria-expanded / aria-controls pour les panels
  * - aria-haspopup pour indiquer le type d'interaction
- * 
+ *
  * Dépendances :
  * - useHeaderPanels (state global des panels)
  * - useClickOutside (fermeture externe)
  * - useEscapeKey (keyboard)
+ * - useFocusTrap (blocage du focus clavier)
  * ================================================================================================
  */
 
@@ -38,6 +39,7 @@ import { useCategories } from "../../hooks/useCategories";
 import { useCloseSearchOnBreakpoint } from "../../hooks/useCloseSearchOnBreakpoint";
 import { useClickOutside } from "../../hooks/useClickOutside";
 import { useEscapeKey } from "../../hooks/useEscapeKey";
+import { useFocusTrap } from "../../hooks/useFocusTrap";
 
 import { VARIANTS } from "../../constants/variants";
 
@@ -51,39 +53,40 @@ export default function Header() {
   // Ferme le panel 'search' automatiquement en desktop
   useCloseSearchOnBreakpoint(activePanel, closePanel);
 
-  // Réf. pour détecter les clics en dehors du menu
-  const menuRef = useRef(null);
-
-  // Ferme les panels si clic extérieur
-  useClickOutside(menuRef, () => {
-    if (activePanel) closePanel();
-  });
-
-  // Permet de fermer via la touche Escape (keyboard access)
-  useEscapeKey(activePanel, closePanel);
-
   // État des panels
   const isMenuOpen = activePanel === "menu";
   const isSearchOpen = activePanel === "search";
+
+  // Réf. pour détecter les clics en dehors du menu
+  const menuRef = useRef(null);
+
+  useClickOutside(menuRef, () => {
+    if (activePanel) closePanel();
+  });
+  useEscapeKey(activePanel, closePanel);
+  useFocusTrap(menuRef, isMenuOpen || isSearchOpen);
 
   // ===========================================================================================
   // CATEGORY ITEMS - Retourner la liste des catégories
   // ===========================================================================================
 
-  const mapCategoryItem = ((c) => ({
+  const mapCategoryItem = (c) => ({
     label: c.name,
     value: c.id,
-  }));
+  });
 
   return (
     <header className="header">
       <div className="container header__inner">
-
         {/* ===============================================================
         Logo → Redirection vers l'accueil
         =================================================================== */}
         <Link to="/" aria-label="Accueil" className="header__logo-wrapper">
-          <img className="header__logo" src="/logos/logo-trouve-ton-artisan.png" alt="Logo - Trouve ton Artisan" />
+          <img
+            className="header__logo"
+            src="/logos/logo-trouve-ton-artisan.png"
+            alt="Logo - Trouve ton Artisan"
+          />
         </Link>
 
         {/* ===============================================================
@@ -135,29 +138,33 @@ export default function Header() {
             {/* ===============================================================
             Panel menu (dropdown 'catégories')
             =================================================================== */}
-            <div
-              id="menu-panel"
-              className={`header__menu-panel ${isMenuOpen ? "is-open" : ""}`}
-            >
-              <MenuWithStates
-                data={categories}
-                loading={loading}
-                error={error}
-                mapItem={mapCategoryItem}              
-              />
-            </div>
+            {isMenuOpen && (
+              <div
+                id="menu-panel"
+                className={`header__menu-panel ${isMenuOpen ? "is-open" : ""}`}
+              >
+                <MenuWithStates
+                  data={categories}
+                  loading={loading}
+                  error={error}
+                  mapItem={mapCategoryItem}
+                />
+              </div>
+            )}
 
             {/* ===============================================================
             Panel search
             =================================================================== */}
-            <div
-              id="search-panel"
-              className={`header__search-panel ${isSearchOpen ? "is-open" : ""}`}
-            >
-              <div className="container">
-                <SearchBar variant={VARIANTS.SEARCHBAR.NAVBAR} />
+            {isSearchOpen && (
+              <div
+                id="search-panel"
+                className={`header__search-panel ${isSearchOpen ? "is-open" : ""}`}
+              >
+                <div className="container">
+                  <SearchBar variant={VARIANTS.SEARCHBAR.NAVBAR} />
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </nav>
 
