@@ -22,8 +22,11 @@ $modal-bg-color:                        colors.$color-bg-surface;
 
 // SPACING
 // ------------------------------------------------------------------------------------------------
-$modal-padding-x-md:                       spacing.$sp-48;
-$modal-padding-y-md:                       spacing.$sp-32;
+$modal-padding-x-md:                    spacing.$sp-48;
+$modal-padding-y-md:                    spacing.$sp-32;
 
-$modal-padding-x-sm:                       spacing.$sp-32;
-$modal-padding-y-sm:                       spacing.$sp-24;
+$modal-padding-x-sm:                    spacing.$sp-32;
+$modal-padding-y-sm:                    spacing.$sp-24;
+
+$modal-margin-bottom-title:             spacing.$sp-16;
+$modal-margin-bottom-body:              spacing.$sp-24;

@@ -57,7 +57,7 @@
         }
 
         &.dropdown__list--loading {
-            padding:                    8px;
+            padding:                    tokens.$dropdown-padding-y;
             gap:                        tokens.$skeleton-gap-sm;
         }
     }

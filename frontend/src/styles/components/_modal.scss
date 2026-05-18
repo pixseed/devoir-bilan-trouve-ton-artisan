@@ -4,17 +4,17 @@
 @use '../config/tools';
 
 .app-modal {
-    position: fixed;
-    inset: 0;
-    z-index: 1000;
-    margin-top: 0;
+    position:                               fixed;
+    inset:                                  0;
+    z-index:                                tokens.$z-overlay;
+    margin-top:                             0;
 
     &__overlay {
-        position: absolute;
-        inset: 0;
-        background: tokens.$modal-bg-color-overlay;
+        position:                           absolute;
+        inset:                              0;
+        background:                         tokens.$modal-bg-color-overlay;
 
-        @include tools.flex-center;
+        @include                            tools.flex-center;
 
     }
 
@@ -25,26 +25,26 @@
         border-radius:                      tokens.$modal-radius;
         margin:                             tokens.$container-padding-x;
         padding:                            tokens.$modal-padding-y-sm tokens.$modal-padding-x-sm;
-        box-shadow: tokens.$modal-shadow-overlay;
+        box-shadow:                         tokens.$modal-shadow-overlay;
     }
 
     &__title {
-        margin-bottom: 16px;
+        margin-bottom:                      tokens.$modal-margin-bottom-title;
     }
 
     &__body {
-        margin-bottom: 24px;
+        margin-bottom:                      tokens.$modal-margin-bottom-body;
     }
 
     &__footer {
-        @include tools.flex-center;
+        @include                            tools.flex-center;
     }
 }
 
 @media (min-width: tokens.$bp-sm) {
     .app-modal {
         &__footer {
-            justify-content: flex-end;
+            justify-content:                flex-end;
         }
     }
 }

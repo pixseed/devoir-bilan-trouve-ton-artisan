@@ -12,7 +12,7 @@
     border-radius:                      tokens.$icon-btn-square;
     background:                         tokens.$icon-btn-secondary-bg;
 
-    transition:                         all 0.1s ease;
+    transition:                         all tokens.$transition-fast;
 
     /* =====================================================
         ICONS

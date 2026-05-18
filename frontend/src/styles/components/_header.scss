@@ -39,8 +39,8 @@
     ===================================================== */
     &__nav {
 		display:                    	flex;
-		flex:                       	1;
 		justify-content:            	end;
+		flex:                       	1;
 		height:                     	100%;
     }
 
@@ -63,9 +63,8 @@
     	ACTIONS (mobile)
     ===================================================== */
     &__actions {
-        display:                        flex;
+        @include                        tools.flex-center;
         height:                         100%;
-		align-items: 					center;
 
         button {
             background:                 none;
@@ -132,7 +131,7 @@
 		}
 
 		& .trigger {
-			display:                	inline-flex;
+            @include                    tools.inline-flex-center;
 		}
 	}
 }
