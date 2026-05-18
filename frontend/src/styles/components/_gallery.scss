@@ -1,0 +1,88 @@
+/* _thumbnail.scss */
+
+@use '../config/tokens';
+@use '../config/tools';
+
+.media-gallery {
+    @include                            tools.flex-column;
+    gap:                                tokens.$gallery-gap;
+}
+
+.gallery-main {
+    width:                              100%;
+    border-radius:                      tokens.$gallery-image-radius;
+    overflow:                           hidden;
+    aspect-ratio:                       16/9;
+
+    transition:                         transform tokens.$transition-base, box-shadow tokens.$transition-base;
+
+    &:hover {
+        transform:                      scale(1.02) rotateZ(-1deg);
+        box-shadow:                     tokens.$shadow-content;
+    }
+
+    &__image {
+        width:                          100%;
+        height:                         100%;
+        display:                        block;
+        object-fit:                     cover;
+        cursor:                         zoom-in;
+    }
+}
+
+.gallery-list {
+    @include                            tools.grid-equal(4);
+    flex-shrink:                        0;
+}
+
+.thumbnail {
+    border:                             none;
+    background:                         none;
+    padding:                            0;
+    cursor:                             pointer;
+
+    border-radius:                      tokens.$gallery-image-radius;
+    overflow:                           hidden;
+
+    aspect-ratio:                       1/1;
+    width:                              100%;
+
+    opacity:                            0.6;
+    transition:                         opacity tokens.$transition-fast, transform tokens.$transition-fast;
+
+    &:hover {
+        opacity:                        1;
+        transform:                      translateY(-2px);
+    }
+
+    &--active {
+        opacity:                        1;
+    }
+
+    &__image {
+        display:                        block;
+        width:                          100%;
+        height:                         100%;
+        object-fit:                     cover;
+    }
+}
+
+.gallery-lightbox {
+    position:                           fixed;
+    inset:                              0;
+    z-index:                            tokens.$z-overlay;
+
+    @include                            tools.flex-center;
+
+    background:                         tokens.$lightbox-bg-color-overlay;
+    cursor:                             zoom-out;
+
+    &__image {
+        max-width:                      90vw;
+        max-height:                     90vh;
+        object-fit:                     contain;
+        box-shadow:                     tokens.$lightbox-shadow-overlay;
+
+        border:                         10px solid tokens.$lightbox-border-color;
+    }
+}

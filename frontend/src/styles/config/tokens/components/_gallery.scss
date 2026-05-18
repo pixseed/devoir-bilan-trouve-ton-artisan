@@ -1,0 +1,22 @@
+/* _gallery.scss */
+
+@use '../spacing';
+@use '../colors';
+@use '../border';
+@use '../shadow';
+@use '../radius';
+
+// ================================================================================================
+// GALLERY TOKENS COMPONENT
+// ================================================================================================
+$lightbox-shadow-overlay:                   shadow.$shadow-overlay;
+$gallery-image-radius:                      radius.$radius-sm;
+
+// COLORS
+// ------------------------------------------------------------------------------------------------
+$lightbox-bg-color-overlay:                 colors.$color-bg-overlay;
+$lightbox-border-color:                     colors.$color-bg-surface;
+
+// SPACING
+// ------------------------------------------------------------------------------------------------
+$gallery-gap:                               spacing.$gap-16;
