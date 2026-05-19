@@ -1,7 +1,7 @@
 /* _footer.scss */
 
-@use '../config/tokens';
-@use '../config/tools';
+@use '../settings/tokens';
+@use '../tools';
 
 .footer {
     color:                              tokens.$footer-text-color;

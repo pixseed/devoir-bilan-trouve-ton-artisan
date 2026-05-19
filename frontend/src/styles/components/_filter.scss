@@ -1,7 +1,7 @@
 /* _filter.scss */
 
-@use '../config/tokens';
-@use '../config/tools';
+@use '../settings/tokens';
+@use '../tools';
 
 .filters__controls {
         @include                        tools.flex-column;

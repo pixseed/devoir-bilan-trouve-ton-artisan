@@ -1,7 +1,7 @@
 // Footer.jsx
 
 import { Link } from "react-router-dom";
-import SocialBar from "../ui/SocialBar";
+import SocialBar from "../ui/navigation/SocialBar";
 
 export default function Footer() {
   const footerLinks = [
@@ -10,13 +10,16 @@ export default function Footer() {
     { label: "Accessibilité", to: "/under-construction" },
     { label: "Cookies", to: "/under-construction" },
     { label: "Contact", to: "/under-construction" },
-  ]
+  ];
   return (
     <footer className="footer">
       <div className="container footer__main">
         {/* LOGO */}
         <Link to="/" className="footer__logo">
-          <img src="/logos/logo-trouve-ton-artisan-white.png" alt="Logo Trouve ton Artisan" />
+          <img
+            src="/logos/logo-trouve-ton-artisan-white.png"
+            alt="Logo Trouve ton Artisan"
+          />
         </Link>
 
         {/* ADRESS */}

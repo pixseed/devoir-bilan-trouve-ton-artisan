@@ -1,7 +1,7 @@
 /* _searchbar.scss */
 
-@use '../config/tokens';
-@use '../config/tools';
+@use '../settings/tokens';
+@use '../tools';
 
 .searchbar {
     position:                           relative;

@@ -14,10 +14,12 @@
  * ================================================================================================
  */
 
-// 1. CONFIG
-@use './config/fonts';
-@use './config/tools';
-@use './config/tokens';
+// 1. SETTINGS
+@use './settings/fonts';
+@use './settings/tokens';
+
+// 2. TOOLS
+@use './tools';
 
 // 2. BASE
 @use './base/reset';

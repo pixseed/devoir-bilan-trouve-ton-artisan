@@ -1,6 +1,6 @@
 /* _alert.scss */
 
-@use '../config/tokens';
+@use '../settings/tokens';
 
 .alert {
     padding:                            tokens.$alert-padding-y tokens.$alert-padding-x;

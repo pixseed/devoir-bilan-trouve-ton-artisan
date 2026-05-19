@@ -1,7 +1,7 @@
 /* _iconButton.scss */
 
-@use '../config/tokens';
-@use '../config/tools';
+@use '../settings/tokens';
+@use '../tools';
 
 .icon-button {
     @include                            tools.flex-center;

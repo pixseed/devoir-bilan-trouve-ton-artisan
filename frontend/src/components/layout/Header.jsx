@@ -29,17 +29,17 @@ import ChevronIcon from "../../assets/icons/Down_Chevron.svg?react";
 import SearchIcon from "../../assets/icons/Search.svg?react";
 import MenuIcon from "../../assets/icons/Menu.svg?react";
 
-import MenuWithStates from "../features/MenuWithStates";
-import SearchBar from "../ui/SearchBar";
-import Trigger from "../ui/Trigger";
+import MenuWithStates from "../features/navigation/MenuWithStates";
+import SearchBar from "../ui/form/SearchBar";
+import Trigger from "../ui/navigation/Trigger";
 
 import { useRef } from "react";
-import { useHeaderPanels } from "../../hooks/useHeaderPanels";
-import { useCategories } from "../../hooks/useCategories";
-import { useCloseSearchOnBreakpoint } from "../../hooks/useCloseSearchOnBreakpoint";
-import { useClickOutside } from "../../hooks/useClickOutside";
-import { useEscapeKey } from "../../hooks/useEscapeKey";
-import { useFocusTrap } from "../../hooks/useFocusTrap";
+import { useCategories } from "../../hooks/data/useCategories";
+import { useHeaderPanels } from "../../hooks/features/useHeaderPanels";
+import { useCloseSearchOnBreakpoint } from "../../hooks/features/useCloseSearchOnBreakpoint";
+import { useClickOutside } from "../../hooks/ui/useClickOutside";
+import { useEscapeKey } from "../../hooks/ui/useEscapeKey";
+import { useFocusTrap } from "../../hooks/ui/useFocusTrap";
 
 import { VARIANTS } from "../../constants/variants";
 
@@ -169,7 +169,10 @@ export default function Header() {
                 className={`header__search-panel ${isSearchOpen ? "is-open" : ""}`}
               >
                 <div className="container">
-                  <SearchBar onSearch={handleSearch} variant={VARIANTS.SEARCHBAR.NAVBAR} />
+                  <SearchBar
+                    onSearch={handleSearch}
+                    variant={VARIANTS.SEARCHBAR.NAVBAR}
+                  />
                 </div>
               </div>
             )}
@@ -180,7 +183,10 @@ export default function Header() {
         Searchbar (uniquement tablet / desktop → sinon bouton d'action mobile)
         =================================================================== */}
         <div className="header__search">
-          <SearchBar onSearch={handleSearch} variant={VARIANTS.SEARCHBAR.NAVBAR} />
+          <SearchBar
+            onSearch={handleSearch}
+            variant={VARIANTS.SEARCHBAR.NAVBAR}
+          />
         </div>
       </div>
     </header>

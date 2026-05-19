@@ -1,7 +1,7 @@
 /* _button.scss */
 
-@use '../config/tokens';
-@use '../config/tools';
+@use '../settings/tokens';
+@use '../tools';
 
 .button {
     display:                            inline-flex;

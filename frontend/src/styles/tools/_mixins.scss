@@ -1,0 +1,200 @@
+/* _mixins.scss */
+
+@use '../settings/tokens';
+@use 'sass:map';
+
+// ================================================================================================
+// LAYOUT
+// ================================================================================================
+
+// Container
+// ================================================================================================
+@mixin container($max-width, $padding-x) {
+    max-width: $max-width;
+    margin: 0 auto;
+    padding-inline: $padding-x;
+}
+
+// Section
+// ================================================================================================
+@mixin section($mobile, $tablet, $desktop) {
+    padding-block: $mobile;
+
+    @media (min-width: tokens.$bp-md) {
+        padding-block: $tablet;
+    }
+
+    @media (min-width: tokens.$bp-xl) {
+        padding-block: $desktop;
+    }
+}
+
+// Layout colonne
+// ================================================================================================
+@mixin layout-col(
+    $position,
+    $gap-md: tokens.$layout-gap-normal,
+    $gap-desktop: tokens.$layout-gap-spacious
+    ) {
+        @media (min-width: tokens.$bp-md) {
+            @include _layout-col-logic($position, $gap-md);
+        }
+
+        @media (min-width: tokens.$bp-lg) {
+            @include _layout-col-logic($position, $gap-desktop);
+        }
+}
+
+@mixin _layout-col-logic($position, $gap) {
+    @if $position == start {
+        padding-right: $gap;
+    }
+
+    @else if $position == middle {
+        padding-inline: $gap;
+    }
+
+    @else if $position == end {
+        padding-left: $gap;
+    }
+}
+
+// Flex
+// ================================================================================================
+@mixin flex($type: flex, $justify: flex-start, $align: stretch, $direction: row) {
+    display: $type;
+    justify-content: $justify;
+    align-items: $align;
+    flex-direction: $direction;
+}
+
+// Raccourcis
+@mixin flex-center {
+    @include flex(flex, center, center);
+}
+
+@mixin inline-flex-center {
+    @include flex(inline-flex, center, center);
+}
+
+@mixin flex-between {
+    @include flex(flex, space-between, center);
+}
+
+@mixin flex-row {
+    @include flex(flex, flex-start, stretch, row);
+}
+
+@mixin flex-column {
+    @include flex(flex, flex-start, stretch, column);
+}
+
+@mixin flex-column-center {
+    @include flex(flex, center, center, column);
+}
+
+// Grid
+// ================================================================================================
+@mixin grid-columns-no-gap($template: 1fr) {
+    display: grid;
+    grid-template-columns: $template;
+}
+
+@mixin grid-equal($columns: 1, $gap: tokens.$layout-gap-normal) {
+    display: grid;
+    grid-template-columns: repeat($columns, 1fr);
+    gap: $gap;
+}
+
+@mixin grid-custom($template: 1fr, $gap: tokens.$layout-gap-normal) {
+    display: grid;
+    grid-template-columns: $template;
+    gap: $gap;
+}
+
+@mixin grid-auto($min: 200px, $gap: tokens.$layout-gap-normal) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax($min, 1fr));
+    gap: $gap;
+}
+
+// Stack
+// ================================================================================================
+$stack-gaps: (
+    sm: tokens.$sp-16,
+    md: tokens.$sp-24,
+    lg: tokens.$sp-32,
+);
+
+@mixin stack ($size) {
+    display: flex;
+    flex-direction: column;
+    gap: map.get($stack-gaps, $size)
+}
+
+// ================================================================================================
+// POSITION
+// ================================================================================================
+
+@mixin absolute-fill {
+    position: absolute;
+    inset: 0;
+}
+
+@mixin full-bleed {
+    @include absolute-fill;
+    left: 50%;
+    width: 100vw;
+    transform: translateX(-50%)
+}
+
+// ================================================================================================
+// COMPONENTS
+// ================================================================================================
+
+// Dropdown
+// ================================================================================================
+@mixin dropdown-panel {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    pointer-events: none;
+}
+
+@mixin dropdown-active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+// Icon Button
+// ================================================================================================
+@mixin icon-btn-size($btn-size, $icon-size) {
+    height: $btn-size;
+    width: $btn-size;
+
+    svg,
+    i {
+        height: $icon-size;
+        width: $icon-size;
+    }
+}
+
+// Button
+// ================================================================================================
+@mixin button-gap($gap) {
+    --btn-gap: #{$gap};
+    gap: var(--btn-gap)
+}
+
+// ================================================================================================
+// STATES
+// ================================================================================================
+
+@mixin disabled-base {
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: 1;
+}

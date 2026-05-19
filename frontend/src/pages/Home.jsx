@@ -1,19 +1,19 @@
 /* Home.jsx */
 
-import { useTopArtisans } from "../hooks/useTopArtisans";
+import { useTopArtisans } from "../hooks/data/useTopArtisans";
 import { VARIANTS } from "../constants/variants";
-import ArtisansWithStates from "../components/features/ArtisansWithStates";
-import { useBreakpoint } from "../hooks/useBreakpoint";
+import ArtisansWithStates from "../components/features/artisans/ArtisansListWithStates";
+import { useBreakpoint } from "../hooks/ui/useBreakpoint";
 
 export default function Home() {
   const { artisans, error, loading } = useTopArtisans();
-  
+
   function getVariantCard({ isXS, isMD, isLG }) {
     if (isLG) return VARIANTS.CARD.HORIZONTAL;
     if (isMD) return VARIANTS.CARD.VERTICAL;
     if (isXS) return VARIANTS.CARD.HORIZONTAL;
   }
-  
+
   const variantCard = getVariantCard(useBreakpoint());
 
   return (
@@ -21,7 +21,6 @@ export default function Home() {
       <div className="container">
         <h1 className="visually-hidden">Page d'accueil "Trouve ton artisan"</h1>
         <div className="home__grid">
-
           {/* Étapes explicatives d'utilisation du site sous forme de liste */}
           <section className="section section--with-bg home__hero flow-md">
             <h2 className="heading-lg heading-lg__accent heading-lg__accent--primary">
@@ -40,14 +39,14 @@ export default function Home() {
             <h2 className="heading-lg heading-lg__accent heading-lg__accent--secondary">
               Top 3 des artisans du mois
             </h2>
-              <ArtisansWithStates
-                data={artisans}
-                loading={loading}
-                error={error}
-                variant={variantCard}
-                skeletonCount={3}
-                className="home__top-artisans-grid"
-              />
+            <ArtisansWithStates
+              data={artisans}
+              loading={loading}
+              error={error}
+              variant={variantCard}
+              skeletonCount={3}
+              className="home__top-artisans-grid"
+            />
           </section>
         </div>
       </div>

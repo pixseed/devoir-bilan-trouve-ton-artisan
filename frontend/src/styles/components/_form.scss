@@ -1,7 +1,7 @@
 /* _form.scss */
 
-@use '../config/tokens';
-@use '../config/tools';
+@use '../settings/tokens';
+@use '../tools';
 
 .contact-form {
     @include                            tools.flex-column-center;

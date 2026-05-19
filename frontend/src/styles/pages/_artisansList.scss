@@ -1,7 +1,7 @@
 /* _artisansList.scss */
 
-@use '../config/tokens';
-@use '../config/tools';
+@use '../settings/tokens';
+@use '../tools';
 
 .artisans-list {
     &__controls {

@@ -1,7 +1,7 @@
 /* _rating.scss */
 
-@use '../config/tokens';
-@use '../config/tools';
+@use '../settings/tokens';
+@use '../tools';
 
 .rating {
     @include                            tools.inline-flex-center;
