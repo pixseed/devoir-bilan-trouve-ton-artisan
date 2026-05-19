@@ -2,53 +2,55 @@
  * ================================================================================================
  * SERVER ENTRY POINT
  * ================================================================================================
- * Ce fichier est le point d'entrée principal du serveur Express. Il importe l'application Express
- * configurée dans app.js, établit la connexion à la base de données en utilisant Sequelize, et
- * démarre le serveur sur le port spécifié.
- * 
  * Rôle :
- * - Démarrer le serveur Express.
- * - Établir la connexion à la base de données MySQL au démarrage du serveur.
- * - En mode developpement, vérifier que les données ont été importées correctement en affichant
- *   les statistiques de la base de données.
+ * - Servir de point d'entrée principal de l'application backend.
+ * - Vérifier la connexion à la BDD avant de démarrer le serveur Express.
+ * - Exécuter des contrôles complémentaires en environnement de développement.
  * 
  * Fonctionnement :
- * 1. Importer l'application Express depuis app.js.
- * 2. Démarrer le serveur sur le port défini dans les variables d'environnement ou par défaut à 3000.
- * 3. Établir la connexion à la base de données en utilisant Sequelize
- * 4. Afficher un message de succès ou d'erreur.
+ * 1. Importer l'application Express configurée (app.js).
+ * 2. Vérifier l'accès à la base de données via Sequelize.
+ * 3. En developpement, exécuter des outils de diagnostic (statistiques/tests).
+ * 4. Démarrer le serveur sur le port défini dans les variables d'environnement.
  * 
- * (Optionnel)
- * En mode développement, effectuer des vérifications supplémentaires :
- *      1. Afficher les statistiques de la base de données pour vérifier que les données
- *         ont été importées correctement.
- *      2. Effectuer un test de relations entre les tables pour vérifier que les associations
- *         entre les modèles sont correctement configurées.
+ * Comportement spécifique au développement :
+ * - Affichage des statistiques de la BDD.
+ * - Vérification optionnelle des relations entre modèles.
  * 
  * Dépendances :
- * - app.js (configuration Express)
- * - config/database.js (connexion DB)
- * - utils/dbStats.js (affichage des statistiques de la base de données)
- * - utils/dbTest.js (test des relations entre les tables)
+ * - app.js : configuration principale d'Express.
+ * - config/database.js : instance Sequelize configurée.
+ * - utils/dbStats.js : outils de diagnostic DB
+ * - utils/dbTest.js : tests de relations entre modèles.
  * ================================================================================================
  */
 
-import app from './app.js'; // Import de l'application Express configurée
-import sequelize from './config/database.js'; // Import de la configuration de la DB Sequelize
+import app from './app.js';
+import sequelize from './config/database.js';
 import { logDatabaseStats } from './utils/dbStats.js';
 import { testDatabaseRelations } from './utils/dbTest.js';
 
+// ===========================================================================================
+// SERVER CONFIGURATION
+// Port du serveur
+// ===========================================================================================
 const PORT = process.env.PORT || 3000;
 
+// ===========================================================================================
+// APPLICATION BOOTSTRAP
+// Vérification de la DB avant démarrage du serveur
+// ===========================================================================================
 try {
     // Test de connexion à la base de données
     await sequelize.authenticate();
     console.log('✅ Database connection has been established successfully.');
 
-    // Afficher les statistiques de la base de données en mode développement
+    // Contrôles additionnels réservés à l'environnement de développement
     if (process.env.NODE_ENV === 'development') {
-        await logDatabaseStats(); // Optionnel : Afficher les statistiques de la base de données
-        /* await testDatabaseRelations(); // Optionnel : Test des relations entre les tables */
+        // Commenter/Décommenter si besoin ou non de contrôler les données de la BDD
+        await logDatabaseStats();
+        // Commenter/Décommenter si besoin ou non de tester les associations Sequelize
+        await testDatabaseRelations();
     }
 
 } catch (error) {

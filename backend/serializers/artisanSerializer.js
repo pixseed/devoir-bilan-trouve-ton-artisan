@@ -2,23 +2,15 @@
  * ================================================================================================
  * ARTISAN SERIALIZER
  * ================================================================================================
- * Ce fichier contient des fonctions de sérialisation pour transformer les données brutes des artisans
- * en formats adaptés à l'affichage dans l'application.
  * Rôle :
- * - Fournir des fonctions de transformation pour les données des artisans, afin de les rendre
- *   plus faciles à utiliser dans les composants frontend.
- * - Centraliser la logique de sérialisation pour éviter la duplication de code dans les différentes
- *   parties de l'application.
+ * - Transformer les modèles Sequelize Artisan en objet JSON exposables par l'API.
+ * - Contrôler les données retournées au client.
+ * - Centraliser la logique de mapping pour éviter la duplication dans les contrôleurs.
  * 
- * Fonctions définies :
- * - serializeTopArtisans : Sérialiser les données des artisans mis en avant pour l'affichage
- *   dans le top artisans.
- * - serializeArtisanListItem : Sérialiser les données des artisans pour l'affichage
- *   dans les listes d'artisans.
- * - serializeArtisanDetail : Sérialiser les données d'un artisan pour l'affichage de ses détails.
- * 
- * Utilisé par :
- * - backend/controllers/artisanController.js pour formater les données avant de les envoyer au frontend.
+ * Serializers :
+ * - serializeTopArtisans()
+ * - serializeArtisanListItem()
+ * - serializeArtisanDetail()
  * ================================================================================================
  */
 
@@ -28,17 +20,22 @@
 // Fonction pour extraire le nom de la catégorie à partir d'un artisan
 const getCategoryName = (artisan) => {
     return artisan.specialty?.category?.name ?? null;
-}
+};
 
 // Fonction pour extraire le nom de la spécialité à partir d'un artisan
 const getSpecialtyName = (artisan) => {
     return artisan.specialty?.name ?? null;
-}
+};
+
+// Fonction pour extraire l'id de la categorie à partir d'un artisan
+const getCategoryId = (artisan) => {
+    return artisan.specialty?.category?.id ?? null;
+};
 
 // ================================================================================================
-// TOP ARTISANS SERIALIZER
+// TOP ARTISAN SERIALIZER
 // ================================================================================================
-export const serializeTopArtisans = (artisan) => ({
+export const serializeTopArtisan = (artisan) => ({
     id: artisan.id,
     name: artisan.name,
     specialty: getSpecialtyName(artisan),
@@ -56,7 +53,7 @@ export const serializeArtisanListItem = (artisan) => ({
     specialty: getSpecialtyName(artisan),
     rating: artisan.rating,
     city: artisan.city,
-    categoryId: artisan.specialty?.category?.id,
+    categoryId: getCategoryId(artisan),
     category: getCategoryName(artisan),
     image: artisan.image,
 });
@@ -68,7 +65,7 @@ export const serializeArtisanDetail = (artisan) => ({
     id: artisan.id,
     name: artisan.name,
     specialty: getSpecialtyName(artisan),
-    categoryId: artisan.specialty?.category?.id,
+    categoryId: getCategoryId(artisan),
     rating: artisan.rating,
     city: artisan.city,
     about: artisan.about,

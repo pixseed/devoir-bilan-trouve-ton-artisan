@@ -3,17 +3,20 @@
  * ARTISANS ROUTER
  * ===============================================================================================
  * Rôle :
- * - Définir les routes liées aux artisans, telles que la récupération des artisans, la recherche,
- *   et la gestion des détails d'un artisan.
+ * - Définir les endpoints HTTP liés aux artisans.
+ * - Associer chaque route au controller correspondant.
+ * - Séparer le routage HTTP de la logique métier.
+ * 
  * Fonctionnement :
  * - Importer les fonctions du controller correspondant (artisanController.js) pour gérer les
  *   différentes opérations liées aux artisans.
  * - Utiliser Express Router pour définir les routes spécifiques et dynamiques.
  * 
  * Routes :
+ * - GET /artisans : Récupérer la liste des artisans (avec filtres éventuels via query params).
  * - GET /artisans/top : Récupérer les artisans mis en avant (top artisans).
- * - GET /artisans/search : Rechercher des artisans en fonction de critères de recherche.
  * - GET /artisans/:id : Récupérer les détails d'un artisan spécifique par son ID.
+ * - POST /artisans/:id/contact : Envoyer un formaulaire de contact à un artisan spécifique par son ID.
  * 
  * Dépendances :
  * - backend/controllers/artisanController.js pour les fonctions de gestion des artisans.
@@ -26,18 +29,17 @@ import {
     getTopArtisans,
     getArtisans,
     getArtisanById,
-    /* searchArtisans, */
     contactArtisan
 } from '../controllers/artisanController.js';
 
 const router = express.Router();
 
 // Route spécifique
-router.get('/', getArtisans);
-router.get('/top', getTopArtisans);
+router.get('/', getArtisans); // Liste des artisans (+ filtres éventuels)
+router.get('/top', getTopArtisans); // Artisans mis en avant
 
 // Route dynamique
-router.post('/:id/contact', contactArtisan);
-router.get('/:id', getArtisanById);
+router.post('/:id/contact', contactArtisan); // Envoi du formulaire de contact
+router.get('/:id', getArtisanById); // Détail d'un artisan
 
 export default router;

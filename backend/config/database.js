@@ -2,22 +2,21 @@
  * ==================================================================================================
  * DATABASE CONFIGURATION - SEQUELIZE
  * ==================================================================================================
- * Ce fichier configure la connexion à la base de données MySQL en utilisant Sequelize.
- * 
- * Il utilise les variables d'environnement définies dans le fichier .env
- * pour sécuriser les informations sensibles.
- * 
- * Il exporte une instance de Sequelize qui peut être utilisée dans d'autres parties de l'application
- * pour interagir avec la base de données.
- * 
  * Rôle :
  * - Configurer et établir la connexion à la base de données MySQL.
+ * - Centraliser les paramètres de connexion issus des variables d'environnements.
+ * - Exporter une instance unique réutilisable dans toutes l'application.
+ * 
+ * Fonctionnement :
+ * - Charge les variables d'environnement depuis le fichier .env.
+ * - Initialise Sequelize avec la configuration de connexion.
+ * - Désactive les logs SQL pour éviter le bruit en console en environnement de développement.
  * 
  * Variabes d'environnement utilisées :
  * - DB_NAME : Le nom de la base de données.
  * - DB_USER : Le nom d'utilisateur pour se connecter à la base de données.
  * - DB_PASSWORD : Le mot de passe pour se connecter à la base de données.
- * - DB_HOST : L'hôte de la base de données (généralement localhost).
+ * - DB_HOST : L'hôte de la base de données.
  * - DB_DIALECT : Le dialecte de la base de données (dans ce cas, mysql).
  * 
  * Utilisé par :
@@ -25,11 +24,20 @@
  * - models/ pour définir les modèles de données et interagir avec la base de données.
  * ==================================================================================================
  */
-import dotenv from 'dotenv';
-dotenv.config({ path: './backend/.env' }); // Charger les variables d'environnement depuis le fichier .env
 
+import dotenv from 'dotenv';
 import { Sequelize } from 'sequelize';
 
+// ===========================================================================================
+// ENVIRONMENT CONFIGURATION
+// Chargement des variables d'environnement.
+// ===========================================================================================
+dotenv.config({ path: './backend/.env' });
+
+// ===========================================================================================
+// SEQUELIZE INSTANCE
+// Création de l'instance unique Sequelize partagée dans toute l'application
+// ===========================================================================================
 const sequelize = new Sequelize(
   process.env.DB_NAME,
   process.env.DB_USER,
@@ -41,4 +49,5 @@ const sequelize = new Sequelize(
   }
 );
 
+// ===========================================================================================
 export default sequelize;

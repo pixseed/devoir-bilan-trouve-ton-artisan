@@ -2,25 +2,14 @@
  * ================================================================================================
  * RESPONSE UTILS
  * ================================================================================================
- * Ce fichier contient des fonctions utilitaires pour formater les réponses API de manière cohérente.
+ * Rôle :
+ * - Standardiser le format des réponses HTTP JSON de l'API.
+ * - Centraliser l'envoi des réponses de succès et d'erreur.
+ * - Garantir un contrat de réponse cohérent côté backend / frontend.
  * 
- * Objectif :
- * - Fournir des fonctions pour envoyer des réponses de succès et d'erreur au format JSON, avec une
- *   structure standardisée.
- * - Faciliter la gestion des réponses dans les contrôleurs en centralisant la logique de formatage.
- * - Améliorer la lisibilité et la maintenabilité du code en évitant la duplication de la logique de
- *   formatage des réponses dans chaque contrôleur.
- * - Permettre une meilleure gestion des erreurs en fournissant une structure claire pour les messages
- *   d'erreur et les codes d'erreur.
- * - Assurer une cohérence dans les réponses de l'API, ce qui facilite le développement côté client et la
- *   gestion des erreurs.
- * 
- * Dépendances :
- * - Aucun, ce fichier est autonome et peut être utilisé dans n'importe quel contrôleur pour formater les
- *   réponses.
- * 
- * Utilisé par :
- * - Tous les contrôleurs de l'API pour formater les réponses de succès et d'erreur.
+ * Helpers :
+ * - successResponse()  : réponse JSON de succès.
+ * - errorResponse()    : réponse JSON d'erreur.
  * ================================================================================================
  */
 

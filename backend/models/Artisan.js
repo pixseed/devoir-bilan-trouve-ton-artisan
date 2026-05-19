@@ -2,29 +2,22 @@
  * ================================================================================================
  * ARTISAN MODEL
  * ================================================================================================
- * Ce fichier définit le modèle Sequelize pour la table "artisans" de la base de données.
- * 
- * Le modèle Artisan représente les artisans référencés dans l'application,
- * avec leurs caractéristiques et leur spécialité.
- * 
  * Rôle :
- * - Définir la structure de la table "artisans" dans la base de données.
- * - Spécifier les types de données et les contraintes pour chaque champ.
- * - Permettre l'interaction avec la table "artisans" via Sequelize (CRUD, relations, etc.).
+ * - Définir le modèle Sequelize correspondant à la table "artisans".
+ * - Spécifier la structure et les contraintes de données.
+ * - Fournir une interface ORM pour interagir avec la ressource Artisan.
  * 
  * Champs du modèle :
- * - id : Identifiant unique de l'artisan (clé primaire, auto-incrémentée).
- * - name : Nom de l'artisan (string, non null).
- * - rating : Note de l'artisan (decimal, non null, entre 0 et 5).
- * - city : Ville de l'artisan (string, non null).
- * - about : Description de l'artisan (text, non null).
- * - email : Adresse email de l'artisan (string, non null, unique).
- * - website : Site web de l'artisan (string, nullable).
- * - is_top : Indique si l'artisan figure dans le top artisans du mois (boolean, non null, default false).
- * - id_specialty : Clé étrangère vers la spécialité de l'artisan (integer, non null).
- * 
- * Utilisé par :
- * - backend/models/index.js pour définir les relations entre les modèles.
+ * - id             : Identifiant unique.
+ * - name           : Nom de l'artisan.
+ * - rating         : Note de l'artisan.
+ * - city           : Ville de l'artisan.
+ * - about          : Description de l'artisan.
+ * - email          : Adresse email de l'artisan.
+ * - website        : Site web de l'artisan.
+ * - image          : Image de présentation de l'artisan.
+ * - is_top         : Indique si l'artisan figure dans le top artisans du mois.
+ * - id_specialty   : Clé étrangère vers la spécialité de l'artisan.
  * ================================================================================================
  */
 
@@ -37,52 +30,68 @@ const Artisan = sequelize.define("Artisan", {
     primaryKey: true,
     autoIncrement: true
   },
+
   name: {
     type: DataTypes.STRING(150),
     allowNull: false
   },
+
   rating: {
     type: DataTypes.DECIMAL(2, 1),
     get() {
+      // Sequelize retourne DECIMAL comme string → Conversion en number JS
       const value = this.getDataValue('rating');
-      return value === null ? null : parseFloat(value); // Convertir en nombre à virgule flottante
+      return value === null ? null : parseFloat(value);
     },
     allowNull: false,
-    check: { min: 0, max: 5 }
+    validate: { min: 0, max: 5 }
   },
+
   city: {
     type: DataTypes.STRING(50),
     allowNull: false
   },
+
   about: {
     type: DataTypes.TEXT,
     allowNull: false
   },
+
   email: {
     type: DataTypes.STRING(150),
     allowNull: false,
-    unique: true
+    unique: true,
+    validate: { isEmail: true }
   },
+
   website: {
     type: DataTypes.STRING(255),
     allowNull: true
   },
+
   image: {
     type: DataTypes.STRING(255),
     allowNull: true,
   },
+
   is_top: {
     type: DataTypes.BOOLEAN,
     defaultValue: false,
     allowNull: false
   },
+
   id_specialty: {
     type: DataTypes.INTEGER,
-    allowNull: false
+    allowNull: false,
+    references: { // Clé étrangère vers specialties.id
+      model: "specialties",
+      key: "id"
+    }
   }
+
 }, {
-      tableName: "artisans",
-      timestamps: false,
+  tableName: "artisans",
+  timestamps: false,
 });
 
 export default Artisan;

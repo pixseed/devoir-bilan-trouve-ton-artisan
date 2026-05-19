@@ -1,27 +1,26 @@
 /**
  * ================================================================================================
- * RELATIONS BETWEEN MODELS
+ * MODEL ASSOCIATIONS
  * ================================================================================================
- * Ce fichier définit les relations entre les modèles de données utilisés dans l'application.
- * 
- * Il importe les modèles Category, Specialty et Artisan, puis établit les associations entre eux
- * en utilisant les méthodes de Sequelize (hasMany, belongsTo).
- * 
  * Rôle :
- * - Définir les relations entre les modèles de données pour permettre des requêtes complexes
- *   et des opérations de jointure.
- * - Faciliter l'interaction avec la base de données en utilisant les associations définies.
+ * - Définir les associations Sequelize entre les modèles métiers.
+ * - Permettre le chargement relationnel des données via l'ORM.
+ * - Centraliser la configuration des relations entre les ressources.
  * 
- * Relations définies :
- * - Category → Specialty : Une catégorie peut avoir plusieurs spécialités (hasMany), et une
- *   spécialité appartient à une catégorie (belongsTo).
- * - Specialty → Artisan : Une spécialité peut avoir plusieurs artisans (hasMany), et un artisan
- *   appartient à une spécialité (belongsTo).
+ * Relations :
+ * - Category   1 → N   Specialty
+ * - Specialty  N → 1   Category
+ * - Specialty  1 → N   Artisan
+ * - Artisan    N → 1   Specialty
+ * │
+ * ├─ Une catégorie peut avoir plusieurs spécialités (hasMany)
+ * │  et une spécialité appartient à une catégorie (belongsTo).
+ * └─ Une spécialité peut avoir plusieurs artisans (hasMany)
+ *    et un artisan appartient à une spécialité (belongsTo).
  * 
- * Utilisé par :
- * - backend/utils/dbTest.js pour tester les relations entre les tables.
- * - backend/utils/dbStats.js pour afficher les statistiques de la base de données en fonction
- *   des relations.
+ * Notes :
+ * - Les alias définis ici sont utilisés dans les requêtes Sequelize avec include.
+ * - Les contraintes de suppression / mise à jour sont propagées via cascade.
  * ================================================================================================
  */
 
@@ -29,9 +28,11 @@ import Category from "./category.js";
 import Specialty from "./specialty.js";
 import Artisan from "./artisan.js";
 
-// Relations
+// ===========================================================================================
+// ASSOCIATIONS / RELATIONS
+// ===========================================================================================
 
-// Category → Specialty
+// Category 1 → N Specialty
 Category.hasMany(Specialty, {
     foreignKey: "id_category",
     as: "specialties",
@@ -39,12 +40,13 @@ Category.hasMany(Specialty, {
     onUpdate: "CASCADE"
 });
 
+// Specialty N → 1 Category
 Specialty.belongsTo(Category, {
     foreignKey: "id_category",
     as: "category"
 });
 
-// Specialty → Artisan
+// Specialty 1 → N Artisan
 Specialty.hasMany(Artisan, {
     foreignKey: "id_specialty",
     as: "artisans",
@@ -52,6 +54,7 @@ Specialty.hasMany(Artisan, {
     onUpdate: "CASCADE"
 });
 
+// Artisan N → 1 Specialty
 Artisan.belongsTo(Specialty, {
     foreignKey: "id_specialty",
     as: "specialty"

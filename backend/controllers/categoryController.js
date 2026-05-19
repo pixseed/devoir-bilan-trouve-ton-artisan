@@ -3,46 +3,42 @@
  * CATEGORY CONTROLLER
  * ================================================================================================
  * Rôle :
- * - Gérer les opérations liées aux catégories, telles que la récupération des catégories.
- * 
- * Fonctionnement :
- * - Fournir une fonction pour récupérer toutes les catégories.
- * - Utiliser les modèles de données pour interagir avec la base de données et retourner les
- *   résultats au format JSON.
- * 
- * Dépendances :
- * - backend/models/index.js pour accéder aux modèles Category.
- * - backend/app.js pour être utilisé dans les routes de l'API.
- * 
+ * - Gérer les requêtes HTTP liées aux catégories.
+ * - Déléguer la logique métier au service dédié.
+ *
+ * Endpoints gérés :
+ * - GET /categories
+ *
  * Fonctions définies :
- * - getCategories : Récupérer toutes les catégories.
- * 
- * Utilisé par :
- * - backend/routes/category.js pour définir les routes liées aux catégories.
+ * - getCategories() : Récupérer toutes les catégories.
+ *
+ * Dépendances :
+ * - services/categoryService.js
+ * - utils/response.js
  * ================================================================================================
  */
 
-import {
-    Category
-} from '../models/index.js';
-import {
-    successResponse,
-    errorResponse
-} from '../utils/response.js';
+import { getCategoriesService } from "../services/categoryService.js";
+import { successResponse, errorResponse } from "../utils/response.js";
 
 // ================================================================================================
 // GET CATEGORIES
 // ================================================================================================
-export const getCategories = async (req, res) => {
-    try {
-        const categories = await Category.findAll({
-            order: [['id', 'ASC']],
-        });
-
-        return successResponse(res, categories, 'Catégories récupérées avec succès.');
-
-    } catch (error) {
-        console.error('💥 Error fetching categories :', error);
-        return errorResponse(res, 'Erreur serveur lors de la récupération des catégories.', 500, "INTERNAL_ERROR");
-    }
+export const getCategories = async (_req, res) => {
+  try {
+    const categories = await getCategoriesService();
+    return successResponse(
+      res,
+      categories,
+      "Catégories récupérées avec succès.",
+    );
+  } catch (error) {
+    console.error("💥 Error fetching categories :", error);
+    return errorResponse(
+      res,
+      "Erreur serveur lors de la récupération des catégories.",
+      500,
+      "INTERNAL_ERROR",
+    );
+  }
 };
