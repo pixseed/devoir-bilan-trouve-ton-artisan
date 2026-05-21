@@ -30,7 +30,7 @@
         border-radius:                  tokens.$icon-btn-pill;
     }
     
-    &--social {
+    &--ghost {
         background:                     transparent;
         border-radius:                  tokens.$icon-btn-pill;
 
@@ -90,7 +90,7 @@
         }
     }
     
-    &:not(.icon-button--social):hover {
+    &:not(.icon-button--ghost):hover {
         background:                     tokens.$icon-btn-secondary-bg-hover;
 
         svg, i {

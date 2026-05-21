@@ -1,15 +1,25 @@
-/* Filters.jsx */
+/**
+ * ================================================================================================
+ * FILTERS
+ * ================================================================================================
+ * Rôle :
+ * - Afficher les contrôles de recherche et filtrage des artisans.
+ * - Adapter l'interface selon le breakpoint.
+ * ================================================================================================
+ */
+
+import { useBreakpoint } from "../../../hooks/ui/useBreakpoint";
+import { VARIANTS } from "../../../constants/variants";
 
 import SearchBar from "../../ui/form/SearchBar";
 import DropdownWithStates from "./DropdownWithStates";
 import FilterGroupWithStates from "./FilterGroupWithStates";
-import { useBreakpoint } from "../../../hooks/ui/useBreakpoint";
 import Alert from "../../ui/feedback/Alert";
-import { VARIANTS } from "../../../constants/variants";
 
 export default function Filters({
-  searchQuery,
+  searchInput,
   onSearchChange,
+  onSearchSubmit,
   categories,
   catLoading,
   catError,
@@ -19,35 +29,32 @@ export default function Filters({
   mapCategoryItem,
 }) {
   const { isLG } = useBreakpoint();
+  const sharedCategoryProps = {
+    data: categories || [],
+    loading: catLoading,
+    error: catError,
+    mapItem: mapCategoryItem,
+    value: selectedCategory ? Number(selectedCategory) : null,
+  };
 
   return (
     <>
       <div className="filters__controls">
-        {/* Barre de recherche */}
-        <SearchBar value={searchQuery} onChange={onSearchChange} />
+        <SearchBar value={searchInput} onChange={onSearchChange} onSearch={onSearchSubmit} />
 
-        {/* Dropdown avec gestion loading/error */}
         {!isLG && (
           <DropdownWithStates
+            {...sharedCategoryProps}
             label={selectedOption?.name || "Catégories"}
-            data={categories || []}
-            loading={catLoading}
-            error={catError}
-            mapItem={mapCategoryItem}
             onChange={onCategoryChange}
-            value={Number(selectedCategory)}
           />
         )}
 
         {isLG && (
           <FilterGroupWithStates
+            {...sharedCategoryProps}
             title="Catégories"
-            data={categories || []}
-            loading={catLoading}
-            error={catError}
-            mapItem={mapCategoryItem}
             onSelect={onCategoryChange}
-            value={Number(selectedCategory)}
           />
         )}
       </div>

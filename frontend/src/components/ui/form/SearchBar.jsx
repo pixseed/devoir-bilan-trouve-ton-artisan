@@ -1,24 +1,23 @@
 /**
  * ================================================================================================
- * SearchBar.jsx (component UI)
+ * SEARCH BAR
  * ================================================================================================
- * Barre de recherche avec bouton intégré.
- *
- * Responsabilités :
- * - Gérer l'affichage du champ input
- * - Afficher une bouton d'action (loupe)
- *
- * Variants :
- * - default
- * - navbar
+ * Rôle :
+ * - Afficher une barre de recherche interactive.
+ * - Gérer la saisie utilisateur en mode contrôlé ou non contrôlé.
+ * - Déclencher une recherche via soumission du formulaire.
  * ================================================================================================
  */
 
 import { useState } from "react";
-import { IconButton } from "../actions/IconButton";
-import SearchIcon from "../../../assets/icons/Search.svg?react";
 import clsx from "clsx";
+
 import { VARIANTS } from "../../../constants/variants";
+
+import IconButton from "../actions/IconButton";
+import SearchIcon from "../../../assets/icons/Search.svg?react";
+
+import closeIcon from "../../../assets/icons/Cross.svg?react";
 
 export default function SearchBar({
   placeholder = "Rechercher",
@@ -40,10 +39,11 @@ export default function SearchBar({
 
   function handleSubmit(e) {
     e.preventDefault();
-
-    if (!inputValue.trim()) return;
-
     onSearch?.(inputValue.trim());
+  }
+
+  function handleClear() {
+    onClear?.();
   }
 
   return (
@@ -51,18 +51,35 @@ export default function SearchBar({
       onSubmit={handleSubmit}
       className={clsx("searchbar", `searchbar--${variant}`)}
     >
+      {inputValue && (
+        <IconButton
+          type="button"
+          icon={closeIcon}
+          aria-label="Effacer la recherche"
+          variant={VARIANTS.ICON_BUTTON.GHOST}
+          size={VARIANTS.SIZE.SM}
+          className="searchbar__clear"
+          onClick={handleClear}
+        />
+      )}
+
       <input
         type="text"
+        aria-label="Rechercher un artisan"
         placeholder={placeholder}
         value={inputValue}
-        onChange={(e) => handleChange?.(e.target.value)}
-        className="searchbar__input"
+        onChange={(e) => handleChange(e.target.value)}
+        className={clsx("searchbar__input", {
+          "searchbar__input--with-clear": inputValue,
+        })}
       />
 
       <IconButton
+        type="submit"
+        aria-label="Lancer la recherche"
         icon={SearchIcon}
         size={VARIANTS.SIZE.MD}
-        className="searchbar__button"
+        className="searchbar__submit"
       />
     </form>
   );

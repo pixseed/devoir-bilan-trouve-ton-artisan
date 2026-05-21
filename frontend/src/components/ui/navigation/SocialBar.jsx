@@ -1,20 +1,15 @@
 /**
  * ================================================================================================
- * SocialBar.jsx (component UI)
+ * SOCIAL BAR
  * ================================================================================================
- * Barre de lien vers les réseaux sociaux.
- *
- * Responsabilités :
- * - Afficher une liste de liens externes
- * - Utiliser IconButton pour uniformiser les styles
- *
- * Accessibilité :
- * - Chaque lien possède un aria-label
+ * Rôle :
+ * - Afficher une liste de liens vers les réseaux sociaux.
+ * - Uniformiser le rendu via IconButton.
  * ================================================================================================
  */
 
-import { IconButton } from "../actions/IconButton";
 import { VARIANTS } from "../../../constants/variants";
+import IconButton from "../actions/IconButton";
 
 const socialLinks = [
   { name: "Facebook", icon: "bi-facebook", url: "#" },
@@ -28,22 +23,25 @@ const socialLinks = [
 
 export default function SocialBar() {
   return (
-    <nav className="socialbar" aria-label="Réseaux sociaux">
-      {socialLinks.map((social) => (
-        <IconButton
-          key={social.name}
-          as="a"
-          href={social.url}
-          aria-label={social.name}
-          target="_blank"
-          rel="noopener noreferrer"
-          icon={(props) => (
-            <i className={`bi ${social.icon} ${props.className}`}></i>
-          )}
-          size={VARIANTS.SIZE.MD}
-          variant={VARIANTS.ICON_BUTTON.SOCIAL}
-        />
-      ))}
+    <nav aria-label="Réseaux sociaux">
+      <ul className="socialbar reset-list">
+          {socialLinks.map((social) => (
+            <li key={social.name}>
+              <IconButton
+                as="a"
+                href={social.url}
+                aria-label={social.name}
+                target="_blank"
+                rel="noopener noreferrer"
+                icon={(props) => (
+                  <i className={`bi ${social.icon} ${props.className}`} aria-hidden="true"></i>
+                )}
+                size={VARIANTS.SIZE.MD}
+                variant={VARIANTS.ICON_BUTTON.GHOST}
+              />
+            </li>
+          ))}
+      </ul>
     </nav>
   );
 }

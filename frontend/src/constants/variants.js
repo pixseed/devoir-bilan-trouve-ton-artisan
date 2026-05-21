@@ -15,12 +15,12 @@ export const VARIANTS = {
     BUTTON: {
         PRIMARY: "primary",
         SECONDARY: "secondary",
+        TERTIARY: "tertiary",
     },
 
     ICON_BUTTON: {
         ROUNDED: "rounded",
-        SQUARE: "square",
-        SOCIAL: "social",
+        GHOST: "ghost",
     },
 
     SEARCHBAR: {
@@ -29,6 +29,7 @@ export const VARIANTS = {
     },
 
     SIZE: {
+        XS: "xs",
         SM: "sm",
         MD: "md",
         LG: "lg",

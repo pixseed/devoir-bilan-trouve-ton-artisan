@@ -30,17 +30,30 @@
         border:                         none;
         outline:                        none;
         background:                     transparent;
+
+        &--with-clear {
+            padding-left:               tokens.$sp-40;
+        }
     }
     
     /* =====================================================
     BUTTON (overlay)
     ===================================================== */
     
-    &__button {
+    &__clear {
+        position:                       absolute;
+        left:                           tokens.$sp-8;
+        top:                            50%;
+        transform:                      translateY(-50%);
+        z-index :                       tokens.$z-floating-control;
+    }
+
+    &__submit {
         position:                       absolute;
         right:                          tokens.$sp-16;
         top:                            50%;
         transform:                      translateY(-50%);
+        z-index :                       tokens.$z-floating-control;
     }
     
     /* =====================================================
