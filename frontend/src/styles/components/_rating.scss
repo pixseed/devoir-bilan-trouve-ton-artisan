@@ -35,7 +35,7 @@
     &__star {
         flex:                           0 0 auto;
         height:                         tokens.$rating-star-size;
-        width:                          auto;
+        width:                          tokens.$rating-star-size;
     }
 
     &__star--empty {
