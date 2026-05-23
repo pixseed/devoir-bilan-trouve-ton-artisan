@@ -1,33 +1,28 @@
 /**
  * ================================================================================================
- * useHeaderPanels.js
+ * USE HEADER PANELS
+ * ================================================================================================
+ * Rôle :
+ * - Gérer l'ouverture et la fermeture des panels du header.
  * ================================================================================================
  */
 
 import { useState } from "react";
 
-/**
- * Hook : gestion des panels du header.
- * ------------------------------------------------------------------------------------------------
- * @returns {Object}
- * - activePanel {string|null} : panel actuellement ouvert
- * - togglePanel(panel) : ouvre/ferme un panel
- * - closePanel() : ferme tous les panels
- */
 export function useHeaderPanels() {
-    const [activePanel, setActivePanel] = useState(null);
+  const [activePanel, setActivePanel] = useState(null);
 
-    const togglePanel = (panel) => {
-        setActivePanel(activePanel === panel ? null : panel);
-    };
-    
-    const closePanel = () => {
-        setActivePanel(null);
-    };
+  const togglePanel = (panel) => {
+    setActivePanel((prev) => (prev === panel ? null : panel));
+  };
 
-    return {
-        activePanel,
-        togglePanel,
-        closePanel
-    }
+  const closePanel = () => {
+    setActivePanel(null);
+  };
+
+  return {
+    activePanel,
+    togglePanel,
+    closePanel,
+  };
 }

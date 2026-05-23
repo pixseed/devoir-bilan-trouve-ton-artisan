@@ -1,22 +1,26 @@
-/* FilterItem.jsx */
+/**
+ * ================================================================================================
+ * FILTER ITEM
+ * ================================================================================================
+ * Rôle :
+ * - Afficher un élément de filtre interactif.
+ * - Gérer son état actif, désactivé ou skeleton.
+ * ================================================================================================
+ */
 
 import clsx from "clsx";
 
 export default function FilterItem({ item, onClick, isActive, disabled }) {
   if (item.isSkeleton) {
     return (
-      <li className="filter-group__item">
-        <div className="skeleton skeleton--text-lg"></div>
+      <li className="filter-group__item" aria-hidden="true">
+        <div className="skeleton skeleton--text-lg" />
       </li>
     );
   }
 
   return (
-    <li
-      className={clsx("filter-group__item", {
-        "filter-group__item--active": isActive,
-      })}
-    >
+    <li className="filter-group__item">
       <button
         type="button"
         className={clsx("filter-group__button", {
@@ -24,6 +28,7 @@ export default function FilterItem({ item, onClick, isActive, disabled }) {
         })}
         onClick={onClick}
         disabled={disabled}
+        aria-pressed={isActive}
       >
         {item.label}
       </button>

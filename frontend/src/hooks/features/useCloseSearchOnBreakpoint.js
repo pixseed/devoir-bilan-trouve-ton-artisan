@@ -1,33 +1,29 @@
 /**
  * ================================================================================================
- * useCloseSearchOnBreakpoint.js
+ * USE CLOSE SEARCH ON BREAKPOINT
+ * ================================================================================================
+ * Rôle :
+ * - Fermer automatiquement le panel de recherche lors du passage en desktop.
  * ================================================================================================
  */
 
 import { useEffect } from "react";
+import { MEDIA_QUERIES } from "../../config/mediaQueries.js";
 
-/**
- * Hook : ferme le search panel lors du passage en desktop
- * ------------------------------------------------------------------------------------------------
- * @param {string|null} activePanel - panel actuellement ouvert
- * @param {function} closePanel - fonction pour ferme les panels
- * 
- * @return {void}
- */
 export function useCloseSearchOnBreakpoint(activePanel, closePanel) {
-    useEffect(() => {
-        const mediaQuery = window.matchMedia("(min-width: 768px)");
+  useEffect(() => {
+    const mediaQuery = window.matchMedia(MEDIA_QUERIES.md);
 
-        const handleChange = (e) => {
-            if (e.matches && activePanel === "search") {
-                closePanel();
-            }
-        };
+    const handleChange = (e) => {
+      if (e.matches && activePanel === "search") {
+        closePanel();
+      }
+    };
 
-        mediaQuery.addEventListener("change", handleChange);
+    mediaQuery.addEventListener("change", handleChange);
 
-        return () => {
-            mediaQuery.removeEventListener("change", handleChange);
-        };
-    }, [activePanel, closePanel]);
+    return () => {
+      mediaQuery.removeEventListener("change", handleChange);
+    };
+  }, [activePanel, closePanel]);
 }

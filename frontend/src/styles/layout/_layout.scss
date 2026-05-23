@@ -1,4 +1,12 @@
-/* _layout.scss */
+/**
+ * ================================================================================================
+ * LAYOUT
+ * ================================================================================================
+ * Rôle :
+ * - Fournir des classes de mise en page génériques pour structurer le contenu de l'application.
+ * - Faciliter la création de mises en page flexibles et responsives pour les différentes pages.
+ * ================================================================================================
+ */
 
 @use '../settings/tokens';
 @use '../tools/mixins';

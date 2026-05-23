@@ -1,45 +1,33 @@
 /**
  * ================================================================================================
- * FEATURE : MenuWithStates
+ * MENU WITH STATES
  * ================================================================================================
  * Rôle :
- * - Wrapper du composant Menu
  * - Gère les états :
  *      → loading (skeleton)
  *      → error (message + désactivation)
  *      → success (items normaux)
- *
- * Ojectif :
- * - Centraliser la logique loading/error pour le menu
- * - Éviter d'intégrer de la logique au composant natif (Menu.jsx)
  * ================================================================================================
  */
 
 import Menu from "../../ui/navigation/Menu";
 
 export default function MenuWithStates({
-  data = [], // Données brutes
+  data = [],
   loading,
   error,
-  mapItem, // Fonction de transformation data → items
-  SkeletonCount = 4,
+  mapItem,
+  skeletonCount = 4,
   onSelect,
 }) {
-  /**
-   * Construction des options
-   * - loading → skeleton
-   * - success → mapping des données
-   */
   const items = loading
-    ? Array.from({ length: SkeletonCount }).map((_, i) => ({
+    ? Array.from({ length: skeletonCount }).map((_, i) => ({
         value: `skeleton-${i}`,
-        isSkeleton: true, // Utilisé dans NavItem
+        isSkeleton: true,
       }))
     : data.map(mapItem);
 
   return (
-    <>
-      <Menu items={items} loading={loading} error={error} onSelect={onSelect} />
-    </>
+    <Menu items={items} loading={loading} error={error} onSelect={onSelect} />
   );
 }

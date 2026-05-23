@@ -1,25 +1,17 @@
 /**
  * ================================================================================================
- * IconButton.jsx (component UI)
+ * ICON BUTTON
  * ================================================================================================
- * Permet d'afficher une icône interactive sous forme de :
- *    - bouton (par défaut)
- *    - lien (via prop `as="a"`)
- *
- * Responsabilités :
- * - Appliquer les styles selon variant / size
- * - Gérer l'état actif
- * - Rendre un composant HTML dynamique
- *
- * Accessibilité :
- * - Repose sur les props passées (aria-label, etc.)
+ * Rôle :
+ * - Afficher un bouton icon-only interactif.
+ * - Supporter différents rendus HTML et états visuels.
  * ================================================================================================
  */
 
 import clsx from "clsx";
 import { VARIANTS } from "../../../constants/variants";
 
-export function IconButton({
+export default function IconButton({
   icon: Icon,
   as: Component = "button",
   variant = VARIANTS.ICON_BUTTON.ROUNDED,
@@ -28,10 +20,7 @@ export function IconButton({
   className = "",
   ...props
 }) {
-  if (!Icon) {
-    console.warn("IconButton: No icon provided");
-    return null;
-  }
+  if (!Icon) return null;
 
   return (
     <Component
@@ -44,6 +33,7 @@ export function IconButton({
         },
         className,
       )}
+      {...(Component === "button" && { type: "button" })}
       {...props}
     >
       <Icon className="icon-button__icon" />

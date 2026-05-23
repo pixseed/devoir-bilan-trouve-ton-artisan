@@ -1,4 +1,13 @@
-/* Button.jsx */
+/**
+ * ================================================================================================
+ * BUTTON
+ * ================================================================================================
+ * Rôle :
+ * - Afficher un bouton d'action, un lien interne ou externe.
+ * - Supporter variantes visuelles, tailles et icônes.
+ * - Adapter automatiquement le rendu selon le type d'interaction
+ * ================================================================================================
+ */
 
 import { Link } from "react-router-dom";
 import clsx from "clsx";
@@ -9,31 +18,46 @@ export default function Button({
   size = "md",
   icon: Icon,
   iconPosition = "right",
-  to = "",
-  href = "",
+  to = null,
+  href = null,
   onClick,
+  type = "button",
+  disabled = false,
   className: customClassName,
+  ...props
 }) {
-  const className = clsx("button", `button--${variant}`, `button--${size}`, customClassName);
+  // ================================================================================================
+  // CONSTANTS
+  // ================================================================================================
+  const className = clsx(
+    "button",
+    `button--${variant}`,
+    `button--${size}`,
+    customClassName,
+  );
 
   const content = (
     <>
-      {Icon && iconPosition === "left" && <Icon className="button__icon" />}
+      {Icon && iconPosition === "left" && <Icon className="button__icon" aria-hidden="true" />}
       <span className="button__label">{children}</span>
-      {Icon && iconPosition === "right" && <Icon className="button__icon" />}
+      {Icon && iconPosition === "right" && <Icon className="button__icon" aria-hidden="true" />}
     </>
   );
 
-  // Bouton de navigation interne
+  // ================================================================================================
+  // INTERNAL NAVIGATION BUTTON
+  // ================================================================================================
   if (to) {
     return (
-      <Link to={to} className={className}>
+      <Link to={to} className={className} {...props}>
         {content}
       </Link>
     );
   }
 
-  // Bouton de redirection externe
+  // ================================================================================================
+  // EXTERNAL REDIRECTION BUTTON
+  // ================================================================================================
   if (href) {
     return (
       <a
@@ -41,15 +65,24 @@ export default function Button({
         target="_blank"
         rel="noopener noreferrer"
         className={className}
+        {...props}
       >
         {content}
       </a>
     );
   }
 
-  // Bouton d'action
+  // ================================================================================================
+  // ACTIONS BUTTON
+  // ================================================================================================
   return (
-    <button className={className} onClick={onClick}>
+    <button
+      type={type}
+      className={className}
+      onClick={onClick}
+      disabled={disabled}
+      {...props}
+    >
       {content}
     </button>
   );

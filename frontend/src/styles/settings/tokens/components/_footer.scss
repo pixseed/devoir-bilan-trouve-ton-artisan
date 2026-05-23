@@ -1,35 +1,33 @@
-/* _footer.scss */
-@use '../colors';
+// ================================================================================================
+// FOOTER COMPONENT TOKENS
+// ================================================================================================
+
 @use '../border';
+@use '../colors';
 @use '../spacing';
 
-// ================================================================================================
-// FOOTER TOKENS COMPONENT
-// ================================================================================================
+// SIZE
+// ------------------------------------------------------------------------------------------------
+$footer-divider-length:                 100%;
+
+// SPACING
+// ------------------------------------------------------------------------------------------------
+$footer-padding:                        spacing.$sp-24;
+$footer-section-padding:                spacing.$sp-16;
+
+$footer-text-gap:                       spacing.$sp-8;
+$footer-nav-gap:                        spacing.$gap-16;
+$footer-main-gap-mobile:                spacing.$gap-32;
+$footer-main-gap-desktop:               spacing.$gap-64;
 
 // COLORS
 // ------------------------------------------------------------------------------------------------
 $footer-text-color:                     colors.$color-text-inverse;
 $footer-bg-color:                       colors.$color-bg-primary;
 
-// SPACING
-// ------------------------------------------------------------------------------------------------
-$footer-padding:                        spacing.$sp-24;
-$footer-text-sp:                        spacing.$sp-8;
-$footer-divider-sp:                     spacing.$sp-16;
-$footer-section-padding:                spacing.$sp-16;
-$footer-gap-nav-sp:                     spacing.$gap-16;
-
-// LAYOUT (GRID)
-// ------------------------------------------------------------------------------------------------
-$footer-col-left:                       max-content;
-$footer-col-center:                     1fr;
-$footer-col-right:                      auto;
-
-// DIVIDER
-// ------------------------------------------------------------------------------------------------
 $footer-divider-color:                  colors.$color-decoration-inverse;
-$footer-divider-thickness:              1px;
-$footer-divider-offset-mobile:          16px;
-$footer-divider-offset-desktop:         32px;
-$footer-divider-length:                 100%;
+
+// OFFSET
+// ------------------------------------------------------------------------------------------------
+$footer-divider-offset-mobile:          -(spacing.$sp-16);
+$footer-divider-offset-desktop:         -(spacing.$sp-32);

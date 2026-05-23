@@ -1,42 +1,50 @@
-/* variant.js */
+/**
+ * ================================================================================================
+ * VARIANTS
+ * ================================================================================================
+ * Rôle :
+ * - Centraliser les variantes visuelles des composants UI de l'application.
+ * - Uniformiser les styles et les comportements à travers l'application.
+ * ================================================================================================
+ */
 
 export const VARIANTS = {
-    ALERT: {
-        INFO: "info",
-        SUCCESS: "success",
-        ERROR: "error",
-    },
+  ALERT: {
+    INFO: "info",
+    SUCCESS: "success",
+    ERROR: "error",
+  },
 
-    CARD: {
-        HORIZONTAL: "horizontal",
-        VERTICAL: "vertical",
-    },
+  CARD: {
+    HORIZONTAL: "horizontal",
+    VERTICAL: "vertical",
+  },
 
-    BUTTON: {
-        PRIMARY: "primary",
-        SECONDARY: "secondary",
-        TERTIARY: "tertiary",
-    },
+  BUTTON: {
+    PRIMARY: "primary",
+    SECONDARY: "secondary",
+    TERTIARY: "tertiary",
+  },
 
-    ICON_BUTTON: {
-        ROUNDED: "rounded",
-        GHOST: "ghost",
-    },
+  ICON_BUTTON: {
+    ROUNDED: "rounded",
+    GHOST: "ghost",
+  },
 
-    SEARCHBAR: {
-        DEFAULT: "default",
-        NAVBAR: "navbar",
-    },
+  SEARCHBAR: {
+    DEFAULT: "default",
+    NAVBAR: "navbar",
+  },
 
-    SIZE: {
-        XS: "xs",
-        SM: "sm",
-        MD: "md",
-        LG: "lg",
-    },
+  SIZE: {
+    XS: "xs",
+    SM: "sm",
+    MD: "md",
+    LG: "lg",
+  },
 
-    TRIGGER: {
-        OUTLINED: "outlined",
-        UNDERLINED: "underlined",
-    },
-}
+  TRIGGER: {
+    OUTLINED: "outlined",
+    UNDERLINED: "underlined",
+  },
+};

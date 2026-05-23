@@ -1,5 +1,3 @@
-/* _footer.scss */
-
 @use '../settings/tokens';
 @use '../tools';
 
@@ -12,9 +10,22 @@
     ===================================================== */
     &__main {
         @include                        tools.flex-column;
-        gap:                            tokens.$gap-32;
+        gap:                            tokens.$footer-main-gap-mobile;
         padding-top:                    tokens.$footer-padding;
         padding-bottom:                 tokens.$footer-padding;
+    }
+    
+    /* =====================================================
+        MAIN LAYOUT
+    ===================================================== */
+    &__logo {
+        display: inline-block;
+
+        img {
+            display: block;
+            height: auto;
+            max-width: 100%;
+        }
     }
 
     /* =====================================================
@@ -24,20 +35,14 @@
         position:                       relative;
         @include                        tools.flex-column;
         margin:                         0;
-        gap:                            tokens.$footer-text-sp;
-
-        /* -----------------------------
-            Divider Line
-        ----------------------------- */        
-        &::before {
-            content:                    "";
-            position:                   absolute;
-            bottom:                     -(tokens.$footer-divider-offset-mobile);
-            left:                       0;
-            width:                      tokens.$footer-divider-length;
-            height:                     tokens.$footer-divider-thickness;
-            background-color:           tokens.$footer-divider-color;
-        }
+        gap:                            tokens.$footer-text-gap;
+    }
+    
+    /* =====================================================
+        DIVIDER
+    ===================================================== */
+    & .divider {
+        opacity: 1;
     }
 
     /* =====================================================
@@ -46,9 +51,9 @@
     &__nav {
         display:                        flex;
         flex-wrap:                      wrap;
-        gap:                            tokens.$footer-gap-nav-sp;
+        gap:                            tokens.$footer-nav-gap;
 
-        a:hover {
+        &-link:hover {
             text-decoration:            underline;
         }
     }
@@ -70,29 +75,16 @@
     .footer {
         &__main {
             display:                    grid;
-            grid-template-columns:      tokens.$footer-col-left tokens.$footer-col-center tokens.$footer-col-right;
-            align-items:                start;
-            gap:                        tokens.$gap-64;
+            grid-template-columns:      max-content auto max-content 1fr;
+            align-items:                stretch;
+            gap:                        tokens.$footer-main-gap-desktop;
         }
 
         &__address {
-            position:                   relative;
             margin:                     0;
             border:                     none;
             padding:                    0;
             height:                     100%;
-
-            /* -----------------------------
-                Divider Line
-            ----------------------------- */
-            &::before {
-                content: "";
-                left:                   -(tokens.$footer-divider-offset-desktop);
-                bottom:                 0;
-                top:                    0;
-                width:                  tokens.$footer-divider-thickness;
-                height:                 tokens.$footer-divider-length;
-            }
         }
 
         &__nav {

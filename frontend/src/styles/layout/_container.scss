@@ -1,4 +1,14 @@
-/* _container.scss */
+/**
+ * ================================================================================================
+ * CONTAINER LAYOUT
+ * ================================================================================================
+ * Rôle :
+ * - Fournir une classe de conteneur réutilisable pour centrer et limiter la largeur du contenu
+ *   de l'application.
+ * - Assurer une mise en page cohérente et responsive à travers les différentes pages et composants.
+ * - Servir de base pour les sections et les mises en page spécifiques des pages.
+ * ================================================================================================
+ */
 
 @use '../settings/tokens';
 @use '../tools/mixins';

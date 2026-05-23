@@ -1,4 +1,14 @@
-/* _base.scss */
+/**
+ * ================================================================================================
+ * BASE
+ * ================================================================================================
+ * Rôle :
+ * - Définir les styles de base globaux de l'application.
+ * - Fournir des classes utilitaires pour la typographie, les listes, les espacements (flow),
+ *   les skeletons et les états de focus.
+ * - Servir de fondation pour les styles spécifiques des composants et des pages.
+ * ================================================================================================
+ */
 
 @use '../settings/tokens';
 @use '../tools';
@@ -60,10 +70,7 @@ h5 {
         padding-top:                    16px;
 
         &::before {
-            content:                    "";
-            position:                   absolute;
-            top:                        0;
-            left:                       0;
+            @include                    tools.pseudo-fill;
             width:                      18px;
             height:                     6px;
             
@@ -82,6 +89,16 @@ h5 {
             background:                 tokens.$color-decoration-tertiary;
         }
     }
+}
+
+// ================================================================================================
+// LIST
+// ================================================================================================
+
+.reset-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 // ================================================================================================
@@ -121,7 +138,7 @@ h5 {
 // ================================================================================================
 
 .skeleton {
-    background-color:                   tokens.$skeleton-bg;
+    background-color:                   tokens.$skeleton-bg-color;
     border-radius:                      tokens.$skeleton-radius;
     animation:                          pulse tokens.$skeleton-motion;
 }
@@ -235,5 +252,5 @@ h5 {
 input:focus-visible,
 textarea:focus-visible,
 select:focus-visible {
-    outline:                            tokens.$border-default solid tokens.$color-focus-input;
+    outline:                            tokens.$border-medium solid tokens.$color-focus-input;
 }

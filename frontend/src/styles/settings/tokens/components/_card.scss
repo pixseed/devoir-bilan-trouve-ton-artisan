@@ -1,39 +1,42 @@
-/* _card.scss */
+// ================================================================================================
+// CARD COMPONENT TOKENS
+// ================================================================================================
 
-@use '../spacing';
-@use '../scale';
+@use '../border';
 @use '../colors';
 @use '../radius';
-@use '../border';
+@use '../scale';
+@use '../spacing';
 
-// ================================================================================================
-// ARTISAN CARD TOKENS COMPONENT
-// ================================================================================================
-
-// CARD
+// SIZE
 // ------------------------------------------------------------------------------------------------
-$card-border:                           border.$border-thin solid colors.$color-border-default;
-$card-radius:                           radius.$radius-sm;
-$card-gap:                              spacing.$gap-16;
-$card-spacing:                          spacing.$sp-16;
+$card-media-size:                       scale.$scale-64;
 
-// HEADER
+$card-rating-star-size-md:              scale.$scale-20;
+$card-rating-star-size-sm:              scale.$scale-16;
+
+$card-horizontale-min-width:            392px;
+$card-verticale-min-width:              216px;
+
+// SPACING
 // ------------------------------------------------------------------------------------------------
+$card-inner-spacing:                    spacing.$sp-16;
+
 $card-header-gap:                       spacing.$sp-16;
 $card-header-meta-gap:                  spacing.$gap-8;
 
-// BODY
-// ------------------------------------------------------------------------------------------------
 $card-body-gap:                         spacing.$sp-12;
 $card-body-meta-gap:                    spacing.$gap-8;
 
-// MEDIA
+// BORDER
 // ------------------------------------------------------------------------------------------------
-$card-media-size:                       scale.$scale-64;
-$card-media-radius:                     radius.$radius-sm;
-$card-media-bg:                         colors.$color-bg-muted;
+$card-border:                           border.$border-thin solid colors.$color-border-default;
 
-// RATING
+// RADIUS
 // ------------------------------------------------------------------------------------------------
-$card-rating-star-size-md:              scale.$scale-20;
-$card-rating-star-size-sm:              scale.$scale-16;
+$card-radius:                           radius.$radius-sm;
+$card-media-radius:                     radius.$radius-sm;
+
+// COLORS
+// ------------------------------------------------------------------------------------------------
+$card-media-bg:                         colors.$color-bg-muted;

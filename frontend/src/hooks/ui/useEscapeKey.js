@@ -1,31 +1,25 @@
 /**
  * ================================================================================================
- * useEscapeKey.js
+ * USE ESCAPE KEY
+ * ================================================================================================
+ * Rôle :
+ * - Déclencher une action lors de l'appuie sur la touche Escape.
  * ================================================================================================
  */
 
 import { useEffect } from "react";
 
-/**
- * Hook : ferme un élément via la touche Escape.
- * ------------------------------------------------------------------------------------------------
- * @param {boolean} isActive
- * @param {function} closeElement
- * 
- * @return {void}
- */
-export function useEscapeKey(isActive, closeElement) {
-    useEffect(() => {
-        if (!isActive) return;
+export function useEscapeKey(isActive, handler) {
+  useEffect(() => {
+    if (!isActive) return;
 
-        const handleKey = (e) => {
-            if (e.key === "Escape") {
-                closeElement();
-            }
-        };
-        
-        document.addEventListener("keydown", handleKey);
-        return () => document.removeEventListener("keydown", handleKey);
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") {
+        handler();
+      }
+    };
 
-    }, [isActive, closeElement]);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [isActive, handler]);
 }

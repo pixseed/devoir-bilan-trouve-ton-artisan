@@ -1,14 +1,27 @@
-/* Modal.jsx */
+/**
+ * ================================================================================================
+ * MODAL
+ * ================================================================================================
+ * Rôle :
+ * - Afficher une fenêtre modale accessible.
+ * - Gérer la fermeture utilisateur (clic extérieur, Escape, bouton).
+ * - Piéger le focus clavier dans la modale.
+ * - Bloquer le scroll de fond pendant l'ouverture.
+ * ================================================================================================
+ */
+
+import { useEffect, useRef, useId } from "react";
 
 import { useClickOutside } from "../../../hooks/ui/useClickOutside";
 import { useEscapeKey } from "../../../hooks/ui/useEscapeKey";
 import { useFocusTrap } from "../../../hooks/ui/useFocusTrap";
+
+import { VARIANTS } from "../../../constants/variants";
 import Button from "../actions/Button";
-import { useEffect, useRef, useId } from "react";
 
 export default function Modal({
   title = "",
-  ariaLabel = "",
+  ariaLabel = "Fenêtre modale",
   onClose,
   children,
 }) {
@@ -20,9 +33,15 @@ export default function Modal({
   useFocusTrap(modalRef, true);
 
   useEffect(() => {
+    // Sauvegarde de l'état initial
+    const originalOverflow = document.documentElement.style.overflow;
+
     document.documentElement.style.overflow = "hidden";
 
-    return () => (document.documentElement.style.overflow = "");
+    return () => {
+      // Restauration de l'état initial
+      document.documentElement.style.overflow = originalOverflow;
+    };
   }, []);
 
   return (
@@ -41,9 +60,11 @@ export default function Modal({
               {title}
             </h2>
           )}
+
           <div className="app-modal__body">{children}</div>
+
           <div className="app-modal__footer">
-            <Button onClick={onClose} variant="primary">
+            <Button onClick={onClose} variant={VARIANTS.BUTTON.PRIMARY}>
               Fermer
             </Button>
           </div>

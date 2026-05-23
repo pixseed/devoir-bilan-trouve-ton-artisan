@@ -1,24 +1,16 @@
-/* _modal.scss */
+// ================================================================================================
+// MODAL COMPONENT TOKENS
+// ================================================================================================
 
+@use '../border';
 @use '../colors';
-@use '../spacing';
 @use '../radius';
 @use '../shadow';
-@use '../border';
+@use '../spacing';
 
-// ================================================================================================
-// MODAL TOKENS COMPONENT
-// ================================================================================================
-
-$modal-radius:                          radius.$radius-lg;
-$modal-border-thickness:                border.$border-thin;
-$modal-shadow-overlay:                  shadow.$shadow-overlay;
-
-// COLORS
+// SIZE
 // ------------------------------------------------------------------------------------------------
-$modal-bg-color-overlay:                colors.$color-bg-overlay;
-$modal-border-color:                    colors.$color-border-emphasis-primary;
-$modal-bg-color:                        colors.$color-bg-surface;
+$modal-width-md:                        70%;
 
 // SPACING
 // ------------------------------------------------------------------------------------------------
@@ -30,3 +22,21 @@ $modal-padding-y-sm:                    spacing.$sp-24;
 
 $modal-margin-bottom-title:             spacing.$sp-16;
 $modal-margin-bottom-body:              spacing.$sp-24;
+
+// BORDER
+// ------------------------------------------------------------------------------------------------
+$modal-border-size:                     border.$border-thin;
+
+// RADIUS
+// ------------------------------------------------------------------------------------------------
+$modal-radius:                          radius.$radius-lg;
+
+// SHADOW
+// ------------------------------------------------------------------------------------------------
+$modal-shadow:                          shadow.$shadow-overlay;
+
+// COLORS
+// ------------------------------------------------------------------------------------------------
+$modal-backdrop-bg-color:               colors.$color-bg-overlay;
+$modal-bg-color:                        colors.$color-bg-surface;
+$modal-border-color:                    colors.$color-border-emphasis-primary;

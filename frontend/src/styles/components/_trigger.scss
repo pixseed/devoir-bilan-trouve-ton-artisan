@@ -1,5 +1,3 @@
-/* _trigger.scss */
-
 @use '../settings/tokens';
 @use '../tools';
 
@@ -56,15 +54,15 @@
         VARIANTS
     ===================================================== */
     &--underlined {
-        &:after {
+        &::after {
             content:                    "";
             position:                   absolute;
             left:                       50%;
-            bottom:                     tokens.$trigger-underline-offset-mobile;
+            bottom:                     tokens.$trigger-underlined-offset-mobile;
             transform:                  translateX(-50%) scaleX(0);
 
             width:                      calc(100% - tokens.$trigger-padding-x);
-            height:                     tokens.$trigger-underline-height;
+            height:                     tokens.$trigger-underlined-height;
 
             background-color:           currentColor;
             opacity:                    0;
@@ -79,10 +77,10 @@
     }
 
     &--outlined {
-        border:                         tokens.$trigger-border-size solid tokens.$trigger-border-color;
-        border-radius:                  tokens.$trigger-border-radius;
-        padding:                        tokens.$trigger-padding-y tokens.$trigger-padding-x;
-        background-color:               tokens.$trigger-underline-bg-color;
+        border:                         tokens.$trigger-outlined-border-size solid tokens.$trigger-outlined-border-color;
+        border-radius:                  tokens.$trigger-outlined-border-radius;
+        padding:                        tokens.$trigger-outlined-padding-y tokens.$trigger-outlined-padding-x;
+        background-color:               tokens.$trigger-outlined-bg-color;
     }
 }
 
@@ -95,6 +93,6 @@
         Underlined
     ----------------------------- */
     .trigger--underlined::after {
-        bottom:                         tokens.$trigger-underline-offset-desktop;
+        bottom:                         tokens.$trigger-underlined-offset-desktop;
     }
 }

@@ -1,28 +1,26 @@
-/* _filter.scss */
-
 @use '../settings/tokens';
 @use '../tools';
 
 .filters__controls {
-        @include                        tools.flex-column;
-        gap:                            tokens.$artisans-list-gap;
+    @include                            tools.flex-column;
+    gap:                                tokens.$filter-controls-gap;
 }
 
 .filter-group {
     @include                            tools.flex-column;
     background-color:                   tokens.$filter-group-bg-color;
     border:                             tokens.$filter-group-border-size solid tokens.$filter-group-border-color;
-    gap:                                tokens.$filter-group-gap;
     padding:                            tokens.$filter-group-padding;
-    border-radius:                      tokens.$filter-group-border-radius;
+    border-radius:                      tokens.$filter-group-radius;
+    gap:                                tokens.$filter-group-gap;
 
     &__title {
-        padding-inline:                 tokens.$filter-title-padding-x;
+        padding:                        tokens.$filter-title-padding;
     }
 
     &__list {
         @include                        tools.flex-column;
-        gap:                            tokens.$filter-list-gap;
+        gap:                            unset;
 
         &--loading{
             gap:                        tokens.$skeleton-gap-sm;
@@ -46,7 +44,7 @@
         }
 
         &--active {
-            padding-left:               tokens.$filter-button-padding-left-active;
+            padding-left:               tokens.$filter-button-offset-x-active;
             color:                      tokens.$filter-button-text-color-active;
             border-left:                tokens.$filter-button-border-size-active solid tokens.$filter-button-border-color-active;
 
@@ -60,9 +58,7 @@
 }
 
 @media (min-width: tokens.$bp-md) {
-    .filters__controls {
-            @include                    tools.flex-column;
-            gap:                        tokens.$artisans-list-gap;
+    .filters__controls {            
             & > * {
                 flex:                   1;
             }

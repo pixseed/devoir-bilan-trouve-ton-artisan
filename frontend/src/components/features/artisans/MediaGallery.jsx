@@ -1,14 +1,27 @@
-/* MediaGallery.jsx */
+/**
+ * ================================================================================================
+ * MEDIA GALLERY
+ * ================================================================================================
+ * Rôle :
+ * - Afficher une galerie d'images avec aperçu principal.
+ * - Permettre la sélection d'une miniature.
+ * - Gérer l'ouverture d'un aperçu plein écran.
+ * ================================================================================================
+ */
 
 import GalleryMain from "../../ui/media/GalleryMain";
 import GalleryList from "../../ui/media/GalleryList";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function MediaGallery({ images = [] }) {
-  const [activeImage, setActiveImage] = useState(images[0]);
+  const [activeImage, setActiveImage] = useState(null);
   const [isImageOpen, setIsImageOpen] = useState(false);
 
-  if (!images.length) return null;
+  useEffect(() => {
+    if (images.length) {
+      setActiveImage(images[0]);
+    }
+  }, [images]);
 
   return (
     <div className="media-gallery">
@@ -19,13 +32,16 @@ export default function MediaGallery({ images = [] }) {
         onSelect={setActiveImage}
       />
       {isImageOpen && (
-        <div onClick={() => setIsImageOpen(false)} className="gallery-lightbox">
+        <modal
+          onClick={() => setIsImageOpen(false)}
+          className="gallery-lightbox"
+        >
           <img
             src={activeImage.src}
             alt={activeImage.alt}
             className="gallery-lightbox__image"
           />
-        </div>
+        </modal>
       )}
     </div>
   );

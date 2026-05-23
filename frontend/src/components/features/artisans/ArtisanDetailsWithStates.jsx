@@ -1,26 +1,22 @@
 /**
  * ================================================================================================
- * FEATURE : ArtisanDetailsWithStates
+ * ARTISAN DETAILS WITH STATE
  * ================================================================================================
  * Rôle :
- * - Wrapper du composant ArtisanDetailsContent
- * - Gère les états :
+ * - Gérer les états :
  *      → loading (skeleton)
  *      → error (message + désactivation)
  *      → success (affichage normale)
- *
- * Ojectif :
- * - Centraliser la logique loading/error
- * - Éviter d'intégrer de la logique au composant métier
  * ================================================================================================
  */
 
-import Artisan from "./ArtisanDetails";
+import ArtisanDetails from "./ArtisanDetails";
 import ArtisanDetailsSkeleton from "../../ui/feedback/ArtisanDetailsSkeleton";
 import Alert from "../../ui/feedback/Alert";
+
 import { VARIANTS } from "../../../constants/variants";
 
-export default function ArtisanWithStates({ data, loading, error }) {
+export default function ArtisanDetailsWithStates({ data, loading, error }) {
   if (loading) {
     return <ArtisanDetailsSkeleton />;
   }
@@ -37,5 +33,5 @@ export default function ArtisanWithStates({ data, loading, error }) {
     return null;
   }
 
-  return <Artisan artisan={data} />;
+  return <ArtisanDetails artisan={data} />;
 }

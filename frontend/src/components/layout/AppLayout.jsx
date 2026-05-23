@@ -1,8 +1,10 @@
 /**
  * ================================================================================================
- * AppLayout.jsx
+ * APPLICATION LAYOUT
  * ================================================================================================
- *
+ * Rôle :
+ * - Définir la structure globale partagée de l'application.
+ * - Encapsuler le header, le contenu principal et le footer.
  * ================================================================================================
  */
 
@@ -13,7 +15,7 @@ import Footer from "./Footer";
 
 export default function AppLayout() {
   return (
-    <div>
+    <>
       <Header />
 
       <main>
@@ -21,6 +23,6 @@ export default function AppLayout() {
       </main>
 
       <Footer />
-    </div>
+    </>
   );
 }

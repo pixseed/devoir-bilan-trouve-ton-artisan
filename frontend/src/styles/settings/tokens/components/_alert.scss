@@ -1,28 +1,27 @@
-/* _alert.scss */
+// ================================================================================================
+// ALERT COMPONENT TOKENS
+// ================================================================================================
 
-@use '../colors';
 @use '../border';
-@use '../spacing';
+@use '../colors';
 @use '../radius';
-
-// ================================================================================================
-// ALERT TOKENS COMPONENT
-// ================================================================================================
-
-// BORDER
-// ------------------------------------------------------------------------------------------------
-$alert-border-size:                   border.$border-thin;
-$alert-radius:                        radius.$radius-sm;
+@use '../spacing';
 
 // SPACING
 // ------------------------------------------------------------------------------------------------
 $alert-padding-y:                     spacing.$sp-8;
 $alert-padding-x:                     spacing.$sp-16;
+$alert-stack-spacing:                 spacing.$sp-16; // Space optionnel entre alerts ou blocs adjacents
 
-// Margin-top uniquement si précédé d'un voisin
-$alert-margin-top:                    spacing.$sp-16;
+// BORDER
+// ------------------------------------------------------------------------------------------------
+$alert-border-size:                   border.$border-thin;
 
-// COLORS (VARIANTS)
+// RADIUS
+// ------------------------------------------------------------------------------------------------
+$alert-radius:                        radius.$radius-sm;
+
+// COLORS
 // ------------------------------------------------------------------------------------------------
 // Error
 $alert-error-bg-color:                colors.$color-bg-danger;

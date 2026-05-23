@@ -1,19 +1,20 @@
-/* ArtisanDetailsSkeleton.jsx */
+/**
+ * ================================================================================================
+ * ARTISAN DETAILS SKELETON
+ * ================================================================================================
+ * Rôle :
+ * - Afficher l'état de chargement de la page détail artisan.
+ * ================================================================================================
+ */
 
-import Rating from "../display/Rating";
-import Button from "../actions/Button";
 import MediaGallerySkeleton from "./MediaGallerySkeleton";
-import ContactForm from "../../features/artisans/ContactForm";
 import Divider from "../display/Divider";
 import SkeletonParagraph from "./SkeletonParagraph";
 import FormSkeleton from "./FormSkeleton";
 
-import { VARIANTS } from "../../../constants/variants";
-import { galleryImages } from "../../../mocks/GalleryImages";
-
-function ArtisanDetailsSkeleton({ artisan }) {
+function ArtisanDetailsSkeleton() {
   return (
-    <>
+    <div aria-hidden="true">
       <div className="section artisan-details__header">
         <div className="artisan-details__header-media">
           <div className="skeleton skeleton--image" />
@@ -54,7 +55,7 @@ function ArtisanDetailsSkeleton({ artisan }) {
           <FormSkeleton />
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

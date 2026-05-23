@@ -1,4 +1,12 @@
-/* ArtisanDetails.jsx */
+/**
+ * ================================================================================================
+ * ARTISAN DETAILS
+ * ================================================================================================
+ * Rôle :
+ * - Afficher les informations détaillées d'un artisan.
+ * - Composer les sections présentation, galerie, contact.
+ * ================================================================================================
+ */
 
 import Rating from "../../ui/display/Rating";
 import Button from "../../ui/actions/Button";
@@ -9,11 +17,10 @@ import Divider from "../../ui/display/Divider";
 import { VARIANTS } from "../../../constants/variants";
 import { galleryImages } from "../../../mocks/GalleryImages";
 
-function Artisan({ artisan }) {
+export default function ArtisanDetails({ artisan }) {
   // ===========================================================================================
   // GALLERY
   // ===========================================================================================
-
   const artisanGalleryImages = [
     {
       id: 1,
@@ -26,9 +33,12 @@ function Artisan({ artisan }) {
   // ===========================================================================================
   // RENDER
   // ===========================================================================================
-
   return (
     <>
+      {/* ===============================================================
+        Header : Informations principales de l'artisans avec bouton de
+        redirection (si site web existant en base) vers le site web de l'artisan
+        =================================================================== */}
       <div className="section artisan-details__header">
         <div className="artisan-details__header-media">
           <img
@@ -67,6 +77,9 @@ function Artisan({ artisan }) {
       </div>
 
       <div className="artisan-details__content">
+        {/* ===============================================================
+        Section : À PROPOS
+        =================================================================== */}
         <div className="section artisan-details__about flow-md">
           <h3 className="heading-lg heading-lg__accent heading-lg__accent--primary">
             À propos
@@ -74,6 +87,9 @@ function Artisan({ artisan }) {
           <p className="artisan-details__about-text">{artisan.about}</p>
         </div>
 
+        {/* ===============================================================
+        Section : GALERIE
+        =================================================================== */}
         <div className="section artisan-details__gallery flow-md">
           <h3 className="heading-lg heading-lg__accent heading-lg__accent--secondary">
             Galerie
@@ -81,6 +97,9 @@ function Artisan({ artisan }) {
           <MediaGallery images={artisanGalleryImages} />
         </div>
 
+        {/* ===============================================================
+        Section : CONTACT
+        =================================================================== */}
         <div className="section artisan-details__form flow-md">
           <h3 className="heading-lg heading-lg__accent heading-lg__accent--tertiary">
             Contact
@@ -91,5 +110,3 @@ function Artisan({ artisan }) {
     </>
   );
 }
-
-export default Artisan;

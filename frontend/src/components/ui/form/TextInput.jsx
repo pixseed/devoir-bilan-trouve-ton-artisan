@@ -1,40 +1,39 @@
-/* TextInput.jsx */
+/**
+ * ================================================================================================
+ * TEXT INPUT
+ * ================================================================================================
+ * Rôle :
+ * - Afficher un champ de saisie de texte réutilisable.
+ * - Gérer l'affichage du label flottant.
+ * - Gérer l'état d'erreur visuel et accessibilité.
+ * ================================================================================================
+ */
 
+import FormField from "./FormField";
 import clsx from "clsx";
 
-export default function TextInput({
-  label,
-  type = "text",
-  value,
-  error,
-  onChange,
-  name,
-}) {
+export default function TextInput(props) {
+  const { name, label, error, value, onChange, type = "text" } = props;
+
   return (
-    <div className="form-field">
+    <FormField
+      name={name}
+      label={label}
+      error={error}
+    >
       <input
         id={name}
         name={name}
-        type="text"
+        type={type}
         placeholder=" "
         value={value}
         aria-invalid={!!error}
-        aria-describedby={error ? `${name}-error` : undefined}
         onChange={(e) => onChange?.(e.target.value)}
         className={clsx(
           "form-field__input",
-          error && "form-field__input--error"
+          error && "form-field__input--error",
         )}
       />
-      <label
-        htmlFor={name}
-        className={clsx(
-          "form-field__label",
-          error && "form-field__label--error"
-        )}
-      >
-        {label}
-      </label>
-    </div>
+    </FormField>
   );
 }

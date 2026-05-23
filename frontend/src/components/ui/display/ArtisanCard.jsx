@@ -1,14 +1,20 @@
 /**
  * ================================================================================================
- * ArtisanCard.jsx
+ * ARTISAN CARD
+ * ================================================================================================
+ * Rôle :
+ * - Afficher un résumé d'un artisan.
+ * - Présenter ses informations principales et un accès à sa fiche détail.
  * ================================================================================================
  */
 
-import Button from "../actions/Button";
-import Rating from "../display/Rating";
-import ArrowIcon from "../../../assets/icons/Right_Arrow.svg?react";
+import Rating from "./Rating";
 import Divider from "./Divider";
+import Button from "../actions/Button";
+import ArrowIcon from "../../../assets/icons/Right_Arrow.svg?react";
+
 import clsx from "clsx";
+
 import { VARIANTS } from "../../../constants/variants";
 
 export default function ArtisanCard({
@@ -21,14 +27,14 @@ export default function ArtisanCard({
   variant = VARIANTS.CARD.HORIZONTAL,
 }) {
   return (
-    <div className={clsx("artisan-card", `artisan-card--${variant}`)}>
+    <article className={clsx("artisan-card", `artisan-card--${variant}`)}>
       <div className="artisan-card__content">
         {/* ===============================================================
-        En-tête de card
+          HEADER
         =================================================================== */}
         <div className="artisan-card__header">
           <div className="artisan-card__media">
-            <img src={image} alt={name} className="artisan-card__image" />
+            <img src={image} alt={`Photo de ${name}`} className="artisan-card__image" />
           </div>
           <div className="artisan-card__header-meta">
             <h3 className="heading-md artisan-card__header-meta-name">
@@ -41,7 +47,7 @@ export default function ArtisanCard({
         <Divider />
 
         {/* ===============================================================
-        Corps de card avec bouton de redirection vers la page de l'artisan
+          BODY
         =================================================================== */}
         <div className="artisan-card__body">
           <div className="artisan-card__body-meta">
@@ -59,6 +65,6 @@ export default function ArtisanCard({
           </Button>
         </div>
       </div>
-    </div>
+    </article>
   );
 }

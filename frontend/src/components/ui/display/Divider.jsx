@@ -1,5 +1,26 @@
-/* Divider.jsx */
+/**
+ * ================================================================================================
+ * DIVIDER
+ * ================================================================================================
+ * Rôle :
+ * - Afficher une séparation visuelle horizontale ou verticale.
+ * ================================================================================================
+ */
+
+import clsx from "clsx";
 
 export default function Divider({ orientation = "horizontal", size = "auto" }) {
-  return <div className={`divider divider--${orientation} divider--${size}`}></div>;
+  const className = clsx(
+    "divider",
+    `divider--${orientation}`,
+    `divider--${size}`,
+  )
+
+  if (orientation === "horizontal") {
+    return <hr className={className} />;
+  }
+
+  return (
+    <div className={className} aria-hidden="true" />
+  );
 }

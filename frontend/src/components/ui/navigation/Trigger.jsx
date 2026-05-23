@@ -1,22 +1,16 @@
 /**
  * ================================================================================================
- * Trigger.jsx (component UI)
+ * TRIGGER
  * ================================================================================================
- * Bouton déclencheur (menu, dropdown, etc.).
- *
- * Responsabilités :
- * - Gérer l'état ouvert/fermé
- * - Fournir les attributs aria nécessaire
- *
- * Accessibilité :
- * - aria-expanded : état du panel
- * - aria-controls : élément contrôlé
- * - aria-haspopup : type de contenu ouvert
+ * Rôle :
+ * - Afficher un bouton déclencheur interactif.
+ * - Gérer l'état visuel ouvert / fermé.
+ * - Fournir les attributs ARIA nécessaires à l'accessibilité.
  * ================================================================================================
  */
 
-import clsx from "clsx";
 import { VARIANTS } from "../../../constants/variants";
+import clsx from "clsx";
 
 export default function Trigger({
   label,
@@ -43,11 +37,9 @@ export default function Trigger({
         className,
       )}
       onClick={onClick}
-      aria-expanded={isOpen}
-      aria-label={label || undefined}
+      aria-expanded={hasPopup ? isOpen : undefined}
       aria-haspopup={hasPopup || undefined}
       aria-controls={controls || undefined}
-      aria-disabled={disabled}
     >
       <span className="trigger__content">
         <span className="trigger__label">{label}</span>

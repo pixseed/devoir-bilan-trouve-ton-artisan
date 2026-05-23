@@ -1,49 +1,75 @@
-/* artisansService.js */
+/**
+ * ================================================================================================
+ * ARTISANS SERVICE
+ * ================================================================================================
+ * Rôle :
+ * - Gérer les appels API liés aux artisans.
+ * - Transformer les données reçues pour le frontend.
+ * ================================================================================================
+ */
 
 import { apiFetch } from "./apiClient";
-import { API_URL } from "../config/api";
+import { API_CONFIG } from "../config/api";
 import { buildImageUrl } from "../utils/url";
 
+// ================================================================================================
+// HELPERS
+// ================================================================================================
+function mapArtisanImage(artisan) {
+  return {
+    ...artisan,
+    image: buildImageUrl(artisan.image),
+  };
+}
+
+// ================================================================================================
+// GET TOP ARTISANS
+// ================================================================================================
 export async function getTopArtisans() {
-    const res = await apiFetch(`${API_URL.ENDPOINTS.TOP_ARTISANS}`);
-    
-    return res.data.map((artisan) => ({
-        ...artisan,
-        image: buildImageUrl(artisan.image),
-    }));
+  const response = await apiFetch(`${API_CONFIG.ENDPOINTS.TOP_ARTISANS}`);
+  
+  return response.data.map(mapArtisanImage);
 }
 
+// ================================================================================================
+// GET ARTISANS
+// ================================================================================================
 export async function getArtisans({ search, category }) {
-    const params = new URLSearchParams();
+  const params = new URLSearchParams();
+  
+  if (search) params.append("search", search);
+  if (category) params.append("category", category);
 
-    if (search) params.append("search", search);
-    if (category) params.append("category", category);
-
-    const res = await apiFetch(`${API_URL.ENDPOINTS.ARTISANS}?${params.toString()}`)
-
-    return res.data.map((artisan) => ({
-        ...artisan,
-        image: buildImageUrl(artisan.image)
-    }));
+  const response = await apiFetch(
+    `${API_CONFIG.ENDPOINTS.ARTISANS}?${params.toString()}`,
+  );
+  
+  return response.data.map(mapArtisanImage);
 }
 
+// ================================================================================================
+// GET ARTISANS BY ID
+// ================================================================================================
 export async function getArtisanById(id) {
-    const res = await apiFetch(`${API_URL.ENDPOINTS.ARTISANS}/${id}`);
-    
-    return {
-        ...res.data,
-        image: buildImageUrl(res.data.image),
-    };
+  const response = await apiFetch(`${API_CONFIG.ENDPOINTS.ARTISANS}/${id}`);
+  
+  return mapArtisanImage(response.data);
 }
 
+// ================================================================================================
+// SEND CONTACT MESSAGE
+// ================================================================================================
 export async function sendArtisanContactMessage(id, payload) {
-    const res = await apiFetch(`${API_URL.ENDPOINTS.ARTISANS}/${id}/contact`,{
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-    });
+  const response = await apiFetch(
+    `${API_CONFIG.ENDPOINTS.ARTISANS}/${id}/contact`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    },
+  );
 
-    return res;
+  return response;
 }

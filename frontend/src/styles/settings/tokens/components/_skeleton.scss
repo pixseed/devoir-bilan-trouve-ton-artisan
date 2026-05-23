@@ -1,33 +1,12 @@
-/* _skeleton.scss */
+// ================================================================================================
+// SKELETON COMPONENT TOKENS
+// ================================================================================================
 
-@use '../scale';
-@use '../radius';
-@use '../spacing';
 @use '../colors';
 @use '../motion';
-
-// ================================================================================================
-// SKELETON TOKENS COMPONENT
-// ================================================================================================
-
-// MOTION
-// ------------------------------------------------------------------------------------------------
-$skeleton-animation-duration:           motion.$duration-ultra-slow;
-$skeleton-animation-easing:             motion.$easing-smooth;
-$skeleton-motion:                       $skeleton-animation-duration $skeleton-animation-easing infinite;
-
-// COLORS
-// ------------------------------------------------------------------------------------------------
-$skeleton-bg:                           colors.$color-neutral-300;
-
-// SPACING
-// ------------------------------------------------------------------------------------------------
-$skeleton-gap-md:                       spacing.$sp-16;
-$skeleton-gap-sm:                       spacing.$sp-8;
-
-// RADIUS
-// ------------------------------------------------------------------------------------------------
-$skeleton-radius:                       radius.$radius-xs;
+@use '../radius';
+@use '../scale';
+@use '../spacing';
 
 // SIZE
 // ------------------------------------------------------------------------------------------------
@@ -46,3 +25,22 @@ $skeleton-width-50:                     50%;
 $skeleton-width-40:                     40%;
 $skeleton-width-30:                     30%;
 $skeleton-width-20:                     20%;
+
+// SPACING
+// ------------------------------------------------------------------------------------------------
+$skeleton-gap-md:                       spacing.$sp-16;
+$skeleton-gap-sm:                       spacing.$sp-8;
+
+// COLORS
+// ------------------------------------------------------------------------------------------------
+$skeleton-bg-color:                     colors.$color-neutral-300;
+
+// RADIUS
+// ------------------------------------------------------------------------------------------------
+$skeleton-radius:                       radius.$radius-xs;
+
+// MOTION
+// ------------------------------------------------------------------------------------------------
+$skeleton-animation-duration:           motion.$duration-ultra-slow;
+$skeleton-animation-easing:             motion.$easing-smooth;
+$skeleton-motion:                       $skeleton-animation-duration $skeleton-animation-easing infinite;

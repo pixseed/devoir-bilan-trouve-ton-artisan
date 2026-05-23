@@ -1,18 +1,11 @@
-/* _header.scss */
+// ================================================================================================
+// HEADER COMPONENT TOKENS
+// ================================================================================================
 
-@use '../colors';
-@use '../spacing';
-@use '../scale';
 @use '../border';
-
-// ================================================================================================
-// HEADER TOKENS COMPONENT
-// ================================================================================================
-
-// COLORS
-// ------------------------------------------------------------------------------------------------
-$header-icon:                           colors.$color-icon-emphasis-primary;
-$header-bg:                             colors.$color-bg-surface;
+@use '../colors';
+@use '../scale';
+@use '../spacing';
 
 // SIZE
 // ------------------------------------------------------------------------------------------------
@@ -24,10 +17,6 @@ $header-height-logo-mobile:             scale.$scale-32;
 $header-height-logo-tablet:             scale.$scale-48;
 $header-height-logo-desktop:            scale.$scale-56;
 
-// BORDER
-// ------------------------------------------------------------------------------------------------
-$header-border-panel:                   border.$border-thin solid colors.$color-border-inverse;
-
 // SPACING
 // ------------------------------------------------------------------------------------------------
 $header-padding-y-mobile:               spacing.$sp-16;
@@ -36,6 +25,16 @@ $header-padding-y-desktop:              spacing.$sp-32;
 
 $header-padding-x-action-button:        spacing.$sp-8;
 $header-gap:                            spacing.$gap-16;
+
+// BORDER
+// ------------------------------------------------------------------------------------------------
+$header-panel-border-size:              border.$border-thin;
+
+// COLORS
+// ------------------------------------------------------------------------------------------------
+$header-icon-color:                     colors.$color-icon-emphasis-primary;
+$header-bg-color:                       colors.$color-bg-surface;
+$header-panel-border-color:             colors.$color-border-inverse;
 
 // OFFSET
 // ------------------------------------------------------------------------------------------------

@@ -1,27 +1,39 @@
-/* Home.jsx */
+/**
+ * ================================================================================================
+ * PAGE : HOME
+ * ================================================================================================
+ * Rôle :
+ * - Afficher la page d'accueil.
+ * - Présenter les étapes d'utilisation du site.
+ * - Afficher les 3 artisans du mois (top 3) sous forme de cards.
+ * ================================================================================================
+ */
 
 import { useTopArtisans } from "../hooks/data/useTopArtisans";
-import { VARIANTS } from "../constants/variants";
-import ArtisansWithStates from "../components/features/artisans/ArtisansListWithStates";
 import { useBreakpoint } from "../hooks/ui/useBreakpoint";
+
+import { VARIANTS } from "../constants/variants";
+
+import ArtisansWithStates from "../components/features/artisans/ArtisansListWithStates";
 
 export default function Home() {
   const { artisans, error, loading } = useTopArtisans();
 
-  function getVariantCard({ isXS, isMD, isLG }) {
-    if (isLG) return VARIANTS.CARD.HORIZONTAL;
-    if (isMD) return VARIANTS.CARD.VERTICAL;
-    if (isXS) return VARIANTS.CARD.HORIZONTAL;
-  }
+  const { isMD, isLG } = useBreakpoint();
 
-  const variantCard = getVariantCard(useBreakpoint());
+  const variantCard = isMD && !isLG
+    ? VARIANTS.CARD.VERTICAL
+    : VARIANTS.CARD.HORIZONTAL;
 
   return (
     <div className="home">
       <div className="container">
         <h1 className="visually-hidden">Page d'accueil "Trouve ton artisan"</h1>
         <div className="home__grid">
-          {/* Étapes explicatives d'utilisation du site sous forme de liste */}
+          
+          {/* ===============================================================
+            HERO
+          =================================================================== */}
           <section className="section section--with-bg home__hero flow-md">
             <h2 className="heading-lg heading-lg__accent heading-lg__accent--primary">
               Comment trouver mon artisan ?
@@ -34,7 +46,9 @@ export default function Home() {
             </ol>
           </section>
 
-          {/* Liste des artisans du mois (top 3) sous forme de card */}
+          {/* ===============================================================
+            TOP ARTISANS
+          =================================================================== */}
           <section className="section layout-col--end home__top-artisans flow-md">
             <h2 className="heading-lg heading-lg__accent heading-lg__accent--secondary">
               Top 3 des artisans du mois

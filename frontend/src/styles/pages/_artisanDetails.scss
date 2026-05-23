@@ -1,19 +1,16 @@
-/* _artisanDetails.scss */
-
-@use '../settings/tokens';
-@use '../tools';
+@use "../settings/tokens";
+@use "../tools";
 
 .artisan-details {
     /* =====================================================
-        HEADER
-    ===================================================== */
+    HEADER
+  ===================================================== */
     &__header {
-        position: relative;
+        position:                       relative;
         @include                        tools.flex-column;
         @include                        tools.stack(sm);
 
         &::before {
-            content:                    "";
             @include                    tools.full-bleed;
             background:                 tokens.$artisan-details-bg-color;
             z-index:                    tokens.$z-behind;
@@ -21,11 +18,11 @@
     }
 
     /* =====================================================
-        HEADER - MEDIA
-    ===================================================== */
+      HEADER - MEDIA
+  ===================================================== */
     &__header-media {
         overflow:                       hidden;
-        border-radius:                  tokens.$artisan-details-media-border-radius;
+        border-radius:                  tokens.$artisan-details-media-radius;
         flex-shrink:                    0;
         width:                          100%;
         height:                         auto;
@@ -41,8 +38,8 @@
     }
 
     /* =====================================================
-        HEADER - META
-    ===================================================== */
+      HEADER - META
+  ===================================================== */
     &__header-button {
         align-self:                     flex-start;
     }
@@ -77,8 +74,8 @@
     }
 
     /* =====================================================
-        CONTENT
-    ===================================================== */
+    CONTENT
+  ===================================================== */
 
     &__about,
     &__gallery,
@@ -88,7 +85,7 @@
 }
 
 /* =====================================================
-    TABLET
+  TABLET
 ===================================================== */
 
 @media (min-width: tokens.$bp-md) {
@@ -107,8 +104,8 @@
         }
 
         /* =====================================================
-            SECTIONS
-        ===================================================== */
+      SECTIONS
+    ===================================================== */
         &__content {
             @include                    tools.grid-equal(2, 0);
         }
@@ -118,11 +115,19 @@
         }
 
         &__gallery {
-            @include                    tools.layout-col(start, tokens.$layout-gap-compact, tokens.$layout-gap-normal);
+            @include                    tools.layout-col(
+                                            start,
+                                            tokens.$layout-gap-compact,
+                                            tokens.$layout-gap-normal
+                                        );
         }
 
         &__form {
-            @include                    tools.layout-col(end, tokens.$layout-gap-compact, tokens.$layout-gap-normal);
+            @include                    tools.layout-col(
+                                            end,
+                                            tokens.$layout-gap-compact,
+                                            tokens.$layout-gap-normal
+                                        );
         }
 
         & .media-gallery {
@@ -136,36 +141,52 @@
 }
 
 @media (min-width: tokens.$bp-md) and (max-width: calc(tokens.$bp-lg - 0.1px)) {
-        .artisan-details__gallery,
-        .artisan-details__form {
-            padding-top:                0;
-        }
+    .artisan-details__gallery,
+    .artisan-details__form {
+        padding-top:                    0;
+    }
 }
 
 /* =====================================================
-    DESKTOP
+  DESKTOP
 ===================================================== */
 
 @media (min-width: tokens.$bp-lg) {
     .artisan-details {
         /* =====================================================
-            SECTIONS
-        ===================================================== */
+      SECTIONS
+    ===================================================== */
         &__content {
             @include                    tools.grid-equal(3, 0);
         }
 
         &__about {
             grid-column:                auto;
-            @include                    tools.layout-col(start, tokens.$layout-gap-compact, tokens.$layout-gap-normal);
+            @include                    tools.layout-col(
+                                            start,
+                                            tokens.$layout-gap-compact,
+                                            tokens.$layout-gap-normal
+                                        );
         }
 
         &__gallery {
-            @include                    tools.layout-col(middle, tokens.$layout-gap-compact, tokens.$layout-gap-normal);
+            @include                     tools.layout-col(
+                                            middle,
+                                            tokens.$layout-gap-compact,
+                                            tokens.$layout-gap-normal
+                                        );
+        }
+
+        & .media-gallery {
+            max-height:                 384px;
         }
 
         &__form {
-            @include                    tools.layout-col(end, tokens.$layout-gap-compact, tokens.$layout-gap-normal);
+            @include                    tools.layout-col(
+                                            end,
+                                            tokens.$layout-gap-compact,
+                                            tokens.$layout-gap-normal
+                                        );
         }
     }
 }

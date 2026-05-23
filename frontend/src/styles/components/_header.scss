@@ -1,12 +1,10 @@
-/* _header.scss */
-
 @use '../settings/tokens';
 @use '../tools';
 
 .header {
     position:                           relative;
     @include                    		tools.flex-column;
-    background:                         tokens.$header-bg;
+    background:                         tokens.$header-bg-color;
     box-shadow:                         tokens.$shadow-header;
     height:                             tokens.$header-height-mobile;
     z-index:                            tokens.$z-header;
@@ -70,14 +68,14 @@
             background:                 none;
             border:                     none;
             padding:                    0 tokens.$header-padding-x-action-button;
-			height: 100%;
+			height:                     100%;
         }
     }
 
     &__icon {
         height:                         tokens.$icon-lg;
         width:                          auto;
-        color:                          tokens.$header-icon;
+        color:                          tokens.$header-icon-color;
     }
 
     /* =====================================================
@@ -87,7 +85,7 @@
     &__menu-panel {
         @include 						tools.dropdown-panel;
 
-        background:                     tokens.$header-bg;
+        background:                     tokens.$header-bg-color;
 
         transform:                      translateY(tokens.$header-dropdown-offset-y);
         transition:                     tokens.$motion-fade-slide;
@@ -100,7 +98,7 @@
     }
 
     &__search-panel {
-        padding-bottom:                 tokens.$searchbar-navbar-sp-mobile;
+        padding-bottom:                 tokens.$searchbar-navbar-padding-mobile;
     }
 }
 
@@ -127,7 +125,7 @@
 		&__search-panel,
 		&__menu-panel {
 			box-shadow:                 tokens.$shadow-header;
-			border-bottom: 				tokens.$header-border-panel;
+			border-bottom: 				tokens.$header-panel-border-size solid tokens.$header-panel-border-color;
 		}
 
 		& .trigger {

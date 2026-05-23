@@ -1,25 +1,16 @@
 /**
  * ================================================================================================
- * Header.jsx
+ * APPLICATION HEADER
  * ================================================================================================
- * Responsabilités :
- * - Affiche le logo et la navigation principale
- * - Gère l'ouverture/fermeture des panels (menu/search)
- * - Supporte interactions utilisateur :
- *    - click (toggle)
- *    - click (outside)
- *    - touche Escape (keyboard access)
- *    - mouseleave (UX desktop)
- *
- * Accessibilité :
- * - aria-expanded / aria-controls pour les panels
- * - aria-haspopup pour indiquer le type d'interaction
+ * Rôle :
+ * - Afficher la navigation principale.
+ * - Gérer les interactions liées aux panels menu et recherche.
+ * - Assurer les comportements d'accessibilité clavier et focus.
  *
  * Dépendances :
- * - useHeaderPanels (state global des panels)
- * - useClickOutside (fermeture externe)
- * - useEscapeKey (keyboard)
- * - useFocusTrap (blocage du focus clavier)
+ * - hooks/features
+ * - hooks/ui
+ * - hooks/data
  * ================================================================================================
  */
 
@@ -44,44 +35,59 @@ import { useFocusTrap } from "../../hooks/ui/useFocusTrap";
 import { VARIANTS } from "../../constants/variants";
 
 export default function Header() {
-  // Gestion centralisée de l'état des panels (menu / search)
+  // ================================================================================================
+  // STATE
+  // ================================================================================================
   const { activePanel, togglePanel, closePanel } = useHeaderPanels();
 
-  // Récupération des catégories
+  // ================================================================================================
+  // DATA
+  // ================================================================================================
   const { categories, loading, error } = useCategories();
 
-  // Ferme le panel 'search' automatiquement en desktop
-  useCloseSearchOnBreakpoint(activePanel, closePanel);
-
-  // État des panels
+  // ================================================================================================
+  // DERIVED STATE
+  // ================================================================================================
   const isMenuOpen = activePanel === "menu";
   const isSearchOpen = activePanel === "search";
 
-  // Réf. pour détecter les clics en dehors du menu
+  // ================================================================================================
+  // REFS
+  // ================================================================================================
   const menuRef = useRef(null);
 
-  useClickOutside(menuRef, () => {
-    if (activePanel) closePanel();
-  });
+  // ================================================================================================
+  // EFFECTS / BEHAVIOR
+  // ================================================================================================
+  useCloseSearchOnBreakpoint(activePanel, closePanel);
+  useClickOutside(menuRef, closePanel);
   useEscapeKey(activePanel, closePanel);
   useFocusTrap(menuRef, isMenuOpen || isSearchOpen);
 
+  // ================================================================================================
+  // NAVIGATION
+  // ================================================================================================
   const navigate = useNavigate();
 
+  // ================================================================================================
+  // HANDLERS
+  // ================================================================================================
   function handleSearch(query) {
     closePanel();
     navigate(`/artisans?search=${encodeURIComponent(query)}`);
   }
 
-  // ===========================================================================================
-  // CATEGORY ITEMS - Retourner la liste des catégories
-  // ===========================================================================================
-
-  const mapCategoryItem = (c) => ({
-    label: c.name,
-    value: c.id,
+  // ================================================================================================
+  // MAPPERS
+  // ================================================================================================
+  const mapCategoryItem = (category) => ({
+    label: category.name,
+    value: category.id,
   });
 
+  // ================================================================================================
+  // RENDER
+  // ================================================================================================
   return (
     <header className="header">
       <div className="container header__inner">
@@ -101,7 +107,7 @@ export default function Header() {
         =================================================================== */}
         <nav
           className="header__nav"
-          onMouseLeave={() => closePanel()}
+          onMouseLeave={closePanel}
           aria-label="Navigation principale"
         >
           <div ref={menuRef} className="header__menu-wrapper">
@@ -123,6 +129,7 @@ export default function Header() {
             =================================================================== */}
             <div className="header__actions">
               <button
+                type="button"
                 onClick={() => togglePanel("search")}
                 aria-label="Ouvrir la recherche"
                 aria-haspopup="dialog"
@@ -132,6 +139,7 @@ export default function Header() {
                 <SearchIcon className="header__icon" />
               </button>
               <button
+                type="button"
                 onClick={() => togglePanel("menu")}
                 aria-label="Ouvrir le menu"
                 aria-haspopup="menu"
@@ -146,10 +154,7 @@ export default function Header() {
             Panel menu (dropdown 'catégories')
             =================================================================== */}
             {isMenuOpen && (
-              <div
-                id="menu-panel"
-                className={`header__menu-panel ${isMenuOpen ? "is-open" : ""}`}
-              >
+              <div id="menu-panel" className="header__menu-panel is-open">
                 <MenuWithStates
                   data={categories}
                   loading={loading}
@@ -164,10 +169,7 @@ export default function Header() {
             Panel search
             =================================================================== */}
             {isSearchOpen && (
-              <div
-                id="search-panel"
-                className={`header__search-panel ${isSearchOpen ? "is-open" : ""}`}
-              >
+              <div id="search-panel" className="header__search-panel is-open">
                 <div className="container">
                   <SearchBar
                     onSearch={handleSearch}

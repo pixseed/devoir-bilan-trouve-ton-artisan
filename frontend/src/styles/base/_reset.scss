@@ -1,13 +1,13 @@
 /**
  * ================================================================================================
- * RESET CSS
+ * RESET
  * ================================================================================================
- * Ce reset CSS vise à fournir une base solide pour le développement du site web
- * en normalisant les styles par défaut des éléments HTML.
- *
- * Il inclut des règles pour le modèle de boîte, la typographie, les listes, les médias,
- * les formulaires, les éléments préformatés, les SVG, ainsi que des considérations
- * pour les préférences d'animation des utilisateurs.
+ * Rôle :
+ * - Fournir une base de styles neutre et cohérente pour tous les navigateurs.
+ * - Normaliser les styles par défaut des éléments HTML pour éviter les incohérences d'affichage.
+ * - Prévenir les problèmes de mise en page liés aux marges, aux paddings, aux modèles de boîte, etc.
+ * - Servir de fondation pour les styles de base définis dans _base.scss et
+ *   les styles spécifiques des composants et des pages.
  * ================================================================================================
  */
 
@@ -137,23 +137,24 @@ q {
 
 ul,
 ol {
-  padding-inline-start: 1em;
-  margin-block: 0;
-  list-style-position: outside;
+    padding-inline-start: 1em;
+    margin-block: 0;
+    list-style-position: outside;
+    
+    & li {
+        margin-block: 0.1em;
+    }
+}
 
-  // Suppression des styles des listes (version accessible)
+//================================================================================================
+// Règles horizontales
+//================================================================================================
 
-  // Attention : nécessite attribut role dans le HTML
-  &[role="list"],
-  &[role="listbox"] {
+hr {
+    opacity: 1;
     margin: 0;
-    padding-inline-start: 0;
-    list-style: none;
-  }
-
-  & li {
-    margin-block: 0.1em;
-  }
+    border: none;
+    color: currentColor;
 }
 
 //================================================================================================

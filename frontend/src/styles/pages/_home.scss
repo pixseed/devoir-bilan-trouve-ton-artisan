@@ -1,5 +1,3 @@
-/* home.scss */
-
 @use '../settings/tokens';
 @use '../tools';
 
@@ -22,15 +20,14 @@
             BACKGROUND (étalement sur toute la largeur du viewport)
         ===================================================== */
         &::before {
-            content:                    "";
             @include                    tools.full-bleed;
-            background:                 tokens.$home-hero-bg;
+            background:                 tokens.$home-hero-bg-color;
             z-index:                    tokens.$z-behind;
         }
     }
 
     &__top-artisans .alert {
-        margin-top:                     tokens.$alert-margin-top;
+        margin-top:                     tokens.$alert-stack-spacing;
     }
 
     &__top-artisans-grid {
@@ -69,7 +66,7 @@
         }
 
         &__hero {
-            background:                 tokens.$home-hero-bg;
+            background:                 tokens.$home-hero-bg-color;
         }
 
         &__top-artisans-grid {

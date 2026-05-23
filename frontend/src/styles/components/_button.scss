@@ -1,5 +1,3 @@
-/* _button.scss */
-
 @use '../settings/tokens';
 @use '../tools';
 
@@ -20,7 +18,7 @@
     &__label {
         display:                        inline-block;
         line-height:                    tokens.$btn-label-lh;
-        transform:                      translateY(-(tokens.$btn-label-optical-offset-y));
+        transform:                      translateY(tokens.$btn-label-optical-offset-y);
     }
 
     /* =====================================================
@@ -29,7 +27,7 @@
 
     &--lg {
         padding:                        tokens.$btn-padding-y-lg tokens.$btn-padding-x-lg;
-        @include                        tools.button-gap(tokens.$btn-gap-lg);
+        @include                        tools.button-icon-gap(tokens.$btn-gap-lg);
 
         .button__icon {
             width:                      tokens.$btn-icon-size-lg;
@@ -39,12 +37,12 @@
 
     &--md {
         padding:                        tokens.$btn-padding-y-md tokens.$btn-padding-x-md;
-        @include                        tools.button-gap(tokens.$btn-gap-md);
+        @include                        tools.button-icon-gap(tokens.$btn-gap-md);
     }
 
     &--sm {
         padding:                        tokens.$btn-padding-y-sm tokens.$btn-padding-x-sm;
-        @include                        tools.button-gap(tokens.$btn-gap-md);
+        @include                        tools.button-icon-gap(tokens.$btn-gap-md);
 
         .button__icon {
             width:                      tokens.$btn-icon-size-md;
@@ -54,7 +52,7 @@
 
     &--xs {
         padding:                        tokens.$btn-padding-y-xs tokens.$btn-padding-x-xs;
-        @include                        tools.button-gap(tokens.$btn-gap-md);
+        @include                        tools.button-icon-gap(tokens.$btn-gap-md);
 
         .button__icon {
             width:                      tokens.$btn-icon-size-md;

@@ -1,19 +1,14 @@
-/* _artisansList.scss */
-
 @use '../settings/tokens';
 @use '../tools';
 
 .artisans-list {
     &__controls {
         position:                       relative;
-        @include                        tools.flex-column;
-        gap:                            tokens.$artisans-list-gap;
         
         /* =====================================================
             BACKGROUND (étalement sur toute la largeur du viewport)
         ===================================================== */
         &::before {
-            content:                    "";
             @include                    tools.full-bleed;
             background:                 tokens.$artisans-list-controls-bg-color;
         }
@@ -24,7 +19,7 @@
     }
 
     &__results .alert {
-        margin-top:                     tokens.$alert-margin-top;
+        margin-top:                     tokens.$alert-stack-spacing;
     }
 
     &__result-grid {

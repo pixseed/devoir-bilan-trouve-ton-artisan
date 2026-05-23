@@ -1,4 +1,12 @@
-/* FilterGroup.jsx */
+/**
+ * ================================================================================================
+ * FILTER GROUP
+ * ================================================================================================
+ * Rôle :
+ * - Afficher un groupe de filtres interactifs.
+ * - Gérer les états d'affichage de la liste ou d'une erreur.
+ * ================================================================================================
+ */
 
 import FilterItem from "./FilterItem";
 import clsx from "clsx";
@@ -8,38 +16,38 @@ import Divider from "../display/Divider";
 
 export default function FilterGroup({
   title,
-  items,
+  items = [],
   onSelect,
   selectedValue,
   error,
   disabled,
 }) {
+  const isLoading = items.some((item) => item.isSkeleton);
+  const titleId = `filter-group-${title.toLowerCase()}`;
+  
   return (
-    <div className="filter-group">
-      <h2 className="filter-group__title heading-xs">{title}</h2>
+    <section className="filter-group" aria-labelledby={titleId}>
+      <h2 id={titleId} className="filter-group__title heading-xs">{title}</h2>
       <Divider />
       {error ? (
         <Alert message={error} variant={VARIANTS.ALERT.ERROR} />
       ) : (
         <ul
-          className={clsx("filter-group__list", {
-            "filter-group__list--loading": items.some(
-              (item) => item.isSkeleton,
-            ),
+          className={clsx("filter-group__list reset-list", {
+            "filter-group__list--loading": isLoading,
           })}
-          role="list"
         >
           {items.map((item) => (
             <FilterItem
               key={item.value}
               item={item}
-              onClick={() => onSelect(item)}
+              onClick={() => onSelect?.(item)}
               isActive={item.value === selectedValue}
               disabled={disabled}
             />
           ))}
         </ul>
       )}
-    </div>
+    </section>
   );
 }

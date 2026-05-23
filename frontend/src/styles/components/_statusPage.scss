@@ -1,5 +1,3 @@
-/* _statusPage.scss */
-
 @use '../settings/tokens';
 @use '../tools';
 
@@ -48,11 +46,9 @@
 
 @media (min-width: tokens.$bp-md) {
     .status-page {
-        @include                        tools.flex-column;
         gap:                            tokens.$status-page-gap-md;
         
         &__content {
-            @include                    tools.flex-column;
             gap:                        tokens.$status-page-content-gap-md;
         }
     }
@@ -60,11 +56,9 @@
 
 @media (min-width: tokens.$bp-lg) {
     .status-page {
-        @include                        tools.flex-column;
         gap:                            tokens.$status-page-gap-lg;
         
         &__content {
-            @include                    tools.flex-column;
             gap:                        tokens.$status-page-content-gap-lg;
         }
     }

@@ -1,21 +1,15 @@
-/* _button.scss */
+// ================================================================================================
+// BUTTON COMPONENT TOKENS
+// ================================================================================================
 
-@use '../spacing';
-@use '../scale';
-@use '../colors';
-@use '../radius';
-@use '../font';
 @use '../border';
+@use '../colors';
+@use '../font';
+@use '../radius';
+@use '../scale';
+@use '../spacing';
 
-// ================================================================================================
-// BUTTON TOKENS COMPONENT
-// ================================================================================================
-
-// RADIUS
-// ------------------------------------------------------------------------------------------------
-$btn-radius:                            radius.$radius-pill;
-
-// SPACE
+// SPACING
 // ------------------------------------------------------------------------------------------------
 $btn-gap-lg:                            spacing.$gap-16;
 $btn-gap-md:                            spacing.$gap-12;
@@ -41,18 +35,22 @@ $btn-icon-size-lg:                      scale.$scale-20;
 $btn-icon-size-md:                      scale.$scale-16;
 $btn-icon-size-sm:                      scale.$scale-12;
 
+// TYPOGRAPHY
+// ------------------------------------------------------------------------------------------------
 $btn-font-size-lg:                      font.$text-lg;
 $btn-font-size-md:                      font.$text-md;
 $btn-font-size-sm:                      font.$text-sm;
 
-// TEXT
-// ------------------------------------------------------------------------------------------------
 $btn-label-lh:                          font.$lh-100;
-$btn-label-optical-offset-y:            2px;
+$btn-label-optical-offset-y:            -2px;
 
 // BORDER
 // ------------------------------------------------------------------------------------------------
 $btn-border-size:                       border.$border-thin;
+
+// RADIUS
+// ------------------------------------------------------------------------------------------------
+$btn-radius:                            radius.$radius-pill;
 
 // COLORS
 // ------------------------------------------------------------------------------------------------
@@ -60,21 +58,23 @@ $btn-border-size:                       border.$border-thin;
 $btn-primary-bg:                        colors.$color-bg-primary;
 $btn-primary-text:                      colors.$color-text-inverse;
 
-// Primary:hover
-$btn-primary-bg-hover:                  colors.$color-bg-secondary;
-
 // Secondary
 $btn-secondary-bg:                      colors.$color-bg-surface;
 $btn-secondary-text:                    colors.$color-text-emphasis-primary;
 $btn-secondary-border:                  colors.$color-border-emphasis-primary;
 
-// Secondary:hover
-$btn-secondary-text-hover:              colors.$color-text-emphasis-secondary;
-$btn-secondary-border-hover:            colors.$color-border-emphasis-secondary;
-
 // Tertiary
 $btn-tertiary-text:                     colors.$color-text-emphasis-primary;
 $btn-tertiary-border:                   colors.$color-border-emphasis-primary;
+
+// STATES
+// ------------------------------------------------------------------------------------------------
+// Primary:hover
+$btn-primary-bg-hover:                  colors.$color-bg-secondary;
+
+// Secondary:hover
+$btn-secondary-text-hover:              colors.$color-text-emphasis-secondary;
+$btn-secondary-border-hover:            colors.$color-border-emphasis-secondary;
 
 // Tertiary:hover
 $btn-tertiary-text-hover:               colors.$color-text-emphasis-secondary;

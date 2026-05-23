@@ -1,17 +1,26 @@
-/* TextArea.jsx */
+/**
+ * ================================================================================================
+ * TEXT AREA
+ * ================================================================================================
+ * Rôle :
+ * - Afficher un champ de saisie de texte multiligne réutilisable.
+ * - Gérer l'affichage du label flottant.
+ * - Gérer l'état d'erreur visuel et accessibilité.
+ * ================================================================================================
+ */
 
+import FormField from "./FormField";
 import clsx from "clsx";
 
-export default function TextArea({
-  label,
-  value,
-  onChange,
-  error,
-  name,
-  rows = 5,
-}) {
+export default function TextArea(props) {
+  const { name, label, error, value, onChange, rows = 5 } = props;
+
   return (
-    <div className="form-field">
+    <FormField
+      name={name}
+      label={label}
+      error={error}
+    >
       <textarea
         name={name}
         id={name}
@@ -19,22 +28,12 @@ export default function TextArea({
         placeholder=" "
         value={value}
         aria-invalid={!!error}
-        aria-describedby={error ? `${name}-error` : undefined}
         onChange={(e) => onChange?.(e.target.value)}
         className={clsx(
           "form-field__textarea",
-          error && "form-field__textarea--error"
+          error && "form-field__textarea--error",
         )}
       />
-      <label
-        htmlFor={name}
-        className={clsx(
-          "form-field__label",
-          error && "form-field__label--error"
-        )}
-      >
-        {label}
-      </label>
-    </div>
+    </FormField>
   );
 }

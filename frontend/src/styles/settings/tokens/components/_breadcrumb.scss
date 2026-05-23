@@ -1,24 +1,30 @@
-/* _breadcrumb.scss */
+// ================================================================================================
+// BREADCRUMB COMPONENT TOKENS
+// ================================================================================================
 
-@use '../spacing';
-@use '../scale';
 @use '../colors';
-
-// ================================================================================================
-// BREADCRUMB TOKENS COMPONENT
-// ================================================================================================
-
-// COLORS
-// ------------------------------------------------------------------------------------------------
-$breadcrumb-text-colors:                colors.$color-text-emphasis-secondary;
-$breadcrumb-link-colors:                colors.$color-text-emphasis-primary;
-$breadcrumb-link-colors-hover:          colors.$color-text-emphasis-secondary;
-
-// SPACING
-// ------------------------------------------------------------------------------------------------
-$breadcrumb-padding-y:                  spacing.$sp-24;
-$breadcrumb-gap:                        spacing.$gap-4 spacing.$gap-16;
+@use '../scale';
+@use '../spacing';
 
 // SIZE
 // ------------------------------------------------------------------------------------------------
 $breadcrumb-separator-height:           scale.$scale-16;
+
+// SPACING
+// ------------------------------------------------------------------------------------------------
+$breadcrumb-padding-y:                  spacing.$sp-24;
+$breadcrumb-row-gap:                    spacing.$gap-4;
+$breadcrumb-column-gap:                 spacing.$gap-16;
+
+// COLORS
+// ------------------------------------------------------------------------------------------------
+$breadcrumb-text-color:                 colors.$color-text-emphasis-secondary;
+$breadcrumb-link-color:                 colors.$color-text-emphasis-primary;
+
+// STATES
+// ------------------------------------------------------------------------------------------------
+$breadcrumb-link-color-hover:           colors.$color-text-emphasis-secondary;
+
+// OFFSET
+// ------------------------------------------------------------------------------------------------
+$breadcrumb-separator-offset-y:         2px;

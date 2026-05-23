@@ -1,4 +1,6 @@
-/* _animation.scss */
+// ================================================================================================
+// FOUNDATION MOTION TOKENS
+// ================================================================================================
 
 // ================================================================================================
 // PRIMITIVE
@@ -25,6 +27,7 @@ $transition-fast:                       $duration-fast $easing-standard;
 $motion-fade-slide:                     opacity $transition-base, transform $transition-base;
 $motion-underline:                      opacity $transition-smooth, transform $transition-smooth;
 $motion-icon:                           transform $transition-base;
+$motion-button-icon:                    background-color $transition-fast, color $transition-fast;
 $motion-button:                         color $transition-base,
                                         background-color $transition-base,
                                         border $transition-base,

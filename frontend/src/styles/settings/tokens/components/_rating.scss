@@ -1,18 +1,14 @@
-/* _rating.scss */
+// ================================================================================================
+// RATING COMPONENT TOKENS
+// ================================================================================================
 
 @use '../colors';
 @use '../font';
 @use '../spacing';
 
-// ================================================================================================
-// RATING TOKENS COMPONENT
-// ================================================================================================
-
-// TEXT
+// SIZE
 // ------------------------------------------------------------------------------------------------
-$rating-value-size:                     font.$text-sm;
-$rating-value-lh:                       font.$lh-100;
-$rating-value-optical-offset-y:         1px;
+$rating-star-size:                      20px;
 
 // SPACING
 // ------------------------------------------------------------------------------------------------
@@ -21,8 +17,15 @@ $rating-stars-gap:                      spacing.$gap-4;
 $rating-value-padding-y:                spacing.$sp-4;
 $rating-value-padding-x:                spacing.$sp-8;
 
+// TYPOGRAPHY
+// ------------------------------------------------------------------------------------------------
+$rating-value-size:                     font.$text-sm;
+$rating-value-lh:                       font.$lh-100;
+$rating-value-optical-offset-y:         1px;
+
 // COLORS
 // ------------------------------------------------------------------------------------------------
-$rating-star-empty:                     colors.$color-icon-muted;
-$rating-star-fill:                      colors.$color-icon-emphasis-primary;
-$rating-value-bg:                       colors.$color-bg-primary;
+$rating-star-empty-color:               colors.$color-icon-muted;
+$rating-star-fill-color:                colors.$color-icon-emphasis-primary;
+$rating-value-text-color:               colors.$color-text-inverse;
+$rating-value-bg-color:                 colors.$color-bg-primary;

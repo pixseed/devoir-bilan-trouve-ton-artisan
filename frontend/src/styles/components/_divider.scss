@@ -1,15 +1,14 @@
-/* _divider.scss */
-
 @use '../settings/tokens';
 
 .divider {
     background-color:                   currentColor;
+    opacity: .25;
 
     &--horizontal {
         height:                         tokens.$divider-thickness;
 
         &.divider--auto {
-            width:                      auto;
+            width:                      100%;
         }
     
         &.divider--short {
@@ -29,19 +28,19 @@
         width:                          tokens.$divider-thickness;
 
         &.divider--auto {
-            height:                      auto;
+            height:                     100%;
         }
     
         &.divider--short {
-            max-height:                  tokens.$divider-size-sm;
+            max-height:                 tokens.$divider-size-sm;
         }
     
         &.divider--medium {
-            max-height:                  tokens.$divider-size-md;
+            max-height:                 tokens.$divider-size-md;
         }
     
         &.divider--long {
-            max-height:                  tokens.$divider-size-lg;
+            max-height:                 tokens.$divider-size-lg;
         }
     }
 }

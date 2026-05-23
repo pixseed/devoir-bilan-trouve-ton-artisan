@@ -1,5 +1,3 @@
-/* _rating.scss */
-
 @use '../settings/tokens';
 @use '../tools';
 
@@ -36,16 +34,16 @@
 
     &__star {
         flex:                           0 0 auto;
-        height:                         20px;
+        height:                         tokens.$rating-star-size;
         width:                          auto;
     }
 
     &__star--empty {
-        color:                          tokens.$rating-star-empty;
+        color:                          tokens.$rating-star-empty-color;
     }
 
     &__star--fill {
-        color:                          tokens.$rating-star-fill;
+        color:                          tokens.$rating-star-fill-color;
     }
 
     /* =====================================================
@@ -54,7 +52,7 @@
 
     &__value-wrapper {
         @include                        tools.inline-flex-center;
-        background:                     tokens.$rating-value-bg;
+        background:                     tokens.$rating-value-bg-color;
         padding:                        tokens.$rating-value-padding-y tokens.$rating-value-padding-x;
     }
 
@@ -62,7 +60,7 @@
         font-size:                      tokens.$rating-value-size;
         font-weight:                    700;
         line-height:                    tokens.$rating-value-lh;
-        color:                          tokens.$color-text-inverse;
+        color:                          tokens.$rating-value-text-color;
         transform:                      translateY(-(tokens.$rating-value-optical-offset-y));
     }
 }

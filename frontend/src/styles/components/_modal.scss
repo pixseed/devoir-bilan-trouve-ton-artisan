@@ -1,5 +1,3 @@
-/* _modal.scss */
-
 @use '../settings/tokens';
 @use '../tools';
 
@@ -10,9 +8,8 @@
     margin-top:                             0;
 
     &__overlay {
-        position:                           absolute;
-        inset:                              0;
-        background:                         tokens.$modal-bg-color-overlay;
+        @include                            tools.absolute-fill;
+        background:                         tokens.$modal-backdrop-bg-color;
 
         @include                            tools.flex-center;
 
@@ -21,11 +18,11 @@
     &__content {
         width:                              100%;
         background:                         tokens.$modal-bg-color;
-        border:                             tokens.$modal-border-thickness solid tokens.$modal-border-color;
+        border:                             tokens.$modal-border-size solid tokens.$modal-border-color;
         border-radius:                      tokens.$modal-radius;
         margin:                             tokens.$container-padding-x;
         padding:                            tokens.$modal-padding-y-sm tokens.$modal-padding-x-sm;
-        box-shadow:                         tokens.$modal-shadow-overlay;
+        box-shadow:                         tokens.$modal-shadow;
     }
 
     &__title {
@@ -52,7 +49,7 @@
 @media (min-width: tokens.$bp-md) {
     .app-modal {
         &__content {
-            width:                          70%;
+            width:                          tokens.$modal-width-md;
             padding:                        tokens.$modal-padding-y-md tokens.$modal-padding-x-md;
         }
     }

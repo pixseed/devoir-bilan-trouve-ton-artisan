@@ -1,50 +1,46 @@
-/* _filter.scss */
+// ================================================================================================
+// FILTER COMPONENT TOKENS
+// ================================================================================================
 
-@use '../spacing';
-@use '../colors';
 @use '../border';
+@use '../colors';
 @use '../radius';
+@use '../spacing';
 
-// ================================================================================================
-// FILTER TOKENS COMPONENT
-// ================================================================================================
-
-// FILTER-GROUP
+// SPACING
 // ------------------------------------------------------------------------------------------------
-$filter-group-bg-color:                     colors.$color-bg-surface;
+$filter-controls-gap:                       spacing.$gap-16;
 
-// Border
-$filter-group-border-color:                 colors.$color-border-default;
-$filter-group-border-size:                  border.$border-thin;
-$filter-group-border-radius:                radius.$radius-sm;
-
-// Spacing
-$filter-group-gap:                          spacing.$gap-16;
 $filter-group-padding:                      spacing.$sp-16;
+$filter-group-gap:                          spacing.$sp-16;
 
-// TITLE
-// ------------------------------------------------------------------------------------------------
-$filter-title-padding-x:                    spacing.$sp-8;
-
-// LIST
-// ------------------------------------------------------------------------------------------------
-$filter-list-gap:                           0;
-
-// BUTTON
-// ------------------------------------------------------------------------------------------------
+$filter-title-padding:                      spacing.$sp-8;
 $filter-button-padding:                     spacing.$sp-8;
 
-// STATE
+// BORDER
+// ------------------------------------------------------------------------------------------------
+$filter-group-border-size:                  border.$border-thin;
+
+// RADIUS
+// ------------------------------------------------------------------------------------------------
+$filter-group-radius:                       radius.$radius-sm;
+
+// COLORS
+// ------------------------------------------------------------------------------------------------
+$filter-group-bg-color:                     colors.$color-bg-surface;
+$filter-group-border-color:                 colors.$color-border-default;
+
+// STATES
 // ------------------------------------------------------------------------------------------------
 // Hover
 $filter-button-text-color-hover:            colors.$color-text-inverse;
 $filter-button-bg-color-hover:              colors.$color-bg-primary;
 
 // Active
-$filter-button-padding-left-active:         spacing.$sp-16;
 $filter-button-text-color-active:           colors.$color-text-emphasis-primary;
 $filter-button-border-size-active:          border.$border-thick;
 $filter-button-border-color-active:         colors.$color-border-emphasis-primary;
+$filter-button-offset-x-active:             spacing.$sp-16;
 
 // Active + Hover
 $filter-button-text-color-active-hover:     colors.$color-text-inverse;

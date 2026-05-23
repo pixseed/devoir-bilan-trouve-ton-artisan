@@ -1,24 +1,32 @@
-/* apiClient.js */
+/**
+ * ================================================================================================
+ * API CLIENT
+ * ================================================================================================
+ * Rôle :
+ * - Centraliser les requêtes HTTP vers l'API backend.
+ * - Gérer le parsing des réponses JSON.
+ * - Normaliser les erreurs réseau/API.
+ * ================================================================================================
+ */
 
-import { API_URL } from "../config/api";
-import { APP_MESSAGES } from "../constants/messages";
+import { API_CONFIG } from "../config/api";
 import { buildApiError } from "../utils/error";
 
 export async function apiFetch(endpoint, options = {}) {
-    const res = await fetch(`${API_URL.BASE_URL}${endpoint}`, options);
+  const response = await fetch(`${API_CONFIG.BASE_URL}${endpoint}`, options);
 
-    let data = null;
+  let data = null;
 
-    // Sécurité en cas de crash HTML
-    try {
-        data = await res.json();
-    } catch {
-        data = {};
-    }
+  // Fallback si la réponse n'est pas un JSON valide
+  try {
+    data = await response.json();
+  } catch {
+    data = {};
+  }
 
-    if(!res.ok) {
-        throw buildApiError(res, data);
-    }
+  if (!response.ok) {
+    throw buildApiError(response, data);
+  }
 
-    return data;
+  return data;
 }

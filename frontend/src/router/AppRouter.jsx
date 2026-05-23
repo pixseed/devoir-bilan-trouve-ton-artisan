@@ -1,13 +1,24 @@
-// AppRouter.jsx
+/**
+ * ================================================================================================
+ * APPLICATION ROUTER
+ * ================================================================================================
+ * Rôle :
+ * - Définir le routage principal de l'application.
+ * - Appliquer le layout global partagé.
+ * - Gérer la navigation entre les différentes pages.
+ * ================================================================================================
+ */
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 import AppLayout from "../components/layout/AppLayout";
-import Home from "../pages/Home";
-import Artisans_List from "../pages/ArtisansList";
-import Artisan_Details from "../pages/ArtisanDetails";
-import Not_Found from "../pages/NotFound";
-import Under_Construction from "../pages/UnderConstruction";
 import ScrollToTop from "../components/layout/ScrollToTop";
+
+import Home from "../pages/Home";
+import ArtisansList from "../pages/ArtisansList";
+import ArtisanDetails from "../pages/ArtisanDetails";
+import NotFound from "../pages/NotFound";
+import UnderConstruction from "../pages/UnderConstruction";
 
 function AppRouter() {
   return (
@@ -16,10 +27,10 @@ function AppRouter() {
       <Routes>
         <Route path="/" element={<AppLayout />}>
           <Route index element={<Home />} />
-          <Route path="artisans/:id" element={<Artisan_Details />} />
-          <Route path="artisans" element={<Artisans_List />} />
-          <Route path="under-construction" element={<Under_Construction />} />
-          <Route path="*" element={<Not_Found />} />
+          <Route path="artisans" element={<ArtisansList />} />
+          <Route path="artisans/:id" element={<ArtisanDetails />} />
+          <Route path="under-construction" element={<UnderConstruction />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </Router>

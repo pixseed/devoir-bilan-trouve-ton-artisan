@@ -1,5 +1,3 @@
-/* _iconButton.scss */
-
 @use '../settings/tokens';
 @use '../tools';
 
@@ -12,12 +10,13 @@
     border-radius:                      tokens.$icon-btn-square;
     background:                         tokens.$icon-btn-secondary-bg;
 
-    transition:                         all tokens.$transition-fast;
+    transition:                         tokens.$motion-button-icon;
 
     /* =====================================================
         ICONS
     ===================================================== */
     svg, i {
+        @include                        tools.flex-center;
         color:                          tokens.$icon-btn-primary-color;
         line-height:                    1;
     }
@@ -35,13 +34,12 @@
         border-radius:                  tokens.$icon-btn-pill;
 
         svg, i {
-            font-size:                  tokens.$socialbar-icon-size;
-            color:                      tokens.$socialbar-icon-color;
+            color:                      tokens.$icon-btn-tertiary-color;
         }
 
         &:hover {
             svg, i {
-                color:                  tokens.$socialbar-icon-color-hover;
+                color:                  tokens.$icon-btn-tertiary-color-hover;
             }
         }
     }

@@ -1,23 +1,23 @@
 /* _index.scss (components) */
 
+@forward './alert';
+@forward './breadcrumb';
+@forward './button';
+@forward './card';
 @forward './divider';
+@forward './dropdown';
+@forward './filter';
+@forward './footer';
+@forward './form';
+@forward './gallery';
+@forward './header';
 @forward './icon';
 @forward './iconButton';
-@forward './button';
+@forward './menu';
+@forward './modal';
 @forward './navItem';
-@forward './trigger';
+@forward './rating';
 @forward './searchbar';
 @forward './skeleton';
 @forward './socialbar';
-@forward './rating';
-@forward './card';
-@forward './alert';
-@forward './breadcrumb';
-@forward './dropdown';
-@forward './filter';
-@forward './form';
-@forward './menu';
-@forward './gallery';
-@forward './modal';
-@forward './header';
-@forward './footer';
+@forward './trigger';

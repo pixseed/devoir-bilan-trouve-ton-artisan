@@ -1,16 +1,25 @@
-/* ArtisanCardSkeleton.jsx */
+/**
+ * ================================================================================================
+ * ARTISAN CARD SKELETON
+ * ================================================================================================
+ * Rôle :
+ * - Afficher l'état de chargement d'une carte artisan.
+ * ================================================================================================
+ */
 
 import clsx from "clsx";
 import { VARIANTS } from "../../../constants/variants";
 import Divider from "../display/Divider";
 
-export default function ArtisanCardSkeleton({ variant = VARIANTS.CARD.VERTICAL }) {
+export default function ArtisanCardSkeleton({
+  variant = VARIANTS.CARD.VERTICAL,
+}) {
   return (
-    <div className={clsx("artisan-card", `artisan-card--${variant}`)}>
+    <article className={clsx("artisan-card", `artisan-card--${variant}`)} aria-hidden="true">
       <div className="artisan-card__content">
         {/* ===============================================================
-            En-tête de card
-            =================================================================== */}
+          HEADER
+        =================================================================== */}
         <div className="artisan-card__header">
           <div className="artisan-card__media">
             <div className="skeleton skeleton--image" />
@@ -24,8 +33,8 @@ export default function ArtisanCardSkeleton({ variant = VARIANTS.CARD.VERTICAL }
         <Divider />
 
         {/* ===============================================================
-            Corps de card avec bouton de redirection vers la page de l'artisan
-            =================================================================== */}
+          BODY
+        =================================================================== */}
         <div className="artisan-card__body">
           <div className="artisan-card__body-meta">
             <div className="skeleton skeleton--text skeleton--w-80" />
@@ -34,6 +43,6 @@ export default function ArtisanCardSkeleton({ variant = VARIANTS.CARD.VERTICAL }
           <div className="skeleton skeleton--button" />
         </div>
       </div>
-    </div>
+    </article>
   );
 }

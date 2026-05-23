@@ -1,4 +1,11 @@
-/* FormSkeleton.jsx */
+/**
+ * ================================================================================================
+ * FORM SKELETON
+ * ================================================================================================
+ * Rôle :
+ * - Afficher l'état de chargement d'un formulaire.
+ * ================================================================================================
+ */
 
 export default function FormSkeleton({
   inputs = 3,
@@ -6,7 +13,7 @@ export default function FormSkeleton({
   showButton = true,
 }) {
   return (
-    <div className="contact-form">
+    <div className="contact-form" aria-hidden="true">
       {/* INPUTS */}
       {Array.from({ length: inputs }).map((_, index) => (
         <div key={`input-${index}`} className="skeleton skeleton--input" />
@@ -14,13 +21,14 @@ export default function FormSkeleton({
 
       {/* TEXTAREAS */}
       {Array.from({ length: textareas }).map((_, index) => (
-        <div key={`textarea-${index}`} className="skeleton skeleton--textarea" />
+        <div
+          key={`textarea-${index}`}
+          className="skeleton skeleton--textarea"
+        />
       ))}
-      
+
       {/* BUTTON */}
-      {showButton && (
-        <div className="skeleton skeleton--button"></div>
-      )}
+      {showButton && <div className="skeleton skeleton--button" />}
     </div>
   );
 }

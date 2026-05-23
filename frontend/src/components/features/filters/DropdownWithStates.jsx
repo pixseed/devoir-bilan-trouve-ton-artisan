@@ -1,55 +1,43 @@
 /**
  * ================================================================================================
- * FEATURE : DropdownWithStates
+ * DROPDOWN WITH STATES
  * ================================================================================================
  * Rôle :
- * - Wrapper du composant Dropdown
  * - Gère les états :
  *      → loading (skeleton)
  *      → error (message + désactivation)
  *      → success (options normales)
- *
- * Ojectif :
- * - Centraliser la logique loading/error pour tous les dropdowns
- * - Éviter d'intégrer de la logique au composant natif (Dropdown.jsx)
  * ================================================================================================
  */
 
 import Dropdown from "../../ui/navigation/Dropdown";
 
 export default function DropdownWithStates({
-  data = [], // Données brutes
+  data = [],
   loading,
   error,
-  mapItem, // Fonction de transformation data → items
+  mapItem,
   label,
   onChange,
   value,
-  SkeletonCount = 4,
+  skeletonCount = 4,
 }) {
-  /**
-   * Construction des options
-   * - loading → skeleton
-   * - success → mapping des données
-   */
   const options = loading
-    ? Array.from({ length: SkeletonCount }).map((_, i) => ({
+    ? Array.from({ length: skeletonCount }).map((_, i) => ({
         value: `skeleton-${i}`,
-        isSkeleton: true, // Utilisé dans DropdownItem
+        isSkeleton: true,
       }))
     : data.map(mapItem);
 
-  const isDisabled = Boolean(error);
+  const isDisabled = loading || Boolean(error);
 
   return (
-    <>
-      <Dropdown
-        options={options}
-        label={label}
-        onChange={!loading && !error ? onChange : undefined}
-        value={value}
-        disabled={isDisabled}
-      />
-    </>
+    <Dropdown
+      options={options}
+      label={label}
+      onChange={onChange}
+      value={value}
+      disabled={isDisabled}
+    />
   );
 }

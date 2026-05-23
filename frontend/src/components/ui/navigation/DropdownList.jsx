@@ -1,22 +1,33 @@
-/* DropdownList.jsx */
+/**
+ * ================================================================================================
+ * DROPDOWN LIST
+ * ================================================================================================
+ * Rôle :
+ * - Afficher la liste des options du dropdown.
+ * - Gérer les états d'ouverture et loading.
+ * ================================================================================================
+ */
 
 import DropdownItem from "./DropdownItem";
 import clsx from "clsx";
 
 export default function DropdownList({
-  options,
+  options = [],
   isOpen,
   onSelect,
   selectedValue,
+  id,
 }) {
+  const isLoading = options.some((option) => option.isSkeleton);
+
   return (
     <ul
-      className={clsx("dropdown__list", {
-        "dropdown__list--open": isOpen,
-        "dropdown__list--loading": options.some((option) => option.isSkeleton),
-      })}
+      id={id}
       role="listbox"
-      id="dropdown-list"
+      className={clsx("dropdown__list reset-list", {
+        "dropdown__list--open": isOpen,
+        "dropdown__list--loading": isLoading,
+      })}
     >
       {options.map((option) => (
         <DropdownItem

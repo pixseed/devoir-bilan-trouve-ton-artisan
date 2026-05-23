@@ -1,4 +1,12 @@
-/* useFocusTrap.js */
+/**
+ * ================================================================================================
+ * USE FOCUS TRAP
+ * ================================================================================================
+ * Rôle :
+ * - Maintenir le focus clavier à l'intérieur d'un conteneur actif.
+ * - Améliorer l'accessibilité des modales, menus et panneaux interactifs.
+ * ================================================================================================
+ */
 
 import { useEffect } from "react";
 
@@ -23,10 +31,10 @@ export function useFocusTrap(ref, isActive) {
     // Focus initial
     firstElement.focus();
 
-    const handleTab = (e) => {
+    const handleKeyDown = (e) => {
       if (e.key !== "Tab") return;
 
-      // Shit + Tab sur premier => Bouble vers dernier
+      // Shift + Tab sur premier => Boucle vers dernier
       if (e.shiftKey && document.activeElement === firstElement) {
         e.preventDefault();
         lastElement.focus();
@@ -39,7 +47,7 @@ export function useFocusTrap(ref, isActive) {
       }
     };
 
-    document.addEventListener("keydown", handleTab);
-    return () => document.removeEventListener("keydown", handleTab);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
   }, [ref, isActive]);
 }

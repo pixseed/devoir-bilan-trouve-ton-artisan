@@ -1,29 +1,26 @@
 /**
  * ================================================================================================
- * FEATURE : ArtisansListWithStates
+ * ARTISANS LIST WITH STATES
  * ================================================================================================
  * Rôle :
- * - Wrapper du composant Artisans
- * - Gère les états :
+ * - Gérer les états :
  *      → loading (skeleton)
  *      → error (message + désactivation)
  *      → empty (aucun résultat)
  *      → success (cards normales)
- *
- * Ojectif :
- * - Centraliser la logique loading/error/empty
- * - Éviter d'intégrer de la logique au composant natif (Artisans.jsx)
  * ================================================================================================
  */
 
-import Artisans from "./ArtisansList";
+import ArtisansList from "./ArtisansList";
 import ArtisanCardSkeleton from "../../ui/feedback/ArtisanCardSkeleton";
 import Alert from "../../ui/feedback/Alert";
-import { VARIANTS } from "../../../constants/variants";
+
 import clsx from "clsx";
+
+import { VARIANTS } from "../../../constants/variants";
 import { useBreakpoint } from "../../../hooks/ui/useBreakpoint";
 
-export default function ArtisansWithStates({
+export default function ArtisansListWithStates({
   data = [],
   loading,
   error,
@@ -55,10 +52,10 @@ export default function ArtisansWithStates({
   if (!data.length) {
     return (
       <p className="artisans-list__empty">
-        Aucun artisan trouvé pour cette catégorie.
+        Aucun artisan correspondant à votre recherche.
       </p>
     );
   }
 
-  return <Artisans artisans={data} variant={variant} className={className} />;
+  return <ArtisansList artisans={data} variant={variant} className={className} />;
 }

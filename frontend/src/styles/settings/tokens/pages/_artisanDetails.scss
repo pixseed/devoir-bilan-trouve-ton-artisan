@@ -1,25 +1,30 @@
-/* _artisanDetails.scss */
+// ================================================================================================
+// ARTISANS DETAILS PAGE COMPONENT TOKENS
+// ================================================================================================
 
 @use '../colors';
-@use '../radius';
 @use '../font';
+@use '../radius';
 @use '../spacing';
 
-// ================================================================================================
-// ARTISANS_DETAILS PAGE TOKENS COMPONENT
-// ================================================================================================
+// SIZE
+// ------------------------------------------------------------------------------------------------
+$artisan-details-media-size:            197px;
+$artisan-details-submeta-size:          font.$label-size-lg;
 
-// HEADER
+// SPACING
+// ------------------------------------------------------------------------------------------------
+$artisan-details-meta-gap:              spacing.$gap-8;
+
+// TYPOGRAPHY
+// ------------------------------------------------------------------------------------------------
+$artisan-details-submeta-lh:            font.$lh-100;
+
+// RADIUS
+// ------------------------------------------------------------------------------------------------
+$artisan-details-media-radius:          radius.$radius-sm;
+
+// COLORS
 // ------------------------------------------------------------------------------------------------
 $artisan-details-bg-color:              colors.$color-bg-surface-emphasis;
-
-// Media
 $artisan-details-media-bg-color:        colors.$color-bg-muted;
-$artisan-details-media-border-radius:   radius.$radius-sm;
-
-$artisan-details-media-size:            197px;
-
-// Meta
-$artisan-details-submeta-lh:            font.$lh-100;
-$artisan-details-submeta-size:          font.$label-size-lg;
-$artisan-details-meta-gap:              spacing.$gap-8;

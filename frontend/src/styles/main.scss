@@ -1,60 +1,61 @@
 /**
  * ================================================================================================
- * main.scss
+ * MAIN SCSS
  * ================================================================================================
- * Ce fichier principal de styles SCSS sert de point d'entrée pour l'ensemble des styles
- * de l'application.
+ * Point d'entrée principal des styles de l'application.
  *
- * Il organise les uses de manière structurée, en commençant par les styles
- * de réinitialisation , suivis des définitions de polices, des tokens de design,
- * des styles de base, et enfin des composants génériques et spécifiques.
- *
- * Cette organisation permet de maintenir une structure claire et modulaire,
- * facilitant la maintenance et l'évolution du code CSS au fil du temps.
+ * Rôle :
+ * - Organiser les imports globaux :
+ *   - SETTINGS : variables, mixins, fonctions.
+ *   - TOOLS : mixins et fonctions utilitaires.
+ *   - BASE : styles de base, reset, typographie.
+ *   - LAYOUT : styles de mise en page généraux.
+ *   - PAGE : styles spécifiques aux pages.
+ *   - COMPONENTS : styles des composants génériques et spécifiques.
  * ================================================================================================
  */
 
 // 1. SETTINGS
-@use './settings/fonts';
-@use './settings/tokens';
+@use "./settings/fonts";
+@use "./settings/tokens";
 
 // 2. TOOLS
-@use './tools';
+@use "./tools";
 
 // 2. BASE
-@use './base/reset';
-@use './base/base';
+@use "./base/reset";
+@use "./base/base";
 
 // 3. LAYOUT
-@use './layout/container';
-@use './layout/section';
-@use './layout/layout';
+@use "./layout/container";
+@use "./layout/section";
+@use "./layout/layout";
 
 // 4. PAGE
-@use './pages/home';
-@use './pages/artisansList';
-@use './pages/artisanDetails';
+@use "./pages/home";
+@use "./pages/artisansList";
+@use "./pages/artisanDetails";
 
 // 5. GENERIC COMPONENTS
-@use './components/alert';
-@use './components/trigger';
-@use './components/socialbar';
-@use './components/iconButton';
-@use './components/searchbar';
-@use './components/navItem';
-@use './components/rating';
-@use './components/menu';
-@use './components/button';
-@use './components/artisanCard';
-@use './components/breadcrumb';
-@use './components/dropdown';
-@use './components/filter';
-@use './components/gallery';
-@use './components/form';
-@use './components/divider';
-@use './components/statusPage';
-@use './components/modal';
+@use "./components/alert";
+@use "./components/trigger";
+@use "./components/socialbar";
+@use "./components/iconButton";
+@use "./components/searchbar";
+@use "./components/navItem";
+@use "./components/rating";
+@use "./components/menu";
+@use "./components/button";
+@use "./components/artisanCard";
+@use "./components/breadcrumb";
+@use "./components/dropdown";
+@use "./components/filter";
+@use "./components/gallery";
+@use "./components/form";
+@use "./components/divider";
+@use "./components/statusPage";
+@use "./components/modal";
 
 // 6. SPECIFIC COMPONENTS
-@use './components/header';
-@use './components/footer';
+@use "./components/header";
+@use "./components/footer";

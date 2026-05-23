@@ -1,8 +1,18 @@
-/* ContactForm.jsx */
+/**
+ * ================================================================================================
+ * CONTACT FORM
+ * ================================================================================================
+ * Rôle :
+ * - Afficher le formulaire de contact d'un artisan.
+ * - Gérer les retours de validation et le feedback utilisateur.
+ * ================================================================================================
+ */
 
 import TextInput from "../../ui/form/TextInput";
 import TextArea from "../../ui/form/TextArea";
 import Button from "../../ui/actions/Button";
+import Alert from "../../ui/feedback/Alert";
+
 import { useContactForm } from "../../../hooks/features/useContactForm";
 import { VARIANTS } from "../../../constants/variants";
 
@@ -20,7 +30,7 @@ export default function ContactForm({ artisanId }) {
   const errorList = Object.values(fieldErrors).filter(Boolean);
 
   return (
-    <form className="contact-form" onSubmit={handleSubmit}>
+    <form className="contact-form" onSubmit={handleSubmit} noValidate>
       <TextInput
         label={"Nom*"}
         name={"name"}
@@ -40,7 +50,6 @@ export default function ContactForm({ artisanId }) {
       <TextInput
         label={"Objet*"}
         name={"object"}
-        placeholder=" "
         value={formData.object}
         error={fieldErrors.object}
         onChange={(value) => handleChange("object", value)}
@@ -48,25 +57,25 @@ export default function ContactForm({ artisanId }) {
       <TextArea
         label={"Message*"}
         name={"message"}
-        placeholder=" "
         value={formData.message}
         error={fieldErrors.message}
         onChange={(value) => handleChange("message", value)}
       />
       {error && errorList.length > 0 && (
-        <div className="contact-form__error alert alert--error">
+        <Alert variant={VARIANTS.ALERT.ERROR}>
           <p>{error}</p>
           <ul className="contact-form__error-list">
             {errorList.map((message) => (
               <li key={message}>{message}</li>
             ))}
           </ul>
-        </div>
+        </Alert>
       )}
       {success && (
-        <p className="contact-form__success alert alert--success">{success}</p>
+        <Alert message={success} variant={VARIANTS.ALERT.SUCCESS} />
       )}
       <Button
+        type="submit"
         variant={VARIANTS.BUTTON.PRIMARY}
         size={VARIANTS.SIZE.MD}
         disabled={loading}
