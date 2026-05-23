@@ -71,8 +71,9 @@ app.use(cors({
     origin: process.env.FRONTEND_URL,
 }))
 
-// Parse automatiquement les corps de requête JSON
-app.use(express.json());
+// Parse automatiquement les corps de requête JSON avec
+// limitation de poids de données envoyées par l'utilisateur
+app.use(express.json({ limit: "10kb"}));
 
 // ===========================================================================================
 // STATIC FILES

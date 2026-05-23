@@ -31,6 +31,7 @@ import {
   serializeArtisanListItem,
 } from "../serializers/artisanSerializer.js";
 
+import { sanitizeContactPayload } from "../utils/sanitizers.js";
 import { validateContactPayload } from "../validators/artisanValidator.js";
 
 // ================================================================================================
@@ -115,8 +116,10 @@ export const contactArtisanService = async (id, payload) => {
     throw new Error("ARTISAN_NOT_FOUND");
   }
 
-  // Validation formulaire
-  const validation = validateContactPayload(payload);
+  // Nettoyage des données du formulaire envoyées
+  const cleanPayload = sanitizeContactPayload(payload);
+  // Validation des données du formulaire envoyées
+  const validation = validateContactPayload(cleanPayload);
 
   if (!validation.isValid) {
     return {
@@ -131,16 +134,16 @@ export const contactArtisanService = async (id, payload) => {
     artisanId: artisan.id,
     artisanName: artisan.name,
     from: {
-      name: payload.name,
-      email: payload.email
+      name: cleanPayload.name,
+      email: cleanPayload.email
     },
-    object: payload.object,
-    message: payload.message,
+    object: cleanPayload.object,
+    message: cleanPayload.message,
   });
 
   return {
     hasValidationError: false,
     artisan,
-    payload,
+    payload: cleanPayload,
   };
 };
