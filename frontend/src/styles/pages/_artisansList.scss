@@ -1,0 +1,65 @@
+@use '../settings/tokens';
+@use '../tools';
+
+.artisans-list {
+    &__controls {
+        position:                       relative;
+        
+        /* =====================================================
+            BACKGROUND (étalement sur toute la largeur du viewport)
+        ===================================================== */
+        &::before {
+            @include                    tools.full-bleed;
+            background:                 tokens.$artisans-list-controls-bg-color;
+        }
+    }
+
+    &__empty {
+        color:                          tokens.$artisans-list-results-empty-color;
+    }
+
+    &__results .alert {
+        margin-top:                     tokens.$alert-stack-spacing;
+    }
+
+    &__result-grid {
+        @include                        tools.grid-custom(1fr, tokens.$flow-mobile-md);
+    }
+}
+
+@media (min-width: tokens.$bp-md) {
+    .artisans-list {
+        &__result-grid {
+            @include                    tools.grid-equal(3);
+        }
+    }
+}
+
+@media (min-width: tokens.$bp-lg) {
+    .artisans-list {
+        &__grid {
+            display:                    grid;
+            grid-template-columns:      tokens.$aside-width auto;
+        }
+
+        &__controls {
+            background-color:           tokens.$artisans-list-controls-bg-color;
+
+            &::before {
+                display:                none;
+            }
+        }
+
+        &__result-grid {
+            @include                    tools.grid-equal(2);
+        }
+    }
+}
+
+@media (min-width: tokens.$bp-xl) {
+    .artisans-list {
+        &__result-grid {
+            @include                    tools.grid-equal(3);
+        }
+    }
+}

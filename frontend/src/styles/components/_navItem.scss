@@ -1,0 +1,65 @@
+@use '../settings/tokens';
+@use '../tools';
+
+.nav-item {
+	margin-block: 0;
+
+	/* =====================================================
+		LINK (layout principal)
+	===================================================== */
+
+	&__link {
+		@include                    	tools.flex-between;
+		padding-block:                  tokens.$nav-item-padding-y;
+		text-decoration:                none;
+	}
+
+	/* =====================================================
+		LABEL (texte)
+	===================================================== */
+
+	&__label {
+		flex:                           1;
+		color:                          tokens.$nav-item-text-color;
+		font-size:                      tokens.$nav-item-text-size;
+		line-height:                    tokens.$nav-item-text-lh;
+	}
+
+	/* =====================================================
+		ICON (chevron)
+	===================================================== */
+
+	&__icon {
+		flex-shrink:                    0;
+		width:                          auto;
+		height:                         tokens.$nav-item-icon-size;
+		color:                          tokens.$nav-item-icon-color;
+
+		/* alignement optique */
+		transform:                      translateY(tokens.$icon-optical-offset-y);
+	}
+
+	/* =====================================================
+		STATES
+	===================================================== */
+
+	&:hover {
+		.nav-item & {
+            &__label {
+			    color:                  tokens.$nav-item-text-color-hover;
+            }
+		}
+	}
+}
+
+/* =====================================================
+  TABLET / DESKTOP
+===================================================== */
+
+@media (min-width: tokens.$bp-md) {
+	.nav-item {
+        &__link {
+		    max-width:                  tokens.$nav-item-max-width-desktop;
+        }
+	}
+}

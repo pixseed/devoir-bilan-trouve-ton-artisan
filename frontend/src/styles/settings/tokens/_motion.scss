@@ -1,0 +1,35 @@
+// ================================================================================================
+// FOUNDATION MOTION TOKENS
+// ================================================================================================
+
+// ================================================================================================
+// PRIMITIVE
+// ================================================================================================
+
+$duration-ultra-slow:                   1.50s;
+$duration-very-slow:                    0.75s;
+$duration-slow:                         0.40s;
+$duration-normal:                       0.25s;
+$duration-fast:                         0.15s;
+
+$easing-standard:                       ease-in;
+$easing-smooth:                         cubic-bezier(0.4, 0, 0.2, 1);
+
+// ================================================================================================
+// SEMANTIC
+// ================================================================================================
+
+$transition-very-smooth:                $duration-very-slow $easing-smooth;
+$transition-smooth:                     $duration-slow $easing-smooth;
+$transition-base:                       $duration-normal $easing-standard;
+$transition-fast:                       $duration-fast $easing-standard;
+
+$motion-fade-slide:                     opacity $transition-base, transform $transition-base;
+$motion-underline:                      opacity $transition-smooth, transform $transition-smooth;
+$motion-icon:                           transform $transition-base;
+$motion-button-icon:                    background-color $transition-fast, color $transition-fast;
+$motion-button:                         color $transition-base,
+                                        background-color $transition-base,
+                                        border $transition-base,
+                                        transform $transition-base,
+                                        gap $transition-base;

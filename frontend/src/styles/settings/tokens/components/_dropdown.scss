@@ -1,0 +1,44 @@
+// ================================================================================================
+// DROPDOWN COMPONENT TOKENS
+// ================================================================================================
+
+@use '../border';
+@use '../colors';
+@use '../radius';
+@use '../shadow';
+@use '../spacing';
+
+// SPACING
+// ------------------------------------------------------------------------------------------------
+$dropdown-gap:                              spacing.$sp-8;
+$dropdown-padding-y:                        spacing.$sp-8;
+$dropdown-padding-x:                        spacing.$sp-16;
+
+// RADIUS
+// ------------------------------------------------------------------------------------------------
+$dropdown-list-radius:                      radius.$radius-sm;
+
+// SHADOW
+// ------------------------------------------------------------------------------------------------
+$dropdown-list-shadow:                      shadow.$shadow-content;
+
+// COLORS
+// ------------------------------------------------------------------------------------------------
+$dropdown-list-bg-color:                    colors.$color-bg-surface;
+
+// STATES
+// ------------------------------------------------------------------------------------------------
+// Hover
+$dropdown-item-bg-color-hover:              colors.$color-bg-primary;
+$dropdown-item-text-color-hover:            colors.$color-text-inverse;
+
+// Active
+$dropdown-item-text-color-active:           colors.$color-text-emphasis-primary;
+$dropdown-item-border-color-active:         colors.$color-border-emphasis-primary;
+$dropdown-item-border-size-active:          border.$border-thick;
+
+// Active + Hover
+$dropdown-item-bg-color-active-hover:       colors.$color-bg-primary;
+$dropdown-item-text-color-active-hover:     colors.$color-text-inverse;
+$dropdown-item-border-color-active-hover:   colors.$color-border-emphasis-secondary;
+$dropdown-item-border-size-active-hover:    border.$border-thick;

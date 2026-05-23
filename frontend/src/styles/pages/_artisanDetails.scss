@@ -1,0 +1,192 @@
+@use "../settings/tokens";
+@use "../tools";
+
+.artisan-details {
+    /* =====================================================
+    HEADER
+  ===================================================== */
+    &__header {
+        position:                       relative;
+        @include                        tools.flex-column;
+        @include                        tools.stack(sm);
+
+        &::before {
+            @include                    tools.full-bleed;
+            background:                 tokens.$artisan-details-bg-color;
+            z-index:                    tokens.$z-behind;
+        }
+    }
+
+    /* =====================================================
+      HEADER - MEDIA
+  ===================================================== */
+    &__header-media {
+        overflow:                       hidden;
+        border-radius:                  tokens.$artisan-details-media-radius;
+        flex-shrink:                    0;
+        width:                          100%;
+        height:                         auto;
+        max-height:                     240px;
+        aspect-ratio:                   16/9;
+    }
+
+    &__header-image {
+        width:                          100%;
+        height:                         100%;
+        object-fit:                     cover;
+        background-color:               tokens.$artisan-details-media-bg-color;
+    }
+
+    /* =====================================================
+      HEADER - META
+  ===================================================== */
+    &__header-button {
+        align-self:                     flex-start;
+    }
+
+    &__header-meta {
+        @include                        tools.stack(sm);
+        flex:                           1;
+    }
+
+    &__header-main-meta {
+        @include                        tools.flex-column;
+        gap:                            tokens.$artisan-details-meta-gap;
+
+        & .rating {
+            justify-content:            start;
+        }
+    }
+
+    &__header-submeta {
+        @include                        tools.flex-column;
+        gap:                            tokens.$artisan-details-meta-gap;
+    }
+
+    &__header-submeta-specialty,
+    &__header-submeta-localisation {
+        line-height:                    tokens.$artisan-details-submeta-lh;
+        font-size:                      tokens.$artisan-details-submeta-size;
+    }
+
+    &__header-submeta-specialty {
+        font-weight:                    700;
+    }
+
+    /* =====================================================
+    CONTENT
+  ===================================================== */
+
+    &__about,
+    &__gallery,
+    &__form {
+        @include                        tools.flex-column;
+    }
+}
+
+/* =====================================================
+  TABLET
+===================================================== */
+
+@media (min-width: tokens.$bp-md) {
+    .artisan-details {
+        &__header {
+            @include                    tools.flex-row;
+
+            &-button {
+                margin-top:             8px;
+            }
+        }
+
+        &__header-media {
+            width:                      tokens.$artisan-details-media-size;
+            height:                     tokens.$artisan-details-media-size;
+        }
+
+        /* =====================================================
+      SECTIONS
+    ===================================================== */
+        &__content {
+            @include                    tools.grid-equal(2, 0);
+        }
+
+        &__about {
+            grid-column:                1/-1;
+        }
+
+        &__gallery {
+            @include                    tools.layout-col(
+                                            start,
+                                            tokens.$layout-gap-compact,
+                                            tokens.$layout-gap-normal
+                                        );
+        }
+
+        &__form {
+            @include                    tools.layout-col(
+                                            end,
+                                            tokens.$layout-gap-compact,
+                                            tokens.$layout-gap-normal
+                                        );
+        }
+
+        & .media-gallery {
+            flex:                       1;
+
+            & .gallery-main {
+                flex:                   1;
+            }
+        }
+    }
+}
+
+@media (min-width: tokens.$bp-md) and (max-width: calc(tokens.$bp-lg - 0.1px)) {
+    .artisan-details__gallery,
+    .artisan-details__form {
+        padding-top:                    0;
+    }
+}
+
+/* =====================================================
+  DESKTOP
+===================================================== */
+
+@media (min-width: tokens.$bp-lg) {
+    .artisan-details {
+        /* =====================================================
+      SECTIONS
+    ===================================================== */
+        &__content {
+            @include                    tools.grid-equal(3, 0);
+        }
+
+        &__about {
+            grid-column:                auto;
+            @include                    tools.layout-col(
+                                            start,
+                                            tokens.$layout-gap-compact,
+                                            tokens.$layout-gap-normal
+                                        );
+        }
+
+        &__gallery {
+            @include                     tools.layout-col(
+                                            middle,
+                                            tokens.$layout-gap-compact,
+                                            tokens.$layout-gap-normal
+                                        );
+        }
+
+        & .media-gallery {
+            max-height:                 384px;
+        }
+
+        &__form {
+            @include                    tools.layout-col(
+                                            end,
+                                            tokens.$layout-gap-compact,
+                                            tokens.$layout-gap-normal
+                                        );
+        }
+    }
+}

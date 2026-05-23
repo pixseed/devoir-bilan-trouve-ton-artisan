@@ -1,0 +1,103 @@
+@use '../settings/tokens';
+@use '../tools';
+
+.button {
+    display:                            inline-flex;
+    align-items:                        center;
+    justify-content:                    center;
+    border-radius:                      tokens.$btn-radius;
+    min-height:                         tokens.$btn-min-height;
+    font-size:                          tokens.$btn-font-size-md;
+    transition:                         tokens.$motion-button;
+
+    &__icon {
+        width:                          tokens.$btn-icon-size-md;
+        height:                         tokens.$btn-icon-size-md;
+    }
+
+    &__label {
+        display:                        inline-block;
+        line-height:                    tokens.$btn-label-lh;
+        transform:                      translateY(tokens.$btn-label-optical-offset-y);
+    }
+
+    /* =====================================================
+        VARIANTS (SIZE)
+    ===================================================== */
+
+    &--lg {
+        padding:                        tokens.$btn-padding-y-lg tokens.$btn-padding-x-lg;
+        @include                        tools.button-icon-gap(tokens.$btn-gap-lg);
+
+        .button__icon {
+            width:                      tokens.$btn-icon-size-lg;
+            height:                     tokens.$btn-icon-size-lg;
+        }
+    }
+
+    &--md {
+        padding:                        tokens.$btn-padding-y-md tokens.$btn-padding-x-md;
+        @include                        tools.button-icon-gap(tokens.$btn-gap-md);
+    }
+
+    &--sm {
+        padding:                        tokens.$btn-padding-y-sm tokens.$btn-padding-x-sm;
+        @include                        tools.button-icon-gap(tokens.$btn-gap-md);
+
+        .button__icon {
+            width:                      tokens.$btn-icon-size-md;
+            height:                     tokens.$btn-icon-size-md;
+        }
+    }
+
+    &--xs {
+        padding:                        tokens.$btn-padding-y-xs tokens.$btn-padding-x-xs;
+        @include                        tools.button-icon-gap(tokens.$btn-gap-md);
+
+        .button__icon {
+            width:                      tokens.$btn-icon-size-md;
+            height:                     tokens.$btn-icon-size-md;
+        }
+    }
+
+    /* =====================================================
+        VARIANTS
+    ===================================================== */
+
+    &--primary {
+        background:                     tokens.$btn-primary-bg;
+        color:                          tokens.$btn-primary-text;
+
+        &:hover {
+            background:                 tokens.$btn-primary-bg-hover;
+        }
+    }
+
+    &--secondary {
+        background:                     tokens.$btn-secondary-bg;
+        color:                          tokens.$btn-secondary-text;
+        border:                         tokens.$btn-border-size solid tokens.$btn-secondary-border;
+
+        &:hover {
+            color:                      tokens.$btn-secondary-text-hover;
+            border-color:               tokens.$btn-secondary-border-hover;
+        }
+    }
+
+    &--tertiary {
+        color:                          tokens.$btn-tertiary-text;
+        border-radius:                  0;
+        border:                         tokens.$btn-border-size solid transparent;
+
+        &:hover {
+            color:                      tokens.$btn-tertiary-text-hover;
+            border-bottom-color:        tokens.$btn-tertiary-border-hover;
+            gap:                        calc(var(--btn-gap) * 1.75);
+        }
+    }
+
+    &--primary:hover,
+    &--secondary:hover {
+        transform:                      scale(1.02);
+    }
+}

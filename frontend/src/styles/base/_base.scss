@@ -1,0 +1,256 @@
+/**
+ * ================================================================================================
+ * BASE
+ * ================================================================================================
+ * Rôle :
+ * - Définir les styles de base globaux de l'application.
+ * - Fournir des classes utilitaires pour la typographie, les listes, les espacements (flow),
+ *   les skeletons et les états de focus.
+ * - Servir de fondation pour les styles spécifiques des composants et des pages.
+ * ================================================================================================
+ */
+
+@use '../settings/tokens';
+@use '../tools';
+
+// ================================================================================================
+// BODY
+// ================================================================================================
+
+body {
+    font-family:                        tokens.$font-primary;
+    font-size:                          tokens.$body-size-md;
+    line-height:                        tokens.$lh-body;
+    color:                              tokens.$color-text-default;
+    background-color:                   tokens.$color-bg-page;
+}
+
+// ================================================================================================
+// HEADING
+// ================================================================================================
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    line-height:                        tokens.$lh-heading;
+}
+
+.heading-xl {
+    font-size:                          tokens.$heading-xl-fluid;
+}
+
+.heading-lg {
+    font-size:                          tokens.$heading-lg-fluid;
+}
+
+.heading-md {
+    font-size:                          tokens.$heading-md-fluid;
+}
+
+.heading-sm {
+    font-size:                          tokens.$heading-sm-fluid;
+}
+
+.heading-xs {
+    font-size:                          tokens.$heading-xs-fluid;
+}
+
+.heading-xl,
+.heading-lg,
+.heading-md,
+.heading-sm,
+.heading-xs {
+    color:                              tokens.$color-text-emphasis-secondary;
+    font-weight:                        700;
+
+    &__accent {
+        position:                       relative;
+        padding-top:                    16px;
+
+        &::before {
+            @include                    tools.pseudo-fill;
+            width:                      18px;
+            height:                     6px;
+            
+            background:                 currentColor;
+        }
+
+        &--primary::before {
+            background:                 tokens.$color-decoration-primary;
+        }
+
+        &--secondary::before {
+            background:                 tokens.$color-decoration-secondary;
+        }
+
+        &--tertiary::before {
+            background:                 tokens.$color-decoration-tertiary;
+        }
+    }
+}
+
+// ================================================================================================
+// LIST
+// ================================================================================================
+
+.reset-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+// ================================================================================================
+// FLOW
+// ================================================================================================
+
+.flow-sm > * + * {
+    margin-top:                         tokens.$flow-mobile-sm;
+}
+
+.flow-md > * + * {
+    margin-top:                         tokens.$flow-mobile-md;
+}
+
+@media (min-width: tokens.$bp-md) {
+    .flow-sm > * + * {
+        margin-top:                     tokens.$flow-tablet-sm;
+    }
+
+    .flow-md > * + * {
+        margin-top:                     tokens.$flow-tablet-md;
+    }
+}
+
+@media (min-width: tokens.$bp-xl) {
+    .flow-sm > * + * {
+        margin-top:                     tokens.$flow-desktop-sm;
+    }
+
+    .flow-md > * + * {
+        margin-top:                     tokens.$flow-desktop-md;
+    }
+}
+
+// ================================================================================================
+// SKELETON
+// ================================================================================================
+
+.skeleton {
+    background-color:                   tokens.$skeleton-bg-color;
+    border-radius:                      tokens.$skeleton-radius;
+    animation:                          pulse tokens.$skeleton-motion;
+}
+
+.skeleton--image {
+    width:                              100%;
+    height:                             100%;
+}
+
+.skeleton--title-md {
+    height:                             tokens.$skeleton-title-height-md;
+    margin-bottom:                      tokens.$skeleton-gap-sm;
+}
+
+.skeleton--title-lg {
+    height:                             tokens.$skeleton-title-height-lg;
+    margin-bottom:                      tokens.$skeleton-gap-sm;
+}
+
+.skeleton--rating {
+    height:                             tokens.$skeleton-text-height-lg;
+}
+
+.skeleton--text {
+    height:                             tokens.$skeleton-text-height-md;
+}
+
+.skeleton--text-lg {
+    height:                             tokens.$skeleton-text-height-lg;
+}
+
+.skeleton-paragraph {
+    @include                            tools.flex-column;
+    gap:                                tokens.$skeleton-gap-sm;
+} // inclure le nombre de skeleton--text souhaité ou utiliser directement le composant SkeletonParagraph
+
+.skeleton--input,
+.skeleton--textarea {
+    width:                              100%;
+}
+
+.skeleton--input {
+    height:                             51px;
+}
+
+.skeleton--textarea {
+    height:                             153px;
+}
+
+.skeleton--button {
+    height:                             tokens.$skeleton-button-height-md;
+}
+
+.skeleton--w-20 {
+    width:                              tokens.$skeleton-width-20;
+}
+
+.skeleton--w-30 {
+    width:                              tokens.$skeleton-width-30;
+}
+
+.skeleton--w-40 {
+    width:                              tokens.$skeleton-width-40;
+}
+
+.skeleton--w-50 {
+    width:                              tokens.$skeleton-width-50;
+}
+
+.skeleton--w-60 {
+    width:                              tokens.$skeleton-width-60;
+}
+
+.skeleton--w-70 {
+    width:                              tokens.$skeleton-width-70;
+}
+
+.skeleton--w-80 {
+    width:                              tokens.$skeleton-width-80;
+}
+
+.skeleton--w-90 {
+    width:                              tokens.$skeleton-width-90;
+}
+
+.skeleton--w-100 {
+    width:                              tokens.$skeleton-width-100;
+}
+
+@keyframes pulse {
+    0% {
+        opacity:                        0.5;
+    }
+    50% {
+        opacity:                        1;
+    }
+    100% {
+        opacity:                        0.5;
+    }
+}
+
+// ================================================================================================
+// FOCUS-VISIBLE
+// ================================================================================================
+
+:focus-visible {
+    outline:                            tokens.$border-thin solid tokens.$color-focus-primary;
+    outline-offset:                     tokens.$border-offset-default;
+}
+
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+    outline:                            tokens.$border-medium solid tokens.$color-focus-input;
+}

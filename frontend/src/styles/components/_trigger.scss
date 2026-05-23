@@ -1,0 +1,98 @@
+@use '../settings/tokens';
+@use '../tools';
+
+.trigger {
+    position:                           relative;
+    @include                            tools.inline-flex-center;
+    padding-inline:                     tokens.$trigger-padding-x;
+    height:                             100%;
+    width:                              100%;
+
+    background:                         none;
+    border:                             none;
+
+    font:                               inherit;
+    color:                              inherit;
+
+    &__content {
+        display:                        inline-flex;
+        gap:                            tokens.$trigger-content-gap;
+        width:                          100%;
+        justify-content:                space-between;
+    }
+
+    &__icon {
+        width:                          tokens.$icon-xs;
+        height:                         auto;
+        transition:                     tokens.$motion-icon;
+        transform:                      translateY(tokens.$icon-optical-offset-y);
+    }
+
+    /* -----------------------------
+        Is Open State (icon rotation)
+    ----------------------------- */
+    &.is-open .trigger__icon {
+        transform:                      translateY(tokens.$icon-optical-offset-y) rotate(180deg);
+    }
+
+    /* -----------------------------
+        Is Disabled
+    ----------------------------- */
+    &.is-disabled,
+    &:disabled {
+        @include                        tools.disabled-base;
+
+        color:                          tokens.$color-text-disabled;
+        border-color:                   tokens.$color-border-disabled;
+
+        .trigger__icon {
+            color:                      tokens.$color-icon-disabled;
+        }
+    }
+
+    /* =====================================================
+        VARIANTS
+    ===================================================== */
+    &--underlined {
+        &::after {
+            content:                    "";
+            position:                   absolute;
+            left:                       50%;
+            bottom:                     tokens.$trigger-underlined-offset-mobile;
+            transform:                  translateX(-50%) scaleX(0);
+
+            width:                      calc(100% - tokens.$trigger-padding-x);
+            height:                     tokens.$trigger-underlined-height;
+
+            background-color:           currentColor;
+            opacity:                    0;
+
+            transition:                 tokens.$motion-underline;
+        }
+        
+        &:hover::after, &.is-open::after {
+            transform:                  translateX(-50%) scaleX(1);
+            opacity:                    1;
+        }
+    }
+
+    &--outlined {
+        border:                         tokens.$trigger-outlined-border-size solid tokens.$trigger-outlined-border-color;
+        border-radius:                  tokens.$trigger-outlined-border-radius;
+        padding:                        tokens.$trigger-outlined-padding-y tokens.$trigger-outlined-padding-x;
+        background-color:               tokens.$trigger-outlined-bg-color;
+    }
+}
+
+/* =====================================================
+    DESKTOP
+===================================================== */
+
+@media (min-width: tokens.$bp-xl) {
+    /* -----------------------------
+        Underlined
+    ----------------------------- */
+    .trigger--underlined::after {
+        bottom:                         tokens.$trigger-underlined-offset-desktop;
+    }
+}

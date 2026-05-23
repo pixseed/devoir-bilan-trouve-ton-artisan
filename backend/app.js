@@ -2,39 +2,74 @@
  * ================================================================================================
  * EXPRESS APPLICATION SETUP
  * ================================================================================================
- * Ce fichier configure l'application Express, en ajoutant le middleware pour parser le JSON.
- * Il exporte l'application Express configurée pour être utilisée dans le fichier server.js, qui est
- * le point d'entrée principal du serveur.
- * 
  * Rôle :
  * - Initialiser l'application Express.
- * - Définir les middlewares.
- * - Importer et utiliser les routes de l'API.
- * - Exporter l'application pour être utilisée dans server.js.
+ * - Configurer les middlewares globaux.
+ * - Exposer les ressources statiques.
+ * - Monter les routes principales de l'API.
+ * - Exporter l'application pour pour démarrage depuis le point d'entrée serveur.
  * 
  * Fonctionnement :
- * 1. Importer le module Express.
- * 2. Créer une instance de l'application Express.
- * 3. Ajouter le middleware pour parser les requêtes JSON.
- * 4. Exporter l'application Express configurée.
+ * 1. Initialiser Express.
+ * 2. Configurer les middlewares globaux (CORS, JSON).
+ * 3. Configurer le service des fichiers statiques.
+ * 4. Monter les routeurs métier
+ * 4. Exporter l'application configurée.
  * 
- * Dépendances :
- * - server.js (pour démarrer le serveur)
- * - routes/ (pour définir les routes de l'API)
+ * Dépendances principales :
+ * - server.js : démarrage du serveur.
+ * - routes/categories.js : routes catégories.
+ * - routes/artisan.js : routes artisans.
  * ================================================================================================
  */
 
 import express from 'express';
-import categoriesRouter from './routes/categories.js';
-import artisanRouter from './routes/artisans.js';
+import path from 'path';
+import cors from 'cors';
+import { fileURLToPath } from 'url';
 
+import artisanRouter from './routes/artisans.js';
+import categoriesRouter from './routes/categories.js';
+
+// ===========================================================================================
+// EXPRESS INSTANCE
+// Création de l'application principale
+// ===========================================================================================
 const app = express();
 
-// Middleware JSON
+// ===========================================================================================
+// PATH RESOLUTION
+// Recréation de __dirname car indisponible en ES Modules
+// ===========================================================================================
+const __filename = fileURLToPath(import.meta.url); // Transforme l'URL en chemin
+const __dirname = path.dirname(__filename); // Retire le fichier pour ne garder que le dossier
+
+// ===========================================================================================
+// GLOBAL MIDDLEWARES
+// ===========================================================================================
+
+// Autorisation des requêtes provenant du front React
+app.use(cors({
+    origin: process.env.FRONTEND_URL,
+}))
+
+// Parse automatiquement les corps de requête JSON
 app.use(express.json());
 
-// Routes API
+// ===========================================================================================
+// STATIC FILES
+// Exposition publique des images via /images
+// Exemple : /images/photo.jpg
+// ===========================================================================================
+
+// Fichiers public (images)
+app.use('/images', express.static(path.join(__dirname,'public/images')));
+
+// ===========================================================================================
+// API ROUTES
+// ===========================================================================================
 app.use('/categories', categoriesRouter);
 app.use('/artisans', artisanRouter);
 
+// ===========================================================================================
 export default app;

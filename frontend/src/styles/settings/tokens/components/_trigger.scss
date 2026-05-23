@@ -1,0 +1,28 @@
+// ================================================================================================
+// TRIGGER COMPONENT TOKENS
+// ================================================================================================
+
+@use '../border';
+@use '../colors';
+@use '../radius';
+@use '../spacing';
+
+// BASE
+// ------------------------------------------------------------------------------------------------
+$trigger-padding-x:                     spacing.$sp-8;
+$trigger-content-gap:                   spacing.$gap-8;
+
+// OUTLINED
+// ------------------------------------------------------------------------------------------------
+$trigger-outlined-border-size:          border.$border-thin;
+$trigger-outlined-border-color:         colors.$color-border-emphasis-primary;
+$trigger-outlined-border-radius:        radius.$radius-sm;
+$trigger-outlined-padding-x:            spacing.$sp-16;
+$trigger-outlined-padding-y:            spacing.$sp-8;
+$trigger-outlined-bg-color:             colors.$color-bg-surface;
+
+// UNDERLINED
+// ------------------------------------------------------------------------------------------------
+$trigger-underlined-height:             border.$border-medium;
+$trigger-underlined-offset-mobile:      spacing.$sp-16; // dépendance au height du header
+$trigger-underlined-offset-desktop:     spacing.$sp-24; // dépendance au height du header

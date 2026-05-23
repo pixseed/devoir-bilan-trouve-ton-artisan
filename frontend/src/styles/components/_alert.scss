@@ -1,0 +1,30 @@
+@use '../settings/tokens';
+
+.alert {
+    padding:                            tokens.$alert-padding-y tokens.$alert-padding-x;
+    border-radius:                      tokens.$alert-radius;
+    border:                             tokens.$alert-border-size solid;
+    margin:                             0;
+
+    /* =====================================================
+        VARIANTS
+    ===================================================== */
+
+    &--error {
+        background-color:               tokens.$alert-error-bg-color;
+        color:                          tokens.$alert-error-text-color;
+        border-color:                   tokens.$alert-error-border-color;
+    }
+
+    &--success {
+        background-color:               tokens.$alert-success-bg-color;
+        color:                          tokens.$alert-success-text-color;
+        border-color:                   tokens.$alert-success-border-color;
+    }
+
+    &--info {
+        background-color:               tokens.$alert-info-bg-color;
+        color:                          tokens.$alert-info-text-color;
+        border-color:                   tokens.$alert-info-border-color;
+    }
+}

@@ -1,0 +1,39 @@
+// ================================================================================================
+// ALERT COMPONENT TOKENS
+// ================================================================================================
+
+@use '../border';
+@use '../colors';
+@use '../radius';
+@use '../spacing';
+
+// SPACING
+// ------------------------------------------------------------------------------------------------
+$alert-padding-y:                     spacing.$sp-8;
+$alert-padding-x:                     spacing.$sp-16;
+$alert-stack-spacing:                 spacing.$sp-16; // Space optionnel entre alerts ou blocs adjacents
+
+// BORDER
+// ------------------------------------------------------------------------------------------------
+$alert-border-size:                   border.$border-thin;
+
+// RADIUS
+// ------------------------------------------------------------------------------------------------
+$alert-radius:                        radius.$radius-sm;
+
+// COLORS
+// ------------------------------------------------------------------------------------------------
+// Error
+$alert-error-bg-color:                colors.$color-bg-danger;
+$alert-error-text-color:              colors.$color-text-danger;
+$alert-error-border-color:            colors.$color-border-danger;
+
+// Success
+$alert-success-bg-color:              colors.$color-bg-success;
+$alert-success-text-color:            colors.$color-text-success;
+$alert-success-border-color:          colors.$color-border-success;
+
+// Info
+$alert-info-bg-color:                 colors.$color-bg-info;
+$alert-info-text-color:               colors.$color-text-info;
+$alert-info-border-color:             colors.$color-border-info;

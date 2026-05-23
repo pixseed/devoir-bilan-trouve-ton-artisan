@@ -1,0 +1,56 @@
+@use '../settings/tokens';
+@use '../tools';
+
+.app-modal {
+    position:                               fixed;
+    inset:                                  0;
+    z-index:                                tokens.$z-overlay;
+    margin-top:                             0;
+
+    &__overlay {
+        @include                            tools.absolute-fill;
+        background:                         tokens.$modal-backdrop-bg-color;
+
+        @include                            tools.flex-center;
+
+    }
+
+    &__content {
+        width:                              100%;
+        background:                         tokens.$modal-bg-color;
+        border:                             tokens.$modal-border-size solid tokens.$modal-border-color;
+        border-radius:                      tokens.$modal-radius;
+        margin:                             tokens.$container-padding-x;
+        padding:                            tokens.$modal-padding-y-sm tokens.$modal-padding-x-sm;
+        box-shadow:                         tokens.$modal-shadow;
+    }
+
+    &__title {
+        margin-bottom:                      tokens.$modal-margin-bottom-title;
+    }
+
+    &__body {
+        margin-bottom:                      tokens.$modal-margin-bottom-body;
+    }
+
+    &__footer {
+        @include                            tools.flex-center;
+    }
+}
+
+@media (min-width: tokens.$bp-sm) {
+    .app-modal {
+        &__footer {
+            justify-content:                flex-end;
+        }
+    }
+}
+
+@media (min-width: tokens.$bp-md) {
+    .app-modal {
+        &__content {
+            width:                          tokens.$modal-width-md;
+            padding:                        tokens.$modal-padding-y-md tokens.$modal-padding-x-md;
+        }
+    }
+}

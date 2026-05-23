@@ -1,0 +1,33 @@
+// ================================================================================================
+// MENU COMPONENT TOKENS
+// ================================================================================================
+
+@use '../colors';
+@use '../spacing';
+
+@use './header';
+
+// SIZE
+// ------------------------------------------------------------------------------------------------
+$menu-height:                           288px;
+$menu-decor-triangle-size:              30px;
+
+// SPACING
+// ------------------------------------------------------------------------------------------------
+$menu-padding-y-mobile:                 spacing.$sp-20;
+$menu-padding-x-mobile:                 spacing.$sp-32;
+$menu-padding-y-desktop:                spacing.$sp-32;
+$menu-padding-x-desktop:                spacing.$sp-40;
+
+// COLORS
+// ------------------------------------------------------------------------------------------------
+$menu-title-text-color:                 colors.$color-text-inverse;
+$menu-title-bg-color:                   colors.$color-bg-primary;
+
+$menu-list-bg-color:                    colors.$color-bg-surface-emphasis;
+
+$menu-decor-triangle-color:             header.$header-bg-color;
+
+// LAYOUT
+// ------------------------------------------------------------------------------------------------
+$menu-layout-column:                    35% 1fr;

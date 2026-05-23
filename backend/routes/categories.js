@@ -3,8 +3,9 @@
  * CATEGORIES ROUTER
  * ===============================================================================================
  * Rôle :
- * - Définir les routes liées aux catégories, telles que la récupération des catégories et la
- *   récupération des artisans par catégorie.
+ * - Définir les endpoints HTTP liés aux catégories.
+ * - Déléguer le traitement au controller correspondant.
+ * - Centraliser le routage de la ressource "categories".
  * 
  * Fonctionnement :
  * - Importer les fonctions du controller correspondant (categoryController.js) pour gérer les
@@ -12,8 +13,7 @@
  * - Utiliser Express Router pour définir les routes spécifiques et dynamiques.
  * 
  * Routes :
- * - GET /categories : Récupérer les catégories.
- * - GET /categories/:id : Récupérer les détails d'une catégorie spécifique par son ID.
+ * - GET /categories : Récupérer toutes les catégories.
  * 
  * Dépendances :
  * - backend/controllers/categoryController.js pour les fonctions de gestion des catégories.
@@ -23,16 +23,12 @@
 
 import express from 'express';
 import {
-    getAllCategories,
-    getArtisansByCategoryId
+    getCategories,
 } from '../controllers/categoryController.js';
 
 const router = express.Router();
 
 // Route spécifique
-router.get('/', getAllCategories);
-
-// Route dynamique
-router.get('/:id/artisans', getArtisansByCategoryId);
+router.get('/', getCategories); // Liste des catégories
 
 export default router;

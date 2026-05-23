@@ -1,0 +1,33 @@
+// ================================================================================================
+// FOOTER COMPONENT TOKENS
+// ================================================================================================
+
+@use '../border';
+@use '../colors';
+@use '../spacing';
+
+// SIZE
+// ------------------------------------------------------------------------------------------------
+$footer-divider-length:                 100%;
+
+// SPACING
+// ------------------------------------------------------------------------------------------------
+$footer-padding:                        spacing.$sp-24;
+$footer-section-padding:                spacing.$sp-16;
+
+$footer-text-gap:                       spacing.$sp-8;
+$footer-nav-gap:                        spacing.$gap-16;
+$footer-main-gap-mobile:                spacing.$gap-32;
+$footer-main-gap-desktop:               spacing.$gap-64;
+
+// COLORS
+// ------------------------------------------------------------------------------------------------
+$footer-text-color:                     colors.$color-text-inverse;
+$footer-bg-color:                       colors.$color-bg-primary;
+
+$footer-divider-color:                  colors.$color-decoration-inverse;
+
+// OFFSET
+// ------------------------------------------------------------------------------------------------
+$footer-divider-offset-mobile:          -(spacing.$sp-16);
+$footer-divider-offset-desktop:         -(spacing.$sp-32);

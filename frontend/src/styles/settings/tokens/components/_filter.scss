@@ -1,0 +1,48 @@
+// ================================================================================================
+// FILTER COMPONENT TOKENS
+// ================================================================================================
+
+@use '../border';
+@use '../colors';
+@use '../radius';
+@use '../spacing';
+
+// SPACING
+// ------------------------------------------------------------------------------------------------
+$filter-controls-gap:                       spacing.$gap-16;
+
+$filter-group-padding:                      spacing.$sp-16;
+$filter-group-gap:                          spacing.$sp-16;
+
+$filter-title-padding:                      spacing.$sp-8;
+$filter-button-padding:                     spacing.$sp-8;
+
+// BORDER
+// ------------------------------------------------------------------------------------------------
+$filter-group-border-size:                  border.$border-thin;
+
+// RADIUS
+// ------------------------------------------------------------------------------------------------
+$filter-group-radius:                       radius.$radius-sm;
+
+// COLORS
+// ------------------------------------------------------------------------------------------------
+$filter-group-bg-color:                     colors.$color-bg-surface;
+$filter-group-border-color:                 colors.$color-border-default;
+
+// STATES
+// ------------------------------------------------------------------------------------------------
+// Hover
+$filter-button-text-color-hover:            colors.$color-text-inverse;
+$filter-button-bg-color-hover:              colors.$color-bg-primary;
+
+// Active
+$filter-button-text-color-active:           colors.$color-text-emphasis-primary;
+$filter-button-border-size-active:          border.$border-thick;
+$filter-button-border-color-active:         colors.$color-border-emphasis-primary;
+$filter-button-offset-x-active:             spacing.$sp-16;
+
+// Active + Hover
+$filter-button-text-color-active-hover:     colors.$color-text-inverse;
+$filter-button-bg-color-active-hover:       colors.$color-bg-primary;
+$filter-button-border-color-active-hover:   colors.$color-border-emphasis-secondary;

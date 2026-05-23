@@ -1,0 +1,45 @@
+// ================================================================================================
+// ICON BUTTON COMPONENT TOKENS
+// ================================================================================================
+
+@use '../spacing';
+@use '../colors';
+@use '../radius';
+
+// SPACING
+// ------------------------------------------------------------------------------------------------
+$icon-btn-xs:                           spacing.$sp-20;
+$icon-btn-sm:                           spacing.$sp-24;
+$icon-btn-md:                           spacing.$sp-32;
+$icon-btn-lg:                           spacing.$sp-48;
+
+// RADIUS
+// ------------------------------------------------------------------------------------------------
+$icon-btn-pill:                         radius.$radius-pill;
+$icon-btn-square:                       radius.$radius-sm;
+
+// COLORS
+// ------------------------------------------------------------------------------------------------
+// Primary
+$icon-btn-primary-color:                colors.$color-icon-emphasis-primary;
+$icon-btn-primary-bg:                   colors.$color-bg-surface;
+
+// Secondary
+$icon-btn-secondary-color:              colors.$color-icon-default;
+$icon-btn-secondary-bg:                 colors.$color-bg-surface;
+
+// Tertiary
+$icon-btn-tertiary-color:               colors.$color-icon-default;
+
+// STATES
+// ------------------------------------------------------------------------------------------------
+// Secondary:active
+$icon-btn-secondary-color-active:       colors.$color-icon-emphasis-primary;
+$icon-btn-secondary-bg-active:          colors.$color-bg-surface;
+
+// Secondary:hover
+$icon-btn-secondary-color-hover:        colors.$color-icon-inverse;
+$icon-btn-secondary-bg-hover:           colors.$color-bg-secondary;
+
+// Tertiary:hover
+$icon-btn-tertiary-color-hover:        colors.$color-icon-emphasis-primary;

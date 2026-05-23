@@ -1,0 +1,11 @@
+@use '../settings/tokens';
+@use '../tools';
+
+/* =====================================================
+    SOCIALBAR
+===================================================== */
+
+.socialbar {
+    @include                            tools.flex-center;
+    gap:                                tokens.$socialbar-icons-gap;
+}

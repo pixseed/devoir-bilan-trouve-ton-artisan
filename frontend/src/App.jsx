@@ -1,11 +1,17 @@
-import AppRouter from "./router";
+/**
+ * ================================================================================================
+ * ROOT APPLICATION COMPONENT
+ * ================================================================================================
+ * Rôle :
+ * - Servir de point d'entrée principal de l'application frontend.
+ * - Monter le routeur principal.
+ * ================================================================================================
+ */
+
+import AppRouter from "./router/AppRouter";
 
 function App() {
-  return (
-    <div className="App">
-      <AppRouter />
-    </div>
-  );
+  return <AppRouter />;
 }
 
 export default App;

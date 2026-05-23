@@ -1,0 +1,76 @@
+@use '../settings/tokens';
+@use '../tools';
+
+.home {
+
+    /* =====================================================
+        STRUCTURE
+    ===================================================== */
+
+    &__grid {
+        @include                        tools.grid-columns-no-gap;
+    }
+
+    &__hero {
+        position:                       relative;
+        height:                         100%;
+        z-index:                        tokens.$z-base;
+        
+        /* =====================================================
+            BACKGROUND (étalement sur toute la largeur du viewport)
+        ===================================================== */
+        &::before {
+            @include                    tools.full-bleed;
+            background:                 tokens.$home-hero-bg-color;
+            z-index:                    tokens.$z-behind;
+        }
+    }
+
+    &__top-artisans .alert {
+        margin-top:                     tokens.$alert-stack-spacing;
+    }
+
+    &__top-artisans-grid {
+        @include                        tools.grid-custom(1fr, tokens.$flow-mobile-md);
+    }
+}
+
+.hero__step-list {
+    margin-bottom:                      0;
+}
+
+/* =====================================================
+    TABLET
+===================================================== */
+
+@media (min-width: tokens.$bp-md) {
+    .home {
+        &__top-artisans-grid {
+            @include                    tools.grid-equal(3);
+        }
+    }
+}
+
+/* =====================================================
+    DESKTOP
+===================================================== */
+
+@media (min-width: tokens.$bp-lg) {
+    .home {
+        &__grid {
+            @include                    tools.grid-columns-no-gap(420px auto);
+        }
+
+        &__hero::before {
+            content:                    none;
+        }
+
+        &__hero {
+            background:                 tokens.$home-hero-bg-color;
+        }
+
+        &__top-artisans-grid {
+            @include                    tools.grid-custom(1fr, tokens.$flow-desktop-sm);
+        }
+    }
+}

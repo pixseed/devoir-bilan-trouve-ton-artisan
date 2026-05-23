@@ -1,0 +1,67 @@
+@use '../settings/tokens';
+@use '../tools';
+
+.searchbar {
+    position:                           relative;
+    @include                            tools.flex-center;
+
+    height:                             tokens.$searchbar-height;
+    background:                         tokens.$searchbar-bg-color;
+    border:                             tokens.$searchbar-border-size solid tokens.$searchbar-border-color;
+    border-radius:                      tokens.$searchbar-radius;
+
+    &:focus-within {
+        border-color:                   tokens.$searchbar-border-color-active;
+    }
+    
+    /* =====================================================
+    INPUT
+    ===================================================== */
+    
+    &__input {
+        width:                          100%;
+        height:                         100%;
+        padding-left:                   tokens.$searchbar-padding-x;
+        padding-right:                  tokens.$searchbar-input-padding-right-with-icon;
+        padding-top:                    tokens.$searchbar-padding-y;
+        padding-bottom:                 tokens.$searchbar-padding-y;
+        border:                         none;
+        outline:                        transparent;
+        background:                     transparent;
+
+        &--with-clear {
+            padding-left:               tokens.$searchbar-input-padding-left-with-icon;
+        }
+    }
+    
+    /* =====================================================
+    BUTTON (overlay)
+    ===================================================== */
+    
+    &__clear {
+        position:                       absolute;
+        left:                           tokens.$searchbar-clear-offset-x;
+        top:                            50%;
+        transform:                      translateY(-50%);
+        z-index :                       tokens.$z-floating-control;
+    }
+
+    &__submit {
+        position:                       absolute;
+        right:                          tokens.$searchbar-submit-offset-x;
+        top:                            50%;
+        transform:                      translateY(-50%);
+        z-index :                       tokens.$z-floating-control;
+    }
+    
+    /* =====================================================
+    VARIANT
+    ===================================================== */
+    
+    &--navbar {
+        border-left:                    none;
+        border-top:                     none;
+        border-radius:                  0;
+        border-color:                   tokens.$searchbar-navbar-border-color;
+    }
+}

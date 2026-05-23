@@ -1,0 +1,57 @@
+@use '../settings/tokens';
+@use '../tools';
+
+.dropdown {
+    position:                           relative;
+    @include                            tools.flex-column;
+    width:                              100%;
+
+    &__item {
+        padding:                        tokens.$dropdown-padding-y tokens.$dropdown-padding-x;
+        margin:                         0;
+        cursor:                         pointer;
+        transition:                     tokens.$motion-button;
+
+        &:hover {
+            background-color:           tokens.$dropdown-item-bg-color-hover;
+            color:                      tokens.$dropdown-item-text-color-hover;
+        }
+
+        &--active {
+            color:                      tokens.$dropdown-item-text-color-active;
+            border-left:                tokens.$dropdown-item-border-size-active solid tokens.$dropdown-item-border-color-active;
+
+            &:hover {
+                background-color:       tokens.$dropdown-item-bg-color-active-hover;
+                color:                  tokens.$dropdown-item-text-color-active-hover;
+                border-left:            tokens.$dropdown-item-border-size-active-hover solid tokens.$dropdown-item-border-color-active-hover;
+            }
+        }
+    }
+
+    &__list {
+        @include                        tools.dropdown-panel;
+        @include                        tools.flex-column;
+
+
+        border-radius:                  tokens.$dropdown-list-radius;
+        overflow:                       hidden;
+        box-shadow:                     tokens.$dropdown-list-shadow;
+        background-color:               tokens.$dropdown-list-bg-color;
+
+        transform:                      translateY(-#{tokens.$dropdown-gap});
+        transition:                     tokens.$motion-fade-slide;
+
+        z-index:                        tokens.$z-overlay;
+
+        &--open {
+            @include                    tools.dropdown-active;
+            transform:                  translateY(tokens.$dropdown-gap);
+        }
+
+        &--loading {
+            padding:                    tokens.$dropdown-padding-y;
+            gap:                        tokens.$skeleton-gap-sm;
+        }
+    }
+}

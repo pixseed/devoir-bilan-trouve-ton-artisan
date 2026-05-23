@@ -1,0 +1,28 @@
+/**
+ * ================================================================================================
+ * LAYOUT
+ * ================================================================================================
+ * Rôle :
+ * - Fournir des classes de mise en page génériques pour structurer le contenu de l'application.
+ * - Faciliter la création de mises en page flexibles et responsives pour les différentes pages.
+ * ================================================================================================
+ */
+
+@use '../settings/tokens';
+@use '../tools/mixins';
+
+// ================================================================================================
+// LAYOUT
+// ================================================================================================
+
+.layout-col--start {
+    @include mixins.layout-col(start);
+}
+
+.layout-col--middle {
+    @include mixins.layout-col(middle);
+}
+
+.layout-col--end {
+    @include mixins.layout-col(end);
+}

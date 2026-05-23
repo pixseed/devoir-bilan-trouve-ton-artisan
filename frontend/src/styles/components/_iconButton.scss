@@ -1,0 +1,99 @@
+@use '../settings/tokens';
+@use '../tools';
+
+.icon-button {
+    @include                            tools.flex-center;
+    flex-shrink:                        0;
+    padding:                            0;
+
+    border:                             none;
+    border-radius:                      tokens.$icon-btn-square;
+    background:                         tokens.$icon-btn-secondary-bg;
+
+    transition:                         tokens.$motion-button-icon;
+
+    /* =====================================================
+        ICONS
+    ===================================================== */
+    svg, i {
+        @include                        tools.flex-center;
+        color:                          tokens.$icon-btn-primary-color;
+        line-height:                    1;
+    }
+
+    /* =====================================================
+        VARIANTS
+    ===================================================== */
+
+    &--rounded {
+        border-radius:                  tokens.$icon-btn-pill;
+    }
+    
+    &--ghost {
+        background:                     transparent;
+        border-radius:                  tokens.$icon-btn-pill;
+
+        svg, i {
+            color:                      tokens.$icon-btn-tertiary-color;
+        }
+
+        &:hover {
+            svg, i {
+                color:                  tokens.$icon-btn-tertiary-color-hover;
+            }
+        }
+    }
+
+    /* =====================================================
+        SIZES
+    ===================================================== */
+
+    &--xs {
+        @include tools.icon-btn-size(
+            tokens.$icon-btn-xs,
+            tokens.$icon-xs
+        )
+    }
+
+    &--sm {
+        @include tools.icon-btn-size(
+            tokens.$icon-btn-sm,
+            tokens.$icon-sm
+        )
+    }
+
+    &--md {
+        @include tools.icon-btn-size(
+            tokens.$icon-btn-md,
+            tokens.$icon-md
+        )
+    }
+
+    &--lg {
+        @include tools.icon-btn-size(
+            tokens.$icon-btn-lg,
+            tokens.$icon-lg
+        )
+    }
+
+    /* =====================================================
+        STATES
+    ===================================================== */
+
+    &.is-active {
+        background:                     tokens.$icon-btn-secondary-bg-active;
+
+        svg, i {
+            color:                      tokens.$icon-btn-secondary-color-active;
+        }
+    }
+    
+    &:not(.icon-button--ghost):hover {
+        background:                     tokens.$icon-btn-secondary-bg-hover;
+
+        svg, i {
+            color:                      tokens.$icon-btn-secondary-color-hover;
+        }
+    }
+
+}

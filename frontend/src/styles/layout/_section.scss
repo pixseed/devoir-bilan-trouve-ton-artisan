@@ -1,0 +1,28 @@
+/**
+ * ================================================================================================
+ * SECTION
+ * ================================================================================================
+ * Rôle :
+ * - Fournir une classe de section réutilisable pour structurer le contenu de l'application
+ *   en sections distinctes.
+ * ================================================================================================
+ */
+
+@use '../settings/tokens';
+@use '../tools/mixins';
+
+// ================================================================================================
+// SECTION
+// ================================================================================================
+
+.section {
+    @include mixins.section(
+        tokens.$section-padding-sm,
+        tokens.$section-padding-md,
+        tokens.$section-padding-lg
+    );
+    
+    &--with-bg {
+        @include mixins.layout-col(middle);
+    }
+}

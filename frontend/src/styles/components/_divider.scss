@@ -1,0 +1,46 @@
+@use '../settings/tokens';
+
+.divider {
+    background-color:                   currentColor;
+    opacity: .25;
+
+    &--horizontal {
+        height:                         tokens.$divider-thickness;
+
+        &.divider--auto {
+            width:                      100%;
+        }
+    
+        &.divider--short {
+            max-width:                  tokens.$divider-size-sm;
+        }
+    
+        &.divider--medium {
+            max-width:                  tokens.$divider-size-md;
+        }
+    
+        &.divider--long {
+            max-width:                  tokens.$divider-size-lg;
+        }
+    }
+    
+    &--vertical {
+        width:                          tokens.$divider-thickness;
+
+        &.divider--auto {
+            height:                     100%;
+        }
+    
+        &.divider--short {
+            max-height:                 tokens.$divider-size-sm;
+        }
+    
+        &.divider--medium {
+            max-height:                 tokens.$divider-size-md;
+        }
+    
+        &.divider--long {
+            max-height:                 tokens.$divider-size-lg;
+        }
+    }
+}

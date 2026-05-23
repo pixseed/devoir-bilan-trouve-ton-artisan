@@ -1,0 +1,42 @@
+// ================================================================================================
+// MODAL COMPONENT TOKENS
+// ================================================================================================
+
+@use '../border';
+@use '../colors';
+@use '../radius';
+@use '../shadow';
+@use '../spacing';
+
+// SIZE
+// ------------------------------------------------------------------------------------------------
+$modal-width-md:                        70%;
+
+// SPACING
+// ------------------------------------------------------------------------------------------------
+$modal-padding-x-md:                    spacing.$sp-48;
+$modal-padding-y-md:                    spacing.$sp-32;
+
+$modal-padding-x-sm:                    spacing.$sp-32;
+$modal-padding-y-sm:                    spacing.$sp-24;
+
+$modal-margin-bottom-title:             spacing.$sp-16;
+$modal-margin-bottom-body:              spacing.$sp-24;
+
+// BORDER
+// ------------------------------------------------------------------------------------------------
+$modal-border-size:                     border.$border-thin;
+
+// RADIUS
+// ------------------------------------------------------------------------------------------------
+$modal-radius:                          radius.$radius-lg;
+
+// SHADOW
+// ------------------------------------------------------------------------------------------------
+$modal-shadow:                          shadow.$shadow-overlay;
+
+// COLORS
+// ------------------------------------------------------------------------------------------------
+$modal-backdrop-bg-color:               colors.$color-bg-overlay;
+$modal-bg-color:                        colors.$color-bg-surface;
+$modal-border-color:                    colors.$color-border-emphasis-primary;

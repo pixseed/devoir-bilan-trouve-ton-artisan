@@ -1,0 +1,214 @@
+@use '../settings/tokens';
+@use '../tools';
+
+.menu {
+    position:                           relative;
+    width:                              100%;
+    height:                             calc(tokens.$viewport-height-dynamic - tokens.$header-height-mobile);
+    z-index:                            tokens.$z-base;
+
+    /* =====================================================
+        SHADOW (simulation header au-dessus)
+    ===================================================== */
+    &::before {
+        @include                        tools.pseudo-fill;
+        top:                            -(tokens.$header-height-mobile);
+        height:                         tokens.$header-height-mobile;
+
+        box-shadow:                     tokens.$shadow-header;
+
+        pointer-events:                 none;
+        z-index:                        tokens.$z-decor;
+    }
+
+    /* =====================================================
+        LAYOUT
+    ===================================================== */
+
+    & .container {
+        height:                         100%;
+    }
+
+    &__content {
+        display:                        block;
+        height:                         100%;
+    }
+
+    /* =====================================================
+        BLOCS
+    ===================================================== */
+
+    &__header,
+    &__body {
+        position:                       relative;
+        z-index:                        tokens.$z-base;
+
+        padding-top:                    tokens.$menu-padding-y-mobile;
+        padding-bottom:                 tokens.$menu-padding-y-mobile;
+    }
+
+    &__header {
+        background:                     tokens.$menu-title-bg-color;
+    }
+
+    &__body {
+        background:                     tokens.$menu-list-bg-color;
+        height:                         100%;
+    }
+
+    /* =====================================================
+        TYPO / CONTENU
+    ===================================================== */
+
+    &__title {
+        display:                        flex;
+        align-items:                    center;
+        color:                          tokens.$menu-title-text-color;
+    }
+
+    &__list {
+        @include                        tools.flex-column;
+    }
+
+    /* =====================================================
+        SKELETON
+    ===================================================== */
+
+    .skeleton {
+        margin-bottom:                  tokens.$skeleton-gap-md;
+    }
+
+    .skeleton:nth-child(1) {
+        width:                          tokens.$skeleton-width-50;
+    }
+
+    .skeleton:nth-child(2) {
+        width:                          tokens.$skeleton-width-30;
+    }
+
+    .skeleton:nth-child(3) {
+        width:                          tokens.$skeleton-width-40;
+    }
+
+    .skeleton:nth-child(4) {
+        width:                          tokens.$skeleton-width-20;
+    }
+
+    /* =====================================================
+        FULL WIDTH (mobile)
+    ===================================================== */
+
+    &__header::before,
+    &__body::before {
+        @include                        tools.full-bleed;
+        background:                     inherit;
+        z-index:                        tokens.$z-behind;
+    }
+}
+
+/* =====================================================
+    TABLET & DESKTOP
+===================================================== */
+
+@media (min-width: tokens.$bp-md) {
+    .menu {
+        height:                         tokens.$menu-height;
+
+        &::before {
+            top:                        -(tokens.$header-height-tablet);
+            height:                     tokens.$header-height-tablet;
+        }
+
+        > .container {
+            height:                     100%;
+        }
+
+        /* =====================================================
+            GRID LAYOUT
+        ===================================================== */
+
+        &__content {
+            position:                   relative;
+            display:                    grid;
+            grid-template-columns:      tokens.$menu-layout-column;
+            align-items:                stretch;
+            height:                     100%;
+
+            /* -----------------------------
+                Triangle décoratif
+            ----------------------------- */
+            &::before {
+                content:                "";
+                position:               absolute;
+                top:                    0;
+                left:                   0;
+
+                border-right:           tokens.$menu-decor-triangle-size solid transparent;
+                border-top:             tokens.$menu-decor-triangle-size solid tokens.$menu-decor-triangle-color;
+
+                z-index:                tokens.$z-decor;
+                pointer-events:         none;
+            }
+        }
+
+        /* =====================================================
+            BLOCS (desktop)
+        ===================================================== */
+
+        &__header,
+        &__body {
+            height:                     100%;
+            @include                    tools.flex-column;
+
+            padding-top:                tokens.$menu-padding-y-desktop;
+            padding-bottom:             tokens.$menu-padding-y-desktop;
+        }
+
+        &__header {
+            padding-right:              tokens.$menu-padding-x-desktop;
+        }
+
+        &__body {
+            padding-left:               tokens.$menu-padding-x-desktop;
+        }
+
+        /* -----------------------------
+            Reset mobile full-width
+        ----------------------------- */
+        &__header::before,
+        &__body::before {
+            content:                    none;
+        }
+
+        /* =====================================================
+            FULL WIDTH CONTROL
+        ===================================================== */
+
+        &__header::before {
+            @include                    tools.pseudo-fill;
+            right:                      100%;
+            width:                      tokens.$viewport-width;
+            background:                 inherit;
+            z-index:                    tokens.$z-behind;
+        }
+
+        &__body::after {
+            @include                    tools.pseudo-fill;
+            left:                       100%;
+            width:                      tokens.$viewport-width;
+            background:                 inherit;
+            z-index:                    tokens.$z-behind;
+        }
+    }
+}
+
+/* =====================================================
+    DESKTOP LARGE
+===================================================== */
+
+@media (min-width: tokens.$bp-xl) {
+    .menu::before {
+        top:                            -(tokens.$header-height-desktop);
+        height:                         tokens.$header-height-desktop;
+    }
+}

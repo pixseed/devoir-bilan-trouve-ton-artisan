@@ -1,0 +1,95 @@
+@use '../settings/tokens';
+@use '../tools';
+
+.footer {
+    color:                              tokens.$footer-text-color;
+    background:                         tokens.$footer-bg-color;
+
+    /* =====================================================
+    	MAIN LAYOUT
+    ===================================================== */
+    &__main {
+        @include                        tools.flex-column;
+        gap:                            tokens.$footer-main-gap-mobile;
+        padding-top:                    tokens.$footer-padding;
+        padding-bottom:                 tokens.$footer-padding;
+    }
+    
+    /* =====================================================
+        MAIN LAYOUT
+    ===================================================== */
+    &__logo {
+        display: inline-block;
+
+        img {
+            display: block;
+            height: auto;
+            max-width: 100%;
+        }
+    }
+
+    /* =====================================================
+    	ADDRESS
+    ===================================================== */
+    &__address {
+        position:                       relative;
+        @include                        tools.flex-column;
+        margin:                         0;
+        gap:                            tokens.$footer-text-gap;
+    }
+    
+    /* =====================================================
+        DIVIDER
+    ===================================================== */
+    & .divider {
+        opacity: 1;
+    }
+
+    /* =====================================================
+    	NAV LINK
+    ===================================================== */    
+    &__nav {
+        display:                        flex;
+        flex-wrap:                      wrap;
+        gap:                            tokens.$footer-nav-gap;
+
+        &-link:hover {
+            text-decoration:            underline;
+        }
+    }
+
+    /* =====================================================
+    	SOCIAL WRAPPER
+    ===================================================== */    
+    &__social {
+        background:                     tokens.$socialbar-bg-color;
+        padding:                        tokens.$socialbar-padding 0;
+    }
+}
+
+/* =====================================================
+	TABLET / DESKTOP
+===================================================== */
+
+@media (min-width: tokens.$bp-md) {
+    .footer {
+        &__main {
+            display:                    grid;
+            grid-template-columns:      max-content auto max-content 1fr;
+            align-items:                stretch;
+            gap:                        tokens.$footer-main-gap-desktop;
+        }
+
+        &__address {
+            margin:                     0;
+            border:                     none;
+            padding:                    0;
+            height:                     100%;
+        }
+
+        &__nav {
+            @include                    tools.flex-column;
+            align-items:                flex-end;
+        }
+    }
+}

@@ -1,0 +1,11 @@
+// ================================================================================================
+// ARTISANS LIST PAGE COMPONENT TOKENS
+// ================================================================================================
+
+@use '../colors';
+@use '../spacing';
+
+// COLORS
+// ------------------------------------------------------------------------------------------------
+$artisans-list-controls-bg-color:       colors.$color-bg-surface-emphasis;
+$artisans-list-results-empty-color:     colors.$color-text-disabled;

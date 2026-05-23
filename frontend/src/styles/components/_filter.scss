@@ -1,0 +1,66 @@
+@use '../settings/tokens';
+@use '../tools';
+
+.filters__controls {
+    @include                            tools.flex-column;
+    gap:                                tokens.$filter-controls-gap;
+}
+
+.filter-group {
+    @include                            tools.flex-column;
+    background-color:                   tokens.$filter-group-bg-color;
+    border:                             tokens.$filter-group-border-size solid tokens.$filter-group-border-color;
+    padding:                            tokens.$filter-group-padding;
+    border-radius:                      tokens.$filter-group-radius;
+    gap:                                tokens.$filter-group-gap;
+
+    &__title {
+        padding:                        tokens.$filter-title-padding;
+    }
+
+    &__list {
+        @include                        tools.flex-column;
+        gap:                            unset;
+
+        &--loading{
+            gap:                        tokens.$skeleton-gap-sm;
+        }
+    }
+
+    &__item {
+        margin:                         0;
+    }
+
+    &__button {
+        text-align:                     left;
+        padding:                        tokens.$filter-button-padding;
+        width:                          100%;
+        border:                         none;
+        transition:                     tokens.$motion-button;
+
+        &:hover {
+            background-color:           tokens.$filter-button-bg-color-hover;
+            color:                      tokens.$filter-button-text-color-hover;
+        }
+
+        &--active {
+            padding-left:               tokens.$filter-button-offset-x-active;
+            color:                      tokens.$filter-button-text-color-active;
+            border-left:                tokens.$filter-button-border-size-active solid tokens.$filter-button-border-color-active;
+
+            &:hover {
+                background-color:       tokens.$filter-button-bg-color-active-hover;
+                color:                  tokens.$filter-button-text-color-active-hover;
+                border-color:           tokens.$filter-button-border-color-active-hover;
+            }
+        }
+    }
+}
+
+@media (min-width: tokens.$bp-md) {
+    .filters__controls {            
+            & > * {
+                flex:                   1;
+            }
+        }
+    }

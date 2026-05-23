@@ -1,0 +1,41 @@
+// ================================================================================================
+// HEADER COMPONENT TOKENS
+// ================================================================================================
+
+@use '../border';
+@use '../colors';
+@use '../scale';
+@use '../spacing';
+
+// SIZE
+// ------------------------------------------------------------------------------------------------
+$header-height-mobile:                  scale.$scale-64;
+$header-height-tablet:                  scale.$scale-80;
+$header-height-desktop:                 scale.$scale-96;
+
+$header-height-logo-mobile:             scale.$scale-32;
+$header-height-logo-tablet:             scale.$scale-48;
+$header-height-logo-desktop:            scale.$scale-56;
+
+// SPACING
+// ------------------------------------------------------------------------------------------------
+$header-padding-y-mobile:               spacing.$sp-16;
+$header-padding-y-tablet:               spacing.$sp-24;
+$header-padding-y-desktop:              spacing.$sp-32;
+
+$header-padding-x-action-button:        spacing.$sp-8;
+$header-gap:                            spacing.$gap-16;
+
+// BORDER
+// ------------------------------------------------------------------------------------------------
+$header-panel-border-size:              border.$border-thin;
+
+// COLORS
+// ------------------------------------------------------------------------------------------------
+$header-icon-color:                     colors.$color-icon-emphasis-primary;
+$header-bg-color:                       colors.$color-bg-surface;
+$header-panel-border-color:             colors.$color-border-inverse;
+
+// OFFSET
+// ------------------------------------------------------------------------------------------------
+$header-dropdown-offset-y:              -10px;

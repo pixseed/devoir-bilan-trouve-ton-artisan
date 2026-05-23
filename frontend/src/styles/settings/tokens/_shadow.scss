@@ -1,0 +1,22 @@
+// ================================================================================================
+// FOUNDATION SHADOW TOKENS
+// ================================================================================================
+
+@use 'sass:color';
+@use './colors';
+
+// ================================================================================================
+// PRIMITIVE
+// ================================================================================================
+
+$shadow-elevation-thin:                 0 1px 4px color.change(colors.$color-black, $alpha: 0.25);
+$shadow-elevation-medium:               0 6px 8px color.change(colors.$color-black, $alpha: 0.1);
+$shadow-elevation-hight:                0 1px 100px color.change(colors.$color-black, $alpha: 0.3);
+
+// ================================================================================================
+// SEMANTIC
+// ================================================================================================
+
+$shadow-header:                         $shadow-elevation-medium;
+$shadow-overlay:                        $shadow-elevation-hight;
+$shadow-content:                        $shadow-elevation-thin;

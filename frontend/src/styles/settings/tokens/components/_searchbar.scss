@@ -1,0 +1,46 @@
+// ================================================================================================
+// SEARCHBAR COMPONENT TOKENS
+// ================================================================================================
+
+@use '../border';
+@use '../colors';
+@use '../radius';
+@use '../spacing';
+
+@use './icon';
+@use './iconButton';
+
+// SIZE
+// ------------------------------------------------------------------------------------------------
+$searchbar-height:                      spacing.$sp-48;
+$searchbar-icon-size:                   icon.$icon-md;
+
+// SPACING
+// ------------------------------------------------------------------------------------------------
+$searchbar-padding-x:                   spacing.$sp-16;
+$searchbar-padding-y:                   spacing.$sp-8;
+$searchbar-navbar-padding-mobile:       spacing.$sp-16;
+
+$searchbar-input-padding-right-with-icon:  spacing.$sp-64;
+$searchbar-input-padding-left-with-icon:   spacing.$sp-40;
+
+// BORDER
+// ------------------------------------------------------------------------------------------------
+$searchbar-border-size:                border.$border-thin;
+
+// RADIUS
+// ------------------------------------------------------------------------------------------------
+$searchbar-radius:                      radius.$radius-pill;
+
+// COLORS
+// ------------------------------------------------------------------------------------------------
+$searchbar-bg-color:                    colors.$color-bg-surface;
+
+$searchbar-border-color:                colors.$color-border-default;
+$searchbar-border-color-active:         colors.$color-border-emphasis-primary;
+$searchbar-navbar-border-color:         colors.$color-border-emphasis-primary;
+
+// POSITION
+// ------------------------------------------------------------------------------------------------
+$searchbar-clear-offset-x :             spacing.$sp-8;
+$searchbar-submit-offset-x :            spacing.$sp-16;

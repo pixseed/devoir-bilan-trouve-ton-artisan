@@ -1,0 +1,66 @@
+@use '../settings/tokens';
+@use '../tools';
+
+.rating {
+    @include                            tools.inline-flex-center;
+    gap:                                tokens.$rating-gap;
+
+    /* =====================================================
+        STARS
+    ===================================================== */
+    
+    &__stars {
+        position:                       relative;
+        display:                        inline-flex;
+    }
+
+    &__stars-bg,
+    &__stars-fill {
+        display:                        flex;
+        gap:                            tokens.$rating-stars-gap;
+    }
+
+    &__stars-fill {
+        position:                       absolute;
+        top:                            0;
+        left:                           0;
+        overflow:                       hidden;
+        white-space:                    nowrap;
+    }
+
+    /* =====================================================
+        STAR
+    ===================================================== */
+
+    &__star {
+        flex:                           0 0 auto;
+        height:                         tokens.$rating-star-size;
+        width:                          tokens.$rating-star-size;
+    }
+
+    &__star--empty {
+        color:                          tokens.$rating-star-empty-color;
+    }
+
+    &__star--fill {
+        color:                          tokens.$rating-star-fill-color;
+    }
+
+    /* =====================================================
+        VALUE / BADGE
+    ===================================================== */
+
+    &__value-wrapper {
+        @include                        tools.inline-flex-center;
+        background:                     tokens.$rating-value-bg-color;
+        padding:                        tokens.$rating-value-padding-y tokens.$rating-value-padding-x;
+    }
+
+    &__value {
+        font-size:                      tokens.$rating-value-size;
+        font-weight:                    700;
+        line-height:                    tokens.$rating-value-lh;
+        color:                          tokens.$rating-value-text-color;
+        transform:                      translateY(-(tokens.$rating-value-optical-offset-y));
+    }
+}
