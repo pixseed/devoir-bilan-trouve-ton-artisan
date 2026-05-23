@@ -11,7 +11,7 @@
  * 
  * Fonctionnement :
  * 1. Initialiser Express.
- * 2. Configurer les middlewares globaux (CORS, JSON).
+ * 2. Configurer les middlewares globaux (CORS, HELMET, JSON).
  * 3. Configurer le service des fichiers statiques.
  * 4. Monter les routeurs métier
  * 4. Exporter l'application configurée.
@@ -26,6 +26,7 @@
 import express from 'express';
 import path from 'path';
 import cors from 'cors';
+import helmet from 'helmet';
 import { fileURLToPath } from 'url';
 
 import artisanRouter from './routes/artisans.js';
@@ -47,6 +48,11 @@ const __dirname = path.dirname(__filename); // Retire le fichier pour ne garder 
 // ===========================================================================================
 // GLOBAL MIDDLEWARES
 // ===========================================================================================
+
+// Sécurisation des headers HTTP
+app.use(helmet({
+  crossOriginResourcePolicy: { policy: "cross-origin"},
+}));
 
 // Autorisation des requêtes provenant du front React
 app.use(cors({
