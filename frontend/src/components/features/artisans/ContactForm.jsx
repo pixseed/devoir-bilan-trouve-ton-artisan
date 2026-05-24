@@ -23,6 +23,7 @@ export default function ContactForm({ artisanId }) {
     error,
     success,
     fieldErrors,
+    isSubmitDisabled,
     handleChange,
     handleSubmit,
   } = useContactForm(artisanId);
@@ -78,7 +79,7 @@ export default function ContactForm({ artisanId }) {
         type="submit"
         variant={VARIANTS.BUTTON.PRIMARY}
         size={VARIANTS.SIZE.MD}
-        disabled={loading}
+        disabled={isSubmitDisabled}
       >
         {loading ? "Envoi..." : "Envoyer"}
       </Button>

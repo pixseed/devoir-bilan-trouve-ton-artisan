@@ -4,6 +4,7 @@
 .button {
     display:                            inline-flex;
     align-items:                        center;
+    align-self:                         center;
     justify-content:                    center;
     border-radius:                      tokens.$btn-radius;
     min-height:                         tokens.$btn-min-height;
@@ -19,6 +20,15 @@
         display:                        inline-block;
         line-height:                    tokens.$btn-label-lh;
         transform:                      translateY(tokens.$btn-label-optical-offset-y);
+    }
+
+    &:disabled {
+        color:                          tokens.$btn-text-disabled;
+        background-color:               tokens.$btn-bg-disabled;
+        border:                         tokens.$btn-border-size solid tokens.$btn-border-disabled;
+        opacity:                        1;
+        cursor:                         not-allowed;
+        pointer-events:                 none;
     }
 
     /* =====================================================

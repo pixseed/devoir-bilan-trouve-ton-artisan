@@ -31,6 +31,18 @@ export function useContactForm(artisanId) {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
   const [fieldErrors, setFieldErrors] = useState({});
+  const [isRateLimited, setIsRateLimited] = useState(false);
+
+  const hasEmptyRequiredFields =
+    !formData.name.trim() ||
+    !formData.email.trim() ||
+    !formData.object.trim() ||
+    !formData.message.trim();
+
+  const hasFieldErrors = Object.values(fieldErrors).some(Boolean);
+
+  const isSubmitDisabled =
+    loading || isRateLimited || hasEmptyRequiredFields || hasFieldErrors;
 
   // ================================================================================================
   // HANDLERS
@@ -43,10 +55,20 @@ export function useContactForm(artisanId) {
       [field]: value,
     }));
 
-    setFieldErrors((prev) => ({
-      ...prev,
-      [field]: null,
-    }));
+    setFieldErrors((prev) => {
+      const updatedErrors = {
+        ...prev,
+        [field]: null,
+      };
+
+      const hasRemainingErrors = Object.values(updatedErrors).some(Boolean);
+
+      if (!hasRemainingErrors) {
+        setError(null);
+      }
+
+      return updatedErrors;
+    });
   }
 
   // Soumission du formulaire
@@ -78,7 +100,14 @@ export function useContactForm(artisanId) {
           break;
 
         case "CONTACT_RATE_LIMIT_EXCEEDED":
-          setError(error.message || "Limite d'envoi de formulaire atteinte. Veuillez réessayer ultérieurement.");
+          setError(
+            error.message ||
+              "Limite d'envoi de formulaire atteinte. Veuillez réessayer ultérieurement.",
+          );
+          setIsRateLimited(true);
+          setTimeout(() => {
+            setIsRateLimited(false);
+          }, 30000);
           break;
 
         default:
@@ -98,6 +127,7 @@ export function useContactForm(artisanId) {
     error,
     success,
     fieldErrors,
+    isSubmitDisabled,
     handleChange,
     handleSubmit,
   };
