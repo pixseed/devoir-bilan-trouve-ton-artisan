@@ -32,6 +32,7 @@ import {
 } from "../serializers/artisanSerializer.js";
 
 import { sanitizeContactPayload } from "../utils/sanitizers.js";
+import { ApiError } from "../utils/apiError.js";
 import { validateContactPayload } from "../validators/artisanValidator.js";
 
 // ================================================================================================
@@ -56,7 +57,7 @@ export const getArtisansService = async ({ search, category }) => {
     const categoryExists = await findCategoryById(category);
 
     if (!categoryExists) {
-      throw new Error("CATEGORY_NOT_FOUND");
+      throw new ApiError(404, "CATEGORY_NOT_FOUND", "Catégorie inexistante.");
     }
 
     includeWhere = { id_category: category };
@@ -98,7 +99,7 @@ export const getArtisanByIdService = async (id) => {
   const artisan = await findArtisanById(id);
 
   if (!artisan) {
-    throw new Error("ARTISAN_NOT_FOUND");
+    throw new ApiError(404, "ARTISAN_NOT_FOUND", "Artisan non trouvé");
   }
 
   return serializeArtisanDetail(artisan);
@@ -111,9 +112,8 @@ export const getArtisanByIdService = async (id) => {
 export const contactArtisanService = async (id, payload) => {
   const artisan = await findArtisanByIdSimple(id);
 
-  // Vérification existence artisan
   if (!artisan) {
-    throw new Error("ARTISAN_NOT_FOUND");
+    throw new ApiError(404, "ARTISAN_NOT_FOUND", "Artisan non trouvé");
   }
 
   // Nettoyage des données du formulaire envoyées
@@ -122,10 +122,7 @@ export const contactArtisanService = async (id, payload) => {
   const validation = validateContactPayload(cleanPayload);
 
   if (!validation.isValid) {
-    return {
-      hasValidationError: true,
-      fields: validation.fields,
-    };
+    throw new ApiError (400, "VALIDATION_ERROR", "Données invalides.", validation.fields)
   }
 
   //Simulation d'envoi
@@ -142,7 +139,6 @@ export const contactArtisanService = async (id, payload) => {
   });
 
   return {
-    hasValidationError: false,
     artisan,
     payload: cleanPayload,
   };

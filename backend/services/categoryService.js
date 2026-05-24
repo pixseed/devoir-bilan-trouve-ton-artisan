@@ -18,5 +18,5 @@ import { findAllCategories } from "../repositories/categoryRepository.js";
 // Récupération de toutes les catégories
 // ================================================================================================
 export const getCategoriesService = async () => {
-  return await findAllCategories();
+  return findAllCategories();
 };

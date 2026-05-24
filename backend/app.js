@@ -30,6 +30,8 @@ import helmet from 'helmet';
 import { rateLimit } from 'express-rate-limit';
 import { fileURLToPath } from 'url';
 
+import { apiErrorHandler } from './middlewares/apiErrorHandler.js';
+
 import artisanRouter from './routes/artisans.js';
 import categoriesRouter from './routes/categories.js';
 
@@ -60,8 +62,12 @@ const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 100, // Limite chaque IP à 100 requêtes
   message: {
-    error: 'Trop de requêtes exécutées. Veuillez rééssayer ultérieurement.'
-  }
+    success: false,
+    error: {
+      message : "Trop de requêtes exécutées. Veuillez rééssayer ultérieurement.",
+      code: "RATE_LIMIT_EXCEEDED",
+    },
+  },
 });
 
 app.use(limiter);
@@ -89,6 +95,11 @@ app.use('/images', express.static(path.join(__dirname,'public/images')));
 // ===========================================================================================
 app.use('/categories', categoriesRouter);
 app.use('/artisans', artisanRouter);
+
+// ===========================================================================================
+// GLOBAL ERROR HANDLING MIDDLEWARE
+// ===========================================================================================
+app.use(apiErrorHandler);
 
 // ===========================================================================================
 export default app;
