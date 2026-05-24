@@ -27,9 +27,9 @@ import express from 'express';
 import path from 'path';
 import cors from 'cors';
 import helmet from 'helmet';
-import { rateLimit } from 'express-rate-limit';
 import { fileURLToPath } from 'url';
 
+import { globalLimiter } from './middlewares/rateLimiters.js';
 import { apiErrorHandler } from './middlewares/apiErrorHandler.js';
 
 import artisanRouter from './routes/artisans.js';
@@ -57,20 +57,8 @@ app.use(helmet({
   crossOriginResourcePolicy: { policy: "cross-origin"},
 }));
 
-// Limiteur de débit de requête
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // Limite chaque IP à 100 requêtes
-  message: {
-    success: false,
-    error: {
-      message : "Trop de requêtes exécutées. Veuillez rééssayer ultérieurement.",
-      code: "RATE_LIMIT_EXCEEDED",
-    },
-  },
-});
-
-app.use(limiter);
+// Limiteur globale de débit de requête
+app.use(globalLimiter);
 
 // Autorisation des requêtes provenant du front React
 app.use(cors({

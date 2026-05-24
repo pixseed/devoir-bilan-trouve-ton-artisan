@@ -77,6 +77,10 @@ export function useContactForm(artisanId) {
           setFieldErrors(error.fields || {});
           break;
 
+        case "CONTACT_RATE_LIMIT_EXCEEDED":
+          setError(error.message || "Limite d'envoi de formulaire atteinte. Veuillez réessayer ultérieurement.");
+          break;
+
         default:
           setError(error.message || "Une erreur est survenue.");
       }

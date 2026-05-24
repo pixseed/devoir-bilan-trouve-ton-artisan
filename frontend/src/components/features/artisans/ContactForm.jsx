@@ -61,7 +61,7 @@ export default function ContactForm({ artisanId }) {
         error={fieldErrors.message}
         onChange={(value) => handleChange("message", value)}
       />
-      {error && errorList.length > 0 && (
+      {error && (
         <Alert variant={VARIANTS.ALERT.ERROR}>
           <p>{error}</p>
           <ul className="contact-form__error-list">

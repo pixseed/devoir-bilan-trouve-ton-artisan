@@ -1710,6 +1710,145 @@
                     }
                   ],
                   "body": "{\n    \"success\": true,\n    \"message\": \"Votre message a été envoyé à Boucherie Dumont avec succès !\",\n    \"data\": {\n        \"name\": \"Cédric\",\n        \"email\": \"cedric@test.com\",\n        \"object\": \"Demande d'informations\",\n        \"message\": \"Bonjour, je suis intéressé par vos services et souhaite en savoir davantage sur les offres que vous proposez.\"\n    }\n}"
+                },
+                {
+                  "name": "Too Many Request (429)",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n    \"name\": \"Cédric\",\r\n    \"email\": \"cedric@test.com\",\r\n    \"object\": \"Demande d'informations\",\r\n    \"message\": \"Bonjour, je suis intéressé par vos services et souhaite en savoir davantage sur les offres que vous proposez.\"\r\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{base_url}}/artisans/:id/contact",
+                      "host": [
+                        "{{base_url}}"
+                      ],
+                      "path": [
+                        "artisans",
+                        ":id",
+                        "contact"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "1",
+                          "description": "Artisan ID"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Security-Policy",
+                      "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                    },
+                    {
+                      "key": "Cross-Origin-Opener-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Cross-Origin-Resource-Policy",
+                      "value": "cross-origin"
+                    },
+                    {
+                      "key": "Origin-Agent-Cluster",
+                      "value": "?1"
+                    },
+                    {
+                      "key": "Referrer-Policy",
+                      "value": "no-referrer"
+                    },
+                    {
+                      "key": "Strict-Transport-Security",
+                      "value": "max-age=31536000; includeSubDomains"
+                    },
+                    {
+                      "key": "X-Content-Type-Options",
+                      "value": "nosniff"
+                    },
+                    {
+                      "key": "X-DNS-Prefetch-Control",
+                      "value": "off"
+                    },
+                    {
+                      "key": "X-Download-Options",
+                      "value": "noopen"
+                    },
+                    {
+                      "key": "X-Frame-Options",
+                      "value": "SAMEORIGIN"
+                    },
+                    {
+                      "key": "X-Permitted-Cross-Domain-Policies",
+                      "value": "none"
+                    },
+                    {
+                      "key": "X-XSS-Protection",
+                      "value": "0"
+                    },
+                    {
+                      "key": "X-RateLimit-Limit",
+                      "value": "5"
+                    },
+                    {
+                      "key": "X-RateLimit-Remaining",
+                      "value": "0"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Sun, 24 May 2026 11:36:22 GMT"
+                    },
+                    {
+                      "key": "X-RateLimit-Reset",
+                      "value": "1779623474"
+                    },
+                    {
+                      "key": "Access-Control-Allow-Origin",
+                      "value": "http://localhost:5173"
+                    },
+                    {
+                      "key": "Vary",
+                      "value": "Origin"
+                    },
+                    {
+                      "key": "Retry-After",
+                      "value": "892"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json",
+                      "description": "",
+                      "type": "text"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "156"
+                    },
+                    {
+                      "key": "ETag",
+                      "value": "W/\"9c-4peUKZSW5Ainhz4Xe3uYjTJKmyA\""
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive"
+                    },
+                    {
+                      "key": "Keep-Alive",
+                      "value": "timeout=5"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"success\": false,\n    \"error\": {\n        \"message\": \"Trop de tentatives d'envoi du formulaire. Veuillez rééssayer ultérieurement.\",\n        \"code\": \"CONTACT_RATE_LIMIT_EXCEEDED\"\n    }\n}"
                 }
               ]
             },
@@ -2089,6 +2228,151 @@
                   ],
                   "cookie": [],
                   "body": "{\n    \"success\": false,\n    \"error\": {\n        \"message\": \"Certains champs sont invalides.\",\n        \"code\": \"VALIDATION_ERROR\",\n        \"fields\": {\n            \"name\": \"Le nom doit contenir au moins 2 caractères.\",\n            \"email\": \"Format d'email invalide.\",\n            \"object\": \"L'objet est requis.\"\n        }\n    }\n}"
+                },
+                {
+                  "name": "Too Many Request (429)",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n    \"name\": \"C\",\r\n    \"email\": \"@test\",\r\n    \"object\": \"\",\r\n    \"message\": \"Bonjour, je suis intéressé par vos services et souhaite en savoir davantage sur les offres que vous proposez.\"\r\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{base_url}}/artisans/:id/contact",
+                      "host": [
+                        "{{base_url}}"
+                      ],
+                      "path": [
+                        "artisans",
+                        ":id",
+                        "contact"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "1",
+                          "description": "Artisan ID"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Security-Policy",
+                      "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                    },
+                    {
+                      "key": "Cross-Origin-Opener-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Cross-Origin-Resource-Policy",
+                      "value": "cross-origin"
+                    },
+                    {
+                      "key": "Origin-Agent-Cluster",
+                      "value": "?1"
+                    },
+                    {
+                      "key": "Referrer-Policy",
+                      "value": "no-referrer"
+                    },
+                    {
+                      "key": "Strict-Transport-Security",
+                      "value": "max-age=31536000; includeSubDomains"
+                    },
+                    {
+                      "key": "X-Content-Type-Options",
+                      "value": "nosniff"
+                    },
+                    {
+                      "key": "X-DNS-Prefetch-Control",
+                      "value": "off"
+                    },
+                    {
+                      "key": "X-Download-Options",
+                      "value": "noopen"
+                    },
+                    {
+                      "key": "X-Frame-Options",
+                      "value": "SAMEORIGIN"
+                    },
+                    {
+                      "key": "X-Permitted-Cross-Domain-Policies",
+                      "value": "none"
+                    },
+                    {
+                      "key": "X-XSS-Protection",
+                      "value": "0"
+                    },
+                    {
+                      "key": "X-RateLimit-Limit",
+                      "value": "5"
+                    },
+                    {
+                      "key": "X-RateLimit-Remaining",
+                      "value": "0"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Sun, 24 May 2026 11:40:42 GMT"
+                    },
+                    {
+                      "key": "X-RateLimit-Reset",
+                      "value": "1779623526"
+                    },
+                    {
+                      "key": "Access-Control-Allow-Origin",
+                      "value": "http://localhost:5173"
+                    },
+                    {
+                      "key": "Vary",
+                      "value": "Origin"
+                    },
+                    {
+                      "key": "Retry-After",
+                      "value": "684"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json",
+                      "description": "",
+                      "type": "text"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "156"
+                    },
+                    {
+                      "key": "ETag",
+                      "value": "W/\"9c-4peUKZSW5Ainhz4Xe3uYjTJKmyA\""
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive"
+                    },
+                    {
+                      "key": "Keep-Alive",
+                      "value": "timeout=5"
+                    }
+                  ],
+                  "cookie": [
+                    {
+                      "expires": "Invalid Date",
+                      "domain": "",
+                      "path": ""
+                    }
+                  ],
+                  "body": "{\n    \"success\": false,\n    \"error\": {\n        \"message\": \"Trop de tentatives d'envoi du formulaire. Veuillez rééssayer ultérieurement.\",\n        \"code\": \"CONTACT_RATE_LIMIT_EXCEEDED\"\n    }\n}"
                 }
               ]
             }
