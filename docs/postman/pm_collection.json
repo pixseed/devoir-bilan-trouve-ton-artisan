@@ -1848,7 +1848,7 @@
                     }
                   ],
                   "cookie": [],
-                  "body": "{\n    \"success\": false,\n    \"error\": {\n        \"message\": \"Trop de tentatives d'envoi du formulaire. Veuillez rééssayer ultérieurement.\",\n        \"code\": \"CONTACT_RATE_LIMIT_EXCEEDED\"\n    }\n}"
+                  "body": "{\n    \"success\": false,\n    \"error\": {\n        \"message\": \"Trop de tentatives d'envoi du formulaire. Veuillez réessayer ultérieurement.\",\n        \"code\": \"CONTACT_RATE_LIMIT_EXCEEDED\"\n    }\n}"
                 }
               ]
             },
@@ -2372,7 +2372,7 @@
                       "path": ""
                     }
                   ],
-                  "body": "{\n    \"success\": false,\n    \"error\": {\n        \"message\": \"Trop de tentatives d'envoi du formulaire. Veuillez rééssayer ultérieurement.\",\n        \"code\": \"CONTACT_RATE_LIMIT_EXCEEDED\"\n    }\n}"
+                  "body": "{\n    \"success\": false,\n    \"error\": {\n        \"message\": \"Trop de tentatives d'envoi du formulaire. Veuillez réessayer ultérieurement.\",\n        \"code\": \"CONTACT_RATE_LIMIT_EXCEEDED\"\n    }\n}"
                 }
               ]
             }

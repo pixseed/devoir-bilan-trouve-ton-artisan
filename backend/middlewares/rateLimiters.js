@@ -24,7 +24,7 @@ export const globalLimiter = rateLimit({
   message: {
     success: false,
     error: {
-      message: "Trop de requêtes exécutées. Veuillez rééssayer ultérieurement.",
+      message: "Trop de requêtes exécutées. Veuillez réessayer ultérieurement.",
       code: "RATE_LIMIT_EXCEEDED",
     },
   },
@@ -36,11 +36,11 @@ export const globalLimiter = rateLimit({
 // ================================================================================================
 export const contactLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 5, // Limite chaque IP à 10 requêtes
+  max: 10, // Limite chaque IP à 10 requêtes
   message: {
     success: false,
     error: {
-      message: "Trop de tentatives d'envoi du formulaire. Veuillez rééssayer ultérieurement.",
+      message: "Trop de tentatives d'envoi du formulaire. Veuillez réessayer ultérieurement.",
       code: "CONTACT_RATE_LIMIT_EXCEEDED",
     },
   },
