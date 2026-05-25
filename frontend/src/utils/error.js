@@ -16,6 +16,7 @@ export function buildApiError(res, data) {
   switch (res.status) {
     case 400:
     case 404:
+    case 429:
       message = data.error?.message || APP_MESSAGES.ERROR.FETCH.DEFAULT;
       break;
     case 500:

@@ -30,31 +30,33 @@ export const validateContactPayload = (payload) => {
   }
 
   // Validation nom
-  if (!name?.trim()) {
+  if (!name) {
     fields.name = "Le nom est requis.";
-  } else if (name.trim().length < 2) {
-    fields.name = "Le nom doit contenir au moins 2 caractères.";
+  } else if (name.length < 2 || name.length > 100) {
+    fields.name = "Le nom doit contenir entre 2 et 100 caractères.";
   }
 
   // Validation email
-  if (!email?.trim()) {
+  if (!email) {
     fields.email = "L'email est requis.";
   } else if (!emailRegex.test(email)) {
     fields.email = "Format d'email invalide.";
+  } else if (email.length > 255) {
+    fields.email = "L'email ne peut pas dépasser 255 caractères."
   }
 
   // Validation objet
-  if (!object?.trim()) {
+  if (!object) {
     fields.object = "L'objet est requis.";
-  } else if (object.trim().length < 3) {
-    fields.object = "L'objet doit contenir au moins 3 caractères";
+  } else if (object.length < 3 || object.length > 150) {
+    fields.object = "L'objet doit contenir entre 3 et 150 caractères.";
   }
 
   // Validation message
-  if (!message?.trim()) {
+  if (!message) {
     fields.message = "Le message est requis.";
-  } else if (message.trim().length < 10) {
-    fields.message = "Le message doit contenir au moins 10 caractères";
+  } else if (message.length < 10 || message.length > 2000) {
+    fields.message = "Le message doit contenir entre 10 et 2000 caractères.";
   }
 
   return {

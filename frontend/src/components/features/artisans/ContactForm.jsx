@@ -23,6 +23,7 @@ export default function ContactForm({ artisanId }) {
     error,
     success,
     fieldErrors,
+    isSubmitDisabled,
     handleChange,
     handleSubmit,
   } = useContactForm(artisanId);
@@ -61,7 +62,7 @@ export default function ContactForm({ artisanId }) {
         error={fieldErrors.message}
         onChange={(value) => handleChange("message", value)}
       />
-      {error && errorList.length > 0 && (
+      {error && (
         <Alert variant={VARIANTS.ALERT.ERROR}>
           <p>{error}</p>
           <ul className="contact-form__error-list">
@@ -78,7 +79,7 @@ export default function ContactForm({ artisanId }) {
         type="submit"
         variant={VARIANTS.BUTTON.PRIMARY}
         size={VARIANTS.SIZE.MD}
-        disabled={loading}
+        disabled={isSubmitDisabled}
       >
         {loading ? "Envoi..." : "Envoyer"}
       </Button>

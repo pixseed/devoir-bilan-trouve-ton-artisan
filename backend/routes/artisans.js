@@ -25,6 +25,9 @@
  */
 
 import express from 'express';
+
+import { contactLimiter } from '../middlewares/rateLimiters.js';
+
 import {
     getTopArtisans,
     getArtisans,
@@ -39,7 +42,7 @@ router.get('/', getArtisans); // Liste des artisans (+ filtres éventuels)
 router.get('/top', getTopArtisans); // Artisans mis en avant
 
 // Route dynamique
-router.post('/:id/contact', contactArtisan); // Envoi du formulaire de contact
+router.post('/:id/contact', contactLimiter, contactArtisan); // Envoi du formulaire de contact avec limiter
 router.get('/:id', getArtisanById); // Détail d'un artisan
 
 export default router;

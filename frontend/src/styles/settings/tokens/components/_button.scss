@@ -79,3 +79,8 @@ $btn-secondary-border-hover:            colors.$color-border-emphasis-secondary;
 // Tertiary:hover
 $btn-tertiary-text-hover:               colors.$color-text-emphasis-secondary;
 $btn-tertiary-border-hover:             colors.$color-border-emphasis-secondary;
+
+// Disabled
+$btn-text-disabled:                     colors.$color-text-disabled;
+$btn-bg-disabled:                       colors.$color-bg-disabled;
+$btn-border-disabled:                   colors.$color-border-disabled;

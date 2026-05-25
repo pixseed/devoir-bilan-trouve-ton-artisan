@@ -2,7 +2,7 @@
 @use "../tools";
 
 .contact-form {
-    @include                            tools.flex-column-center;
+    @include                            tools.flex-column;
     gap:                                tokens.$form-gap;
 }
 

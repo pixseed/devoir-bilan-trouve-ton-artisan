@@ -11,7 +11,7 @@
  * 
  * Fonctionnement :
  * 1. Initialiser Express.
- * 2. Configurer les middlewares globaux (CORS, JSON).
+ * 2. Configurer les middlewares globaux (CORS, HELMET, JSON).
  * 3. Configurer le service des fichiers statiques.
  * 4. Monter les routeurs métier
  * 4. Exporter l'application configurée.
@@ -26,7 +26,11 @@
 import express from 'express';
 import path from 'path';
 import cors from 'cors';
+import helmet from 'helmet';
 import { fileURLToPath } from 'url';
+
+import { globalLimiter } from './middlewares/rateLimiters.js';
+import { apiErrorHandler } from './middlewares/apiErrorHandler.js';
 
 import artisanRouter from './routes/artisans.js';
 import categoriesRouter from './routes/categories.js';
@@ -48,13 +52,22 @@ const __dirname = path.dirname(__filename); // Retire le fichier pour ne garder 
 // GLOBAL MIDDLEWARES
 // ===========================================================================================
 
+// Sécurisation des headers HTTP
+app.use(helmet({
+  crossOriginResourcePolicy: { policy: "cross-origin"},
+}));
+
+// Limiteur globale de débit de requête
+app.use(globalLimiter);
+
 // Autorisation des requêtes provenant du front React
 app.use(cors({
     origin: process.env.FRONTEND_URL,
 }))
 
-// Parse automatiquement les corps de requête JSON
-app.use(express.json());
+// Parse automatiquement les corps de requête JSON avec
+// limitation de poids de données envoyées par l'utilisateur
+app.use(express.json({ limit: "10kb"}));
 
 // ===========================================================================================
 // STATIC FILES
@@ -70,6 +83,11 @@ app.use('/images', express.static(path.join(__dirname,'public/images')));
 // ===========================================================================================
 app.use('/categories', categoriesRouter);
 app.use('/artisans', artisanRouter);
+
+// ===========================================================================================
+// GLOBAL ERROR HANDLING MIDDLEWARE
+// ===========================================================================================
+app.use(apiErrorHandler);
 
 // ===========================================================================================
 export default app;

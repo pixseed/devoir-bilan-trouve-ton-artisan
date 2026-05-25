@@ -19,26 +19,21 @@
  */
 
 import { getCategoriesService } from "../services/categoryService.js";
-import { successResponse, errorResponse } from "../utils/response.js";
+import { successResponse } from "../utils/response.js";
 
 // ================================================================================================
 // GET CATEGORIES
 // ================================================================================================
-export const getCategories = async (_req, res) => {
+export const getCategories = async (_req, res, next) => {
   try {
     const categories = await getCategoriesService();
+
     return successResponse(
       res,
       categories,
       "Catégories récupérées avec succès.",
     );
   } catch (error) {
-    console.error("💥 Error fetching categories :", error);
-    return errorResponse(
-      res,
-      "Erreur serveur lors de la récupération des catégories.",
-      500,
-      "INTERNAL_ERROR",
-    );
+    next(error);
   }
 };
