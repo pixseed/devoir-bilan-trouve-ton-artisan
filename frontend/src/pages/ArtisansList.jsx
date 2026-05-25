@@ -165,7 +165,9 @@ export default function ArtisansList() {
               : "Consultez la liste des artisans disponibles en Auvergne-Rhône-Alpes et trouvez rapidement le professionnel adapté à vos besoins."
           }
         />
+        <link rel="canonical" href="https://mon-domaine.fr/artisans" />
       </Helmet>
+      
       <div className="artisans-list">
         <div className="container">
           <h1 className="visually-hidden">Liste des artisans</h1>

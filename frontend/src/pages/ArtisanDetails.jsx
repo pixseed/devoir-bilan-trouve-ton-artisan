@@ -60,7 +60,9 @@ export default function ArtisanDetails() {
               : "Consultez le détail d'un artisan et contacter le professionnel."
           }
         />
+        <link rel="canonical" href={`https://mon-domaine.fr/artisans/${id}`} />
       </Helmet>
+      
       <div className="artisan-details">
         <div className="container">
           <h1 className="visually-hidden">

@@ -36,6 +36,7 @@ export default function Home() {
           name="description"
           content="Trouvez facilement un artisan de confiance selon sa spécialité en Auvergne-Rhône-Alpes. Consultez les profils et contactez les professionnels."
         />
+        <link rel="canonical" href="https://mon-domaine.fr/" />
       </Helmet>
 
       <div className="home">

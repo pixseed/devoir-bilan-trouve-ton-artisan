@@ -21,7 +21,9 @@ export default function NotFound() {
           name="description"
           content="La page demandée est introuvable sur Trouve ton artisan."
         />
+        <meta name="robots" content="noindex, nofollow" />
       </Helmet>
+      
       <StatusPage
         title="Erreur 404"
         description="Cette page n'existe pas. Elle n'a jamais franchi la ligne d'arrivée."

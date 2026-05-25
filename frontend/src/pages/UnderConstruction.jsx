@@ -21,6 +21,7 @@ export default function UnderConstruction() {
           name="description"
           content="Cette page de Trouve ton artisan est actuellement en cours de développement."
         />
+        <meta name="robots" content="noindex, nofollow" />
       </Helmet>
 
       <StatusPage
