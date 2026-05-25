@@ -44,6 +44,15 @@
         }
     }
 
+    &--lightbox {
+        background:                     tokens.$icon-btn-quaternary-bg-color;
+        border:                         tokens.$icon-btn-border-size solid tokens.$icon-btn-quaternary-border-color;
+
+        svg, i {
+            color:                      tokens.$icon-btn-quaternary-color;
+        }
+    }
+
     /* =====================================================
         SIZES
     ===================================================== */

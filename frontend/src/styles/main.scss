@@ -38,23 +38,24 @@
 
 // 5. GENERIC COMPONENTS
 @use "./components/alert";
-@use "./components/trigger";
-@use "./components/socialbar";
-@use "./components/iconButton";
-@use "./components/searchbar";
-@use "./components/navItem";
-@use "./components/rating";
-@use "./components/menu";
-@use "./components/button";
 @use "./components/artisanCard";
 @use "./components/breadcrumb";
+@use "./components/button";
+@use "./components/divider";
 @use "./components/dropdown";
 @use "./components/filter";
-@use "./components/gallery";
 @use "./components/form";
-@use "./components/divider";
-@use "./components/statusPage";
+@use "./components/gallery";
+@use "./components/iconButton";
+@use "./components/lightbox";
+@use "./components/menu";
 @use "./components/modal";
+@use "./components/navItem";
+@use "./components/rating";
+@use "./components/searchbar";
+@use "./components/socialbar";
+@use "./components/statusPage";
+@use "./components/trigger";
 
 // 6. SPECIFIC COMPONENTS
 @use "./components/header";

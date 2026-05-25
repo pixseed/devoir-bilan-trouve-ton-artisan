@@ -10,6 +10,7 @@
  * ================================================================================================
  */
 
+import { Helmet } from "react-helmet-async";
 import { useSearchParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 
@@ -92,7 +93,7 @@ export default function ArtisansList() {
 
       return params;
     });
-  };
+  }
 
   // ===========================================================================================
   // DATA FETCHING
@@ -149,53 +150,72 @@ export default function ArtisansList() {
   // RENDER
   // ===========================================================================================
   return (
-    <div className="artisans-list">
-      <div className="container">
-        <h1 className="visually-hidden">Liste des artisans</h1>
-        {/* ===============================================================
+    <>
+      <Helmet>
+        <title>
+          {selectedOption?.name
+            ? `Liste des artisans : ${selectedOption.name} | Trouve ton artisan`
+            : "Liste des artisans | Trouve ton artisan"}
+        </title>
+        <meta
+          name="description"
+          content={
+            selectedOption?.name
+              ? `Consultez les artisans spécialisés en ${selectedOption.name} en Auvergne-Rhône-Alpes et trouvez rapidement le professionnel adapté à vos besoins.`
+              : "Consultez la liste des artisans disponibles en Auvergne-Rhône-Alpes et trouvez rapidement le professionnel adapté à vos besoins."
+          }
+        />
+        <link rel="canonical" href="https://mon-domaine.fr/artisans" />
+      </Helmet>
+      
+      <div className="artisans-list">
+        <div className="container">
+          <h1 className="visually-hidden">Liste des artisans</h1>
+          {/* ===============================================================
           BREADCRUMB
         =================================================================== */}
-        <Breadcrumb items={items} />
+          <Breadcrumb items={items} />
 
-        {/* ===============================================================
+          {/* ===============================================================
           PAGE LAYOUT
         =================================================================== */}
-        <div className="artisans-list__grid">
-          {/* ===============================================================
+          <div className="artisans-list__grid">
+            {/* ===============================================================
             CONTROLS
           =================================================================== */}
-          <aside className="section section--with-bg artisans-list__controls">
-            <Filters
-              searchInput={searchInput}
-              onSearchChange={setSearchInput}
-              onSearchSubmit={handleSearchSubmit}
-              categories={categoriesWithReset}
-              catLoading={catLoading}
-              catError={catError}
-              selectedOption={selectedOption}
-              selectedCategory={selectedCategory}
-              onCategoryChange={handleCategoryChange}
-              mapCategoryItem={mapCategoryItem}
-            />
-          </aside>
+            <aside className="section section--with-bg artisans-list__controls">
+              <Filters
+                searchInput={searchInput}
+                onSearchChange={setSearchInput}
+                onSearchSubmit={handleSearchSubmit}
+                categories={categoriesWithReset}
+                catLoading={catLoading}
+                catError={catError}
+                selectedOption={selectedOption}
+                selectedCategory={selectedCategory}
+                onCategoryChange={handleCategoryChange}
+                mapCategoryItem={mapCategoryItem}
+              />
+            </aside>
 
-          {/* ===============================================================
+            {/* ===============================================================
             RESULT
           =================================================================== */}
-          <section className="section layout-col--end flow-md artisans-list__results">
-            <h2 className="heading-lg heading-lg__accent heading-lg__accent--primary">
-              {selectedOption?.name || "Tous les artisans"}
-            </h2>
-            <ArtisansWithStates
-              data={artisans}
-              loading={loading}
-              error={error}
-              variant={variantCard}
-              className="artisans-list__result-grid"
-            />
-          </section>
+            <section className="section layout-col--end flow-md artisans-list__results">
+              <h2 className="heading-lg heading-lg__accent heading-lg__accent--primary">
+                {selectedOption?.name || "Tous les artisans"}
+              </h2>
+              <ArtisansWithStates
+                data={artisans}
+                loading={loading}
+                error={error}
+                variant={variantCard}
+                className="artisans-list__result-grid"
+              />
+            </section>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

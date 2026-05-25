@@ -70,22 +70,3 @@
         object-fit:                     cover;
     }
 }
-
-.gallery-lightbox {
-    position:                           fixed;
-    inset:                              0;
-    z-index:                            tokens.$z-overlay;
-    @include                            tools.flex-center;
-
-    background:                         tokens.$lightbox-bg-color;
-    cursor:                             zoom-out;
-
-    &__image {
-        max-width:                      90vw;
-        max-height:                     90vh;
-        object-fit:                     contain;
-        box-shadow:                     tokens.$lightbox-shadow;
-
-        border:                         tokens.$lightbox-border-size solid tokens.$lightbox-border-color;
-    }
-}

@@ -2,9 +2,14 @@
 // ICON BUTTON COMPONENT TOKENS
 // ================================================================================================
 
-@use '../spacing';
+@use '../border';
 @use '../colors';
 @use '../radius';
+@use '../spacing';
+
+// BORDER
+// ------------------------------------------------------------------------------------------------
+$icon-btn-border-size:                  border.$border-thin;
 
 // SPACING
 // ------------------------------------------------------------------------------------------------
@@ -30,6 +35,11 @@ $icon-btn-secondary-bg:                 colors.$color-bg-surface;
 
 // Tertiary
 $icon-btn-tertiary-color:               colors.$color-icon-default;
+
+// Quaternary
+$icon-btn-quaternary-color:             colors.$color-icon-inverse;
+$icon-btn-quaternary-bg-color:          rgba(colors.$color-bg-inverse, 0.5);
+$icon-btn-quaternary-border-color:      rgba(colors.$color-border-inverse, 0.2);
 
 // STATES
 // ------------------------------------------------------------------------------------------------

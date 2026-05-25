@@ -27,8 +27,10 @@ export const VARIANTS = {
   },
 
   ICON_BUTTON: {
+    SQUARE: "square",
     ROUNDED: "rounded",
     GHOST: "ghost",
+    LIGHTBOX: "lightbox",
   },
 
   SEARCHBAR: {

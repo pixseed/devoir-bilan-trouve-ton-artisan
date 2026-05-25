@@ -9,39 +9,33 @@
  * ================================================================================================
  */
 
+import { useState, useEffect } from "react";
+
+import Lightbox from "../../ui/overlay/Lightbox";
 import GalleryMain from "../../ui/media/GalleryMain";
 import GalleryList from "../../ui/media/GalleryList";
-import { useState, useEffect } from "react";
 
 export default function MediaGallery({ images = [] }) {
   const [activeImage, setActiveImage] = useState(null);
   const [isImageOpen, setIsImageOpen] = useState(false);
 
   useEffect(() => {
-    if (images.length) {
-      setActiveImage(images[0]);
-    }
+    setActiveImage(images.length ? images[0] : null);
   }, [images]);
 
   return (
     <div className="media-gallery">
-      <GalleryMain image={activeImage} onClick={() => setIsImageOpen(true)} />
+      <GalleryMain image={activeImage} onClick={() => activeImage && setIsImageOpen(true)} />
       <GalleryList
         images={images}
         activeImage={activeImage}
         onSelect={setActiveImage}
       />
-      {isImageOpen && (
-        <modal
-          onClick={() => setIsImageOpen(false)}
-          className="gallery-lightbox"
-        >
-          <img
-            src={activeImage.src}
-            alt={activeImage.alt}
-            className="gallery-lightbox__image"
-          />
-        </modal>
+      {isImageOpen && activeImage && (
+        <Lightbox
+          image={activeImage}
+          onClose={() => setIsImageOpen(false)}
+        />
       )}
     </div>
   );
