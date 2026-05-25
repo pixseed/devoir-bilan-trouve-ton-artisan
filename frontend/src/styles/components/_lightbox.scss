@@ -1,0 +1,35 @@
+@use '../settings/tokens';
+@use '../tools';
+
+.lightbox {
+    position:                           fixed;
+    inset:                              0;
+    z-index:                            tokens.$z-overlay;
+    @include                            tools.flex-center;
+
+    background:                         tokens.$lightbox-bg-color;
+    cursor:                             zoom-out;
+
+    &__content {
+        position:                       relative;
+        max-width:                      90vw;
+        max-height:                     90vh;
+    }
+
+    &__image {
+        display:                        block;
+        max-width:                      100%;
+        max-height:                     90vh;
+        object-fit:                     contain;
+        box-shadow:                     tokens.$lightbox-shadow;
+        border:                         tokens.$lightbox-border-size solid tokens.$lightbox-border-color;
+    }
+
+    &__close {
+        position:                       absolute;
+        top:                            tokens.$lightbox-close-button-offset;
+        right:                          tokens.$lightbox-close-button-offset;
+
+        cursor:                         pointer;
+    }
+}
