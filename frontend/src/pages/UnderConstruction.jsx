@@ -9,20 +9,36 @@
  * ================================================================================================
  */
 
+import { Helmet } from "react-helmet-async";
 import StatusPage from "../components/templates/StatusPage";
 
 export default function UnderConstruction() {
   return (
-    <StatusPage
-      title="En cours de construction"
-      description="Cette page sera bientôt disponible."
-      media={<img src="/images/UNDER-CONSTRUCTION.jpg"></img>}
-      modalContent={
-        <p>
-          Cette page est actuellement en cours de construction et sera bientôt
-          disponible.
-        </p>
-      }
-    />
+    <>
+      <Helmet>
+        <title>Page en cours de construction | Trouve ton artisan</title>
+        <meta
+          name="description"
+          content="Cette page de Trouve ton artisan est actuellement en cours de développement."
+        />
+      </Helmet>
+
+      <StatusPage
+        title="En cours de construction"
+        description="Cette page sera bientôt disponible."
+        media={
+          <img
+            src="/images/UNDER-CONSTRUCTION.jpg"
+            alt="Illustration page en construction"
+          />
+        }
+        modalContent={
+          <p>
+            Cette page est actuellement en cours de construction et sera bientôt
+            disponible.
+          </p>
+        }
+      />
+    </>
   );
 }

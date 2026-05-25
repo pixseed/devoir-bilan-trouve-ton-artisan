@@ -9,6 +9,7 @@
  * ================================================================================================
  */
 
+import { Helmet } from "react-helmet-async";
 import { useParams } from "react-router-dom";
 
 import { useArtisan } from "../hooks/data/useArtisan";
@@ -39,20 +40,38 @@ export default function ArtisanDetails() {
   // ===========================================================================================
   const items = useBreadcrumb(categories, artisan);
 
+  console.log(artisan);
   // ===========================================================================================
   // RENDER
   // ===========================================================================================
   return (
-    <div className="artisan-details">
-      <div className="container">
-        <h1 className="visually-hidden">
+    <>
+      <Helmet>
+        <title>
           {artisan
-            ? `Détails de l'artisan ${artisan.name}`
-            : "Détails de l'artisan"}
-        </h1>
-        <Breadcrumb items={items} />
-        <ArtisanWithStates data={artisan} loading={loading} error={error} />
+            ? `${artisan.name} - ${artisan.specialty} à ${artisan.city} | Trouve ton artisan`
+            : "Détails artisan | Trouve ton artisan"}
+        </title>
+        <meta
+          name="description"
+          content={
+            artisan
+              ? `Découvrez ${artisan.name}, ${artisan.specialty} basé à ${artisan.city} et contactez ce professionnel.`
+              : "Consultez le détail d'un artisan et contacter le professionnel."
+          }
+        />
+      </Helmet>
+      <div className="artisan-details">
+        <div className="container">
+          <h1 className="visually-hidden">
+            {artisan
+              ? `Détails de l'artisan ${artisan.name}`
+              : "Détails de l'artisan"}
+          </h1>
+          <Breadcrumb items={items} />
+          <ArtisanWithStates data={artisan} loading={loading} error={error} />
+        </div>
       </div>
-    </div>
+    </>
   );
 }
