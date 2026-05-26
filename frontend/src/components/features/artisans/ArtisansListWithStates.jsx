@@ -33,11 +33,7 @@ export default function ArtisansListWithStates({
 
   if (loading) {
     return (
-      <div
-        className={clsx(className, {
-          "artisans-list__result-grid--loading": loading,
-        })}
-      >
+      <div className={clsx(className, "artisans-list__result-grid--loading")}>
         {Array.from({ length: responsiveSkeletonCount }).map((_, i) => (
           <ArtisanCardSkeleton key={i} variant={variant} />
         ))}
@@ -57,5 +53,7 @@ export default function ArtisansListWithStates({
     );
   }
 
-  return <ArtisansList artisans={data} variant={variant} className={className} />;
+  return (
+    <ArtisansList artisans={data} variant={variant} className={className} />
+  );
 }

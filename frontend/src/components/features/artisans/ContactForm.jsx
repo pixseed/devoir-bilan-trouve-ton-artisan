@@ -33,31 +33,33 @@ export default function ContactForm({ artisanId }) {
   return (
     <form className="contact-form" onSubmit={handleSubmit} noValidate>
       <TextInput
-        label={"Nom*"}
-        name={"name"}
+        label="Nom*"
+        name="name"
         placeholder=" "
         value={formData.name}
         error={fieldErrors.name}
         onChange={(value) => handleChange("name", value)}
       />
       <TextInput
-        label={"Email*"}
-        name={"email"}
+        label="Email*"
+        name="email"
         placeholder=" "
         value={formData.email}
         error={fieldErrors.email}
         onChange={(value) => handleChange("email", value)}
       />
       <TextInput
-        label={"Objet*"}
-        name={"object"}
+        label="Objet*"
+        name="object"
+        placeholder=" "
         value={formData.object}
         error={fieldErrors.object}
         onChange={(value) => handleChange("object", value)}
       />
       <TextArea
-        label={"Message*"}
-        name={"message"}
+        label="Message*"
+        name="message"
+        placeholder=" "
         value={formData.message}
         error={fieldErrors.message}
         onChange={(value) => handleChange("message", value)}
@@ -65,16 +67,17 @@ export default function ContactForm({ artisanId }) {
       {error && (
         <Alert variant={VARIANTS.ALERT.ERROR}>
           <p>{error}</p>
-          <ul className="contact-form__error-list">
-            {errorList.map((message) => (
-              <li key={message}>{message}</li>
-            ))}
-          </ul>
+          
+          {errorList.length > 0 && (
+            <ul className="contact-form__error-list">
+              {errorList.map((message) => (
+                <li key={message}>{message}</li>
+              ))}
+            </ul>
+          )}
         </Alert>
       )}
-      {success && (
-        <Alert message={success} variant={VARIANTS.ALERT.SUCCESS} />
-      )}
+      {success && <Alert message={success} variant={VARIANTS.ALERT.SUCCESS} />}
       <Button
         type="submit"
         variant={VARIANTS.BUTTON.PRIMARY}

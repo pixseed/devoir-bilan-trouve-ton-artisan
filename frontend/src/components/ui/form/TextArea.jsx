@@ -12,8 +12,15 @@
 import FormField from "./FormField";
 import clsx from "clsx";
 
-export default function TextArea(props) {
-  const { name, label, error, value, onChange, rows = 5 } = props;
+export default function TextArea({
+  name,
+  label,
+  error,
+  value,
+  onChange,
+  rows = 5,
+  ...props
+}) {
 
   return (
     <FormField
@@ -33,6 +40,7 @@ export default function TextArea(props) {
           "form-field__textarea",
           error && "form-field__textarea--error",
         )}
+        {...props}
       />
     </FormField>
   );

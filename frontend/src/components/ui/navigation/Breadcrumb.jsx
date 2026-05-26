@@ -14,7 +14,7 @@ import ArrowIcon from "../../../assets/icons/Right_Arrow.svg?react";
 export default function Breadcrumb({ items = [] }) {
   return (
     <nav aria-label="Fil d'Ariane">
-      <ol className="breadcrumb">
+      <ol className="breadcrumb reset-list">
         {items.map((item, index) => {
           const isLast = index === items.length - 1;
 

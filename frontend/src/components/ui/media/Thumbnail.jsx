@@ -17,9 +17,10 @@ export default function Thumbnail({ image, isActive, onSelect }) {
         type="button"
         className={clsx("thumbnail", { "thumbnail--active": isActive })}
         onClick={() => onSelect?.(image)}
-        aria-pressed={isActive}
+        aria-current={isActive ? "true" : undefined}
+        aria-label={`Afficher ${image.alt}`}
       >
-        <img src={image.src} alt={image.alt} className="thumbnail__image" />
+        <img src={image.src} alt="" aria-hidden="true" className="thumbnail__image" />
       </button>
     </li>
   );

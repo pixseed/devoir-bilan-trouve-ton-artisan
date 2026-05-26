@@ -39,11 +39,11 @@ export default function ArtisanDetails({ artisan }) {
         Header : Informations principales de l'artisans avec bouton de
         redirection (si site web existant en base) vers le site web de l'artisan
         =================================================================== */}
-      <div className="section artisan-details__header">
+      <header className="section artisan-details__header">
         <div className="artisan-details__header-media">
           <img
             src={artisan.image}
-            alt={artisan.name}
+            alt={`Photo de ${artisan.name}, ${artisan.specialty}`}
             className="artisan-details__header-image"
           />
         </div>
@@ -74,38 +74,38 @@ export default function ArtisanDetails({ artisan }) {
             Visiter le site
           </Button>
         )}
-      </div>
+      </header>
 
       <div className="artisan-details__content">
         {/* ===============================================================
         Section : À PROPOS
         =================================================================== */}
-        <div className="section artisan-details__about flow-md">
+        <section className="section artisan-details__about flow-md">
           <h3 className="heading-lg heading-lg__accent heading-lg__accent--primary">
             À propos
           </h3>
           <p className="artisan-details__about-text">{artisan.about}</p>
-        </div>
+        </section>
 
         {/* ===============================================================
         Section : GALERIE
         =================================================================== */}
-        <div className="section artisan-details__gallery flow-md">
+        <section className="section artisan-details__gallery flow-md">
           <h3 className="heading-lg heading-lg__accent heading-lg__accent--secondary">
             Galerie
           </h3>
           <MediaGallery images={artisanGalleryImages} />
-        </div>
+        </section>
 
         {/* ===============================================================
         Section : CONTACT
         =================================================================== */}
-        <div className="section artisan-details__form flow-md">
+        <section className="section artisan-details__form flow-md">
           <h3 className="heading-lg heading-lg__accent heading-lg__accent--tertiary">
             Contact
           </h3>
           <ContactForm artisanId={artisan.id} />
-        </div>
+        </section>
       </div>
     </>
   );

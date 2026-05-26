@@ -12,8 +12,15 @@
 import FormField from "./FormField";
 import clsx from "clsx";
 
-export default function TextInput(props) {
-  const { name, label, error, value, onChange, type = "text" } = props;
+export default function TextInput({
+  name,
+  label,
+  error,
+  value,
+  onChange,
+  type = "text",
+  ...props
+}) {
 
   return (
     <FormField
@@ -33,6 +40,7 @@ export default function TextInput(props) {
           "form-field__input",
           error && "form-field__input--error",
         )}
+        {...props}
       />
     </FormField>
   );

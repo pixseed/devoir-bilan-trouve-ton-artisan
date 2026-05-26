@@ -35,7 +35,7 @@ export default function Footer() {
         <Link to="/" className="footer__logo" aria-label="Retour à l'accueil">
           <img
             src="/logos/logo-trouve-ton-artisan-white.png"
-            alt="Logo Trouve ton Artisan"
+            alt="Trouve ton Artisan"
           />
         </Link>
 
@@ -43,7 +43,6 @@ export default function Footer() {
           <Divider
             className="footer__divider"
             orientation="vertical"
-            size="auto"
           />
         )}
 
@@ -64,7 +63,6 @@ export default function Footer() {
           <Divider
             className="footer__divider"
             orientation="horizontal"
-            size="auto"
           />
         )}
 
