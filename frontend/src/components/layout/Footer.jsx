@@ -50,7 +50,6 @@ export default function Footer() {
           <Divider
             className="footer__divider"
             orientation="vertical"
-            size="auto"
           />
         )}
 
@@ -73,7 +72,6 @@ export default function Footer() {
           <Divider
             className="footer__divider"
             orientation="horizontal"
-            size="auto"
           />
         )}
 

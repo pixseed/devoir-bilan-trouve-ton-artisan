@@ -5,6 +5,7 @@
  * Rôle :
  * - Afficher un bouton icon-only interactif.
  * - Supporter différents rendus HTML et états visuels.
+ * - Permettre un rendu polymorphique via la prop `as` (ex: <button>, <a>, etc.).
  * ================================================================================================
  */
 
@@ -14,6 +15,7 @@ import { VARIANTS } from "../../../constants/variants";
 export default function IconButton({
   icon: Icon,
   as: Component = "button",
+  ariaLabel,
   variant = VARIANTS.ICON_BUTTON.ROUNDED,
   size = VARIANTS.SIZE.MD,
   isActive = false,
@@ -33,10 +35,11 @@ export default function IconButton({
         },
         className,
       )}
+      aria-label={ariaLabel}
       {...(Component === "button" && { type: "button" })}
       {...props}
     >
-      <Icon className="icon-button__icon" />
+      <Icon className="icon-button__icon" aria-hidden="true" />
     </Component>
   );
 }

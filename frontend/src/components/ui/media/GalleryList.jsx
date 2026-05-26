@@ -12,7 +12,7 @@ import Thumbnail from "./Thumbnail";
 
 export default function GalleryList({ images, activeImage, onSelect }) {
   return (
-    <ul className="gallery-list reset-list">
+    <ul className="gallery-list reset-list" aria-label="Miniatures de la galerie">
       {images.map((i) => (
         <Thumbnail
           key={i.id}

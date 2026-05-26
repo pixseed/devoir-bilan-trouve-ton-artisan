@@ -8,6 +8,7 @@
  * ================================================================================================
  */
 
+import { useId } from "react";
 import FilterItem from "./FilterItem";
 import clsx from "clsx";
 import { VARIANTS } from "../../../constants/variants";
@@ -23,7 +24,7 @@ export default function FilterGroup({
   disabled,
 }) {
   const isLoading = items.some((item) => item.isSkeleton);
-  const titleId = `filter-group-${title.toLowerCase()}`;
+  const titleId = useId();
   
   return (
     <section className="filter-group" aria-labelledby={titleId}>

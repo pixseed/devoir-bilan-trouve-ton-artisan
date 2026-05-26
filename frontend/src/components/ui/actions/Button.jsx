@@ -38,9 +38,15 @@ export default function Button({
 
   const content = (
     <>
-      {Icon && iconPosition === "left" && <Icon className="button__icon" aria-hidden="true" />}
-      <span className="button__label">{children}</span>
-      {Icon && iconPosition === "right" && <Icon className="button__icon" aria-hidden="true" />}
+      {Icon && iconPosition === "left" && (
+        <Icon className="button__icon" aria-hidden="true" />
+      )}
+
+      {children && <span className="button__label">{children}</span>}
+
+      {Icon && iconPosition === "right" && (
+        <Icon className="button__icon" aria-hidden="true" />
+      )}
     </>
   );
 
@@ -49,7 +55,7 @@ export default function Button({
   // ================================================================================================
   if (to) {
     return (
-      <Link to={to} className={className} {...props}>
+      <Link to={to} className={className} onClick={onClick} {...props}>
         {content}
       </Link>
     );
@@ -65,6 +71,7 @@ export default function Button({
         target="_blank"
         rel="noopener noreferrer"
         className={className}
+        onClick={onClick}
         {...props}
       >
         {content}

@@ -9,12 +9,12 @@
 
 import clsx from "clsx";
 
-export default function Divider({ orientation = "horizontal", size = "auto" }) {
+export default function Divider({ orientation = "horizontal", size = "" }) {
   const className = clsx(
     "divider",
     `divider--${orientation}`,
-    `divider--${size}`,
-  )
+    size && `divider--${size}`,
+  );
 
   if (orientation === "horizontal") {
     return <hr className={className} />;

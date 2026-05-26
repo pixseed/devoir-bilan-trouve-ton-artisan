@@ -6,10 +6,6 @@
 
     &--horizontal {
         height:                         tokens.$divider-thickness;
-
-        &.divider--auto {
-            width:                      100%;
-        }
     
         &.divider--short {
             max-width:                  tokens.$divider-size-sm;
@@ -26,10 +22,6 @@
     
     &--vertical {
         width:                          tokens.$divider-thickness;
-
-        &.divider--auto {
-            height:                     100%;
-        }
     
         &.divider--short {
             max-height:                 tokens.$divider-size-sm;

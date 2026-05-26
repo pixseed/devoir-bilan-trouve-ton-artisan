@@ -17,7 +17,7 @@ import { VARIANTS } from "../../../constants/variants";
 import IconButton from "../actions/IconButton";
 import SearchIcon from "../../../assets/icons/Search.svg?react";
 
-import closeIcon from "../../../assets/icons/Cross.svg?react";
+import CloseIcon from "../../../assets/icons/Cross.svg?react";
 
 export default function SearchBar({
   placeholder = "Rechercher",
@@ -55,7 +55,7 @@ export default function SearchBar({
       {inputValue && (
         <IconButton
           type="button"
-          icon={closeIcon}
+          icon={CloseIcon}
           aria-label="Effacer la recherche"
           variant={VARIANTS.ICON_BUTTON.GHOST}
           size={VARIANTS.SIZE.SM}
