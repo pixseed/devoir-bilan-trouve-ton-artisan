@@ -45,14 +45,22 @@ export default function StatusPage({
       {/* ===============================================================
         PAGE CONTENT
       =================================================================== */}
-      <section className="section status-page flow-md">
+      <section
+        aria-labelledby="status-title"
+        className="section status-page flow-md"
+      >
         <div className="status-page__content">
           {/* ===============================================================
             HEADER
           =================================================================== */}
           <div className="status-page__header">
             {title && (
-              <h1 className="status-page__header-title heading-xl">{title}</h1>
+              <h1
+                id="status-title"
+                className="status-page__header-title heading-xl"
+              >
+                {title}
+              </h1>
             )}
 
             {description && (

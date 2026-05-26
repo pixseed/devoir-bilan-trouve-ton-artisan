@@ -98,7 +98,7 @@ export default function Header() {
           <img
             className="header__logo"
             src="/logos/logo-trouve-ton-artisan.png"
-            alt="Logo - Trouve ton Artisan"
+            alt="Trouve ton Artisan"
           />
         </Link>
 
@@ -169,7 +169,11 @@ export default function Header() {
             Panel search
             =================================================================== */}
             {isSearchOpen && (
-              <div id="search-panel" className="header__search-panel is-open">
+              <div
+                id="search-panel"
+                aria-label="Recherche"
+                className="header__search-panel is-open"
+              >
                 <div className="container">
                   <SearchBar
                     onSearch={handleSearch}

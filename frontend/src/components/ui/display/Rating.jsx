@@ -9,20 +9,18 @@
 
 import StarIcon from "../../../assets/icons/Fill_Star.svg?react";
 
+const STAR_SIZE = 32;
+const STAR_GAP = 4;
+
 export default function Rating({ value = 0, max = 5 }) {
   const numericValue = Number(value) || 0;
   const safeValue = Math.min(Math.max(numericValue, 0), max);
 
-  const STAR_SIZE = 32;
-  const STAR_GAP = 4;
-  
-  const totalWidth = (max * STAR_SIZE) + ((max - 1) * STAR_GAP);
+  const totalWidth = max * STAR_SIZE + (max - 1) * STAR_GAP;
   const fullStars = Math.floor(safeValue);
   const partialStar = safeValue - fullStars;
   const filledWidth =
-    (fullStars * STAR_SIZE) +
-    (fullStars * STAR_GAP) +
-    (partialStar * STAR_SIZE);
+    fullStars * STAR_SIZE + fullStars * STAR_GAP + partialStar * STAR_SIZE;
 
   const percentage = max > 0 ? (filledWidth / totalWidth) * 100 : 0;
 

@@ -9,6 +9,8 @@
  * ================================================================================================
  */
 
+import { useId } from "react";
+
 import { VARIANTS } from "../../../constants/variants";
 
 import NavItem from "./NavItem";
@@ -17,15 +19,17 @@ import Alert from "../feedback/Alert";
 import clsx from "clsx";
 
 export default function Menu({ items = [], loading, error, onSelect }) {
+  const titleId = useId();
+
   return (
-    <nav className="menu" aria-labelledby="menu-title">
+    <nav className="menu" aria-labelledby={titleId}>
       <div className="container">
         <div className="menu__content">
           {/* ===============================================================
             HEADER
           =================================================================== */}
           <div className="menu__header">
-            <h2 id="menu-title" className="menu__title heading-xl">
+            <h2 id={titleId} className="menu__title heading-xl">
               Catégories
             </h2>
           </div>

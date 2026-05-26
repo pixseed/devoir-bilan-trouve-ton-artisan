@@ -12,7 +12,7 @@ import Divider from "../display/Divider";
 import SkeletonParagraph from "./SkeletonParagraph";
 import FormSkeleton from "./FormSkeleton";
 
-function ArtisanDetailsSkeleton() {
+export default function ArtisanDetailsSkeleton() {
   return (
     <div aria-hidden="true">
       <div className="section artisan-details__header">
@@ -58,5 +58,3 @@ function ArtisanDetailsSkeleton() {
     </div>
   );
 }
-
-export default ArtisanDetailsSkeleton;

@@ -17,9 +17,9 @@ export default function GalleryMain({ image, onClick }) {
         type="button"
         className="gallery-main__trigger"
         onClick={onClick}
-        aria-label="Agrandir l'image"
+        aria-label={`Agrandir l'image ${image.alt}`}
       >
-        <img src={image.src} alt={image.alt} className="gallery-main__image" />
+        <img src={image.src} alt="" aria-hidden="true" className="gallery-main__image" />
       </button>
     </div>
   );

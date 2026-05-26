@@ -20,7 +20,7 @@ import { VARIANTS } from "../../../constants/variants";
 import Button from "../actions/Button";
 
 export default function Modal({
-  title = "",
+  title,
   ariaLabel = "Fenêtre modale",
   onClose,
   children,
@@ -28,7 +28,6 @@ export default function Modal({
   const modalRef = useRef(null);
   const titleId = useId();
 
-  useClickOutside(modalRef, onClose);
   useEscapeKey(true, onClose);
   useFocusTrap(modalRef, true);
 
@@ -46,7 +45,7 @@ export default function Modal({
 
   return (
     <div className="app-modal">
-      <div className="app-modal__overlay">
+      <div className="app-modal__overlay" onClick={onClose}>
         <div
           ref={modalRef}
           className="app-modal__content"
@@ -54,6 +53,7 @@ export default function Modal({
           aria-modal="true"
           aria-labelledby={title ? titleId : undefined}
           aria-label={!title ? ariaLabel : undefined}
+          onClick={(e) => e.stopPropagation()}
         >
           {title && (
             <h2 id={titleId} className="app-modal__title">

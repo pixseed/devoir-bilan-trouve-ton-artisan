@@ -23,7 +23,7 @@ export default function DropdownList({
   return (
     <ul
       id={id}
-      role="listbox"
+      hidden={!isOpen}
       className={clsx("dropdown__list reset-list", {
         "dropdown__list--open": isOpen,
         "dropdown__list--loading": isLoading,

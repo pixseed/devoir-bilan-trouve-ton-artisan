@@ -15,7 +15,7 @@ export default function ArtisanCardSkeleton({
   variant = VARIANTS.CARD.VERTICAL,
 }) {
   return (
-    <article className={clsx("artisan-card", `artisan-card--${variant}`)} aria-hidden="true">
+    <div className={clsx("artisan-card", `artisan-card--${variant}`)} aria-hidden="true">
       <div className="artisan-card__content">
         {/* ===============================================================
           HEADER
@@ -43,6 +43,6 @@ export default function ArtisanCardSkeleton({
           <div className="skeleton skeleton--button" />
         </div>
       </div>
-    </article>
+    </div>
   );
 }

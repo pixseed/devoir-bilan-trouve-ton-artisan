@@ -23,9 +23,9 @@ export default function ArtisanDetailsWithStates({ data, loading, error }) {
 
   if (error) {
     return (
-      <div className="section">
+      <section className="section">
         <Alert message={error} variant={VARIANTS.ALERT.ERROR} />
-      </div>
+      </section>
     );
   }
 

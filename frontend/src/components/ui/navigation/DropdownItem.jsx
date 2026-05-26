@@ -23,8 +23,6 @@ export default function DropdownItem({ option, onSelect, isActive }) {
   return (
     <li
       className={clsx("dropdown__item", { "dropdown__item--active": isActive })}
-      role="option"
-      aria-selected={isActive}
     >
       <button
         type="button"

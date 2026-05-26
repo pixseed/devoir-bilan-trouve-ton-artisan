@@ -5,7 +5,7 @@
  * Rôle :
  * - Gère les états :
  *      → loading (skeleton)
- *      → error (message + désactivation)
+ *      → error (désactivation)
  *      → success (options normales)
  * ================================================================================================
  */
