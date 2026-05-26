@@ -43,8 +43,8 @@ export default function SearchBar({
   }
 
   function handleClear() {
-    handleChange("")
-    onClear?.("");
+    handleChange("");
+    onSearch?.("");
   }
 
   return (

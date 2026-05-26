@@ -14,7 +14,9 @@
  * ================================================================================================
  */
 
+import { useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import clsx from "clsx";
 
 import ChevronIcon from "../../assets/icons/Down_Chevron.svg?react";
 import SearchIcon from "../../assets/icons/Search.svg?react";
@@ -24,13 +26,13 @@ import MenuWithStates from "../features/navigation/MenuWithStates";
 import SearchBar from "../ui/form/SearchBar";
 import Trigger from "../ui/navigation/Trigger";
 
-import { useRef } from "react";
 import { useCategories } from "../../hooks/data/useCategories";
 import { useHeaderPanels } from "../../hooks/features/useHeaderPanels";
 import { useCloseSearchOnBreakpoint } from "../../hooks/features/useCloseSearchOnBreakpoint";
 import { useClickOutside } from "../../hooks/ui/useClickOutside";
 import { useEscapeKey } from "../../hooks/ui/useEscapeKey";
 import { useFocusTrap } from "../../hooks/ui/useFocusTrap";
+import { useScrollToTopOnSameRoute } from "../../hooks/ui/useScrollToTopOnSameRoute";
 
 import { VARIANTS } from "../../constants/variants";
 
@@ -55,6 +57,8 @@ export default function Header() {
   // REFS
   // ================================================================================================
   const menuRef = useRef(null);
+  const menuPanelRef = useRef(null);
+  const searchPanelRef = useRef(null);
 
   // ================================================================================================
   // EFFECTS / BEHAVIOR
@@ -62,7 +66,11 @@ export default function Header() {
   useCloseSearchOnBreakpoint(activePanel, closePanel);
   useClickOutside(menuRef, closePanel);
   useEscapeKey(activePanel, closePanel);
-  useFocusTrap(menuRef, isMenuOpen || isSearchOpen);
+
+  useFocusTrap(menuPanelRef, isMenuOpen);
+  useFocusTrap(searchPanelRef, isSearchOpen);
+
+  const { isCurrentRoute, handleClick } = useScrollToTopOnSameRoute("/");
 
   // ================================================================================================
   // NAVIGATION
@@ -94,11 +102,20 @@ export default function Header() {
         {/* ===============================================================
         Logo → Redirection vers l'accueil
         =================================================================== */}
-        <Link to="/" aria-label="Accueil" className="header__logo-wrapper">
+        <Link
+          to="/"
+          aria-label={
+            isCurrentRoute
+              ? "Remonter en haut de la page"
+              : "Retour à l'accueil"
+          }
+          onClick={handleClick}
+          className="header__logo-wrapper"
+        >
           <img
             className="header__logo"
             src="/logos/logo-trouve-ton-artisan.png"
-            alt="Trouve ton Artisan"
+            alt=""
           />
         </Link>
 
@@ -153,35 +170,41 @@ export default function Header() {
             {/* ===============================================================
             Panel menu (dropdown 'catégories')
             =================================================================== */}
-            {isMenuOpen && (
-              <div id="menu-panel" className="header__menu-panel is-open">
-                <MenuWithStates
-                  data={categories}
-                  loading={loading}
-                  error={error}
-                  mapItem={mapCategoryItem}
-                  onSelect={closePanel}
-                />
-              </div>
-            )}
+            <div
+              id="menu-panel"
+              ref={menuPanelRef}
+              inert={!isMenuOpen}
+              aria-hidden={!isMenuOpen}
+              className={clsx("header__menu-panel", { "is-open": isMenuOpen })}
+            >
+              <MenuWithStates
+                data={categories}
+                loading={loading}
+                error={error}
+                mapItem={mapCategoryItem}
+                onSelect={closePanel}
+              />
+            </div>
 
             {/* ===============================================================
             Panel search
             =================================================================== */}
-            {isSearchOpen && (
-              <div
-                id="search-panel"
-                aria-label="Recherche"
-                className="header__search-panel is-open"
-              >
-                <div className="container">
-                  <SearchBar
-                    onSearch={handleSearch}
-                    variant={VARIANTS.SEARCHBAR.NAVBAR}
-                  />
-                </div>
+            <div
+              id="search-panel"
+              ref={searchPanelRef}
+              inert={!isSearchOpen}
+              aria-hidden={!isSearchOpen}
+              className={clsx("header__search-panel", {
+                "is-open": isSearchOpen,
+              })}
+            >
+              <div className="container">
+                <SearchBar
+                  onSearch={handleSearch}
+                  variant={VARIANTS.SEARCHBAR.NAVBAR}
+                />
               </div>
-            )}
+            </div>
           </div>
         </nav>
 

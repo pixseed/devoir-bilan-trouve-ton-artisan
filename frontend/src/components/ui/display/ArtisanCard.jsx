@@ -8,9 +8,10 @@
  * ================================================================================================
  */
 
+import { Link } from "react-router-dom";
+
 import Rating from "./Rating";
 import Divider from "./Divider";
-import Button from "../actions/Button";
 import ArrowIcon from "../../../assets/icons/Right_Arrow.svg?react";
 
 import clsx from "clsx";
@@ -27,44 +28,51 @@ export default function ArtisanCard({
   variant = VARIANTS.CARD.HORIZONTAL,
 }) {
   return (
-    <article className={clsx("artisan-card", `artisan-card--${variant}`)}>
-      <div className="artisan-card__content">
-        {/* ===============================================================
+    <article>
+      <Link
+        to={`/artisans/${id}`}
+        className={clsx("artisan-card", `artisan-card--${variant}`)}
+      >
+        <div className="artisan-card__content">
+          {/* ===============================================================
           HEADER
         =================================================================== */}
-        <div className="artisan-card__header">
-          <div className="artisan-card__media">
-            <img src={image} alt={`Photo de ${name}`} className="artisan-card__image" />
+          <div className="artisan-card__header">
+            <div className="artisan-card__media">
+              <img
+                src={image}
+                alt={`Photo de ${name}`}
+                className="artisan-card__image"
+              />
+            </div>
+            <div className="artisan-card__header-meta">
+              <h3 className="heading-md artisan-card__header-meta-name">
+                {name}
+              </h3>
+              <Rating value={rating} />
+            </div>
           </div>
-          <div className="artisan-card__header-meta">
-            <h3 className="heading-md artisan-card__header-meta-name">
-              {name}
-            </h3>
-            <Rating value={rating} />
-          </div>
-        </div>
 
-        <Divider />
+          <Divider />
 
-        {/* ===============================================================
+          {/* ===============================================================
           BODY
         =================================================================== */}
-        <div className="artisan-card__body">
-          <div className="artisan-card__body-meta">
-            <p className="artisan-card__body-meta-specialty">{specialty}</p>
-            <p className="artisan-card__body-meta-localisation">{city}</p>
+          <div className="artisan-card__body">
+            <div className="artisan-card__body-meta">
+              <p className="artisan-card__body-meta-specialty">{specialty}</p>
+              <p className="artisan-card__body-meta-localisation">{city}</p>
+            </div>
+
+            <span className="artisan-card__button" aria-hidden="true">
+              <span className="button button--secondary button--md">
+                <span className="button__label">À propos</span>
+                <ArrowIcon className="button__icon" aria-hidden="true" />
+              </span>
+            </span>
           </div>
-          <Button
-            to={`/artisans/${id}`}
-            variant={VARIANTS.BUTTON.SECONDARY}
-            size={VARIANTS.SIZE.MD}
-            icon={ArrowIcon}
-            className="artisan-card__button"
-          >
-            À propos
-          </Button>
         </div>
-      </div>
+      </Link>
     </article>
   );
 }

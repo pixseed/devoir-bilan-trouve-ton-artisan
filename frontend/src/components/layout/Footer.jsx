@@ -11,6 +11,7 @@
 import { Link } from "react-router-dom";
 
 import { useBreakpoint } from "../../hooks/ui/useBreakpoint";
+import { useScrollToTopOnSameRoute } from "../../hooks/ui/useScrollToTopOnSameRoute";
 
 import SocialBar from "../ui/navigation/SocialBar";
 import Divider from "../ui/display/Divider";
@@ -23,20 +24,26 @@ const footerLinks = [
   { label: "Contact", to: "/under-construction" },
 ];
 
+
 export default function Footer() {
   const { isMD } = useBreakpoint();
-  
+  const { isCurrentRoute, handleClick } = useScrollToTopOnSameRoute("/");
+
   return (
     <footer className="footer">
       <div className="container footer__main">
         {/* ===============================================================
         Logo → Redirection vers l'accueil
         =================================================================== */}
-        <Link to="/" className="footer__logo" aria-label="Retour à l'accueil">
-          <img
-            src="/logos/logo-trouve-ton-artisan-white.png"
-            alt="Trouve ton Artisan"
-          />
+        <Link
+          to="/"
+          aria-label={
+            isCurrentRoute ? "Remonter en haut de la page" : "Retour à l'accueil"
+          }
+          onClick={handleClick}
+          className="footer__logo"
+        >
+          <img src="/logos/logo-trouve-ton-artisan-white.png" alt="" />
         </Link>
 
         {isMD && (
@@ -50,7 +57,9 @@ export default function Footer() {
         Address
         =================================================================== */}
         <address className="footer__address">
-          <strong>Lyon</strong>
+          <p>
+            <strong>Lyon</strong>
+          </p>
           <div>
             <p>101 cours Charlemagne</p>
             <p>CS 20033</p>

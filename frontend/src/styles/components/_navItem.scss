@@ -43,12 +43,8 @@
 		STATES
 	===================================================== */
 
-	&:hover {
-		.nav-item & {
-            &__label {
-			    color:                  tokens.$nav-item-text-color-hover;
-            }
-		}
+	&__label:hover {
+		color:                          tokens.$nav-item-text-color-hover;
 	}
 }
 

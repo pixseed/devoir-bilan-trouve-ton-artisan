@@ -61,8 +61,9 @@ app.use(helmet({
 app.use(globalLimiter);
 
 // Autorisation des requêtes provenant du front React
+const allowedOrigins = process.env.FRONTEND_URL.split(",");
 app.use(cors({
-    origin: process.env.FRONTEND_URL,
+    origin: allowedOrigins,
 }))
 
 // Parse automatiquement les corps de requête JSON avec

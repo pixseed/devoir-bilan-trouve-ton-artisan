@@ -20,7 +20,6 @@ import CloseIcon from "../../../assets/icons/Cross.svg?react";
 export default function Lightbox({ image, onClose }) {
   const lightboxRef = useRef(null);
 
-  useClickOutside(lightboxRef, onClose);
   useEscapeKey(true, onClose);
 
   useEffect(() => {
@@ -43,6 +42,7 @@ export default function Lightbox({ image, onClose }) {
       role="dialog"
       aria-modal="true"
       aria-label={`Aperçu de l'image ${image.alt}`}
+      onClick={onClose}
     >
       <div ref={lightboxRef} className="lightbox__content">
         <IconButton
