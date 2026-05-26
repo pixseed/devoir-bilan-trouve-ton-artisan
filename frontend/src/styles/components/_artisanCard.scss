@@ -6,6 +6,8 @@
     border:                             tokens.$card-border;
     border-radius:                      tokens.$card-radius;
     overflow:                           hidden;
+    height:                             100%;
+    transition:                         transform tokens.$transition-fast;
 
     /* =====================================================
         STRUCTURE
@@ -47,6 +49,11 @@
         height:                         100%;
         object-fit:                     cover;
         background-color:               tokens.$card-media-bg;
+    }
+
+    &:hover {
+        transform:                      scale(1.02);
+        box-shadow:                     tokens.$shadow-content;
     }
 }
 
