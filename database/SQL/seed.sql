@@ -53,7 +53,7 @@ VALUES
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eleifend ante sem, id volutpat massa fermentum nec. Praesent volutpat scelerisque mauris, quis sollicitudin tellus sollicitudin. ',
         'boucherie.dumond@gmail.com',
         NULL,
-        '/images/boucherie-dumont-main-picture.jpg',
+        '/images/boucherie-dumont-main-picture.webp',
         FALSE,
         1
     ),
@@ -64,7 +64,7 @@ VALUES
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eleifend ante sem, id volutpat massa fermentum nec. Praesent volutpat scelerisque mauris, quis sollicitudin tellus sollicitudin. ',
         'aupainchaud@hotmail.com',
         NULL,
-        '/images/au-pain-chaud-main-picture.jpg',
+        '/images/au-pain-chaud-main-picture.webp',
         TRUE,
         2
     ),
@@ -75,7 +75,7 @@ VALUES
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eleifend ante sem, id volutpat massa fermentum nec. Praesent volutpat scelerisque mauris, quis sollicitudin tellus sollicitudin. ',
         'chocolaterie-labbe@gmail.com',
         'https://chocolaterie-labbe.fr',
-        '/images/chocolaterie-labbe-main-picture.jpg',
+        '/images/chocolaterie-labbe-main-picture.webp',
         TRUE,
         3
     ),
@@ -86,7 +86,7 @@ VALUES
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eleifend ante sem, id volutpat massa fermentum nec. Praesent volutpat scelerisque mauris, quis sollicitudin tellus sollicitudin. ',
         'contact@truchon-traiteur.fr',
         'https://truchon-traiteur.fr',
-        '/images/traiteur-truchon-main-picture.jpg',
+        '/images/traiteur-truchon-main-picture.webp',
         FALSE,
         4
     ),
@@ -97,7 +97,7 @@ VALUES
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eleifend ante sem, id volutpat massa fermentum nec. Praesent volutpat scelerisque mauris, quis sollicitudin tellus sollicitudin. ',
         'o-salmons@live.com',
         NULL,
-        '/images/orville-salmons-main-picture.jpg',
+        '/images/orville-salmons-main-picture.webp',
         TRUE,
         5
     ),
@@ -108,7 +108,7 @@ VALUES
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eleifend ante sem, id volutpat massa fermentum nec. Praesent volutpat scelerisque mauris, quis sollicitudin tellus sollicitudin. ',
         'contact@mont-blanc-electricite.com',
         'https://mont-blanc-electricite.com',
-        '/images/mont-blanc-electricte-main-picture.jpg',
+        '/images/mont-blanc-electricte-main-picture.webp',
         FALSE,
         6
     ),
@@ -119,7 +119,7 @@ VALUES
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eleifend ante sem, id volutpat massa fermentum nec. Praesent volutpat scelerisque mauris, quis sollicitudin tellus sollicitudin. ',
         'boutot-menuiserie@gmail.com',
         'https://boutot-menuiserie.com',
-        '/images/boutot-et-fils-main-picture.jpg',
+        '/images/boutot-et-fils-main-picture.webp',
         FALSE,
         7
     ),
@@ -130,7 +130,7 @@ VALUES
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eleifend ante sem, id volutpat massa fermentum nec. Praesent volutpat scelerisque mauris, quis sollicitudin tellus sollicitudin. ',
         'v.bellemare@gmail.com',
         'https://plomberie-bellemare.com',
-        '/images/vallis-bellemare-main-picture.jpg',
+        '/images/vallis-bellemare-main-picture.webp',
         FALSE,
         8
     ),
@@ -141,7 +141,7 @@ VALUES
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eleifend ante sem, id volutpat massa fermentum nec. Praesent volutpat scelerisque mauris, quis sollicitudin tellus sollicitudin. ',
         'claude.quinn@gmail.com',
         NULL,
-        '/images/claude-quinn-main-picture.jpg',
+        '/images/claude-quinn-main-picture.webp',
         FALSE,
         9
     ),
@@ -152,7 +152,7 @@ VALUES
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eleifend ante sem, id volutpat massa fermentum nec. Praesent volutpat scelerisque mauris, quis sollicitudin tellus sollicitudin. ',
         'a.amitee@hotmail.com',
         'https://lecuyer-couture.com',
-        '/images/amitee-lecuyer-main-picture.jpg',
+        '/images/amitee-lecuyer-main-picture.webp',
         FALSE,
         10
     ),
@@ -163,7 +163,7 @@ VALUES
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eleifend ante sem, id volutpat massa fermentum nec. Praesent volutpat scelerisque mauris, quis sollicitudin tellus sollicitudin. ',
         'e-carigan@hotmail.com',
         NULL,
-        '/images/ernest-carignan-main-picture.jpg',
+        '/images/ernest-carignan-main-picture.webp',
         FALSE,
         11
     ),
@@ -174,7 +174,7 @@ VALUES
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eleifend ante sem, id volutpat massa fermentum nec. Praesent volutpat scelerisque mauris, quis sollicitudin tellus sollicitudin. ',
         'r.charbonneau@gmail.com',
         NULL,
-        '/images/royden-charbonneau-main-picture.jpg',
+        '/images/royden-charbonneau-main-picture.webp',
         FALSE,
         12
     ),
@@ -185,7 +185,7 @@ VALUES
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eleifend ante sem, id volutpat massa fermentum nec. Praesent volutpat scelerisque mauris, quis sollicitudin tellus sollicitudin. ',
         'l.dennos@hotmail.fr',
         'https://coiffure-leala-chambery.fr',
-        '/images/leala-dennis-main-picture.jpg',
+        '/images/leala-dennis-main-picture.webp',
         FALSE,
         12
     ),
@@ -196,7 +196,7 @@ VALUES
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eleifend ante sem, id volutpat massa fermentum nec. Praesent volutpat scelerisque mauris, quis sollicitudin tellus sollicitudin. ',
         'sup-hair@gmail.com',
         'https://sup-hair.fr',
-        '/images/c-est-sup-hair-main-picture.jpg',
+        '/images/c-est-sup-hair-main-picture.webp',
         FALSE,
         12
     ),
@@ -207,7 +207,7 @@ VALUES
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eleifend ante sem, id volutpat massa fermentum nec. Praesent volutpat scelerisque mauris, quis sollicitudin tellus sollicitudin. ',
         'contact@le-monde-des-fleurs-annonay.fr',
         'https://le-monde-des-fleurs-annonay.fr',
-        '/images/le-monde-des-fleurs-main-picture.jpg',
+        '/images/le-monde-des-fleurs-main-picture.webp',
         FALSE,
         13
     ),
@@ -218,7 +218,7 @@ VALUES
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eleifend ante sem, id volutpat massa fermentum nec. Praesent volutpat scelerisque mauris, quis sollicitudin tellus sollicitudin. ',
         'v-laredoute@gmail.com',
         NULL,
-        '/images/valerie-laderoute-main-picture.jpg',
+        '/images/valerie-laderoute-main-picture.webp',
         FALSE,
         14
     ),
@@ -229,7 +229,7 @@ VALUES
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eleifend ante sem, id volutpat massa fermentum nec. Praesent volutpat scelerisque mauris, quis sollicitudin tellus sollicitudin. ',
         'contact@cm-graphisme.com',
         'https://cm-graphisme.com',
-        '/images/cm-graphisme-main-picture.jpg',
+        '/images/cm-graphisme-main-picture.webp',
         FALSE,
         15
     );

@@ -1,6 +1,7 @@
 {
   "name": "devoir-bilan-trouve-ton-artisan",
   "version": "1.0.0",
+  "type": "module",
   "description": "Devoir bilan : Formation Développeur Web & Web Mobile au Centre Européen de Formation.",
   "directories": {
     "doc": "docs"
@@ -8,7 +9,9 @@
   "scripts": {
     "dev": "concurrently -k -n \"FRONT,BACK\" -c \"blue.bold,green.bold\" \"npm run dev --prefix frontend\" \"node backend/server.js\"",
     "frontend": "npm run dev --prefix frontend",
-    "backend": "node backend/server.js"
+    "backend": "node backend/server.js",
+    "optimize:images": "node scripts/optimize-images.js convert",
+    "cleanup:images": "node scripts/optimize-images.js delete-originals"
   },
   "repository": {
     "type": "git",
@@ -23,5 +26,8 @@
   "homepage": "https://github.com/pixseed/devoir-bilan-trouve-ton-artisan#readme",
   "devDependencies": {
     "concurrently": "^9.2.1"
+  },
+  "dependencies": {
+    "sharp": "^0.34.5"
   }
 }

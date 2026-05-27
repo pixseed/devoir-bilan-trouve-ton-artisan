@@ -29,7 +29,7 @@ export default function UnderConstruction() {
         description="Cette page sera bientôt disponible."
         media={
           <img
-            src="/images/UNDER-CONSTRUCTION.jpg"
+            src="/images/UNDER-CONSTRUCTION.webp"
             alt="Illustration page en construction"
           />
         }

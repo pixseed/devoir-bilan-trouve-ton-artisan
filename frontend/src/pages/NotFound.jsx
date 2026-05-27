@@ -29,7 +29,7 @@ export default function NotFound() {
         description="Cette page n'existe pas. Elle n'a jamais franchi la ligne d'arrivée."
         media={
           <img
-            src="/images/ERREUR-404.jpg"
+            src="/images/ERREUR-404.webp"
             alt="Illustration Erreur 404"
           />
         }
