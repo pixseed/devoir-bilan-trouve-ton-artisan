@@ -12,7 +12,6 @@
 
 import { useEffect, useRef, useId } from "react";
 
-import { useClickOutside } from "../../../hooks/ui/useClickOutside";
 import { useEscapeKey } from "../../../hooks/ui/useEscapeKey";
 import { useFocusTrap } from "../../../hooks/ui/useFocusTrap";
 

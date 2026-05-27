@@ -11,7 +11,6 @@
 
 import { useEffect, useRef } from "react";
 
-import { useClickOutside } from "../../../hooks/ui/useClickOutside";
 import { useEscapeKey } from "../../../hooks/ui/useEscapeKey";
 
 import IconButton from "../../ui/actions/IconButton";

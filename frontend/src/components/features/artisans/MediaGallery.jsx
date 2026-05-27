@@ -9,19 +9,15 @@
  * ================================================================================================
  */
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import Lightbox from "../../ui/overlay/Lightbox";
 import GalleryMain from "../../ui/media/GalleryMain";
 import GalleryList from "../../ui/media/GalleryList";
 
 export default function MediaGallery({ images = [] }) {
-  const [activeImage, setActiveImage] = useState(null);
+  const [activeImage, setActiveImage] = useState(images[0] || null);
   const [isImageOpen, setIsImageOpen] = useState(false);
-
-  useEffect(() => {
-    setActiveImage(images.length ? images[0] : null);
-  }, [images]);
 
   return (
     <div className="media-gallery">
