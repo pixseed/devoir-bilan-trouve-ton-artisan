@@ -35,6 +35,8 @@ export default function Lightbox({ image, onClose }) {
 
   if (!image) return null;
 
+  console.log(image);
+
   return (
     <div
       className="lightbox"
@@ -51,7 +53,7 @@ export default function Lightbox({ image, onClose }) {
           aria-label="Fermer l'aperçu"
           className="lightbox__close"
         />
-        <img src={image.src} alt={image.alt} className="lightbox__image" />
+        <img src={image.main} alt={image.alt} className="lightbox__image" />
       </div>
     </div>
   );

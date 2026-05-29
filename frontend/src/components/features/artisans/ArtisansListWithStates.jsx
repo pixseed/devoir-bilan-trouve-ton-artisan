@@ -27,6 +27,7 @@ export default function ArtisansListWithStates({
   variant = VARIANTS.CARD.VERTICAL,
   skeletonCount = 6,
   className = "",
+  priority = false,
 }) {
   const { isXL, isLG } = useBreakpoint();
   const responsiveSkeletonCount = isXL ? skeletonCount : isLG ? 4 : 3;
@@ -54,6 +55,11 @@ export default function ArtisansListWithStates({
   }
 
   return (
-    <ArtisansList artisans={data} variant={variant} className={className} />
+    <ArtisansList
+      artisans={data}
+      variant={variant}
+      className={className}
+      priority={priority}
+    />
   );
 }

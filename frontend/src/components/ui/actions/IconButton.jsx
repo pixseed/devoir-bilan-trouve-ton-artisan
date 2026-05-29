@@ -39,7 +39,7 @@ export default function IconButton({
       {...(Component === "button" && { type: "button" })}
       {...props}
     >
-      <Icon className="icon-button__icon" aria-hidden="true" />
+      <Icon className="icon-button__icon" />
     </Component>
   );
 }

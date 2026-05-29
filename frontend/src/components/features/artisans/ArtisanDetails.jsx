@@ -14,6 +14,8 @@ import MediaGallery from "./MediaGallery";
 import ContactForm from "./ContactForm";
 import Divider from "../../ui/display/Divider";
 
+import { buildImageSrcSet } from "../../../utils/buildImageSrcSet";
+import { ARTISAN_DETAILS_MAIN_IMAGE_SIZES } from "../../../constants/images";
 import { VARIANTS } from "../../../constants/variants";
 import { galleryImages } from "../../../mocks/GalleryImages";
 
@@ -24,7 +26,10 @@ export default function ArtisanDetails({ artisan }) {
   const artisanGalleryImages = [
     {
       id: 1,
-      src: artisan.image,
+      main: artisan.image,
+      thumbSm: artisan.thumbnailSm,
+      thumbMd: artisan.thumbnailMd,
+      thumbLg: artisan.thumbnailLg,
       alt: artisan.name,
     },
     ...galleryImages,
@@ -42,9 +47,19 @@ export default function ArtisanDetails({ artisan }) {
       <header className="section artisan-details__header">
         <div className="artisan-details__header-media">
           <img
-            src={artisan.image}
+            src={artisan.thumbnailLg}
+            srcSet={buildImageSrcSet({
+              thumbnailSm: artisan.thumbnailSm,
+              thumbnailmd: artisan.thumbnailMd,
+              thumbnailLg: artisan.thumbnailLg
+            })}
+            sizes={ARTISAN_DETAILS_MAIN_IMAGE_SIZES}
             alt={`Photo de ${artisan.name}, ${artisan.specialty}`}
+            width="560"
+            height="315"
             className="artisan-details__header-image"
+            loading="eager"
+            fetchPriority="high"
           />
         </div>
         <div className="artisan-details__header-meta">

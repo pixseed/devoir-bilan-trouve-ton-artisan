@@ -19,6 +19,9 @@ function mapArtisanImage(artisan) {
   return {
     ...artisan,
     image: buildImageUrl(artisan.image),
+    thumbnailSm: buildImageUrl(artisan.thumbnailSm),
+    thumbnailMd: buildImageUrl(artisan.thumbnailMd),
+    thumbnailLg: buildImageUrl(artisan.thumbnailLg),
   };
 }
 

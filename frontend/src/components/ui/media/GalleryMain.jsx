@@ -8,6 +8,8 @@
  * ================================================================================================
  */
 
+import { buildImageSrcSet } from "../../../utils/buildImageSrcSet";
+
 export default function GalleryMain({ image, onClick }) {
   if (!image) return null;
 
@@ -19,7 +21,20 @@ export default function GalleryMain({ image, onClick }) {
         onClick={onClick}
         aria-label={`Agrandir l'image ${image.alt}`}
       >
-        <img src={image.src} alt="" aria-hidden="true" className="gallery-main__image" />
+        <img
+          src={image.thumbnailLg}
+          srcSet={buildImageSrcSet({
+            thumbnailSm: image.thumbSm,
+            thumbnailMd: image.thumbMd,
+            thumbnailLg: image.thumbLg,
+          })}
+          alt=""
+          aria-hidden="true"
+          className="gallery-main__image"
+          width="560"
+          height="315"
+          fetchPriority="high"
+        />
       </button>
     </div>
   );
