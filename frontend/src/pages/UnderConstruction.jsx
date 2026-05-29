@@ -10,6 +10,10 @@
  */
 
 import { Helmet } from "react-helmet-async";
+
+import { STATUS_PAGE_IMAGE_SIZES, STATUS_PAGE_IMAGES } from "../constants/images";
+import { buildStatusPageSrcSet } from "../utils/buildImageSrcSet";
+
 import StatusPage from "../components/templates/StatusPage";
 
 export default function UnderConstruction() {
@@ -29,8 +33,12 @@ export default function UnderConstruction() {
         description="Cette page sera bientôt disponible."
         media={
           <img
-            src="/images/UNDER-CONSTRUCTION.jpg"
-            alt="Illustration page en construction"
+            src={STATUS_PAGE_IMAGES.underConstruction.thumbLg}
+            srcSet={buildStatusPageSrcSet(STATUS_PAGE_IMAGES.underConstruction)}
+            alt="Illustration page en cours de construction"
+            sizes={STATUS_PAGE_IMAGE_SIZES}
+            loading="eager"
+            fetchPriority="high"
           />
         }
         modalContent={

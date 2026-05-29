@@ -43,7 +43,7 @@ export default function Footer() {
           onClick={handleClick}
           className="footer__logo"
         >
-          <img src="/logos/logo-trouve-ton-artisan-white.png" alt="" />
+          <img src="/logos/logo-trouve-ton-artisan-white.webp" alt="" width="200" height="42" />
         </Link>
 
         {isMD && (

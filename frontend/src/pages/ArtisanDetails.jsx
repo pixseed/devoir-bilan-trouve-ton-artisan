@@ -18,6 +18,8 @@ import { useBreadcrumb } from "../hooks/features/useBreadcrumb";
 
 import Breadcrumb from "../components/ui/navigation/Breadcrumb";
 import ArtisanWithStates from "../components/features/artisans/ArtisanDetailsWithStates";
+import { ARTISAN_DETAILS_MAIN_IMAGE_SIZES } from "../constants/images";
+import { buildImageSrcSet } from "../utils/buildImageSrcSet";
 
 export default function ArtisanDetails() {
   // ===========================================================================================
@@ -63,6 +65,21 @@ export default function ArtisanDetails() {
           <link
             rel="canonical"
             href={`https://mon-domaine.fr/artisans/${id}`}
+          />
+        )}
+
+        {/* 
+        Pré-chargement de l'image principale (header) de l'artisan.
+        Cette image est visible dès le chargement de la page et peut devenir
+        l'élément LCP détecté par Lighthouse
+        */}
+        {artisan?.image && (
+          <link
+            rel="preload"
+            as="image"
+            imageSrcSet={buildImageSrcSet(artisan)}
+            imageSizes={ARTISAN_DETAILS_MAIN_IMAGE_SIZES}
+            fetchPriority="high"
           />
         )}
       </Helmet>

@@ -19,6 +19,8 @@ import { useCategories } from "../hooks/data/useCategories";
 import { useBreakpoint } from "../hooks/ui/useBreakpoint";
 import { useBreadcrumb } from "../hooks/features/useBreadcrumb";
 
+import { buildImageSrcSet } from "../utils/buildImageSrcSet";
+import { ARTISAN_CARD_IMAGE_SIZES } from "../constants/images";
 import { VARIANTS } from "../constants/variants";
 
 import Breadcrumb from "../components/ui/navigation/Breadcrumb";
@@ -143,8 +145,11 @@ export default function ArtisansList() {
   // ===========================================================================================
   // RESPONSIVE - Variant des cards
   // ===========================================================================================
-  const { isMD } = useBreakpoint();
-  const variantCard = isMD ? VARIANTS.CARD.VERTICAL : VARIANTS.CARD.HORIZONTAL;
+  const { isSM, isMD } = useBreakpoint();
+  const variantCard =
+    !isSM || (isMD)
+      ? VARIANTS.CARD.VERTICAL
+      : VARIANTS.CARD.HORIZONTAL;
 
   // ===========================================================================================
   // RENDER
@@ -166,6 +171,21 @@ export default function ArtisansList() {
           }
         />
         <link rel="canonical" href="https://mon-domaine.fr/artisans" />
+
+        {/* 
+        Pré-chargement de la première image de la liste des artisans.
+        Cette image est visible dès le chargement de la page et peut devenir
+        l'élément LCP détecté par Lighthouse
+        */}
+        {artisans?.[0] && (
+          <link
+            rel="preload"
+            as="image"
+            imageSrcSet={buildImageSrcSet(artisans[0])}
+            imageSizes={ARTISAN_CARD_IMAGE_SIZES}
+            fetchPriority="high"
+          />
+        )}
       </Helmet>
       
       <div className="artisans-list">
@@ -211,6 +231,7 @@ export default function ArtisansList() {
                 error={error}
                 variant={variantCard}
                 className="artisans-list__result-grid"
+                priority
               />
             </section>
           </div>

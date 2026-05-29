@@ -15,28 +15,48 @@ import { useTopArtisans } from "../hooks/data/useTopArtisans";
 import { useBreakpoint } from "../hooks/ui/useBreakpoint";
 
 import { VARIANTS } from "../constants/variants";
+import { ARTISAN_CARD_IMAGE_SIZES } from "../constants/images";
+import { buildImageSrcSet } from "../utils/buildImageSrcSet";
 
 import ArtisansWithStates from "../components/features/artisans/ArtisansListWithStates";
 
 export default function Home() {
   const { artisans, error, loading } = useTopArtisans();
 
-  const { isMD, isLG } = useBreakpoint();
+  const { isSM, isMD, isLG } = useBreakpoint();
 
   const variantCard =
-    isMD && !isLG ? VARIANTS.CARD.VERTICAL : VARIANTS.CARD.HORIZONTAL;
+    !isSM || (isMD && !isLG)
+      ? VARIANTS.CARD.VERTICAL
+      : VARIANTS.CARD.HORIZONTAL;
 
   return (
     <>
       <Helmet>
         <title>
-          Trouve ton artisan | Trouvez un artisan de confiance en Auvergne-Rhône-Alpes
+          Trouve ton artisan | Trouvez un artisan de confiance en
+          Auvergne-Rhône-Alpes
         </title>
         <meta
           name="description"
           content="Trouvez facilement un artisan de confiance selon sa spécialité en Auvergne-Rhône-Alpes. Consultez les profils et contactez les professionnels."
         />
         <link rel="canonical" href="https://mon-domaine.fr/" />
+
+        {/* 
+        Pré-chargement de la première image de la liste Top 3 des artisans.
+        Cette image est visible dès le chargement de la page et peut devenir
+        l'élément LCP détecté par Lighthouse
+        */}
+        {artisans?.[0] && (
+          <link
+            rel="preload"
+            as="image"
+            imageSrcSet={buildImageSrcSet(artisans[0])}
+            imageSizes={ARTISAN_CARD_IMAGE_SIZES}
+            fetchPriority="high"
+          />
+        )}
       </Helmet>
 
       <div className="home">
@@ -74,6 +94,7 @@ export default function Home() {
                 variant={variantCard}
                 skeletonCount={3}
                 className="home__top-artisans-grid"
+                priority
               />
             </section>
           </div>

@@ -17,6 +17,7 @@
 import { useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import clsx from "clsx";
+import { BREAKPOINTS } from "../../config/breakpoints";
 
 import ChevronIcon from "../../assets/icons/Down_Chevron.svg?react";
 import SearchIcon from "../../assets/icons/Search.svg?react";
@@ -112,11 +113,19 @@ export default function Header() {
           onClick={handleClick}
           className="header__logo-wrapper"
         >
-          <img
-            className="header__logo"
-            src="/logos/logo-trouve-ton-artisan.png"
-            alt=""
-          />
+          <picture>
+            <source
+              media={`max-width: ${BREAKPOINTS.md}px`}
+              srcSet="/logos/logo-trouve-ton-artisan-mobile.webp"
+            />
+            <img
+              className="header__logo"
+              src="/logos/logo-trouve-ton-artisan-desktop.webp"
+              alt=""
+              width="400"
+              height="84"
+            />
+          </picture>
         </Link>
 
         {/* ===============================================================
@@ -170,41 +179,47 @@ export default function Header() {
             {/* ===============================================================
             Panel menu (dropdown 'catégories')
             =================================================================== */}
-            <div
-              id="menu-panel"
-              ref={menuPanelRef}
-              inert={!isMenuOpen}
-              aria-hidden={!isMenuOpen}
-              className={clsx("header__menu-panel", { "is-open": isMenuOpen })}
-            >
-              <MenuWithStates
-                data={categories}
-                loading={loading}
-                error={error}
-                mapItem={mapCategoryItem}
-                onSelect={closePanel}
-              />
-            </div>
+            {isMenuOpen && (
+              <div
+                id="menu-panel"
+                ref={menuPanelRef}
+                inert={!isMenuOpen}
+                aria-hidden={!isMenuOpen}
+                className={clsx("header__menu-panel", {
+                  "is-open": isMenuOpen,
+                })}
+              >
+                <MenuWithStates
+                  data={categories}
+                  loading={loading}
+                  error={error}
+                  mapItem={mapCategoryItem}
+                  onSelect={closePanel}
+                />
+              </div>
+            )}
 
             {/* ===============================================================
             Panel search
             =================================================================== */}
-            <div
-              id="search-panel"
-              ref={searchPanelRef}
-              inert={!isSearchOpen}
-              aria-hidden={!isSearchOpen}
-              className={clsx("header__search-panel", {
-                "is-open": isSearchOpen,
-              })}
-            >
-              <div className="container">
-                <SearchBar
-                  onSearch={handleSearch}
-                  variant={VARIANTS.SEARCHBAR.NAVBAR}
-                />
+            {isSearchOpen && (
+              <div
+                id="search-panel"
+                ref={searchPanelRef}
+                inert={!isSearchOpen}
+                aria-hidden={!isSearchOpen}
+                className={clsx("header__search-panel", {
+                  "is-open": isSearchOpen,
+                })}
+              >
+                <div className="container">
+                  <SearchBar
+                    onSearch={handleSearch}
+                    variant={VARIANTS.SEARCHBAR.NAVBAR}
+                  />
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </nav>
 

@@ -10,13 +10,15 @@
 
 import { Link } from "react-router-dom";
 
-import Rating from "./Rating";
-import Divider from "./Divider";
-import ArrowIcon from "../../../assets/icons/Right_Arrow.svg?react";
-
 import clsx from "clsx";
 
 import { VARIANTS } from "../../../constants/variants";
+import { ARTISAN_CARD_IMAGE_SIZES } from "../../../constants/images";
+import { buildImageSrcSet } from "../../../utils/buildImageSrcSet";
+
+import Rating from "./Rating";
+import Divider from "./Divider";
+import ArrowIcon from "../../../assets/icons/Right_Arrow.svg?react";
 
 export default function ArtisanCard({
   id,
@@ -24,9 +26,17 @@ export default function ArtisanCard({
   rating,
   specialty,
   city,
-  image,
+  thumbnailSm,
+  thumbnailMd,
+  thumbnailLg,
   variant = VARIANTS.CARD.HORIZONTAL,
+  priority = false,
 }) {
+  // Taille d'affichage réelle de l'image selon la variante de carte.
+  // Permet au navigateur de sélectionner la version la plus adaptée dans le srcSet
+  const imageSizes =
+    variant === VARIANTS.CARD.HORIZONTAL ? "64px" : ARTISAN_CARD_IMAGE_SIZES;
+
   return (
     <article>
       <Link
@@ -40,9 +50,19 @@ export default function ArtisanCard({
           <div className="artisan-card__header">
             <div className="artisan-card__media">
               <img
-                src={image}
+                src={thumbnailSm}
+                srcSet={buildImageSrcSet({
+                  thumbnailSm,
+                  thumbnailMd,
+                  thumbnailLg,
+                })}
+                sizes={imageSizes}
                 alt={`Photo de ${name}`}
                 className="artisan-card__image"
+                width={variant === VARIANTS.CARD.HORIZONTAL ? "64" : "240"}
+                height={variant === VARIANTS.CARD.HORIZONTAL ? "64" : "160"}
+                loading={priority ? "eager" : "lazy"}
+                fetchPriority={priority ? "high" : "auto"}
               />
             </div>
             <div className="artisan-card__header-meta">

@@ -9,6 +9,8 @@
  */
 
 import clsx from "clsx";
+import { buildImageSrcSet } from "../../../utils/buildImageSrcSet";
+import { GALLERY_THUMBNAIL_IMAGE_SIZES } from "../../../constants/images";
 
 export default function Thumbnail({ image, isActive, onSelect }) {
   return (
@@ -20,7 +22,21 @@ export default function Thumbnail({ image, isActive, onSelect }) {
         aria-current={isActive ? "true" : undefined}
         aria-label={`Afficher ${image.alt}`}
       >
-        <img src={image.src} alt="" aria-hidden="true" className="thumbnail__image" />
+        <img
+          src={image.thumbSm}
+          srcSet={buildImageSrcSet({
+            thumbnailSm: image.thumbSm,
+            thumbnailMd: image.thumbMd,
+            thumbnailLg: image.thumbLg,
+          })}
+          sizes={GALLERY_THUMBNAIL_IMAGE_SIZES}
+          alt=""
+          aria-hidden="true"
+          className="thumbnail__image"
+          width="320"
+          height="180"
+          loading="lazy"
+        />
       </button>
     </li>
   );

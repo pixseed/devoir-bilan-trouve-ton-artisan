@@ -10,6 +10,13 @@
  */
 
 import { Helmet } from "react-helmet-async";
+
+import { buildStatusPageSrcSet } from "../utils/buildImageSrcSet";
+import {
+  STATUS_PAGE_IMAGE_SIZES,
+  STATUS_PAGE_IMAGES,
+} from "../constants/images";
+
 import StatusPage from "../components/templates/StatusPage";
 
 export default function NotFound() {
@@ -23,14 +30,18 @@ export default function NotFound() {
         />
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
-      
+
       <StatusPage
         title="Erreur 404"
         description="Cette page n'existe pas. Elle n'a jamais franchi la ligne d'arrivée."
         media={
           <img
-            src="/images/ERREUR-404.jpg"
+            src={STATUS_PAGE_IMAGES.notFound.thumbLg}
+            srcSet={buildStatusPageSrcSet(STATUS_PAGE_IMAGES.notFound)}
             alt="Illustration Erreur 404"
+            sizes={STATUS_PAGE_IMAGE_SIZES}
+            loading="eager"
+            fetchPriority="high"
           />
         }
         copyright="© Région Auvergne-Rhône-Alpes"

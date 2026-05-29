@@ -4,6 +4,10 @@
 .artisans-list {
     &__controls {
         position:                       relative;
+
+        & .alert {
+            margin-top:                 tokens.$alert-stack-spacing;
+        }
         
         /* =====================================================
             BACKGROUND (étalement sur toute la largeur du viewport)
