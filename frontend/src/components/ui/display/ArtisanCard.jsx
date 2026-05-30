@@ -59,8 +59,8 @@ export default function ArtisanCard({
                 sizes={imageSizes}
                 alt={`Photo de ${name}`}
                 className="artisan-card__image"
-                width={variant === VARIANTS.CARD.HORIZONTAL ? "64" : "240"}
-                height={variant === VARIANTS.CARD.HORIZONTAL ? "64" : "160"}
+                width="320"
+                height="180"
                 loading={priority ? "eager" : "lazy"}
                 fetchPriority={priority ? "high" : "auto"}
               />
