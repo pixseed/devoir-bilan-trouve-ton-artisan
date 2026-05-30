@@ -63,7 +63,7 @@ export function useContactForm(artisanId) {
 
       const hasRemainingErrors = Object.values(updatedErrors).some(Boolean);
 
-      if (!hasRemainingErrors) {
+      if (!hasRemainingErrors && !isRateLimited) {
         setError(null);
       }
 
@@ -107,6 +107,7 @@ export function useContactForm(artisanId) {
           setIsRateLimited(true);
           setTimeout(() => {
             setIsRateLimited(false);
+            setError(null);
           }, 30000);
           break;
 
