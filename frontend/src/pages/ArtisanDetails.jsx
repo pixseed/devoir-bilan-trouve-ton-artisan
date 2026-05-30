@@ -64,7 +64,7 @@ export default function ArtisanDetails() {
         {artisan && (
           <link
             rel="canonical"
-            href={`https://mon-domaine.fr/artisans/${id}`}
+            href={`${import.meta.env.VITE_SITE_URL}/artisans/${id}`}
           />
         )}
 
