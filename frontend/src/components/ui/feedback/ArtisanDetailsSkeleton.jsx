@@ -22,7 +22,7 @@ export default function ArtisanDetailsSkeleton() {
         <div className="artisan-details__header-meta">
           <div className="artisan-details__header-main-meta">
             <h2 className="skeleton skeleton--title-lg skeleton--w-60" />
-            <div className="skeleton skeleton--text-lg skeleton--w-30" />
+            <div className="skeleton skeleton--rating skeleton--w-30" />
           </div>
           <Divider size="medium" />
           <div className="artisan-details__header-submeta">

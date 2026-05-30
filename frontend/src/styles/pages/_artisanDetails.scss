@@ -9,6 +9,7 @@
         position:                       relative;
         @include                        tools.flex-column;
         @include                        tools.stack(sm);
+        min-height:                     475px;
 
         &::before {
             @include                    tools.full-bleed;
@@ -92,6 +93,7 @@
     .artisan-details {
         &__header {
             @include                    tools.flex-row;
+            min-height:                 260px;
 
             &-button {
                 margin-top:             8px;
@@ -153,6 +155,10 @@
 
 @media (min-width: tokens.$bp-lg) {
     .artisan-details {
+        &__header {
+            min-height:                 290px;
+        }
+
         /* =====================================================
             SECTIONS
         ===================================================== */
