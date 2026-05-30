@@ -24,9 +24,9 @@
  * ================================================================================================
  */
 
-import Category from "./category.js";
-import Specialty from "./specialty.js";
-import Artisan from "./artisan.js";
+import Category from "./Category.js";
+import Specialty from "./Specialty.js";
+import Artisan from "./Artisan.js";
 
 // ===========================================================================================
 // ASSOCIATIONS / RELATIONS
