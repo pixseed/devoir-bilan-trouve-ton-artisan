@@ -41,7 +41,7 @@ export default function Home() {
           name="description"
           content="Trouvez facilement un artisan de confiance selon sa spécialité en Auvergne-Rhône-Alpes. Consultez les profils et contactez les professionnels."
         />
-        <link rel="canonical" href="https://mon-domaine.fr/" />
+        <link rel="canonical" href={`${import.meta.env.VITE_SITE_URL}`} />
 
         {/* 
         Pré-chargement de la première image de la liste Top 3 des artisans.
