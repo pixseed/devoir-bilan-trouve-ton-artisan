@@ -16,6 +16,8 @@
  * - email          : Adresse email de l'artisan.
  * - website        : Site web de l'artisan.
  * - image          : Image de présentation de l'artisan.
+ * - thumbnail_sm   : Image miniature de l'artisan (sm).
+ * - thumbnail_md   : Image miniature de l'artisan (md).
  * - is_top         : Indique si l'artisan figure dans le top artisans du mois.
  * - id_specialty   : Clé étrangère vers la spécialité de l'artisan.
  * ================================================================================================
@@ -70,6 +72,21 @@ const Artisan = sequelize.define("Artisan", {
   },
 
   image: {
+    type: DataTypes.STRING(255),
+    allowNull: true,
+  },
+
+  thumbnail_sm: {
+    type: DataTypes.STRING(255),
+    allowNull: true,
+  },
+
+  thumbnail_md: {
+    type: DataTypes.STRING(255),
+    allowNull: true,
+  },
+
+  thumbnail_lg: {
     type: DataTypes.STRING(255),
     allowNull: true,
   },

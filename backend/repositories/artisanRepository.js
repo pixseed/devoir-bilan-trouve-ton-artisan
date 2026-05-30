@@ -58,7 +58,7 @@ export const findAllArtisans = async ({
 
 // ================================================================================================
 // FIND TOP ARTISANS
-// Récupérer les artisans mis avant triées par note décroissante (maximum 3)
+// Récupérer les artisans mis en avant triées par note décroissante (maximum 3)
 // ================================================================================================
 export const findTopArtisans = async () => {
   return await Artisan.findAll({
