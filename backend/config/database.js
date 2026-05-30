@@ -18,6 +18,7 @@
  * - DB_PASSWORD : Le mot de passe pour se connecter à la base de données.
  * - DB_HOST : L'hôte de la base de données.
  * - DB_DIALECT : Le dialecte de la base de données (dans ce cas, mysql).
+ * - DB_PORT: Le port de la base de données.
  *
  * Utilisé par :
  * - backend/server.js pour établir la connexion à la base de données au démarrage du serveur.
@@ -52,6 +53,7 @@ const sequelize = new Sequelize(
   process.env.DB_PASSWORD,
   {
     host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
     dialect: process.env.DB_DIALECT,
     logging: false, // Désactive les logs SQL dans la console
   },
