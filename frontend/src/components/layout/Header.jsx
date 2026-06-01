@@ -115,7 +115,7 @@ export default function Header() {
         >
           <picture>
             <source
-              media={`max-width: ${BREAKPOINTS.md}px`}
+              media={`(max-width: ${BREAKPOINTS.md}px)`}
               srcSet="/logos/logo-trouve-ton-artisan-mobile.webp"
             />
             <img

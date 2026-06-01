@@ -9,12 +9,12 @@
 
 import { BREAKPOINTS } from "../config/breakpoints";
 
-export const ARTISAN_CARD_IMAGE_SIZES = `(max-width: ${BREAKPOINTS.md}) 100vw, 450px`;
-export const ARTISAN_DETAILS_MAIN_IMAGE_SIZES = `(max-width: ${BREAKPOINTS.md}) 100vw, 560px`;
+export const ARTISAN_CARD_IMAGE_SIZES = `(max-width: ${BREAKPOINTS.md}px) 100vw, 450px`;
+export const ARTISAN_DETAILS_MAIN_IMAGE_SIZES = `(max-width: ${BREAKPOINTS.md}px) 100vw, 560px`;
 export const GALLERY_THUMBNAIL_IMAGE_SIZES = "82px";
 export const STATUS_PAGE_IMAGE_SIZES = `
-  (max-width: ${BREAKPOINTS.md}) 100vw,
-  (max-width: ${BREAKPOINTS.xl}) 720px,
+  (max-width: ${BREAKPOINTS.md}px) 100vw,
+  (max-width: ${BREAKPOINTS.xl}px) 720px,
   1112px
 `;
 
