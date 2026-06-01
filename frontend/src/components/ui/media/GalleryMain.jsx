@@ -9,6 +9,7 @@
  */
 
 import { buildImageSrcSet } from "../../../utils/buildImageSrcSet";
+import ARTISAN_DETAILS_MAIN_IMAGE_SIZES from "../../../constants/images";
 
 export default function GalleryMain({ image, onClick }) {
   if (!image) return null;
@@ -28,6 +29,7 @@ export default function GalleryMain({ image, onClick }) {
             thumbnailMd: image.thumbMd,
             thumbnailLg: image.thumbLg,
           })}
+          sizes={ARTISAN_DETAILS_MAIN_IMAGE_SIZES}
           alt=""
           aria-hidden="true"
           className="gallery-main__image"
