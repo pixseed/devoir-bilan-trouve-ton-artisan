@@ -228,6 +228,18 @@ h5 {
     width:                              tokens.$skeleton-width-100;
 }
 
+.skeleton--breadcrumb-sm {
+    width:                              tokens.$skeleton-breadcrumb-width-sm;
+}
+
+.skeleton--breadcrumb-md {
+    width:                              tokens.$skeleton-breadcrumb-width-md;
+}
+
+.skeleton--breadcrumb-lg {
+    width:                              tokens.$skeleton-breadcrumb-width-lg;
+}
+
 @keyframes pulse {
     0% {
         opacity:                        0.5;

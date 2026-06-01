@@ -16,7 +16,7 @@ import { useArtisan } from "../hooks/data/useArtisan";
 import { useCategories } from "../hooks/data/useCategories";
 import { useBreadcrumb } from "../hooks/features/useBreadcrumb";
 
-import Breadcrumb from "../components/ui/navigation/Breadcrumb";
+import BreadcrumbWithStates from "../components/features/navigation/BreadcrumbWithStates";
 import ArtisanWithStates from "../components/features/artisans/ArtisanDetailsWithStates";
 import { ARTISAN_DETAILS_MAIN_IMAGE_SIZES } from "../constants/images";
 import { buildImageSrcSet } from "../utils/buildImageSrcSet";
@@ -32,7 +32,7 @@ export default function ArtisanDetails() {
   // ===========================================================================================
 
   // Récupération des catégories (pour le breadcrumb)
-  const { categories } = useCategories();
+  const { categories, loading: catLoading, error: catError } = useCategories();
 
   // Récupération de l'artisan
   const { artisan, loading, error } = useArtisan(id);
@@ -91,7 +91,7 @@ export default function ArtisanDetails() {
               ? `Détails de l'artisan ${artisan.name}`
               : "Détails de l'artisan"}
           </h1>
-          <Breadcrumb items={items} />
+          <BreadcrumbWithStates items={items} loading={catLoading} error={catError} />
           <ArtisanWithStates data={artisan} loading={loading} error={error} />
         </div>
       </div>

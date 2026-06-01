@@ -23,7 +23,7 @@ import { buildImageSrcSet } from "../utils/buildImageSrcSet";
 import { ARTISAN_CARD_IMAGE_SIZES } from "../constants/images";
 import { VARIANTS } from "../constants/variants";
 
-import Breadcrumb from "../components/ui/navigation/Breadcrumb";
+import BreadcrumbWithStates from "../components/features/navigation/BreadcrumbWithStates";
 import ArtisansWithStates from "../components/features/artisans/ArtisansListWithStates";
 import Filters from "../components/features/filters/Filters";
 
@@ -147,9 +147,7 @@ export default function ArtisansList() {
   // ===========================================================================================
   const { isSM, isMD } = useBreakpoint();
   const variantCard =
-    !isSM || (isMD)
-      ? VARIANTS.CARD.VERTICAL
-      : VARIANTS.CARD.HORIZONTAL;
+    !isSM || isMD ? VARIANTS.CARD.VERTICAL : VARIANTS.CARD.HORIZONTAL;
 
   // ===========================================================================================
   // RENDER
@@ -197,7 +195,11 @@ export default function ArtisansList() {
           {/* ===============================================================
           BREADCRUMB
         =================================================================== */}
-          <Breadcrumb items={items} />
+          <BreadcrumbWithStates
+            items={items}
+            loading={catLoading}
+            error={catError}
+          />
 
           {/* ===============================================================
           PAGE LAYOUT

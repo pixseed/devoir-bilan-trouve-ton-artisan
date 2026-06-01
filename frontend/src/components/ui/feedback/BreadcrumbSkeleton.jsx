@@ -1,39 +1,37 @@
 /**
  * ================================================================================================
- * BREADCRUMB
+ * BREADCRUMB SKELETON
  * ================================================================================================
  * Rôle :
- * - Afficher le fil d'Ariane de navigation.
- * - Indiquer la page active.
+ * - Afficher l'état de chargement du fil d'Ariane.
  * ================================================================================================
  */
 
 import { Link } from "react-router-dom";
 import ArrowIcon from "../../../assets/icons/Right_Arrow.svg?react";
 
+const skeletonItems = [
+  { label: "Accueil", path: "/" },
+  { skeleton: "skeleton--breadcrumb-md" },
+  { skeleton: "skeleton--breadcrumb-sm" },
+  { skeleton: "skeleton--breadcrumb-lg" },
+];
 
-export default function Breadcrumb({ items = [] }) {
+export default function BreadcrumbSkeleton() {
   return (
-    <nav aria-label="Fil d'Ariane">
+    <nav aria-hidden="true">
       <ol className="breadcrumb reset-list">
-        {items.map((item, index) => {
-          const isLast = index === items.length - 1;
-          const isOnlyHome = items.length === 1 && item.path === "/";
+        {skeletonItems.map((item, index) => {
+          const isLast = index === skeletonItems.length - 1;
 
           return (
-            <li key={item.path ?? item.label} className="breadcrumb__item">
-              {isOnlyHome ? (
-                <Link to="/" className="breadcrumb__link">
+            <li key={item.label ?? item.skeleton} className="breadcrumb__item">
+              {item.label ? (
+                <Link to={item.path} className="breadcrumb__current">
                   {item.label}
                 </Link>
-              ) : isLast ? (
-                <span aria-current="page" className="breadcrumb__current">
-                  {item.label}
-                </span>
               ) : (
-                <Link to={item.path} className="breadcrumb__link">
-                  {item.label}
-                </Link>
+                <div className={`skeleton ${item.skeleton} skeleton--text`} />
               )}
 
               {!isLast && (
