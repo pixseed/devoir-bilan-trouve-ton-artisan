@@ -9,7 +9,7 @@
  */
 
 import { buildImageSrcSet } from "../../../utils/buildImageSrcSet";
-import ARTISAN_DETAILS_MAIN_IMAGE_SIZES from "../../../constants/images";
+import { ARTISAN_DETAILS_MAIN_IMAGE_SIZES } from "../../../constants/images";
 
 export default function GalleryMain({ image, onClick }) {
   if (!image) return null;
