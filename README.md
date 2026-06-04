@@ -2,15 +2,55 @@
 
 Devoir bilan : Formation Développeur Web & Web Mobile au Centre Européen de Formation.
 
+![Version](https://img.shields.io/badge/Version-1.0.0-2E549E)
+![Node.js](https://img.shields.io/badge/Node.js-22.20.0-339933?logo=nodedotjs)
+![Licence](https://img.shields.io/badge/Licence-MIT-B8BA2F)
+
+| Technologie |             |
+|-------------|-------------|
+| Frontend | ![React](https://img.shields.io/badge/React-33D2FA?logo=react&logoColor=white) ![Vite](https://img.shields.io/badge/Vite-6b1eb9?logo=vite&logoColor=white) |
+| Backend | ![Express](https://img.shields.io/badge/Express-black?logo=express&logoColor=white) |
+| ORM |![Sequelize](https://img.shields.io/badge/Sequelize-3b76c3?logo=sequelize&logoColor=white) |
+| Database | ![MySQL](https://img.shields.io/badge/MySQL-orange?logo=mysql&logoColor=white) |
+
+| Déploiement |             |
+|-------------|-------------|
+| Frontend | ![Netlify](https://img.shields.io/badge/Netlify-00C7B7?logo=netlify&logoColor=white) |
+| Backend | ![Render](https://img.shields.io/badge/Render-684678?logo=render&logoColor=white) |
+| Database | ![Railway](https://img.shields.io/badge/Railway-0B0D0E?logo=railway&logoColor=white) |
+
+| Qualité |         |
+|---------|---------|
+| Responsive | ![Mobile](https://img.shields.io/badge/Mobile-BA2F64) ![Tablet](https://img.shields.io/badge/Tablet-BA2F64) ![Desktop](https://img.shields.io/badge/Desktop-BA2F64) |
+
+---
+
+## Liens rapides
+- Application en ligne : https://auvergnerhonealpes-trouve-ton-artisan.netlify.app/
+- API backend : https://trouve-ton-artisan-api-xt2w.onrender.com/
+- Maquette Figma : https://www.figma.com/design/C0moU99nW9cfFlHHRzYXxc/Kernec_Cedric_Devoir_Bilan_Trouve_Ton_Artisan?node-id=38-3103&t=fcY6xDrTEQbigvnm-1
+- [Documentation complète du projet](./docs/pdf/project.pdf)
+- Repository GitHub : https://github.com/pixseed/devoir-bilan-trouve-ton-artisan/
+
 ---
 
 ## Sommaire
 
 - [Trouve ton artisan](#trouve-ton-artisan)
+  - [Liens rapides](#liens-rapides)
   - [Sommaire](#sommaire)
-  - [Objectif](#objectif)
+  - [Présentation](#présentation)
+  - [Fonctionnalités](#fonctionnalités)
+    - [Frontend](#frontend)
+    - [Backend](#backend)
+    - [Database](#database)
   - [Stack technique](#stack-technique)
+    - [Frontend](#frontend-1)
+    - [Backend](#backend-1)
+    - [Base de données](#base-de-données)
   - [Structure du projet](#structure-du-projet)
+    - [Dossier principaux](#dossier-principaux)
+    - [Détails de la structure et du flux d'une requête](#détails-de-la-structure-et-du-flux-dune-requête)
   - [UX/UI Design](#uxui-design)
     - [Design System](#design-system)
     - [Wireframes](#wireframes)
@@ -21,7 +61,7 @@ Devoir bilan : Formation Développeur Web & Web Mobile au Centre Européen de Fo
       - [Model Mobile](#model-mobile)
       - [Model Tablet](#model-tablet)
       - [Model Desktop](#model-desktop)
-  - [DataBase](#database)
+  - [Database](#database-1)
     - [Relations](#relations)
     - [Modèle Conceptuel de Données (MCD)](#modèle-conceptuel-de-données-mcd)
     - [Modèle Logique de Données graphique - Diagram EER (MLD)](#modèle-logique-de-données-graphique---diagram-eer-mld)
@@ -32,12 +72,13 @@ Devoir bilan : Formation Développeur Web & Web Mobile au Centre Européen de Fo
   - [Installation \& Lancement](#installation--lancement)
     - [Prérequis](#prérequis)
     - [1. Installation du projet](#1-installation-du-projet)
-    - [2. Configuration Backend](#2-configuration-backend)
+    - [2. Configuration des variables d'environnement](#2-configuration-des-variables-denvironnement)
     - [3. Lancement de la base de données](#3-lancement-de-la-base-de-données)
     - [4. Initialisation de la base de données](#4-initialisation-de-la-base-de-données)
     - [5. Lancement en développement](#5-lancement-en-développement)
     - [5.bis Lancement manuel (optionnel)](#5bis-lancement-manuel-optionnel)
-    - [6. Accès à l’application](#6-accès-à-lapplication)
+    - [6. Lancement en mode pré-production](#6-lancement-en-mode-pré-production)
+    - [7. Accès à l’application](#7-accès-à-lapplication)
   - [API Endpoints](#api-endpoints)
     - [Artisans](#artisans)
     - [Catégories](#catégories)
@@ -45,39 +86,65 @@ Devoir bilan : Formation Développeur Web & Web Mobile au Centre Européen de Fo
     - [Fonctionnalité testées :](#fonctionnalité-testées-)
     - [Cas de test couverts :](#cas-de-test-couverts-)
     - [Utilisation :](#utilisation-)
+  - [Liens utiles](#liens-utiles)
+  - [Informations](#informations)
 
 
 ---
 
-## Objectif
-Création d'un site permettant aux particuliers de trouver facilement
-un artisan selon sa spécialité ou via une recherche.
+## Présentation
 
-Le projet doit respecter plusieurs contraintes :
+Trouve ton artisan est une application web permettant aux particuliers de rechercher facilement des artisans locaux selon leur spécialité ou leur domaine d'activité.
 
-- Interface responsive
-- Navigation simple
-- Accessibilité
-- Intégration avec une API backend
-- Base de données contenant les artisans, les spécialités et les catégories
+Le projet a été réalisé dans le cadre du devoir bilan de la formation Développeur Web et Web Mobile du Centre Européen de Formation.
+
+L'objectif est de proposer une expérience utilisateur simple, accessible et responsive tout en s'appuyant sur une architecture frontend/backend basée sur React, Express et MySQL.
+
+![Maquette Desktop et Mobile de l'application](./docs/images/Mockup%20-%20Project.png)
+
+---
+
+## Fonctionnalités
+
+### Frontend
+- Affichage du top 3 des artisans
+- Consultation de la liste complète des artisans référencés
+- Recherche par mot-clé
+- Filtrage par catégorie
+- Consultation de la fiche détaillée des artisans
+- Formulaire de contact
+- Responsive mobile / tablette / desktop
+
+### Backend
+- API REST Express
+- Validation des données
+- Gestion centralisée des erreurs
+- Limitation du nombre de requêtes (Rate Limiting)
+- Sérialisation des réponses
+
+### Database
+- Gestion des catégories
+- Gestion des spécialités
+- Gestion des artisans
+
+---
 
 ## Stack technique
 
-**Frontend**
-- React
+### Frontend
+- React + Vite
 - Bootstrap
 - Sass
-- clsx (gestion conditionnelle des classes CSS)
+- clsx
 
-**Backend**
+### Backend
 - Node.js
 - Express
 - Sequelize
 - dotenv
 
-**Base de données**
-- MySQL  / MariaDB
-- MySQL Workbench
+### Base de données
+- MySQL
 
 ---
 
@@ -86,116 +153,158 @@ Le projet doit respecter plusieurs contraintes :
 ```
 devoir-bilan-trouve-ton-artisan
 ├── .github/
-│   ├── ISSUE_TEMPLATE/
-│   │   └── issue-template.md
-│   └── pull_request_template.md
 │
 ├── backend/
 │   ├── config/
-│   │    └── database.js
 │   ├── controllers/
-│   │   ├── artisanController.js
-│   │   └── categoryController.js
-│   ├── middleware/
+│   ├── middlewares/
 │   ├── models/
-│   │   ├── Artisan.js
-│   │   ├── Category.js
-│   │   ├── index.js
-│   │   └── Specialty.js
+│   ├── public/
+│   ├── repositories/
 │   ├── routes/
-│   │   ├── artisans.js
-│   │   └── categories.js
+│   ├── serializers/
+│   ├── services/
 │   ├── utils/
-│   │   ├── dbStats.js
-│   │   └── dbTest.js
+│   ├── validators/
+│   │
 │   ├── app.js
-│   ├── package.json
+│   ├── eslint.config.js
 │   ├── package-lock.json
+│   ├── package.json
 │   └── server.js
 │
 ├── database/
 │   ├── DATA/
-│   │   ├── data.png
-│   │   └── data.xlsx
 │   ├── MCD/
-│   │   ├── MCD_trouve_ton_artisan_url.url
-│   │   ├── MCD_trouve_ton_artisan.mcd
-│   │   └── MCD_trouve_ton_artisan.svg
 │   ├── MLD/
-│   │    ├── MLD_Diagram_EER_trouve_ton_artisan.mwb
-│   │    ├── MLD_Diagram_EER_trouve_ton_artisan.mwb.bak
-│   │    ├── MLD_Diagram_EER_trouve_ton_artisan.png
-│   │    ├── MLD_trouve_ton_artisan.md
-│   │    └── MLD_trouve_ton_artisan.pdf
-│   └── SQL/
-│       ├── queries.sql
-│       ├── schema.sql
-│       └── seed.sql
+│   ├── SQL/
+│   │   ├── queries.sql
+│   │   ├── schema.sql
+│   │   └── seed.sql
+│   │
+│   ├── db_doc.md
+│   └── db_doc.pdf
 │
 ├── docs/
-│   ├── diagrammes
-│   ├── figma/
-│   │   ├── models
-│   │   │   ├── model-desktop.png
-│   │   │   ├── model-mobile.png
-│   │   │   └── model-tablet.png
-│   │   └── wireframes
-│   │       ├── wireframe-desktop.png
-│   │       ├── wireframe-mobile.png
-│   │       └── wireframe-tablet.png
-│   ├── pdf
+│   ├── images/
+│   │   ├── audits/
+│   │   ├── diagrammes/
+│   │   ├── figma/
+│   │   └── logos/
+│   ├── pdf/
 │   │   ├── markdown-pdf.css
 │   │   ├── project.md
 │   │   └── project.pdf
-│   └── postman
+│   └── postman/
 │       ├── pm_collection.json
 │       └── pm_environment.json
 │
 ├── frontend/
+│   ├── public/
 │   ├── src/
 │   │   ├── assets/
-│   │   │   ├── icons/
-│   │   │   ├── images/
-│   │   │   └── logos/
-│   │   │       └── logo-trouve-ton-artisan.png
 │   │   ├── components/
+│   │   │   ├── features/
+│   │   │   ├── layout/
+│   │   │   ├── templates/
+│   │   │   └── ui/
+│   │   ├── config/
+│   │   ├── constants/
+│   │   ├── hooks/
+│   │   │   ├── data/
+│   │   │   ├── features/
+│   │   │   └── ui/
+│   │   ├── mocks/
 │   │   ├── pages/
-│   │   │   ├── Artisan_Details.jsx
-│   │   │   ├── Artisans_list.jsx
+│   │   │   ├── ArtisanDetails.jsx
+│   │   │   ├── ArtisansList.jsx
 │   │   │   ├── Home.jsx
-│   │   │   ├── Not_Found.jsx
-│   │   │   └── Under_Construction.jsx
+│   │   │   ├── NotFound.jsx
+│   │   │   └── UnderConstruction.jsx
 │   │   ├── router/
-│   │   │   └── index.jsx
+│   │   │   └── AppRouter.jsx
 │   │   ├── services/
+│   │   │   ├── apiClient.jsx
+│   │   │   ├── artisansService.jsx
+│   │   │   └── categoriesService.jsx
 │   │   ├── styles/
-│   │   │   └── main.scss
+│   │   │   ├── base/
+│   │   │   ├── components/
+│   │   │   ├── layout/
+│   │   │   ├── pages/
+│   │   │   ├── settings/
+│   │   │   │   └── tokens/
+│   │   │   └── tools/
+│   │   ├── utils/
+│   │   │
 │   │   ├── App.jsx
 │   │   └── main.jsx
+│   │
 │   ├── eslint.config.js
 │   ├── index.html
 │   ├── package-lock.json
 │   ├── package.json
 │   └── vite.config.js
 │
+├── scripts/
+├── shared/
+│
 ├── .gitignore
+├── package-lock.json
+├── package.json
 └── README.md
 ```
 
-Le **backend** est structuré selon **une architecture en couches** :
-- config
-- controllers
-- middleware
-- models
-- routes
+### Dossier principaux
 
-Le **frontend** est structuré selon **une architecture modulaire** :
+| Dossier | Description |
+|---------|-------------|
+| backend | API Express et logique métier |
+| frontend | Interface React |
+| database | Modélisation et scripts SQL |
+| docs | Documentation du projet |
+| scripts | Scripts utilitaires |
+| shared | Ressources partagées |
+
+### Détails de la structure et du flux d'une requête
+
+Le **backend** est structuré selon **une architecture en couches** :
+
+```
+Request
+↓
+Middlewares
+↓
+Routes
+↓
+Controllers
+↓
+Services
+↓
+Repositories
+↓
+Models
+↓
+Database
+```
+
+Le **frontend** est structuré par **domaines de responsabilité** :
+
 - assets
-- pages
 - components
+- config
+- constants
+- hooks
+- mocks
+- pages
 - router
 - services
 - styles
+- utils
+
+![Architecture globale de l'application](./docs/images/diagrammes/1.%20Architecture%20globale%20de%20l’application.png)
+![Architecture backend (logique)](./docs/images/diagrammes/2.%20Architecture%20backend%20(logique).png)
+![Flux d'une requête API](./docs/images/diagrammes/3.%20Flux%20d’une%20requête%20api%20-%20du%20navigateur%20à%20la%20réponse.png)
 
 ---
 
@@ -210,24 +319,24 @@ Le **frontend** est structuré selon **une architecture modulaire** :
 ### Wireframes
 
 #### Wireframe Mobile
-![Wireframe Mobile](./docs/figma/wireframes/wireframe-mobile.png)
+![Wireframe Mobile](./docs/images/figma/wireframes/wireframe-mobile.png)
 #### Wireframe Tablet
-![Wireframe Tablet](./docs/figma/wireframes/wireframe-tablet.png)
+![Wireframe Tablet](./docs/images/figma/wireframes/wireframe-tablet.png)
 #### Wireframe Desktop
-![Wireframe Desktop](./docs/figma/wireframes/wireframe-desktop.png)
+![Wireframe Desktop](./docs/images/figma/wireframes/wireframe-desktop.png)
 
 ### Models
 
 #### Model Mobile
-![Model Mobile](./docs/figma/models/model-mobile.png)
+![Model Mobile](./docs/images/figma/models/model-mobile.png)
 #### Model Tablet
-![Wireframe Tablet](./docs/figma/models/model-tablet.png)
+![Wireframe Tablet](./docs/images/figma/models/model-tablet.png)
 #### Model Desktop
-![Wireframe Desktop](./docs/figma/models/model-desktop.png)
+![Wireframe Desktop](./docs/images/figma/models/model-desktop.png)
 
 ---
 
-## DataBase
+## Database
 
 La base de données a été conçu sur une logique de modélisation en deux étapes :
 - Modèle Conceptuel de Données (MCD)
@@ -237,7 +346,7 @@ Elle respecte le tableau de données transmis par le client :
 ![Tableau de données - PNG](./database/DATA/data.png)
 
 et repose sur 3 entités principales :
-- `catégories`
+- `categories`
 - `specialties`
 - `artisans`
 
@@ -273,9 +382,9 @@ Un dictionnaire de données détaillé est disponible dans le projet afin de dé
 ### Script SQL
 
 Les scripts SQL sont organisés comme suit :
-- `schema.sql` → Création des la DB et des tables
+- `schema.sql` → Création de la base de données et des tables
 - `seed.sql` → Insertion des données initiales
-- `queries.sql` → Requête métier principales :
+- `queries.sql` → Requêtes métier principales :
   - top artisans du mois
   - filtrage par catégorie
   - recherche par mot-clé (nom, spécialité, ville)
@@ -301,7 +410,7 @@ Des alias (`as`) sont utilisés afin de faciliter les requêtes imbriquées avec
 Avant de lancer le projet, assurez-vous d’avoir installé :
 - Node.js
 - npm
-- MySQL ou MariaDB
+- MySQL
 
 >Scripts disponibles
 >  
@@ -316,50 +425,77 @@ Avant de lancer le projet, assurez-vous d’avoir installé :
 
 Depuis la racine du projet :
 
-```Bash
+```bash
+git clone https://github.com/pixseed/devoir-bilan-trouve-ton-artisan.git
+cd devoir-bilan-trouve-ton-artisan
 npm install
 ```
-Cette commande installe :
-- les dépendances du backend
-- les dépendances du frontend
-- les outils globaux (concurrently)
 
-### 2. Configuration Backend
+Installer ensuite les dépendances du backend :
+
+```bash
+cd backend
+npm install
+```
+
+Installer ensuite les dépendances du frontend :
+
+```bash
+cd ../frontend
+npm install
+```
+
+### 2. Configuration des variables d'environnement
 
 **Fichier .env**
 
 Créer un fichier `.env` dans le dossier `backend/` :
 
-```Environment
+```
 DB_NAME=trouve_ton_artisan
 DB_USER=your_username
 DB_PASSWORD=your_password
 DB_HOST=localhost
 DB_DIALECT=mysql
+DB_PORT=3306
+
 PORT=3000
+FRONTEND_URL=http://localhost:5173,http://localhost:4173
+```
+
+Créer un fichier `.env` dans le dossier `frontend/` :
+
+```
+VITE_API_URL=http://localhost:3000
+VITE_SITE_URL=http://localhost:5173
 ```
 
 ### 3. Lancement de la base de données
 
 Avant de lancer l'API, assurez-vous d'avoir lancé votre serveur MySQL.
 
-Example avec XAMPP :
+Exemple avec XAMPP :
 - Lancer XAMPP
 - Démarrer le service MySQL
 
 ### 4. Initialisation de la base de données
 
-1. Créer/Réinitialiser la base de données :
+Via MySQL Workbench :
 
-```SQL
--- via MySQL Workbench
-source database/SQL/schema.sql;
+1. Importer les fichiers présents dans le projet :
+   - `source database/SQL/schema.sql`
+   - `source database/SQL/seed.sql`
+
+2. Créer/Réinitialiser la base de données :
+
+```
+Lancer le script schema.sql
 ```
 
-2. Insérer les données :
+3. Insérer les données :
 
-```SQL
-source database/SQL/seed.sql;
+```
+Lancer le script seed.sql
 ```
 
 ### 5. Lancement en développement
@@ -380,25 +516,48 @@ Si vous souhaitez lancer les services séparément :
 
 ```Bash
 cd backend
-npm install
-node server.js
+npm run start
+```
+
+ou
+
+```Bash
+cd backend
+npm run dev
 ```
 
 **Frontend**
 
 ```Bash
 cd frontend
-npm install
 npm run dev
 ```
 
-### 6. Accès à l’application
+### 6. Lancement en mode pré-production
+
+1. Lancer le serveur API depuis le dossier backend/ :
+
+```Bash
+cd backend
+npm run start
+```
+
+2. Lancer Vite depuis le dossier frontend/ : 
+
+```Bash
+cd frontend
+npm run build
+npm run preview
+```
+
+### 7. Accès à l’application
 
 Une fois le projet lancé :
-- Accéder au **Frontend** : http://localhost:5173⁠
+- Accéder au **Frontend** (développement) : http://localhost:5173
+- Accéder au **Frontend** (pré-production) : http://localhost:4173
 - Accéder au **Backend** : http://localhost:3000⁠
 
-Vous pouvez tester les [endpoints](#api-endpoints) via Postman (voir la section [API Documentation (Postamn)](#api-documentation-postman))
+Vous pouvez tester les [endpoints](#api-endpoints) via Postman (voir la section [API Documentation (Postman)](#api-documentation-postman))
 
 ---
 
@@ -406,22 +565,26 @@ Vous pouvez tester les [endpoints](#api-endpoints) via Postman (voir la section 
 
 ### Artisans
 
+- GET /artisans → Liste des artisans
 - GET /artisans/top → Top artisans du mois
-- GET /artisans/search?q=keyword&category=id → Recherche d'artisans
+- GET /artisans?category=&search= → Recherche d'artisans
 - GET /artisans/:id → Détail d'un artisan
 - POST /artisans/:id/contact → Envoie d'un formulaire de contact à l'artisan
 
-Body attendu :
+Body attendu pour l'envoi de formulaire de contact :
+
+```json
 {
   "name": "string",
   "email": "string",
   "object": "string",
   "message": "string"
 }
+```
+
 ### Catégories
 
 - GET /categories → Liste des catégories
-- GET /categories/:id/artisans → Artisans par catégorie
 
 ---
 
@@ -443,6 +606,7 @@ Une collection Postman et son environnement sont disponibles pour tester l'ensem
 - ✅ 200 (cas nominal)
 - ❌ 400 (requête invalide)
 - ❌ 404 (ressource non trouvée)
+- ❌ 429 (trop de requêtes envoyées)
 
 ### Utilisation :
 1. [Lancer le serveur](#installation--lancement)
@@ -450,3 +614,28 @@ Une collection Postman et son environnement sont disponibles pour tester l'ensem
 3. Importer l'environnement dans Postman `pm_environment.json`
 4. Sélectionner l'environnement dans Postman
 5. Lancer les requêtes
+
+## Liens utiles
+
+- [Repository GitHub](https://github.com/pixseed/devoir-bilan-trouve-ton-artisan/)
+- [Maquette Figma](https://www.figma.com/design/C0moU99nW9cfFlHHRzYXxc/Kernec_Cedric_Devoir_Bilan_Trouve_Ton_Artisan?node-id=38-3103&t=fcY6xDrTEQbigvnm-1)
+- [Application en ligne](https://auvergnerhonealpes-trouve-ton-artisan.netlify.app/)
+- [API backend](https://trouve-ton-artisan-api-xt2w.onrender.com/)
+- [Documentation complète du projet](./docs/pdf/project.pdf)
+- [Architecture globale de l'application](./docs/images/diagrammes/1.%20Architecture%20globale%20de%20l’application.png)
+- [Architecture backend (logique)](./docs/images/diagrammes/2.%20Architecture%20backend%20(logique).png)
+- [Flux d'une requête API](./docs/images/diagrammes/3.%20Flux%20d’une%20requête%20api%20-%20du%20navigateur%20à%20la%20réponse.png)
+- [Dictionnaire de données](./database/db_doc.pdf)
+- [Modèle Conceptuel de Données (MCD)](./database/MCD/MCD_trouve_ton_artisan.svg)
+- [Modèle Logique de Données (MLD)](./database/MLD/MLD_trouve_ton_artisan.pdf)
+
+---
+
+## Informations
+
+| Éléments | Valeur |
+|----------|--------|
+| Version | ![Version](https://img.shields.io/badge/1.0.0-2E549E) |
+| Auteur | ![Pseudo GitHub](https://img.shields.io/badge/Github-Pixseed-1C1C1C?logo=github) ![Auteur](https://img.shields.io/badge/Cédric%20Kernec-1C1C1C) |
+| Licence | ![Licence](https://img.shields.io/badge/MIT-B8BA2F) |
+| Formation | ![Formation](https://img.shields.io/badge/DWWM-Développeur%20Web%20&%20Web%20Mobile-21B07F) |
