@@ -80,6 +80,18 @@ app.use(express.json({ limit: "10kb"}));
 app.use('/images', express.static(path.join(__dirname,'public/images')));
 
 // ===========================================================================================
+// ROOT ROUTES (racine)
+// ===========================================================================================
+app.get("/", (req, res) => {
+  res.json({
+    project: "Trouve ton artisan API",
+    version: "1.0.0",
+    status: "online",
+    documentation: "/docs"
+  })
+})
+
+// ===========================================================================================
 // API ROUTES
 // ===========================================================================================
 app.use('/categories', categoriesRouter);

@@ -1,8 +1,8 @@
 # 📖 Dictionnaire et documentation des données
 
-Document des données récupérée : [data.xlsx](./DB/data.xlsx)
+Document des données récupérée : [data.xlsx](./DATA/data.xlsx)
 
-![data.xlsx](./DB/data.png)
+![data.xlsx](./DATA/data.png)
 
 ---
 
@@ -37,13 +37,16 @@ Document des données récupérée : [data.xlsx](./DB/data.xlsx)
 | `city` | VARCHAR(50) | NOT NULL | Localisation (ville) |
 | `about` | LONGTEXT | NOT NULL | Description |
 | `email` | VARCHAR(150) | UNIQUE, NOT NULL | Adressse email |
-| `website` | VARCHAR(255) | NULL | Site web |
+| `image` | VARCHAR(255) | NULL | Image principale |
+| `thumbnail_sm` | VARCHAR(255) | NULL | Miniature (petit) |
+| `thumbnail_md` | VARCHAR(255) | NULL | Miniature (moy.) |
+| `thumbnail_lg` | VARCHAR(255) | NULL | Miniature (grande) |
 | `is_top` | BOOLEAN | NOT NULL, DEFAULT FALSE | Artisan du mois ? |
 | `id_specialty` | INT | **FK**, NOT NULL, ON UPDATE CASCADE, ON DELETE CASCADE | Référence spécialité |
 
 ### 💡 <u>Exception</u>
 
-<mark>Pour le champ `is_top`, le BOOLEAN sera transformé en MySQL tel que suit :</mark>
+Pour le champ `is_top`, le BOOLEAN sera transformé en MySQL tel que suit :
 
 | Champ | Type | Contraintes | Description |
 |:-----:|:----:|:----------:|:-----------:|
