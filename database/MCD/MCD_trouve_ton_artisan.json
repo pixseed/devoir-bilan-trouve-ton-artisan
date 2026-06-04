@@ -1,0 +1,25 @@
+{
+  "width": 566,
+  "height": 272,
+  "cx": [
+    [ "CATEGORIES", 46 ],
+    [ "ATTACHED", 149 ],
+    [ "SPECIALTIES", 261 ],
+    [ "CHARACTERIZE", 383 ],
+    [ "ARTISANS", 508 ]
+  ],
+  "cy": [
+    [ "CATEGORIES", 136 ],
+    [ "ATTACHED", 136 ],
+    [ "SPECIALTIES", 136 ],
+    [ "CHARACTERIZE", 136 ],
+    [ "ARTISANS", 136 ]
+  ],
+  "shift": [
+    [ "ATTACHED,CATEGORIES,0", 0 ],
+    [ "ATTACHED,SPECIALTIES,0", 0 ],
+    [ "CHARACTERIZE,SPECIALTIES,0", 0 ],
+    [ "CHARACTERIZE,ARTISANS,0", 0 ]
+  ],
+  "ratio": []
+}
