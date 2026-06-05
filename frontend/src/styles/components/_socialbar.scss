@@ -7,5 +7,21 @@
 
 .socialbar {
     @include                            tools.flex-center;
-    gap:                                tokens.$socialbar-icons-gap;
+
+    & li {
+        flex: 0 0 auto;
+    }
+}
+
+@media (min-width: calc(#{tokens.$bp-xxs} + 10px)) {
+    .socialbar {
+        @include                        tools.flex-between;
+    }
+}
+
+@media (min-width: tokens.$bp-sm) {
+    .socialbar {
+        @include                        tools.flex-center;
+        gap:                            tokens.$socialbar-icons-gap;
+    }
 }

@@ -9,6 +9,7 @@
  */
 
 import { VARIANTS } from "../../../constants/variants";
+import { useBreakpoint } from "../../../hooks/ui/useBreakpoint";
 import IconButton from "../actions/IconButton";
 
 import FacebookIcon from "../../../assets/icons/social/Facebook.svg?react";
@@ -63,6 +64,9 @@ function SocialIcon({ icon, className }) {
 }
 
 export default function SocialBar() {
+  const { isXS } = useBreakpoint();
+  const iconBtnSize = isXS ? VARIANTS.SIZE.LG : VARIANTS.SIZE.MD;
+
   return (
     <nav aria-label="Réseaux sociaux">
       <ul className="socialbar reset-list">
@@ -77,7 +81,7 @@ export default function SocialBar() {
                 icon={(props) => (
                   <SocialIcon icon={social.icon} className={props.className} />
                 )}
-                size={VARIANTS.SIZE.LG}
+                size={iconBtnSize}
                 variant={VARIANTS.ICON_BUTTON.GHOST}
               />
             </li>
