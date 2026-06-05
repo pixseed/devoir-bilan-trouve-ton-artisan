@@ -18,7 +18,8 @@ $searchbar-icon-size:                   icon.$icon-md;
 // SPACING
 // ------------------------------------------------------------------------------------------------
 $searchbar-padding-x:                   spacing.$sp-16;
-$searchbar-padding-y:                   spacing.$sp-8;
+$searchbar-padding-top:                 6px;
+$searchbar-padding-bottom:              10px;
 $searchbar-navbar-padding-mobile:       spacing.$sp-16;
 
 $searchbar-input-padding-right-with-icon:  spacing.$sp-64;
@@ -42,5 +43,5 @@ $searchbar-navbar-border-color:         colors.$color-border-emphasis-primary;
 
 // POSITION
 // ------------------------------------------------------------------------------------------------
-$searchbar-clear-offset-x :             spacing.$sp-8;
-$searchbar-submit-offset-x :            spacing.$sp-16;
+$searchbar-clear-offset-x :             spacing.$sp-4;
+$searchbar-submit-offset-x :            spacing.$sp-4;
