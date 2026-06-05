@@ -56,11 +56,3 @@
         }
     }
 }
-
-@media (min-width: tokens.$bp-md) {
-    .filters__controls {            
-            & > * {
-                flex:                   1;
-            }
-        }
-    }
